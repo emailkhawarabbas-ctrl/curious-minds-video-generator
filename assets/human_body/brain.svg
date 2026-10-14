@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Brain" data-tags="brain,mind,neuroscience,thinking,memory,dream,sleep,psychology,nervous system,head">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="352" rx="120" ry="14" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- cerebellum + stem -->
+  <path id="part-stem" d="M214 262 C222 290 222 312 212 336 L190 336 C196 314 196 292 188 268 Z" fill="#E9799A" stroke="#2B2D42" stroke-width="8"/>
+  <path id="part-cerebellum" d="M236 248 C268 246 292 262 288 286 C284 308 252 314 228 300 C214 290 216 256 236 248 Z" fill="#F47FA0" stroke="#2B2D42" stroke-width="8"/>
+  <!-- cerebrum -->
+  <g id="part-cerebrum">
+    <path d="M96 210 C70 196 66 150 92 128 C96 92 136 70 168 82 C188 58 236 58 256 80 C292 70 330 96 330 132 C356 150 356 196 330 214 C330 246 298 268 266 260 C246 280 206 282 186 266 C156 282 118 270 112 244 C98 238 92 226 96 210 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8"/>
+    <!-- highlight -->
+    <path d="M120 120 C134 98 162 92 178 100" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+    <!-- folds (gyri) -->
+    <path d="M200 86 C196 112 214 124 206 150 C198 176 214 196 204 226 C198 244 206 258 200 268" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M118 158 C140 150 152 166 170 160" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M110 206 C130 196 146 214 166 204 C178 198 180 186 176 178" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M146 118 C150 134 166 136 172 128" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M140 246 C150 232 168 236 176 226" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M236 108 C244 124 262 120 270 132 C278 144 290 142 300 136" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M232 168 C252 158 266 174 284 166 C296 160 306 170 314 166" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M230 222 C244 208 262 222 276 212 C286 206 292 214 300 210" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-frontal" cx="140" cy="140" r="4"/>
+  <circle id="anchor-top" cx="210" cy="78" r="4"/>
+  <circle id="anchor-back" cx="300" cy="150" r="4"/>
+  <circle id="anchor-cerebellum" cx="258" cy="282" r="4"/>
+  <circle id="anchor-stem" cx="204" cy="320" r="4"/>
+  <circle id="anchor-center" cx="200" cy="170" r="4"/>
+</svg>

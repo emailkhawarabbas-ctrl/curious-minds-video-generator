@@ -1,0 +1,15 @@
+# Pronunciation corrections applied to the text sent to the TTS only (captions keep the
+# original spelling). Keys are matched as whole words, case-sensitive.
+REM: "rem"
+NREM: "non-rem"
+EEG: "E E G"
+Aserinsky: "Ass-er-in-ski"
+Kleitman: "Klite-man"
+Revonsuo: "Reh-von-soo-oh"
+Hobson: "Hob-son"
+McCarley: "Mc-Carley"
+amygdala: "a-mig-da-la"
+prefrontal: "pre-frontal"
+neurons: "nyoo-rons"
+neuron: "nyoo-ron"
+Curious Minds: "Curious Minds"

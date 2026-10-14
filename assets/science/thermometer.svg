@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Thermometer" data-tags="thermometer,temperature,heat,hot,cold,weather,fever,degrees,climate,measure">
+<ellipse cx="200" cy="370" rx="80" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-tube">
+    <path d="M160 80 A40 40 0 0 1 240 80 L240 250 A64 64 0 1 1 160 250 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M222 82 C226 78 230 78 232 84 L232 248 L222 252 Z" fill="#8ECAE6" fill-opacity="0.8"/>
+  </g>
+  <g id="part-mercury">
+    <path d="M186 134 A14 14 0 0 1 214 134 L214 258 A44 44 0 1 1 186 258 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M174.9 293.3 A26 26 0 0 1 191.1 275.6" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-scale" stroke="#2B2D42" stroke-width="5" stroke-linecap="round">
+    <line x1="170" y1="96" x2="192" y2="96"/>
+    <line x1="170" y1="120" x2="184" y2="120"/>
+    <line x1="170" y1="144" x2="192" y2="144"/>
+    <line x1="170" y1="168" x2="184" y2="168"/>
+    <line x1="170" y1="192" x2="192" y2="192"/>
+    <line x1="170" y1="216" x2="184" y2="216"/>
+    <line x1="170" y1="240" x2="192" y2="240"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="40" r="4"/>
+  <circle id="anchor-bulb" cx="200" cy="304" r="4"/>
+  <circle id="anchor-level" cx="200" cy="124" r="4"/>
+  <circle id="anchor-scale" cx="176" cy="168" r="4"/>
+</svg>

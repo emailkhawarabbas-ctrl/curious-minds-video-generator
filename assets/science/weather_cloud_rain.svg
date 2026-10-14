@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Rain Cloud" data-tags="rain,cloud,weather,storm,rainy,water cycle,precipitation,climate,wet,drizzle">
+<g id="part-cloud">
+    <path d="M92 214 C54 214 46 160 82 148 C74 104 122 80 154 100 C170 56 240 50 258 96 C292 80 338 104 328 146 C362 158 356 214 314 214 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M90 206 C76 202 70 190 74 178 C130 196 272 196 340 176 C344 192 334 206 316 206 Z" fill="#8ECAE6" fill-opacity="0.8"/>
+    <path d="M104 132 C110 112 130 104 146 110" fill="none" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="11" stroke-linecap="round"/>
+  </g>
+  <g id="part-rain" fill="#3A86FF" stroke="#2B2D42" stroke-width="6">
+    <path d="M118 236 C124 248 134 260 134 270 A16 16 0 0 1 102 270 C102 260 112 248 118 236 Z"/>
+    <path d="M200 252 C206 264 216 276 216 286 A16 16 0 0 1 184 286 C184 276 194 264 200 252 Z"/>
+    <path d="M282 236 C288 248 298 260 298 270 A16 16 0 0 1 266 270 C266 260 276 248 282 236 Z"/>
+    <path d="M158 308 C164 320 174 332 174 342 A16 16 0 0 1 142 342 C142 332 152 320 158 308 Z"/>
+    <path d="M242 308 C248 320 258 332 258 342 A16 16 0 0 1 226 342 C226 332 236 320 242 308 Z"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="210" cy="62" r="4"/>
+  <circle id="anchor-cloud" cx="206" cy="140" r="4"/>
+  <circle id="anchor-rain" cx="200" cy="300" r="4"/>
+</svg>

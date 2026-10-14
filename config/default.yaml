@@ -1,0 +1,98 @@
+# Curious Minds — default configuration.
+# Every value can be overridden by a user config file (--config path.yaml) or by
+# environment variables named CM__SECTION__KEY (e.g. CM__TTS__VOICE=en_US-norman-medium).
+
+brand:
+  name: "CURIOUS MINDS"
+  tagline: "Understand the world in a fun way."
+  mascot: "milo"
+
+paths:
+  assets: "assets"
+  generated: "generated"
+  models: "models"
+  prompts: "prompts"
+  content_packs: "content_packs"
+  cache: "generated/.cache"
+
+content:
+  # auto = curated content pack if present, else LLM if a key is set, else offline template
+  script_source: "auto"
+  storyboard_source: "auto"      # auto = LLM-assisted when a key is set, else rule-based
+  allow_unresearched: false      # refuse to write scripts when no research could be gathered
+  short_duration: [60, 90]       # seconds, inclusive range
+  long_duration: [360, 600]
+
+llm:
+  provider: "anthropic"
+  model: "claude-opus-5-5"
+  effort: "high"
+  max_tokens: 32000
+  server_side_fallback: true     # retry policy declines on Anthropic's recommended fallback model
+  timeout_s: 600
+  max_retries: 2
+
+research:
+  providers: ["wikipedia", "medlineplus", "pubmed", "tavily"]
+  timeout_s: 20
+  max_sources_per_provider: 4
+  user_agent: "CuriousMindsResearchBot/1.0 (educational video research)"
+  authoritative_domains:
+    - nih.gov
+    - medlineplus.gov
+    - ncbi.nlm.nih.gov
+    - cdc.gov
+    - nhs.uk
+    - apa.org
+    - nasa.gov
+    - sleepfoundation.org
+    - who.int
+    - nature.com
+    - science.org
+
+tts:
+  provider: "piper"
+  voice: "en_US-joe-medium"           # "US English – Friendly Male" (CC0 dataset)
+  voice_label: "US English Friendly Male"
+  length_scale: 1.15                  # >1 = slower. Joe speaks fast; 1.15 gives a clear educational pace
+  noise_scale: 0.72                   # expressiveness
+  noise_w_scale: 0.85
+  sentence_pause_s: 0.22
+  scene_lead_in_s: 0.30
+  scene_tail_s: 0.45
+  speed_fit_range: [0.95, 1.24]       # allowed length_scale range when fitting to target duration
+  voice_base_url: "https://huggingface.co/rhasspy/piper-voices/resolve/main"
+
+audio:
+  sample_rate: 44100
+  target_lufs: -14.0                  # YouTube / TikTok reference loudness
+  true_peak_db: -1.5
+  music_gain_db: -15.0                # music bed level (music is pre-normalised to -6 dBFS peak)
+  music_duck_db: -7.0                 # additional reduction while narration plays
+  sfx_gain_db: -11.0
+  music_mood: "curious"
+
+render:
+  workers: 0                          # 0 = auto (cpu_count - 1, max 6)
+  crf: 20
+  preset: "faster"                    # x264 preset per scene segment (CRF keeps quality constant)
+  audio_bitrate: "192k"
+  burn_subtitles: true
+  profiles:
+    vertical:
+      width: 1080
+      height: 1920
+      fps: 30
+      # Platform-safe area (TikTok / Shorts UI overlays): px from each edge
+      safe: {top: 230, bottom: 420, left: 70, right: 150}
+      caption_zone_y: 0.695           # caption block centre as a fraction of height (above TikTok description UI)
+    horizontal:
+      width: 1920
+      height: 1080
+      fps: 30
+      safe: {top: 60, bottom: 70, left: 96, right: 96}
+      caption_zone_y: 0.885
+
+thumbnail:
+  width: 1280
+  height: 720

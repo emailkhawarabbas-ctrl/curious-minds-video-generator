@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Car" data-tags="car,vehicle,automobile,drive,road,transport,travel,traffic,ride,commute">
+<ellipse cx="200" cy="320" rx="172" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-body">
+    <path d="M30 262 L30 222 C30 202 44 192 64 190 L104 186 L140 132 C148 120 160 114 176 114 L256 114 C272 114 284 122 292 134 L326 186 L344 188 C362 192 372 204 372 224 L372 262 C372 274 364 280 352 280 L48 280 C38 280 30 272 30 262 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M36 252 L366 252 L366 262 C366 270 360 274 352 274 L48 274 C40 274 36 270 36 262 Z" fill="#2B2D42" fill-opacity="0.16"/>
+    <path d="M60 204 L104 200" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="8" stroke-linecap="round"/>
+    <path d="M206 192 L206 262" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M220 206 L240 206 M164 206 L184 206" fill="none" stroke="#2B2D42" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g id="part-windows" fill="#8ECAE6" stroke="#2B2D42" stroke-width="6">
+    <path d="M124 186 L154 140 C158 134 164 130 172 130 L198 130 L198 186 Z"/>
+    <path d="M214 130 L254 130 C262 130 268 134 272 140 L302 186 L214 186 Z"/>
+    <path d="M226 142 L240 142" fill="none" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g id="part-lights" stroke="#2B2D42" stroke-width="5">
+    <path d="M352 204 C362 206 366 212 366 222 L346 222 C342 214 344 206 352 204 Z" fill="#FFD23F"/>
+    <rect x="26" y="208" width="14" height="22" rx="4" fill="#FF9F1C"/>
+  </g>
+  <g id="part-wheels">
+    <circle cx="104" cy="280" r="38" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="104" cy="280" r="16" fill="#B8BCC8" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="296" cy="280" r="38" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="296" cy="280" r="16" fill="#B8BCC8" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="210" r="4"/>
+  <circle id="anchor-top" cx="216" cy="114" r="4"/>
+  <circle id="anchor-front_wheel" cx="296" cy="280" r="4"/>
+  <circle id="anchor-back_wheel" cx="104" cy="280" r="4"/>
+  <circle id="anchor-window" cx="250" cy="160" r="4"/>
+  <circle id="anchor-headlight" cx="358" cy="214" r="4"/>
+</svg>

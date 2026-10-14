@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Happy Face" data-tags="happy,happiness,joy,smile,emotion,feeling,cheerful,positive,mood,glad">
+  <ellipse cx="200" cy="350" rx="112" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-face">
+    <circle cx="200" cy="190" r="140" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M296 94 A136 136 0 0 1 104 286 A142 142 0 0 0 296 94 Z" fill="#F5B82A"/>
+    <path d="M102 150 C112 120 132 100 160 86" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="12"/>
+    <ellipse cx="116" cy="220" rx="22" ry="13" fill="#FF8FAB" fill-opacity="0.75"/>
+    <ellipse cx="284" cy="220" rx="22" ry="13" fill="#FF8FAB" fill-opacity="0.75"/>
+  </g>
+  <g id="part-brows">
+    <path d="M128 118 C140 104 160 102 174 110" fill="none" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M226 110 C240 102 260 104 272 118" fill="none" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-eyes">
+    <ellipse cx="152" cy="162" rx="15" ry="23" fill="#2B2D42"/>
+    <ellipse cx="248" cy="162" rx="15" ry="23" fill="#2B2D42"/>
+    <circle cx="157" cy="153" r="6" fill="#FFFFFF"/>
+    <circle cx="253" cy="153" r="6" fill="#FFFFFF"/>
+  </g>
+  <g id="part-mouth">
+    <path d="M128 214 C150 296 250 296 272 214 C230 226 170 226 128 214 Z" fill="#2B2D42" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M168 266 C182 248 218 248 232 266 C218 280 182 280 168 266 Z" fill="#FF5D73"/>
+    <path d="M140 222 C175 232 225 232 260 222 L256 234 C220 242 180 242 144 234 Z" fill="#FFFFFF"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="190" r="4"/>
+  <circle id="anchor-top" cx="200" cy="50" r="4"/>
+  <circle id="anchor-left_eye" cx="152" cy="162" r="4"/>
+  <circle id="anchor-right_eye" cx="248" cy="162" r="4"/>
+  <circle id="anchor-mouth" cx="200" cy="250" r="4"/>
+</svg>

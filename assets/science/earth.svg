@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Planet Earth" data-tags="earth,planet,world,globe,geography,climate,environment,ocean,continents,home">
+<g id="part-ocean">
+    <circle cx="200" cy="200" r="146" fill="#3A86FF" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <g id="part-land" fill="#7BD389" stroke="#2B2D42" stroke-width="6">
+    <path d="M118 108 C140 92 174 100 178 124 C182 146 160 152 164 172 C168 192 188 202 182 224 C176 248 158 262 148 284 C138 264 140 242 128 230 C112 216 94 196 98 172 C100 150 98 124 118 108 Z"/>
+    <path d="M222 88 C250 76 288 84 300 108 C308 126 298 140 282 138 C266 136 262 150 270 164 C282 184 302 196 298 222 C294 248 272 262 260 288 C246 270 248 248 236 234 C222 220 214 202 222 184 C228 170 214 158 206 142 C198 124 202 100 222 88 Z"/>
+    <path d="M300 250 C314 240 330 248 326 262 C320 276 300 276 296 266 C294 260 296 254 300 250 Z"/>
+  </g>
+  <g id="part-clouds" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="9" stroke-linecap="round">
+    <path d="M196 300 C214 292 232 296 246 304"/>
+    <path d="M90 268 C102 262 112 262 122 266"/>
+    <path d="M262 190 C276 184 292 186 304 192"/>
+  </g>
+  <path d="M323 129 A142 142 0 0 1 140 328.7 A200 200 0 0 0 323 129 Z" fill="#2B2D42" fill-opacity="0.16"/>
+  <path d="M86.5 175.9 A116 116 0 0 1 122.4 113.8" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="12" stroke-linecap="round"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="54" r="4"/>
+  <circle id="anchor-land" cx="140" cy="180" r="4"/>
+  <circle id="anchor-ocean" cx="206" cy="326" r="4"/>
+  <circle id="anchor-north_pole" cx="194" cy="64" r="4"/>
+</svg>

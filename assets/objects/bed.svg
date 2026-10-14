@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" data-title="Bed" data-tags="bed,sleep,bedroom,rest,night,dream,nap,tired,bedtime,furniture,mattress">
+<ellipse cx="300" cy="326" rx="276" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-headboard">
+    <path d="M40 322 L40 98 C40 70 58 52 86 52 L98 52 C126 52 144 70 144 98 L144 322 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="62" y="88" width="60" height="100" rx="18" fill="#CFC6FF" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M60 80 C66 70 76 66 86 66" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="8"/>
+  </g>
+  <g id="part-frame">
+    <rect x="130" y="230" width="380" height="54" rx="10" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M136 268 L504 268 L504 272 C504 276 500 278 496 278 L144 278 C140 278 136 276 136 272 Z" fill="#5B4BC4" fill-opacity="0.6"/>
+  </g>
+  <g id="part-mattress">
+    <rect x="136" y="186" width="370" height="50" rx="20" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-pillow">
+    <path d="M154 150 C180 140 236 140 262 150 C270 164 270 180 262 194 C236 202 180 202 154 194 C146 180 146 164 154 150 Z" fill="#CFC6FF" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M170 162 C190 156 214 156 230 158" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="6"/>
+  </g>
+  <g id="part-blanket">
+    <path d="M276 180 C340 168 450 168 512 176 C524 196 524 236 514 264 C440 278 340 278 280 266 C268 238 266 204 276 180 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M286 254 C350 264 440 264 512 252 L514 264 C440 278 340 278 280 266 Z" fill="#1A9E92" fill-opacity="0.8"/>
+    <path d="M276 180 C296 176 310 174 318 174 C312 206 314 238 322 270 C306 269 292 268 280 266 C268 238 266 204 276 180 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6"/>
+    <g fill="none" stroke="#9BE7DF" stroke-width="8" stroke-linecap="round">
+      <path d="M380 184 L380 262"/>
+      <path d="M430 182 L430 264"/>
+      <path d="M480 182 L480 262"/>
+    </g>
+  </g>
+  <g id="part-footboard">
+    <path d="M488 322 L488 168 C488 150 502 138 522 138 C542 138 556 150 556 168 L556 322 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M502 160 C506 152 512 150 518 150" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="7"/>
+  </g>
+  <circle id="anchor-center" cx="300" cy="220" r="4"/>
+  <circle id="anchor-top" cx="92" cy="52" r="4"/>
+  <circle id="anchor-pillow" cx="208" cy="170" r="4"/>
+  <circle id="anchor-blanket" cx="420" cy="222" r="4"/>
+  <circle id="anchor-headboard" cx="92" cy="138" r="4"/>
+  <circle id="anchor-mattress" cx="220" cy="214" r="4"/>
+</svg>

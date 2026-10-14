@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sleep Z's" data-tags="zzz,sleep,sleeping,snore,snoring,asleep,tired,nap,rest,bedtime">
+  <!-- each Z: unit glyph 100x100 = darker extrusion + front face; strokes compensate scale -->
+  <g id="part-z_small" transform="translate(44 262) rotate(-10) scale(0.62)">
+    <path transform="translate(8 8)" d="M0 0 L100 0 L100 24 L40 76 L100 76 L100 100 L0 100 L0 76 L60 24 L0 24 Z" fill="#5B4BC4" stroke="#2B2D42" stroke-width="9.7"/>
+    <path d="M0 0 L100 0 L100 24 L40 76 L100 76 L100 100 L0 100 L0 76 L60 24 L0 24 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="9.7"/>
+  </g>
+  <g id="part-z_medium" transform="translate(124 152) rotate(-10) scale(0.9)">
+    <path transform="translate(8 8)" d="M0 0 L100 0 L100 24 L40 76 L100 76 L100 100 L0 100 L0 76 L60 24 L0 24 Z" fill="#5B4BC4" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M0 0 L100 0 L100 24 L40 76 L100 76 L100 100 L0 100 L0 76 L60 24 L0 24 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <g id="part-z_large" transform="translate(222 36) rotate(-10) scale(1.26)">
+    <path transform="translate(8 8)" d="M0 0 L100 0 L100 24 L40 76 L100 76 L100 100 L0 100 L0 76 L60 24 L0 24 Z" fill="#5B4BC4" stroke="#2B2D42" stroke-width="6.4"/>
+    <path d="M0 0 L100 0 L100 24 L40 76 L100 76 L100 100 L0 100 L0 76 L60 24 L0 24 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="6.4"/>
+    <path d="M10 10 L56 10" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="6"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="290" cy="30" r="4"/>
+  <circle id="anchor-z_small" cx="78" cy="292" r="4"/>
+  <circle id="anchor-z_medium" cx="172" cy="196" r="4"/>
+  <circle id="anchor-z_large" cx="290" cy="104" r="4"/>
+</svg>

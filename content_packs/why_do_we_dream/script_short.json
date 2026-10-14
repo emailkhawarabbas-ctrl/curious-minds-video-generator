@@ -1,0 +1,289 @@
+{
+  "topic": "Why Do We Dream?",
+  "niche": "psychology",
+  "format": "short",
+  "source": "curated",
+  "title": "Why Do We Dream?",
+  "hook": "Every night, your brain makes a movie, and you're the star. But why do we dream at all?",
+  "cta": "Follow for more!",
+  "notes": [
+    "Curated for the MVP acceptance test. Every claim is supported by research/source_texts.json (Wikipedia 'Dream' and 'Rapid eye movement sleep'; PubMed reviews 2023/2025). Theories are hedged."
+  ],
+  "sections": [
+    {
+      "title": "The nightly movie",
+      "beats": [
+        {
+          "id": "s1",
+          "narration": "Every night, your brain makes a movie, and you're the star. But why do we dream at all?",
+          "visual": {
+            "layout": "hook_title",
+            "title": "Why do we dream?",
+            "assets": [
+              "dream_cloud"
+            ],
+            "action": "surprised",
+            "expression": "surprised",
+            "background": "burst_purple"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "s2",
+          "narration": "Here's the wild part: you spend more than two hours dreaming every night, even if you can't remember a thing.",
+          "visual": {
+            "layout": "fact_card",
+            "number": {
+              "value": 2,
+              "suffix": "+ HOURS",
+              "label": "of dreaming every night"
+            },
+            "assets": [
+              "moon_sleepy"
+            ],
+            "action": "excited",
+            "expression": "excited",
+            "background": "burst_teal"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "Inside REM sleep",
+      "beats": [
+        {
+          "id": "s3",
+          "narration": "Sleep moves in cycles of about 90 minutes, and the most vivid dreams happen in a stage called REM sleep, short for rapid eye movement.",
+          "visual": {
+            "layout": "chart",
+            "chart": {
+              "kind": "step",
+              "points": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.04,
+                  0.333
+                ],
+                [
+                  0.1,
+                  0
+                ],
+                [
+                  0.18,
+                  0.333
+                ],
+                [
+                  0.22,
+                  0.667
+                ],
+                [
+                  0.26,
+                  0.333
+                ],
+                [
+                  0.33,
+                  0
+                ],
+                [
+                  0.42,
+                  0.333
+                ],
+                [
+                  0.47,
+                  0.667
+                ],
+                [
+                  0.53,
+                  0.333
+                ],
+                [
+                  0.62,
+                  0.333
+                ],
+                [
+                  0.66,
+                  0.667
+                ],
+                [
+                  0.75,
+                  0.333
+                ],
+                [
+                  0.8,
+                  0.667
+                ],
+                [
+                  0.93,
+                  0.333
+                ],
+                [
+                  0.97,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "labels": [
+                "Deep sleep",
+                "Light sleep",
+                "REM",
+                "Awake"
+              ],
+              "x_labels": [
+                "11 pm",
+                "2 am",
+                "5 am",
+                "7 am"
+              ],
+              "highlight_level": 2
+            },
+            "action": "point",
+            "expression": "happy",
+            "background": "night_sky"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "s4",
+          "narration": "During REM, your eyes dart around and your brain gets almost as active as when you're awake.",
+          "visual": {
+            "layout": "wave_monitor",
+            "items": [
+              {
+                "text": "Awake: busy brain waves",
+                "cue": "awake"
+              },
+              {
+                "text": "REM: just as busy!",
+                "cue": "brain"
+              }
+            ],
+            "action": "point",
+            "expression": "excited",
+            "background": "brain_space"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "s5",
+          "narration": "But your body is almost completely paralyzed, so you don't act out your dreams. Pretty smart, right?",
+          "visual": {
+            "layout": "story_scene",
+            "assets": [
+              "sleeping_person"
+            ],
+            "action": "talk",
+            "expression": "happy",
+            "background": "bedroom_night",
+            "bubble": "Brain: ON. Body: OFF."
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "So why do we dream?",
+      "beats": [
+        {
+          "id": "s6",
+          "narration": "So why does the brain bother? Honestly, scientists still aren't sure, but they have some great ideas.",
+          "visual": {
+            "layout": "question",
+            "title": "So... why dream?",
+            "action": "shrug",
+            "expression": "confused",
+            "background": "burst_orange"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "s7",
+          "narration": "One idea: dreams help sort your memories. Another: they help you handle emotions. A third: they let you rehearse dealing with threats.",
+          "visual": {
+            "layout": "list_reveal",
+            "items": [
+              {
+                "text": "Sorting memories",
+                "asset": "memory_photos",
+                "cue": "memories"
+              },
+              {
+                "text": "Handling emotions",
+                "asset": "emotion_happy",
+                "cue": "emotions"
+              },
+              {
+                "text": "Practising for danger",
+                "asset": "nightmare_monster",
+                "cue": "threats"
+              }
+            ],
+            "action": "explain",
+            "expression": "happy",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "s8",
+          "narration": "And some scientists think dreams are simply your brain making a story out of random signals. That might explain why dreams get so wonderfully weird.",
+          "visual": {
+            "layout": "network",
+            "assets": [
+              "brain_activity",
+              "lightning",
+              "memory_photos",
+              "dream_cloud"
+            ],
+            "labels": [
+              "Signals",
+              "Memories",
+              "A story!"
+            ],
+            "action": "point",
+            "expression": "curious",
+            "background": "brain_space"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "Sweet dreams",
+      "beats": [
+        {
+          "id": "s9",
+          "narration": "Whatever the reason, every dream shows your brain hard at work while you rest. So tonight, when you close your eyes, enjoy the show.",
+          "visual": {
+            "layout": "thought_bubble",
+            "assets": [
+              "brain",
+              "sheep",
+              "rocket"
+            ],
+            "action": "think",
+            "expression": "thinking",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "s10",
+          "narration": "Follow Curious Minds for more fun science, and sweet dreams!",
+          "visual": {
+            "layout": "outro",
+            "action": "wave",
+            "expression": "happy"
+          },
+          "fact_ids": []
+        }
+      ]
+    }
+  ]
+}

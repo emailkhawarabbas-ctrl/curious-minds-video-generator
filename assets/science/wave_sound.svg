@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sound Waves" data-tags="sound,waves,speaker,audio,noise,music,vibration,volume,hearing,acoustics,loud">
+<g id="part-speaker">
+    <rect x="44" y="146" width="66" height="108" rx="12" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M108 154 L178 94 C186 88 196 92 196 102 L196 298 C196 308 186 312 178 306 L108 246 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M150 140 L184 112 L184 290 L150 262 Z" fill="#FF9F1C" fill-opacity="0.55"/>
+    <path d="M58 166 L58 204" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-waves" fill="none" stroke-linecap="round">
+    <path d="M232.2 151 A66 66 0 0 1 232.2 249" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M232.2 151 A66 66 0 0 1 232.2 249" stroke="#2EC4B6" stroke-width="9"/>
+    <path d="M262.9 116.8 A112 112 0 0 1 262.9 283.2" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M262.9 116.8 A112 112 0 0 1 262.9 283.2" stroke="#2EC4B6" stroke-width="9"/>
+    <path d="M293.7 82.6 A158 158 0 0 1 293.7 317.4" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M293.7 82.6 A158 158 0 0 1 293.7 317.4" stroke="#2EC4B6" stroke-width="9"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="86" r="4"/>
+  <circle id="anchor-speaker" cx="120" cy="200" r="4"/>
+  <circle id="anchor-waves" cx="346" cy="200" r="4"/>
+</svg>

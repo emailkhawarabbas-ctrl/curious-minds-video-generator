@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -10 110 90" data-title="Milo hand thumbs up" data-tags="milo,hand">
+  <path d="M-22 4 C-32 16 -32 46 -18 54 C-6 62 14 60 22 50 C32 38 30 14 20 4 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M24 20 L50 16 C58 15 58 29 50 30 L26 32" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M-10 44 C0 48 10 46 18 40" fill="none" stroke="#E9A97F" stroke-width="4"/>
+  <circle id="anchor-center" cx="0" cy="30" r="2"/>
+  <circle id="anchor-top" cx="0" cy="0" r="2"/>
+</svg>

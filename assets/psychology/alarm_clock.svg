@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Alarm Clock" data-tags="alarm,clock,wake up,morning,time,alarm clock,schedule,sleep,circadian,routine">
+  <ellipse cx="200" cy="364" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- legs -->
+  <g id="part-legs">
+    <path d="M126 312 L104 352" fill="none" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M274 312 L296 352" fill="none" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M126 312 L104 352 M274 312 L296 352" fill="none" stroke="#3D405B" stroke-width="9"/>
+  </g>
+  <!-- bells + hammer -->
+  <g id="part-bells">
+    <path d="M200 92 L200 58" fill="none" stroke="#2B2D42" stroke-width="10"/>
+    <rect x="178" y="44" width="44" height="18" rx="9" fill="#B8BCC8" stroke="#2B2D42" stroke-width="6"/>
+    <path transform="translate(118 94) rotate(-36)" d="M-46 16 C-46 -20 -24 -40 0 -40 C24 -40 46 -20 46 16 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <path transform="translate(282 94) rotate(36)" d="M-46 16 C-46 -20 -24 -40 0 -40 C24 -40 46 -20 46 16 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="94" cy="62" r="7" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="306" cy="62" r="7" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M96 92 C98 76 106 66 116 60" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="7"/>
+  </g>
+  <!-- ring lines -->
+  <path id="part-ring" d="M44 84 L22 74 M50 126 L26 130 M356 84 L378 74 M350 126 L374 130" fill="none" stroke="#2B2D42" stroke-width="6"/>
+  <!-- body -->
+  <g id="part-body">
+    <circle cx="200" cy="212" r="120" fill="#FF5D73" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M286 128 A118 118 0 0 1 116 298 A126 126 0 0 0 286 128 Z" fill="#E8435C"/>
+    <path d="M100 168 C110 140 130 120 156 108" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+  </g>
+  <g id="part-face">
+    <circle cx="200" cy="212" r="88" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M200 138 L200 150 M274 212 L262 212 M200 286 L200 274 M126 212 L138 212" fill="none" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M237 148 L234 154 M263 175 L257 178 M263 249 L257 246 M237 276 L234 270 M163 276 L166 270 M137 249 L143 246 M137 175 L143 178 M163 148 L166 154" fill="none" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <g id="part-hands">
+    <path d="M200 212 L200 160" fill="none" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M200 212 L238 236" fill="none" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M200 212 L164 182" fill="none" stroke="#EF476F" stroke-width="4"/>
+    <circle cx="200" cy="212" r="9" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="212" r="4"/>
+  <circle id="anchor-top" cx="200" cy="44" r="4"/>
+  <circle id="anchor-bell_left" cx="110" cy="84" r="4"/>
+  <circle id="anchor-bell_right" cx="290" cy="84" r="4"/>
+  <circle id="anchor-face" cx="200" cy="180" r="4"/>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Habit Loop" data-tags="habit,habits,loop,routine,cue,reward,behavior,cycle,repetition,trigger,psychology">
+  <!-- loop arrows (clockwise: cue to routine to reward) -->
+  <g id="part-loop">
+    <path d="M263.9 99.7 A124 124 0 0 1 323.3 193" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M263.9 99.7 A124 124 0 0 1 323.3 193" fill="none" stroke="#9BE7DF" stroke-width="10"/>
+    <path transform="translate(323.3 193) rotate(84)" d="M-2 -20 L26 0 L-2 20 Z" fill="#9BE7DF" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M260.1 314.5 A124 124 0 0 1 149.6 319.3" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M260.1 314.5 A124 124 0 0 1 149.6 319.3" fill="none" stroke="#9BE7DF" stroke-width="10"/>
+    <path transform="translate(149.6 319.3) rotate(204)" d="M-2 -20 L26 0 L-2 20 Z" fill="#9BE7DF" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M76 203.8 A124 124 0 0 1 127.1 105.7" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M76 203.8 A124 124 0 0 1 127.1 105.7" fill="none" stroke="#9BE7DF" stroke-width="10"/>
+    <path transform="translate(127.1 105.7) rotate(324)" d="M-2 -20 L26 0 L-2 20 Z" fill="#9BE7DF" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <!-- cue: bell -->
+  <g id="part-cue" transform="translate(200 82)">
+    <circle r="50" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M34 -10 A36 36 0 0 1 4 36 A42 42 0 0 0 34 -10 Z" fill="#E07B00"/>
+    <path d="M-22 14 C-22 -6 -18 -24 0 -24 C18 -24 22 -6 22 14 L28 20 L-28 20 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+    <circle cy="-28" r="5" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+    <circle cy="27" r="6" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M-12 4 C-12 -6 -10 -12 -4 -16" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="5"/>
+  </g>
+  <!-- routine: gear -->
+  <g id="part-routine" transform="translate(307 268)">
+    <circle r="50" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M34 -10 A36 36 0 0 1 4 36 A42 42 0 0 0 34 -10 Z" fill="#1A9E92"/>
+    <path d="M29.9 -3 L29.9 2.9 L21.1 6.3 L19.4 10.3 L23.2 19 L19.1 23.2 L10.4 19.4 L6.4 21 L3 29.9 L-2.9 29.9 L-6.3 21.1 L-10.3 19.4 L-19 23.2 L-23.2 19.1 L-19.4 10.4 L-21 6.4 L-29.9 3 L-29.9 -2.9 L-21.1 -6.3 L-19.4 -10.3 L-23.2 -19 L-19.1 -23.2 L-10.4 -19.4 L-6.4 -21 L-3 -29.9 L2.9 -29.9 L6.3 -21.1 L10.3 -19.4 L19 -23.2 L23.2 -19.1 L19.4 -10.4 L21 -6.4 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <circle r="8" fill="#2EC4B6" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- reward: star -->
+  <g id="part-reward" transform="translate(93 268)">
+    <circle r="50" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M34 -10 A36 36 0 0 1 4 36 A42 42 0 0 0 34 -10 Z" fill="#5B4BC4"/>
+    <path transform="scale(1.45)" d="M0 -20 L5 -7 L19 -6 L9 3 L12 16 L0 9 L-12 16 L-9 3 L-19 -6 L-5 -7 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M-30 -22 C-26 -32 -18 -38 -8 -40" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="206" r="4"/>
+  <circle id="anchor-top" cx="200" cy="32" r="4"/>
+  <circle id="anchor-cue" cx="200" cy="82" r="4"/>
+  <circle id="anchor-routine" cx="307" cy="268" r="4"/>
+  <circle id="anchor-reward" cx="93" cy="268" r="4"/>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "_doc": "Facial expression presets. eye_open 0..1.3; eye_shape normal|arc|wide|closed; pupil 0.6..1.4; brow_raise -1..1 (up positive); brow_angle degrees (positive = inner ends up, worried/sad; negative = angry); mouth: smile|grin|open|o|frown|flat|smirk|wavy|yawn; mouth_width 0.6..1.4; blush 0..1.",
+  "neutral":   {"eye_open": 1.0,  "eye_shape": "normal", "pupil": 1.0,  "brow_raise": 0.0,  "brow_angle": 0,   "mouth": "smile", "mouth_width": 0.8, "blush": 0.25},
+  "happy":     {"eye_open": 1.0,  "eye_shape": "normal", "pupil": 1.05, "brow_raise": 0.3,  "brow_angle": 4,   "mouth": "grin",  "mouth_width": 1.05, "blush": 0.55},
+  "excited":   {"eye_open": 1.2,  "eye_shape": "wide",   "pupil": 1.15, "brow_raise": 0.8,  "brow_angle": 6,   "mouth": "grin",  "mouth_width": 1.2, "blush": 0.7},
+  "joyful":    {"eye_open": 1.0,  "eye_shape": "arc",    "pupil": 1.0,  "brow_raise": 0.6,  "brow_angle": 6,   "mouth": "grin",  "mouth_width": 1.15, "blush": 0.8},
+  "surprised": {"eye_open": 1.3,  "eye_shape": "wide",   "pupil": 0.75, "brow_raise": 1.0,  "brow_angle": 10,  "mouth": "o",     "mouth_width": 0.9, "blush": 0.3},
+  "curious":   {"eye_open": 1.05, "eye_shape": "normal", "pupil": 1.1,  "brow_raise": 0.5,  "brow_angle": -6,  "mouth": "smirk", "mouth_width": 0.85, "blush": 0.3, "brow_asym": 0.6},
+  "thinking":  {"eye_open": 0.85, "eye_shape": "normal", "pupil": 1.0,  "brow_raise": 0.2,  "brow_angle": -10, "mouth": "wavy",  "mouth_width": 0.7, "blush": 0.2, "brow_asym": 0.7},
+  "sad":       {"eye_open": 0.8,  "eye_shape": "normal", "pupil": 1.2,  "brow_raise": 0.2,  "brow_angle": 22,  "mouth": "frown", "mouth_width": 0.8, "blush": 0.1},
+  "worried":   {"eye_open": 1.0,  "eye_shape": "normal", "pupil": 0.9,  "brow_raise": 0.5,  "brow_angle": 20,  "mouth": "wavy",  "mouth_width": 0.75, "blush": 0.1},
+  "confused":  {"eye_open": 0.95, "eye_shape": "normal", "pupil": 0.95, "brow_raise": 0.3,  "brow_angle": 8,   "mouth": "wavy",  "mouth_width": 0.8, "blush": 0.15, "brow_asym": 1.0},
+  "determined":{"eye_open": 0.85, "eye_shape": "normal", "pupil": 1.0,  "brow_raise": -0.3, "brow_angle": -14, "mouth": "smirk", "mouth_width": 0.9, "blush": 0.2},
+  "sleepy":    {"eye_open": 0.35, "eye_shape": "normal", "pupil": 1.0,  "brow_raise": -0.2, "brow_angle": 8,   "mouth": "flat",  "mouth_width": 0.6, "blush": 0.35},
+  "asleep":    {"eye_open": 0.0,  "eye_shape": "closed", "pupil": 1.0,  "brow_raise": -0.1, "brow_angle": 4,   "mouth": "smile", "mouth_width": 0.6, "blush": 0.45},
+  "yawning":   {"eye_open": 0.0,  "eye_shape": "closed", "pupil": 1.0,  "brow_raise": 0.4,  "brow_angle": 12,  "mouth": "yawn",  "mouth_width": 1.0, "blush": 0.3},
+  "scared":    {"eye_open": 1.3,  "eye_shape": "wide",   "pupil": 0.6,  "brow_raise": 0.9,  "brow_angle": 24,  "mouth": "wavy",  "mouth_width": 0.9, "blush": 0.0},
+  "laughing":  {"eye_open": 1.0,  "eye_shape": "arc",    "pupil": 1.0,  "brow_raise": 0.7,  "brow_angle": 8,   "mouth": "open",  "mouth_width": 1.2, "blush": 0.8}
+}

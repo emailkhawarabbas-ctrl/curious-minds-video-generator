@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Dream Cloud" data-tags="dream,dreams,dreaming,imagination,sleep,night,fantasy,cloud,rem,subconscious">
+  <ellipse cx="206" cy="352" rx="130" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- rainbow peeking behind the cloud -->
+  <g id="part-rainbow">
+    <path d="M206 176 A60 60 0 0 1 326 176" fill="none" stroke="#2B2D42" stroke-width="70"/>
+    <path d="M182 176 A84 84 0 0 1 350 176" fill="none" stroke="#FF5D73" stroke-width="12"/>
+    <path d="M194 176 A72 72 0 0 1 338 176" fill="none" stroke="#FF9F1C" stroke-width="12"/>
+    <path d="M206 176 A60 60 0 0 1 326 176" fill="none" stroke="#FFD23F" stroke-width="12"/>
+    <path d="M218 176 A48 48 0 0 1 314 176" fill="none" stroke="#06D6A0" stroke-width="12"/>
+    <path d="M230 176 A36 36 0 0 1 302 176" fill="none" stroke="#3A86FF" stroke-width="10"/>
+  </g>
+  <g id="part-cloud">
+    <path d="M96 290 C50 288 40 222 84 206 C74 156 128 128 164 148 C180 106 248 100 268 140 C302 114 360 138 354 188 C394 200 394 270 350 282 C350 320 300 336 270 312 C250 342 186 344 168 312 C140 336 92 324 96 290 Z" fill="#CFC6FF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M106 298 C118 318 150 320 166 304 C184 330 248 334 266 304 C292 324 338 312 342 284 C350 280 356 276 360 270 C336 284 312 282 298 272 C280 296 236 300 216 282 C194 298 154 298 140 278 C130 288 118 294 106 298 Z" fill="#B2A5F4"/>
+    <path d="M76 236 C72 214 84 198 104 192" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+  </g>
+  <!-- moon and stars inside -->
+  <g id="part-moon">
+    <path d="M150 188 A44 44 0 1 0 196 252 A36 36 0 0 1 150 188 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-stars">
+    <path transform="translate(236 218)" d="M0 -20 L5 -7 L19 -6 L9 3 L12 16 L0 9 L-12 16 L-9 3 L-19 -6 L-5 -7 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path transform="translate(296 254)" d="M0 -14 L4 -5 L13 -4 L6 2 L8 11 L0 6 L-8 11 L-6 2 L-13 -4 L-4 -5 Z" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+    <path transform="translate(208 278) scale(0.8)" d="M0 -14 L4 -5 L13 -4 L6 2 L8 11 L0 6 L-8 11 L-6 2 L-13 -4 L-4 -5 Z" fill="#FFE98A" stroke="#2B2D42" stroke-width="5"/>
+    <!-- twinkles outside -->
+    <path d="M58 120 Q62 132 74 136 Q62 140 58 152 Q54 140 42 136 Q54 132 58 120 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M370 66 Q373 76 382 79 Q373 82 370 92 Q367 82 358 79 Q367 76 370 66 Z" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+    <circle cx="112" cy="84" r="5" fill="#FFE98A" stroke="#2B2D42" stroke-width="3"/>
+  </g>
+  <circle id="anchor-center" cx="214" cy="236" r="4"/>
+  <circle id="anchor-top" cx="266" cy="88" r="4"/>
+  <circle id="anchor-moon" cx="160" cy="228" r="4"/>
+  <circle id="anchor-rainbow" cx="266" cy="100" r="4"/>
+  <circle id="anchor-stars" cx="236" cy="218" r="4"/>
+</svg>

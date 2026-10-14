@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Smartphone" data-tags="phone,smartphone,mobile,cellphone,apps,technology,social media,screen,call,message,device">
+<ellipse cx="200" cy="368" rx="92" ry="11" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-body">
+    <rect x="114" y="28" width="172" height="332" rx="30" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="182" y="42" width="36" height="9" rx="4.5" fill="#B8BCC8"/>
+  </g>
+  <g id="part-screen">
+    <rect x="130" y="62" width="140" height="268" rx="14" fill="#D7F0FA" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M246 72 L262 72 L262 112" fill="none" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="7" stroke-linecap="round"/>
+    <path d="M144 76 L176 76" fill="none" stroke="#2B2D42" stroke-opacity="0.35" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g id="part-apps" stroke="#2B2D42" stroke-width="4">
+      <rect x="148" y="96" width="28" height="28" rx="8" fill="#FF5D73"/>
+      <rect x="186" y="96" width="28" height="28" rx="8" fill="#FFD23F"/>
+      <rect x="224" y="96" width="28" height="28" rx="8" fill="#2EC4B6"/>
+      <rect x="148" y="140" width="28" height="28" rx="8" fill="#8E7DFF"/>
+      <rect x="186" y="140" width="28" height="28" rx="8" fill="#3A86FF"/>
+      <rect x="224" y="140" width="28" height="28" rx="8" fill="#FF9F1C"/>
+      <rect x="148" y="184" width="28" height="28" rx="8" fill="#06D6A0"/>
+      <rect x="186" y="184" width="28" height="28" rx="8" fill="#FF8FAB"/>
+      <rect x="224" y="184" width="28" height="28" rx="8" fill="#5B4BC4"/>
+    <rect x="140" y="266" width="120" height="48" rx="12" fill="#FFFFFF" fill-opacity="0.7"/>
+    <rect x="150" y="276" width="28" height="28" rx="8" fill="#06D6A0"/>
+    <rect x="186" y="276" width="28" height="28" rx="8" fill="#3A86FF"/>
+    <rect x="222" y="276" width="28" height="28" rx="8" fill="#FF9F1C"/>
+  </g>
+  <rect x="176" y="340" width="48" height="8" rx="4" fill="#B8BCC8"/>
+  <circle id="anchor-center" cx="200" cy="194" r="4"/>
+  <circle id="anchor-top" cx="200" cy="28" r="4"/>
+  <circle id="anchor-screen" cx="200" cy="230" r="4"/>
+  <circle id="anchor-apps" cx="200" cy="154" r="4"/>
+  <circle id="anchor-home" cx="200" cy="344" r="4"/>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Coffee Cup" data-tags="coffee,cup,mug,drink,tea,break,morning,caffeine,hot drink,cafe,energy">
+<ellipse cx="200" cy="352" rx="150" ry="20" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+  <path d="M86 352 C120 362 280 362 314 352" fill="none" stroke="#2B2D42" stroke-opacity="0.25" stroke-width="6" stroke-linecap="round"/>
+  <g id="part-handle" fill="none" stroke-linecap="round">
+    <path d="M282 182 C340 176 344 274 276 276" stroke="#2B2D42" stroke-width="36"/>
+    <path d="M282 182 C340 176 344 274 276 276" stroke="#2EC4B6" stroke-width="20"/>
+  </g>
+  <g id="part-mug">
+    <path d="M106 148 L116 306 C118 330 136 346 160 346 L240 346 C264 346 282 330 284 306 L294 148 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M256 160 L282 160 L274 306 C272 324 260 336 244 340 C258 326 262 300 262 280 Z" fill="#1A9E92" fill-opacity="0.7"/>
+    <path d="M128 176 L134 270" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="11"/>
+    <path d="M200 286 C186 274 170 262 172 248 C174 236 192 234 200 246 C208 234 226 236 228 248 C230 262 214 274 200 286 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-coffee">
+    <ellipse cx="200" cy="148" rx="94" ry="20" fill="#5B3A29" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M150 146 C170 140 196 140 214 144" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g id="part-steam" fill="none" stroke="#2B2D42" stroke-opacity="0.55" stroke-width="7" stroke-linecap="round">
+    <path d="M160 118 C146 100 174 88 160 66"/>
+    <path d="M200 112 C186 90 216 78 200 48"/>
+    <path d="M240 118 C226 100 254 88 240 66"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="230" r="4"/>
+  <circle id="anchor-top" cx="200" cy="48" r="4"/>
+  <circle id="anchor-steam" cx="200" cy="84" r="4"/>
+  <circle id="anchor-coffee" cx="200" cy="148" r="4"/>
+  <circle id="anchor-handle" cx="322" cy="228" r="4"/>
+  <circle id="anchor-saucer" cx="330" cy="352" r="4"/>
+</svg>

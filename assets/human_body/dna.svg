@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="DNA" data-tags="dna,double helix,genes,genetics,heredity,chromosome,biology,cell,genome,base pairs">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="370" rx="100" ry="11" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-back-strand">
+    <path d="M200.0 36.0 C194.8 38.0 178.9 44.0 169.1 48.0 C159.3 52.0 149.6 56.0 141.2 60.0 C132.9 64.0 125.2 68.0 119.1 72.0 C113.0 76.0 108.1 80.0 104.9 84.0 C101.7 88.0 100.8 94.0 100.0 96.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M200.0 36.0 C194.8 38.0 178.9 44.0 169.1 48.0 C159.3 52.0 149.6 56.0 141.2 60.0 C132.9 64.0 125.2 68.0 119.1 72.0 C113.0 76.0 108.1 80.0 104.9 84.0 C101.7 88.0 100.8 94.0 100.0 96.0" fill="none" stroke="#FF9F1C" stroke-width="12"/>
+    <path d="M300.0 96.0 C299.2 98.0 298.3 104.0 295.1 108.0 C291.9 112.0 287.0 116.0 280.9 120.0 C274.8 124.0 267.1 128.0 258.8 132.0 C250.4 136.0 240.7 140.0 230.9 144.0 C221.1 148.0 210.3 152.0 200.0 156.0 C189.7 160.0 178.9 164.0 169.1 168.0 C159.3 172.0 149.6 176.0 141.2 180.0 C132.9 184.0 125.2 188.0 119.1 192.0 C113.0 196.0 108.1 200.0 104.9 204.0 C101.7 208.0 100.8 214.0 100.0 216.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M300.0 96.0 C299.2 98.0 298.3 104.0 295.1 108.0 C291.9 112.0 287.0 116.0 280.9 120.0 C274.8 124.0 267.1 128.0 258.8 132.0 C250.4 136.0 240.7 140.0 230.9 144.0 C221.1 148.0 210.3 152.0 200.0 156.0 C189.7 160.0 178.9 164.0 169.1 168.0 C159.3 172.0 149.6 176.0 141.2 180.0 C132.9 184.0 125.2 188.0 119.1 192.0 C113.0 196.0 108.1 200.0 104.9 204.0 C101.7 208.0 100.8 214.0 100.0 216.0" fill="none" stroke="#2EC4B6" stroke-width="12"/>
+    <path d="M300.0 216.0 C299.2 218.0 298.3 224.0 295.1 228.0 C291.9 232.0 287.0 236.0 280.9 240.0 C274.8 244.0 267.1 248.0 258.8 252.0 C250.4 256.0 240.7 260.0 230.9 264.0 C221.1 268.0 210.3 272.0 200.0 276.0 C189.7 280.0 178.9 284.0 169.1 288.0 C159.3 292.0 149.6 296.0 141.2 300.0 C132.9 304.0 125.2 308.0 119.1 312.0 C113.0 316.0 108.1 320.0 104.9 324.0 C101.7 328.0 100.8 334.0 100.0 336.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M300.0 216.0 C299.2 218.0 298.3 224.0 295.1 228.0 C291.9 232.0 287.0 236.0 280.9 240.0 C274.8 244.0 267.1 248.0 258.8 252.0 C250.4 256.0 240.7 260.0 230.9 264.0 C221.1 268.0 210.3 272.0 200.0 276.0 C189.7 280.0 178.9 284.0 169.1 288.0 C159.3 292.0 149.6 296.0 141.2 300.0 C132.9 304.0 125.2 308.0 119.1 312.0 C113.0 316.0 108.1 320.0 104.9 324.0 C101.7 328.0 100.8 334.0 100.0 336.0" fill="none" stroke="#FF9F1C" stroke-width="12"/>
+    <path d="M300.0 336.0 C300.0 336.3 300.0 337.3 299.9 338.0 C299.8 338.7 299.6 339.3 299.5 340.0 C299.3 340.7 299.0 341.3 298.8 342.0 C298.5 342.7 298.0 343.7 297.8 344.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M300.0 336.0 C300.0 336.3 300.0 337.3 299.9 338.0 C299.8 338.7 299.6 339.3 299.5 340.0 C299.3 340.7 299.0 341.3 298.8 342.0 C298.5 342.7 298.0 343.7 297.8 344.0" fill="none" stroke="#2EC4B6" stroke-width="12"/>
+  </g>
+  <g id="part-base-pairs">
+    <path d="M236 50 L164 50" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M236 50 L200 50" fill="none" stroke="#FFD23F" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 50 L164 50" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M284 74 L116 74" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M284 74 L200 74" fill="none" stroke="#FF5D73" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 74 L116 74" fill="none" stroke="#06D6A0" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M300 98 L100 98" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M300 98 L200 98" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 98 L100 98" fill="none" stroke="#FFD23F" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M278 122 L122 122" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M278 122 L200 122" fill="none" stroke="#06D6A0" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 122 L122 122" fill="none" stroke="#FF5D73" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M226 146 L174 146" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M226 146 L200 146" fill="none" stroke="#FFD23F" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 146 L174 146" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M164 170 L236 170" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M164 170 L200 170" fill="none" stroke="#FF5D73" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 170 L236 170" fill="none" stroke="#06D6A0" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M116 194 L284 194" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M116 194 L200 194" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 194 L284 194" fill="none" stroke="#FFD23F" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M100 218 L300 218" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M100 218 L200 218" fill="none" stroke="#06D6A0" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 218 L300 218" fill="none" stroke="#FF5D73" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M122 242 L278 242" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M122 242 L200 242" fill="none" stroke="#FFD23F" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 242 L278 242" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M174 266 L226 266" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M174 266 L200 266" fill="none" stroke="#FF5D73" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 266 L226 266" fill="none" stroke="#06D6A0" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M236 290 L164 290" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M236 290 L200 290" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 290 L164 290" fill="none" stroke="#FFD23F" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M284 314 L116 314" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M284 314 L200 314" fill="none" stroke="#06D6A0" stroke-width="7" stroke-linecap="butt"/>
+    <path d="M200 314 L116 314" fill="none" stroke="#FF5D73" stroke-width="7" stroke-linecap="butt"/>
+  </g>
+  <g id="part-front-strand">
+    <path d="M200.0 36.0 C205.2 38.0 221.1 44.0 230.9 48.0 C240.7 52.0 250.4 56.0 258.8 60.0 C267.1 64.0 274.8 68.0 280.9 72.0 C287.0 76.0 291.9 80.0 295.1 84.0 C298.3 88.0 299.2 94.0 300.0 96.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M200.0 36.0 C205.2 38.0 221.1 44.0 230.9 48.0 C240.7 52.0 250.4 56.0 258.8 60.0 C267.1 64.0 274.8 68.0 280.9 72.0 C287.0 76.0 291.9 80.0 295.1 84.0 C298.3 88.0 299.2 94.0 300.0 96.0" fill="none" stroke="#2EC4B6" stroke-width="12"/>
+    <path d="M100.0 96.0 C100.8 98.0 101.7 104.0 104.9 108.0 C108.1 112.0 113.0 116.0 119.1 120.0 C125.2 124.0 132.9 128.0 141.2 132.0 C149.6 136.0 159.3 140.0 169.1 144.0 C178.9 148.0 189.7 152.0 200.0 156.0 C210.3 160.0 221.1 164.0 230.9 168.0 C240.7 172.0 250.4 176.0 258.8 180.0 C267.1 184.0 274.8 188.0 280.9 192.0 C287.0 196.0 291.9 200.0 295.1 204.0 C298.3 208.0 299.2 214.0 300.0 216.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M100.0 96.0 C100.8 98.0 101.7 104.0 104.9 108.0 C108.1 112.0 113.0 116.0 119.1 120.0 C125.2 124.0 132.9 128.0 141.2 132.0 C149.6 136.0 159.3 140.0 169.1 144.0 C178.9 148.0 189.7 152.0 200.0 156.0 C210.3 160.0 221.1 164.0 230.9 168.0 C240.7 172.0 250.4 176.0 258.8 180.0 C267.1 184.0 274.8 188.0 280.9 192.0 C287.0 196.0 291.9 200.0 295.1 204.0 C298.3 208.0 299.2 214.0 300.0 216.0" fill="none" stroke="#FF9F1C" stroke-width="12"/>
+    <path d="M100.0 216.0 C100.8 218.0 101.7 224.0 104.9 228.0 C108.1 232.0 113.0 236.0 119.1 240.0 C125.2 244.0 132.9 248.0 141.2 252.0 C149.6 256.0 159.3 260.0 169.1 264.0 C178.9 268.0 189.7 272.0 200.0 276.0 C210.3 280.0 221.1 284.0 230.9 288.0 C240.7 292.0 250.4 296.0 258.8 300.0 C267.1 304.0 274.8 308.0 280.9 312.0 C287.0 316.0 291.9 320.0 295.1 324.0 C298.3 328.0 299.2 334.0 300.0 336.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M100.0 216.0 C100.8 218.0 101.7 224.0 104.9 228.0 C108.1 232.0 113.0 236.0 119.1 240.0 C125.2 244.0 132.9 248.0 141.2 252.0 C149.6 256.0 159.3 260.0 169.1 264.0 C178.9 268.0 189.7 272.0 200.0 276.0 C210.3 280.0 221.1 284.0 230.9 288.0 C240.7 292.0 250.4 296.0 258.8 300.0 C267.1 304.0 274.8 308.0 280.9 312.0 C287.0 316.0 291.9 320.0 295.1 324.0 C298.3 328.0 299.2 334.0 300.0 336.0" fill="none" stroke="#2EC4B6" stroke-width="12"/>
+    <path d="M100.0 336.0 C100.0 336.3 100.0 337.3 100.1 338.0 C100.2 338.7 100.4 339.3 100.5 340.0 C100.7 340.7 101.0 341.3 101.2 342.0 C101.5 342.7 102.0 343.7 102.2 344.0" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M100.0 336.0 C100.0 336.3 100.0 337.3 100.1 338.0 C100.2 338.7 100.4 339.3 100.5 340.0 C100.7 340.7 101.0 341.3 101.2 342.0 C101.5 342.7 102.0 343.7 102.2 344.0" fill="none" stroke="#FF9F1C" stroke-width="12"/>
+  </g>
+  <circle id="anchor-top" cx="200" cy="36" r="4"/>
+  <circle id="anchor-center" cx="200" cy="190" r="4"/>
+  <circle id="anchor-strand" cx="299" cy="90" r="4"/>
+  <circle id="anchor-base_pair" cx="200" cy="194" r="4"/>
+  <circle id="anchor-bottom" cx="296" cy="340" r="4"/>
+</svg>

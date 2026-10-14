@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Open Book" data-tags="book,open book,reading,read,story,study,learning,education,library,knowledge,literature">
+<ellipse cx="200" cy="340" rx="170" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-cover">
+    <path d="M28 104 L28 314 C96 296 156 300 200 326 C244 300 304 296 372 314 L372 104 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M200 326 C244 300 304 296 372 314 L372 296 C304 280 244 284 200 308 Z" fill="#1A9E92" fill-opacity="0.6"/>
+  </g>
+  <g id="part-pages" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8">
+    <path d="M200 100 C156 76 100 74 46 92 L46 298 C100 280 156 282 200 306 Z"/>
+    <path d="M200 100 C244 76 300 74 354 92 L354 298 C300 280 244 282 200 306 Z"/>
+  </g>
+  <path d="M200 106 C190 100 182 96 172 92 L172 292 C182 296 192 300 200 304 Z" fill="#2B2D42" fill-opacity="0.1"/>
+  <path d="M200 106 C210 100 218 96 228 92 L228 292 C218 296 208 300 200 304 Z" fill="#2B2D42" fill-opacity="0.1"/>
+  <path d="M200 100 L200 306" fill="none" stroke="#2B2D42" stroke-width="6"/>
+  <g id="part-text" fill="none" stroke="#2B2D42" stroke-opacity="0.3" stroke-width="7" stroke-linecap="round">
+      <path d="M76 128 C110 118 150 120 180 132"/>
+      <path d="M76 160 C110 150 150 152 180 164"/>
+      <path d="M76 192 C110 182 150 184 180 196"/>
+      <path d="M76 224 C110 214 150 216 180 228"/>
+      <path d="M76 256 C110 246 150 248 180 260"/>
+      <path d="M220 132 C250 120 290 118 324 128"/>
+      <path d="M220 164 C250 152 290 150 324 160"/>
+      <path d="M220 196 C250 184 290 182 324 192"/>
+      <path d="M220 228 C250 216 290 214 324 224"/>
+      <path d="M220 260 C250 248 290 246 290 256"/>
+  </g>
+  <g id="part-bookmark">
+    <path d="M296 84 L320 86 L320 340 L308 328 L296 340 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="96" r="4"/>
+  <circle id="anchor-left_page" cx="122" cy="190" r="4"/>
+  <circle id="anchor-right_page" cx="278" cy="190" r="4"/>
+  <circle id="anchor-spine" cx="200" cy="306" r="4"/>
+</svg>

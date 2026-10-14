@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -290 300 300" data-title="Zoe head" data-tags="zoe,character,head">
+  <g id="part-back">
+    <circle cx="0" cy="-262" r="40" fill="#2B1B14" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M-116 -110 C-132 -196 -80 -246 0 -248 C80 -246 132 -196 116 -110 C120 -70 104 -40 92 -60 C100 -110 -100 -110 -92 -60 C-104 -40 -120 -70 -116 -110 Z" fill="#2B1B14" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="-104" cy="-108" r="22" fill="#C68B62" stroke="#2B2D42" stroke-width="7"/>
+    <circle cx="104" cy="-108" r="22" fill="#C68B62" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M-102 -124 C-104 -194 -60 -228 0 -228 C60 -228 104 -194 102 -124 C102 -52 60 -10 0 -10 C-60 -10 -102 -52 -102 -124 Z" fill="#C68B62" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M60 -40 C78 -60 90 -90 92 -120" fill="none" stroke="#A8704C" stroke-width="10" stroke-opacity="0.7"/>
+  </g>
+  <g id="part-front">
+    <path d="M-104 -140 C-110 -212 -56 -248 4 -246 C64 -246 112 -206 104 -138 C80 -170 40 -186 -4 -184 C-40 -184 -80 -170 -104 -140 Z" fill="#2B1B14" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M-40 -230 C-20 -238 10 -238 30 -232" fill="none" stroke="#5A3A2C" stroke-width="7"/>
+    <path d="M-30 -294 C-10 -306 20 -300 30 -282" fill="none" stroke="#FF5D73" stroke-width="12"/>
+  </g>
+  <circle id="anchor-center" cx="0" cy="-120" r="4"/>
+  <circle id="anchor-top" cx="0" cy="-300" r="4"/>
+  <circle id="anchor-chin" cx="0" cy="-14" r="4"/>
+</svg>

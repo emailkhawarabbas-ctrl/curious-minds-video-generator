@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Bar Chart" data-tags="chart,bar chart,graph,statistics,data,growth,results,analytics,report,comparison,business">
+<rect x="52" y="60" width="312" height="300" rx="24" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-card">
+    <rect x="40" y="46" width="312" height="300" rx="24" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M76 84 L170 84" fill="none" stroke="#2B2D42" stroke-opacity="0.3" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="316" cy="84" r="10" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <g id="part-axes" fill="none" stroke-linecap="round">
+    <path d="M84 168 L316 168 M84 234 L316 234" stroke="#B8BCC8" stroke-width="4"/>
+    <path d="M80 114 L80 302 L320 302" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-bars" stroke="#2B2D42" stroke-width="6">
+    <path d="M104 302 L104 244 Q104 236 112 236 L136 236 Q144 236 144 244 L144 302 Z" fill="#2EC4B6"/>
+    <path d="M114 248 L114 276" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="6"/>
+    <path d="M158 302 L158 200 Q158 192 166 192 L190 192 Q198 192 198 200 L198 302 Z" fill="#FF9F1C"/>
+    <path d="M168 204 L168 232" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="6"/>
+    <path d="M212 302 L212 222 Q212 214 220 214 L244 214 Q252 214 252 222 L252 302 Z" fill="#8E7DFF"/>
+    <path d="M222 226 L222 254" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="6"/>
+    <path d="M266 302 L266 136 Q266 128 274 128 L298 128 Q306 128 306 136 L306 302 Z" fill="#FF5D73"/>
+    <path d="M276 140 L276 168" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="6"/>
+  </g>
+  <circle id="anchor-center" cx="196" cy="196" r="4"/>
+  <circle id="anchor-top" cx="196" cy="46" r="4"/>
+  <circle id="anchor-bar_highest" cx="286" cy="128" r="4"/>
+  <circle id="anchor-bar_lowest" cx="124" cy="236" r="4"/>
+  <circle id="anchor-x_axis" cx="200" cy="302" r="4"/>
+  <circle id="anchor-y_axis" cx="80" cy="210" r="4"/>
+</svg>

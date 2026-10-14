@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" data-title="Sleeping Person" data-tags="sleep,sleeping,bed,bedtime,asleep,rest,night,nap,tired,dreaming,insomnia">
+  <ellipse cx="304" cy="338" rx="270" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- bed frame -->
+  <g id="part-bed">
+    <rect x="34" y="96" width="44" height="236" rx="18" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M46 116 L46 168" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="7"/>
+    <rect x="528" y="180" width="40" height="152" rx="16" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="70" y="232" width="468" height="62" rx="16" fill="#FFF8E7" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="74" y="270" width="460" height="20" rx="8" fill="#5B4BC4"/>
+    <rect x="70" y="268" width="468" height="44" rx="14" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <!-- pillow -->
+  <g id="part-pillow">
+    <path d="M86 196 C86 172 104 166 140 168 C184 170 214 172 218 196 C222 222 206 236 160 236 C110 236 86 226 86 196 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M100 222 C130 232 180 232 204 222 C200 230 186 234 160 234 C130 234 108 230 100 222 Z" fill="#D7F0FA"/>
+  </g>
+  <!-- head -->
+  <g id="part-head">
+    <circle cx="150" cy="170" r="48" fill="#F8C9A0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M182 196 C176 208 164 214 150 214 C170 206 180 196 184 180 Z" fill="#E9A97F"/>
+    <path d="M104 166 C100 136 122 116 152 118 C180 120 198 140 198 162 C188 146 172 140 158 146 C146 136 128 138 120 150 C114 156 110 162 104 166 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="7"/>
+    <ellipse cx="102" cy="176" rx="9" ry="13" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M128 172 C134 180 144 180 150 172" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M164 172 C170 180 180 180 186 172" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <ellipse cx="128" cy="190" rx="10" ry="6" fill="#FF8FAB" fill-opacity="0.8"/>
+    <ellipse cx="184" cy="190" rx="10" ry="6" fill="#FF8FAB" fill-opacity="0.8"/>
+    <path d="M148 196 C154 202 164 202 168 196" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- blanket -->
+  <g id="part-blanket">
+    <path d="M196 222 C210 200 260 188 300 182 C350 174 380 196 420 196 C456 196 476 186 500 194 C528 202 540 222 540 244 L540 296 C540 304 534 308 526 308 L210 308 C200 308 194 300 196 290 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M196 222 C210 200 260 188 300 182 C304 196 300 210 288 218 C260 222 226 230 204 244 Z" fill="#9BE7DF" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M330 300 C380 296 470 296 532 284 L532 300 C532 304 528 306 524 306 L330 306 Z" fill="#1A9E92"/>
+    <path d="M360 214 C380 226 420 230 452 222 M300 250 C330 262 380 266 410 260" fill="none" stroke="#1A9E92" stroke-width="6"/>
+    <path d="M318 190 C340 182 362 186 378 194" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="8"/>
+    <ellipse cx="238" cy="222" rx="20" ry="13" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <circle id="anchor-center" cx="300" cy="230" r="4"/>
+  <circle id="anchor-top" cx="300" cy="120" r="4"/>
+  <circle id="anchor-head" cx="150" cy="166" r="4"/>
+  <circle id="anchor-pillow" cx="110" cy="214" r="4"/>
+  <circle id="anchor-blanket" cx="400" cy="250" r="4"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Muscle" data-tags="muscle,bicep,arm,strength,strong,exercise,fitness,flex,body,movement">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="362" rx="140" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- arm -->
+  <g id="part-arm">
+    <path d="M70 236 C104 180 176 160 222 190 C238 200 248 214 254 230 L252 150 L320 140 L326 262 C330 304 300 330 258 330 L70 330 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M90 314 L258 314 C286 314 306 300 314 280 C316 306 292 326 258 326 L90 326 Z" fill="#E9A97F"/>
+    <path d="M294 164 L296 220" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="8"/>
+    <!-- elbow crease -->
+    <path d="M254 236 C262 250 272 256 282 256" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- bicep muscle -->
+  <g id="part-bicep">
+    <path d="M96 252 C120 210 170 192 208 208 C232 218 244 240 238 260 C226 282 180 290 140 284 C112 280 90 270 96 252 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M232 262 C218 280 180 286 146 280 C190 276 216 270 232 262 Z" fill="#E03A5C"/>
+    <path d="M116 238 C134 216 160 206 186 206" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="8"/>
+    <path d="M128 262 C156 246 190 244 222 248 M148 276 C172 266 196 264 220 266" fill="none" stroke="#C9304F" stroke-width="5"/>
+  </g>
+  <!-- fist -->
+  <g id="part-fist">
+    <path d="M244 92 C244 64 264 50 290 50 C318 50 338 62 338 90 L338 130 C338 152 320 160 286 160 C258 160 244 150 244 130 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M330 120 C330 140 318 150 296 152" fill="none" stroke="#E9A97F" stroke-width="8"/>
+    <path d="M244 104 L276 104 M244 130 L274 130" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M250 70 C270 58 308 60 316 78 C320 92 304 98 288 94 L252 90 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <!-- sleeve -->
+  <g id="part-sleeve">
+    <path d="M40 220 C60 216 80 222 96 232 L96 336 C80 342 60 344 40 340 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M82 236 L82 334" fill="none" stroke="#1A9E92" stroke-width="10"/>
+  </g>
+  <circle id="anchor-top" cx="290" cy="48" r="4"/>
+  <circle id="anchor-center" cx="200" cy="230" r="4"/>
+  <circle id="anchor-bicep" cx="170" cy="240" r="4"/>
+  <circle id="anchor-fist" cx="296" cy="110" r="4"/>
+  <circle id="anchor-elbow" cx="290" cy="300" r="4"/>
+  <circle id="anchor-forearm" cx="288" cy="200" r="4"/>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sleepy Moon" data-tags="moon,night,sleep,sleepy,bedtime,nightcap,dreams,crescent,tired,rest">
+  <!-- crescent body -->
+  <g id="part-moon">
+    <path d="M197 70 A140 140 0 1 0 323 255 A112 112 0 1 1 197 70 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="92" cy="292" r="9" fill="#F5B82A"/>
+    <circle cx="150" cy="306" r="13" fill="#F5B82A"/>
+    <circle cx="66" cy="206" r="8" fill="#F5B82A"/>
+    <path d="M62 236 C60 214 64 194 74 176" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+  </g>
+  <!-- sleepy face -->
+  <g id="part-face">
+    <path d="M100 222 C108 234 124 236 134 224" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M104 230 L98 238 M116 234 L114 243 M128 230 L132 238" fill="none" stroke="#2B2D42" stroke-width="4"/>
+    <ellipse cx="102" cy="262" rx="16" ry="9" fill="#FF8FAB" fill-opacity="0.75"/>
+    <path d="M134 262 C142 274 158 274 164 262" fill="none" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <!-- nightcap -->
+  <g id="part-nightcap">
+    <path d="M100 108 C104 60 160 22 226 26 C262 28 286 50 294 78 C270 60 238 54 214 62 C196 70 182 84 176 98 Z" fill="#3A86FF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M150 52 C170 40 196 34 220 36" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="7"/>
+    <path d="M94 98 L178 84 C184 84 186 102 182 104 L100 120 C94 120 90 100 94 98 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7"/>
+    <circle cx="296" cy="88" r="20" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-stars">
+    <path transform="translate(300 170)" d="M0 -20 L5 -7 L19 -6 L9 3 L12 16 L0 9 L-12 16 L-9 3 L-19 -6 L-5 -7 Z" fill="#FFE98A" stroke="#2B2D42" stroke-width="5"/>
+    <path transform="translate(352 236)" d="M0 -14 L4 -5 L13 -4 L6 2 L8 11 L0 6 L-8 11 L-6 2 L-13 -4 L-4 -5 Z" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="210" r="4"/>
+  <circle id="anchor-top" cx="200" cy="30" r="4"/>
+  <circle id="anchor-face" cx="128" cy="244" r="4"/>
+  <circle id="anchor-nightcap" cx="210" cy="50" r="4"/>
+  <circle id="anchor-star" cx="300" cy="170" r="4"/>
+</svg>

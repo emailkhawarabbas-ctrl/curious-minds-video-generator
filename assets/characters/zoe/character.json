@@ -1,0 +1,29 @@
+{
+  "id": "zoe",
+  "name": "Zoe",
+  "role": "Supporting character — Milo's friend, plays the 'everyday person' in stories",
+  "base": "milo",
+  "personality": ["kind", "sleepy-headed", "funny"],
+  "colors": {
+    "skin": "#C68B62",
+    "skin_shadow": "#A8704C",
+    "hair": "#2B1B14",
+    "sleeve": "#8E7DFF",
+    "sleeve_cuff": "#5B4BC4",
+    "pants": "#2A6F97",
+    "pants_cuff": "#1D4F6E",
+    "brow": "#2B1B14"
+  },
+  "parts": {"head": "head.svg"},
+  "recolor": {
+    "#2EC4B6": "#8E7DFF",
+    "#1A9E92": "#5B4BC4",
+    "#FFD23F": "#FFFFFF",
+    "#F8C9A0": "#C68B62",
+    "#E9A97F": "#A8704C",
+    "#FF9F1C": "#06D6A0",
+    "#E07B00": "#04A87E",
+    "#EF476F": "#3A86FF"
+  },
+  "hide_parts": ["backpack"]
+}

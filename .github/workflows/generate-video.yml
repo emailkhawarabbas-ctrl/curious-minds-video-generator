@@ -1,0 +1,195 @@
+name: Generate Curious Minds video
+
+# Manual trigger: provide a topic, get research + scripts + storyboards + rendered
+# Shorts/YouTube videos + subtitles + thumbnails + metadata as a workflow artifact.
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Topic (e.g. Why Do We Dream?)"
+        required: true
+        type: string
+      niche:
+        description: "Content pillar"
+        required: true
+        default: mixed
+        type: choice
+        options: [science, psychology, human_body, mixed]
+      generate_shorts:
+        description: "Generate the 9:16 TikTok / Shorts video"
+        type: boolean
+        default: true
+      generate_long_video:
+        description: "Generate the 16:9 YouTube long-form video"
+        type: boolean
+        default: true
+      short_duration:
+        description: "Short target duration in seconds (60-90)"
+        type: choice
+        default: "75"
+        options: ["60", "65", "70", "75", "80", "85", "90"]
+      long_duration:
+        description: "Long-form target duration in minutes (6-10)"
+        type: choice
+        default: "8"
+        options: ["6", "7", "8", "9", "10"]
+      voice:
+        description: "Narration voice"
+        type: choice
+        default: "US English Friendly Male"
+        options: ["US English Friendly Male", "US English Male (Calm)", "US English Male (Narrator)"]
+      generate_subtitles:
+        description: "Burn in subtitles (SRT files are always produced)"
+        type: boolean
+        default: true
+      generate_thumbnail:
+        description: "Generate thumbnails"
+        type: boolean
+        default: true
+      script_source:
+        description: "Script source (auto = curated pack > LLM (needs LLM_API_KEY) > offline template)"
+        type: choice
+        default: auto
+        options: [auto, llm, curated, offline]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: generate-${{ github.ref }}-${{ inputs.topic }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      # Inputs are passed through env vars (never interpolated into shell code) to prevent injection.
+      TOPIC: ${{ inputs.topic }}
+      NICHE: ${{ inputs.niche }}
+      GEN_SHORT: ${{ inputs.generate_shorts }}
+      GEN_LONG: ${{ inputs.generate_long_video }}
+      SHORT_DURATION: ${{ inputs.short_duration }}
+      LONG_DURATION: ${{ inputs.long_duration }}
+      VOICE: ${{ inputs.voice }}
+      SUBTITLES: ${{ inputs.generate_subtitles }}
+      THUMBNAIL: ${{ inputs.generate_thumbnail }}
+      SCRIPT_SOURCE: ${{ inputs.script_source }}
+      # Optional secrets: the pipeline works without any of them.
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      RESEARCH_API_KEY: ${{ secrets.RESEARCH_API_KEY }}
+      TTS_API_KEY: ${{ secrets.TTS_API_KEY }}
+      PYTHONUNBUFFERED: "1"
+      CM__RENDER__WORKERS: "4"
+      CM__RENDER__PRESET: "faster"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate inputs
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          topic = os.environ["TOPIC"].strip()
+          errors = []
+          if not (3 <= len(topic) <= 120):
+              errors.append("topic must be 3-120 characters")
+          if any(c in topic for c in "\n\r\t`$<>|;"):
+              errors.append("topic contains forbidden characters")
+          if os.environ["GEN_SHORT"] != "true" and os.environ["GEN_LONG"] != "true":
+              errors.append("enable at least one of generate_shorts / generate_long_video")
+          if not 60 <= int(os.environ["SHORT_DURATION"]) <= 90:
+              errors.append("short_duration must be 60-90")
+          if not 6 <= int(os.environ["LONG_DURATION"]) <= 10:
+              errors.append("long_duration must be 6-10")
+          if os.environ["SCRIPT_SOURCE"] == "llm" and not os.environ.get("LLM_API_KEY"):
+              errors.append("script_source=llm requires the LLM_API_KEY secret")
+          for e in errors:
+              print(f"::error::{e}")
+          sys.exit(1 if errors else 0)
+          PY
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install system dependencies (FFmpeg, Cairo, fontconfig)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends ffmpeg libcairo2-dev pkg-config fontconfig
+          ffmpeg -version | head -1
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Cache TTS voice models
+        uses: actions/cache@v4
+        with:
+          path: models/piper
+          key: piper-voices-v1-${{ inputs.voice }}
+
+      - name: Run unit tests (fast)
+        run: python -m pytest -m "not integration" -q
+
+      - name: Generate episode
+        id: generate
+        run: |
+          set +e
+          SHORT_FLAG=$([ "$GEN_SHORT" = "true" ] && echo true || echo false)
+          LONG_FLAG=$([ "$GEN_LONG" = "true" ] && echo true || echo false)
+          python -m src.main generate \
+            --topic "$TOPIC" --niche "$NICHE" \
+            --short "$SHORT_FLAG" --long "$LONG_FLAG" \
+            --short-duration "$SHORT_DURATION" --long-duration "$LONG_DURATION" \
+            --voice "$VOICE" --subtitles "$SUBTITLES" --thumbnail "$THUMBNAIL" \
+            --script-source "$SCRIPT_SOURCE"
+          status=$?
+          slug=$(python -c "import os; from src.utils.text import slugify; print(slugify(os.environ['TOPIC']))")
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Quality-control summary
+        if: always()
+        env:
+          SLUG: ${{ steps.generate.outputs.slug }}
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, os, pathlib
+          p = pathlib.Path("generated") / os.environ.get("SLUG", "") / "production_report.json"
+          if not p.exists():
+              print("## ❌ No production report was written"); raise SystemExit
+          r = json.loads(p.read_text())
+          icon = "✅" if r["status"] == "success" else "❌"
+          print(f"## {icon} Curious Minds — {r['topic']} ({r['status']})\n")
+          print("| Output | Status | Duration | Scenes | Script |\n|---|---|---|---|---|")
+          for fmt, o in r.get("outputs", {}).items():
+              print(f"| {fmt} | {o.get('status')} | {o.get('duration_s', '—')} s | {o.get('scenes', '—')} | {o.get('script_source', '—')} |")
+          for fmt, qc in r.get("qc", {}).items():
+              print(f"\n**QC {fmt}:** " + ", ".join(("✅ " if c["passed"] else "❌ ") + c["check"] for c in qc["checks"]))
+          for s in r.get("stages", []):
+              if s["status"] != "ok":
+                  print(f"\n- stage `{s['name']}`: {s['status']} — {s.get('error')}")
+          PY
+
+      - name: Upload generated episode
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curious-minds-${{ steps.generate.outputs.slug }}-${{ github.run_number }}
+          path: generated/${{ steps.generate.outputs.slug }}
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0   # MP4/JPG are already compressed
+
+      - name: Fail if generation or QC failed
+        if: steps.generate.outputs.exit_code != '0'
+        run: |
+          echo "::error::Generation failed or a video did not pass QC — see the production report artifact."
+          exit 1

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Bone" data-tags="bone,skeleton,calcium,femur,joint,strong,body,anatomy,x-ray,growth">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="356" rx="130" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-bone" transform="rotate(-38 200 200)">
+    <path d="M70 182 L330 182 A34 34 0 1 1 368 200 A34 34 0 1 1 330 218 L70 218 A34 34 0 1 1 32 200 A34 34 0 1 1 70 182 Z" fill="#FFF8E7" stroke="#2B2D42" stroke-width="8"/>
+    <!-- shade -->
+    <path d="M80 218 L320 218 L320 206 L80 206 Z" fill="#EADFC4"/>
+    <path d="M345 246 C362 246 376 232 376 214 C366 226 354 232 340 232 Z" fill="#EADFC4"/>
+    <path d="M30 168 C30 150 42 138 58 136" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+    <!-- highlight -->
+    <path d="M110 194 L250 194" fill="none" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="8"/>
+  </g>
+  <g id="part-ends" transform="rotate(-38 200 200)">
+    <path d="M330 182 C324 190 324 210 330 218 M70 182 C76 190 76 210 70 218" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-top" cx="314" cy="86" r="4"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-joint_top" cx="324" cy="104" r="4"/>
+  <circle id="anchor-joint_bottom" cx="76" cy="296" r="4"/>
+  <circle id="anchor-shaft" cx="230" cy="176" r="4"/>
+</svg>

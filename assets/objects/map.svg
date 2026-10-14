@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Map" data-tags="map,treasure map,navigation,travel,route,geography,explore,adventure,journey,location,directions">
+<ellipse cx="200" cy="350" rx="160" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-paper">
+    <path d="M44 96 L148 66 L252 96 L356 66 L356 310 L252 340 L148 310 L44 340 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <g id="part-land" fill="#7BD389" stroke="#2B2D42" stroke-width="5">
+    <path d="M64 130 C90 112 132 116 146 140 C160 162 200 150 220 170 C236 186 230 214 250 230 C270 246 316 236 330 262 C336 280 320 300 296 302 C258 304 232 290 200 300 C164 310 120 300 90 310 C70 296 70 268 82 250 C94 230 70 212 66 190 C62 168 54 146 64 130 Z"/>
+    <path d="M280 104 C302 94 334 100 336 124 C338 146 314 156 296 148 C278 140 264 116 280 104 Z"/>
+  </g>
+  <g id="part-folds">
+    <path d="M148 66 L148 310 L252 340 L252 96 Z" fill="#2B2D42" fill-opacity="0.12"/>
+    <path d="M148 66 L148 310 M252 96 L252 340" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M60 116 L120 98" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="8"/>
+  </g>
+  <g id="part-route">
+    <path d="M92 286 L108 272 M122 260 L140 248 M158 240 L176 234 M196 230 L214 222 M232 210 L246 196" fill="none" stroke="#2B2D42" stroke-width="6" stroke-linecap="round"/>
+    <path d="M80 300 L96 286 M80 286 L96 300" fill="none" stroke="#EF476F" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="part-pin">
+    <path d="M266 196 C246 172 236 158 236 140 C236 122 250 108 266 108 C282 108 296 122 296 140 C296 158 286 172 266 196 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="7"/>
+    <circle cx="266" cy="140" r="11" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="203" r="4"/>
+  <circle id="anchor-top" cx="200" cy="72" r="4"/>
+  <circle id="anchor-pin" cx="266" cy="140" r="4"/>
+  <circle id="anchor-start" cx="88" cy="293" r="4"/>
+  <circle id="anchor-route" cx="186" cy="234" r="4"/>
+</svg>

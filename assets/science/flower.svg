@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Flower" data-tags="flower,plant,nature,bloom,garden,spring,petals,pollination,growth,botany">
+<ellipse cx="200" cy="364" rx="92" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-stem" stroke="#2B2D42" stroke-width="6">
+    <rect x="191" y="170" width="18" height="130" rx="9" fill="#06D6A0"/>
+    <path d="M196 262 C170 226 132 226 116 244 C138 272 174 276 196 262 Z" fill="#7BD389"/>
+    <path d="M204 232 C230 198 268 198 284 216 C262 244 226 248 204 232 Z" fill="#7BD389"/>
+    <path d="M190 258 C170 248 150 246 132 246" fill="none" stroke-width="4"/>
+    <path d="M210 228 C230 218 250 216 268 218" fill="none" stroke-width="4"/>
+  </g>
+  <g id="part-petals" fill="#FF8FAB" stroke="#2B2D42" stroke-width="7">
+    <ellipse cx="200" cy="86" rx="34" ry="50" transform="rotate(0 200 136)"/>
+    <ellipse cx="200" cy="86" rx="34" ry="50" transform="rotate(60 200 136)"/>
+    <ellipse cx="200" cy="86" rx="34" ry="50" transform="rotate(120 200 136)"/>
+    <ellipse cx="200" cy="86" rx="34" ry="50" transform="rotate(180 200 136)"/>
+    <ellipse cx="200" cy="86" rx="34" ry="50" transform="rotate(240 200 136)"/>
+    <ellipse cx="200" cy="86" rx="34" ry="50" transform="rotate(300 200 136)"/>
+  </g>
+  <g id="part-center">
+    <circle cx="200" cy="136" r="36" fill="#FFD23F" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M230.1 125.1 A32 32 0 0 1 189.1 166.1 A46 46 0 0 0 230.1 125.1 Z" fill="#FF9F1C" fill-opacity="0.6"/>
+    <path d="M179.3 128.5 A22 22 0 0 1 196.2 114.3" fill="none" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g id="part-pot">
+    <path d="M144 312 L158 362 L242 362 L256 312 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M228 320 L250 320 L238 356 L222 356 Z" fill="#E07B00" fill-opacity="0.6"/>
+    <rect x="130" y="290" width="140" height="30" rx="9" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="30" r="4"/>
+  <circle id="anchor-bloom" cx="200" cy="136" r="4"/>
+  <circle id="anchor-leaf" cx="140" cy="248" r="4"/>
+  <circle id="anchor-stem" cx="200" cy="200" r="4"/>
+  <circle id="anchor-pot" cx="200" cy="336" r="4"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Nervous System" data-tags="nervous system,nerves,brain,spinal cord,spine,neurons,reflex,signals,body,senses">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="370" rx="110" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- body silhouette -->
+  <g id="part-body">
+    <path d="M182 118 C156 122 136 128 124 144 L78 208 C68 222 86 238 98 226 L144 178 L146 252 L132 342 C130 360 160 364 164 346 L190 268 L210 268 L236 346 C240 364 270 360 268 342 L254 252 L256 178 L302 226 C314 238 332 222 322 208 L276 144 C264 128 244 122 218 118 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M256 178 L254 252 L264 316 C262 280 258 252 262 214 C264 196 262 186 256 178 Z" fill="#8ECAE6"/>
+    <circle cx="200" cy="74" r="50" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M164 64 C168 48 180 36 196 34" fill="none" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="8"/>
+  </g>
+  <!-- nerves -->
+  <g id="part-nerves">
+    <path d="M200 146 C176 150 150 160 132 180 C116 196 100 210 90 220 M118 194 C112 206 104 214 96 226 M200 146 C224 150 250 160 268 180 C284 196 300 210 310 220 M282 194 C288 206 296 214 304 226 M200 250 C186 270 176 300 168 340 M178 290 C166 300 160 318 154 344 M200 250 C214 270 224 300 232 340 M222 290 C234 300 240 318 246 344 M200 184 C186 186 172 196 164 210 M200 184 C214 186 228 196 236 210 M200 216 C188 220 178 230 172 244 M200 216 C212 220 222 230 228 244" fill="none" stroke="#2B2D42" stroke-width="11"/>
+    <path d="M200 146 C176 150 150 160 132 180 C116 196 100 210 90 220 M118 194 C112 206 104 214 96 226 M200 146 C224 150 250 160 268 180 C284 196 300 210 310 220 M282 194 C288 206 296 214 304 226 M200 250 C186 270 176 300 168 340 M178 290 C166 300 160 318 154 344 M200 250 C214 270 224 300 232 340 M222 290 C234 300 240 318 246 344 M200 184 C186 186 172 196 164 210 M200 184 C214 186 228 196 236 210 M200 216 C188 220 178 230 172 244 M200 216 C212 220 222 230 228 244" fill="none" stroke="#FFD23F" stroke-width="5"/>
+  </g>
+  <!-- spinal cord -->
+  <g id="part-spinal-cord">
+    <path d="M200 100 L200 252" fill="none" stroke="#2B2D42" stroke-width="20"/>
+    <path d="M200 100 L200 252" fill="none" stroke="#FF9F1C" stroke-width="10"/>
+  </g>
+  <!-- brain -->
+  <g id="part-brain">
+    <path d="M166 82 C156 70 162 52 178 50 C184 38 204 36 212 46 C228 42 242 54 238 68 C246 78 240 96 226 96 C220 104 206 106 198 100 C188 106 172 102 172 92 C166 90 164 86 166 82 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M200 50 C196 62 206 72 200 84 M178 66 C186 64 190 72 196 70 M216 62 C222 70 228 66 232 72 M182 86 C188 80 194 84 198 82" fill="none" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <circle id="anchor-top" cx="200" cy="24" r="4"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-brain" cx="204" cy="70" r="4"/>
+  <circle id="anchor-spine" cx="200" cy="200" r="4"/>
+  <circle id="anchor-hand" cx="312" cy="222" r="4"/>
+  <circle id="anchor-leg" cx="240" cy="330" r="4"/>
+</svg>

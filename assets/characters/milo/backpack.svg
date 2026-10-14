@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-130 -250 260 280" data-title="Milo backpack" data-tags="milo,backpack">
+  <g id="part-pack">
+    <rect x="-118" y="-214" width="236" height="178" rx="40" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="-118" y="-120" width="236" height="60" rx="14" fill="#E07B00" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M-100 -196 C-96 -206 -86 -210 -76 -210" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="7"/>
+  </g>
+  <g id="part-straps">
+    <path d="M-70 -224 C-64 -170 -62 -120 -58 -58" fill="none" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M-70 -224 C-64 -170 -62 -120 -58 -58" fill="none" stroke="#FF9F1C" stroke-width="13"/>
+    <path d="M70 -224 C64 -170 62 -120 58 -58" fill="none" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M70 -224 C64 -170 62 -120 58 -58" fill="none" stroke="#FF9F1C" stroke-width="13"/>
+    <rect x="-70" y="-122" width="20" height="14" rx="3" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+    <rect x="50" y="-122" width="20" height="14" rx="3" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <circle id="anchor-center" cx="0" cy="-125" r="3"/>
+  <circle id="anchor-top" cx="0" cy="-214" r="3"/>
+</svg>

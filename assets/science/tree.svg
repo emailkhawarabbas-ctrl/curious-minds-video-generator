@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Tree" data-tags="tree,nature,plant,forest,leaves,oak,environment,photosynthesis,wood,park,apple">
+<ellipse cx="200" cy="348" rx="116" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-trunk">
+    <path d="M176 220 C180 270 176 312 164 346 L236 346 C224 312 220 270 224 220 Z" fill="#B5703A" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M214 236 C212 280 216 314 226 340 L236 346 C224 312 220 270 224 220 Z" fill="#5B3A29" fill-opacity="0.45"/>
+    <path d="M196 300 C200 290 198 280 202 272" fill="none" stroke="#2B2D42" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="part-leaves">
+    <path d="M110 236 C62 232 46 172 84 148 C72 100 118 60 164 76 C186 40 242 42 260 78 C304 64 346 104 332 148 C364 174 348 232 300 236 C278 260 234 262 212 246 C188 262 136 260 110 236 Z" fill="#7BD389" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M86 210 C120 228 150 222 168 230 C190 244 220 244 238 230 C262 222 300 232 330 200 C334 222 318 234 300 236 C278 260 234 262 212 246 C188 262 136 260 110 236 C98 234 90 224 86 210 Z" fill="#1A9E92" fill-opacity="0.35"/>
+    <path d="M100 150 C104 120 128 100 152 102" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="11" stroke-linecap="round"/>
+    <g fill="none" stroke="#2B2D42" stroke-width="5" stroke-linecap="round">
+      <path d="M232 104 C244 110 250 120 250 132"/>
+      <path d="M130 176 C140 182 144 192 142 202"/>
+      <path d="M284 168 C296 176 300 186 298 196"/>
+    </g>
+  </g>
+  <g id="part-fruit" fill="#EF476F" stroke="#2B2D42" stroke-width="5">
+    <circle cx="186" cy="146" r="13"/>
+    <circle cx="262" cy="196" r="13"/>
+    <circle cx="140" cy="122" r="11"/>
+    <circle cx="214" cy="212" r="11"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="190" r="4"/>
+  <circle id="anchor-top" cx="210" cy="50" r="4"/>
+  <circle id="anchor-leaves" cx="250" cy="130" r="4"/>
+  <circle id="anchor-trunk" cx="200" cy="300" r="4"/>
+  <circle id="anchor-fruit" cx="186" cy="146" r="4"/>
+  <circle id="anchor-roots" cx="200" cy="346" r="4"/>
+</svg>

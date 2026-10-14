@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Microscope" data-tags="microscope,lab,laboratory,biology,cells,magnify,research,science,experiment,microbes,zoom">
+<ellipse cx="226" cy="358" rx="124" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-arm">
+    <path d="M250 330 L250 300 C290 286 308 230 290 186 C280 160 262 140 244 128 L218 156 C236 168 252 186 258 206 C268 240 252 270 222 282 L222 330 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M276 190 C290 226 282 266 250 290 L250 300 C290 286 308 230 290 186 Z" fill="#1A9E92" fill-opacity="0.6"/>
+    <circle cx="276" cy="214" r="17" fill="#B8BCC8" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-base">
+    <rect x="118" y="322" width="220" height="32" rx="14" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M140 332 L200 332" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="part-stage">
+    <rect x="128" y="256" width="164" height="20" rx="7" fill="#3D405B" stroke="#2B2D42" stroke-width="7"/>
+    <rect x="178" y="246" width="56" height="12" rx="3" fill="#CFC6FF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-tube" transform="rotate(-25 180 150)">
+    <rect x="164" y="214" width="32" height="38" rx="6" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+    <rect x="152" y="80" width="56" height="140" rx="14" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M192 92 L192 208" fill="none" stroke="#1A9E92" stroke-opacity="0.8" stroke-width="12" stroke-linecap="round"/>
+    <path d="M166 100 L166 150" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="9" stroke-linecap="round"/>
+    <rect x="160" y="44" width="40" height="40" rx="8" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+    <circle id="anchor-eyepiece" cx="180" cy="44" r="4"/>
+    <circle id="anchor-objective" cx="180" cy="252" r="4"/>
+  </g>
+  <circle id="anchor-center" cx="214" cy="200" r="4"/>
+  <circle id="anchor-top" cx="150" cy="44" r="4"/>
+  <circle id="anchor-stage" cx="150" cy="266" r="4"/>
+  <circle id="anchor-base" cx="228" cy="338" r="4"/>
+</svg>

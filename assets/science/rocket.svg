@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Rocket" data-tags="rocket,spaceship,space,launch,astronaut,exploration,flight,nasa,blast off,startup,mission">
+<g id="part-flame">
+    <path d="M166 276 C160 318 184 340 200 378 C216 340 240 318 234 276 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M184 282 C182 310 192 324 200 346 C208 324 218 310 216 282 Z" fill="#FFD23F"/>
+  </g>
+  <g id="part-fins" fill="#EF476F" stroke="#2B2D42" stroke-width="8">
+    <path d="M144 190 C104 210 88 252 92 300 L146 268 Z"/>
+    <path d="M256 190 C296 210 312 252 308 300 L254 268 Z"/>
+  </g>
+  <g id="part-body">
+    <path d="M142 104 C132 150 134 210 144 264 L256 264 C266 210 268 150 258 104 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M238 112 L256 110 C266 156 264 212 252 260 L236 260 C246 212 248 156 238 112 Z" fill="#B8BCC8" fill-opacity="0.7"/>
+    <rect x="160" y="258" width="80" height="24" rx="7" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-nose">
+    <path d="M200 26 C232 44 252 72 258 106 L142 106 C148 72 168 44 200 26 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M168 76 C176 60 186 50 196 44" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g id="part-window">
+    <circle cx="200" cy="166" r="36" fill="#B8BCC8" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="200" cy="166" r="21" fill="#8ECAE6" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M188.7 161.9 A12 12 0 0 1 200 154" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="190" r="4"/>
+  <circle id="anchor-top" cx="200" cy="26" r="4"/>
+  <circle id="anchor-window" cx="200" cy="166" r="4"/>
+  <circle id="anchor-flame" cx="200" cy="330" r="4"/>
+  <circle id="anchor-fin" cx="104" cy="270" r="4"/>
+</svg>

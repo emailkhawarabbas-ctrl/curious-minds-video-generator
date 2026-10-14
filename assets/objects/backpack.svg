@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Backpack" data-tags="backpack,school bag,bag,school,student,travel,adventure,hiking,supplies,rucksack">
+<ellipse cx="200" cy="358" rx="130" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-straps" fill="#E07B00" stroke="#2B2D42" stroke-width="7">
+    <rect x="70" y="140" width="34" height="170" rx="16"/>
+    <rect x="296" y="140" width="34" height="170" rx="16"/>
+  </g>
+  <g id="part-handle" fill="none" stroke-linecap="round">
+    <path d="M166 84 C166 38 234 38 234 84" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M166 84 C166 38 234 38 234 84" stroke="#E07B00" stroke-width="10"/>
+  </g>
+  <g id="part-body">
+    <path d="M96 128 C96 96 122 78 150 78 L250 78 C278 78 304 96 304 128 L304 320 C304 338 292 350 274 350 L126 350 C108 350 96 338 96 320 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M270 90 C288 100 296 112 296 130 L296 318 C296 332 288 342 274 342 L262 342 C274 332 278 318 278 300 L278 126 C278 110 276 100 270 90 Z" fill="#E07B00" fill-opacity="0.6"/>
+    <path d="M114 130 C114 112 124 100 140 96" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="10"/>
+    <path d="M100 146 C160 160 240 160 300 146" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <rect x="236" y="146" width="12" height="26" rx="5" fill="#B8BCC8" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <g id="part-pocket">
+    <rect x="128" y="222" width="144" height="104" rx="22" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M128 252 C128 236 140 222 156 222 L244 222 C260 222 272 236 272 252 C240 262 160 262 128 252 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="6"/>
+    <rect x="190" y="248" width="20" height="24" rx="5" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="216" r="4"/>
+  <circle id="anchor-top" cx="200" cy="50" r="4"/>
+  <circle id="anchor-handle" cx="200" cy="52" r="4"/>
+  <circle id="anchor-pocket" cx="200" cy="290" r="4"/>
+  <circle id="anchor-strap" cx="87" cy="230" r="4"/>
+  <circle id="anchor-zipper" cx="200" cy="157" r="4"/>
+</svg>

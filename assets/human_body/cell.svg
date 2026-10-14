@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Animal Cell" data-tags="cell,animal cell,nucleus,mitochondria,biology,organelles,cytoplasm,membrane,microscope,life">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="364" rx="130" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- membrane + cytoplasm -->
+  <g id="part-membrane">
+    <path d="M200 46 C260 40 318 70 342 122 C366 174 356 236 328 282 C300 328 246 348 192 342 C134 336 84 304 62 252 C40 200 50 140 86 100 C114 68 156 50 200 46 Z" fill="#9BE7DF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M346 186 C350 240 322 296 270 324 C232 344 182 346 142 330 C210 336 270 312 306 270 C330 242 342 214 346 186 Z" fill="#2EC4B6" fill-opacity="0.55"/>
+    <path d="M78 150 C90 116 116 88 150 72" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+  </g>
+  <!-- endoplasmic reticulum -->
+  <g id="part-er">
+    <path d="M150 150 C140 170 140 196 150 214 M134 140 C118 166 118 204 134 226 M244 240 C258 230 268 214 270 198" fill="none" stroke="#5B4BC4" stroke-width="5"/>
+  </g>
+  <!-- nucleus -->
+  <g id="part-nucleus">
+    <circle cx="200" cy="184" r="52" fill="#8E7DFF" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M240 200 C232 226 206 238 182 232 C210 226 232 214 240 200 Z" fill="#5B4BC4"/>
+    <circle cx="210" cy="190" r="18" fill="#5B4BC4" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M166 172 C168 158 178 148 192 146" fill="none" stroke="#CFC6FF" stroke-width="7"/>
+  </g>
+  <!-- mitochondria -->
+  <g id="part-mitochondria">
+    <g transform="rotate(-25 120 272)">
+      <ellipse cx="120" cy="272" rx="40" ry="22" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+      <path d="M90 272 L98 262 L106 282 L114 262 L122 282 L130 262 L138 282 L146 270" fill="none" stroke="#2B2D42" stroke-width="4"/>
+    </g>
+    <g transform="rotate(30 284 136)">
+      <ellipse cx="284" cy="136" rx="36" ry="20" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+      <path d="M258 136 L266 127 L274 145 L282 127 L290 145 L298 127 L306 140" fill="none" stroke="#2B2D42" stroke-width="4"/>
+    </g>
+  </g>
+  <!-- small organelles -->
+  <g id="part-organelles">
+    <circle cx="258" cy="282" r="20" fill="#D7F0FA" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="130" cy="108" r="13" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M276 196 C292 192 304 200 312 196 M280 212 C296 208 308 218 318 212 M286 228 C298 226 306 232 314 228" fill="none" stroke="#FF5D73" stroke-width="6"/>
+    <circle cx="96" cy="200" r="5" fill="#2B2D42"/>
+    <circle cx="180" cy="290" r="5" fill="#2B2D42"/>
+    <circle cx="214" cy="300" r="5" fill="#2B2D42"/>
+    <circle cx="238" cy="88" r="5" fill="#2B2D42"/>
+    <circle cx="320" cy="248" r="5" fill="#2B2D42"/>
+    <circle cx="176" cy="96" r="5" fill="#2B2D42"/>
+  </g>
+  <circle id="anchor-top" cx="200" cy="44" r="4"/>
+  <circle id="anchor-center" cx="200" cy="194" r="4"/>
+  <circle id="anchor-nucleus" cx="200" cy="184" r="4"/>
+  <circle id="anchor-mitochondria" cx="120" cy="272" r="4"/>
+  <circle id="anchor-membrane" cx="342" cy="150" r="4"/>
+  <circle id="anchor-vacuole" cx="258" cy="282" r="4"/>
+</svg>

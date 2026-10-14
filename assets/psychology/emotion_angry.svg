@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Angry Face" data-tags="angry,anger,mad,furious,rage,frustration,emotion,feeling,temper,mood">
+  <ellipse cx="200" cy="350" rx="112" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-face">
+    <circle cx="200" cy="190" r="140" fill="#FF5D73" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M296 94 A136 136 0 0 1 104 286 A142 142 0 0 0 296 94 Z" fill="#E8435C"/>
+    <path d="M102 150 C112 120 132 100 160 86" fill="none" stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="12"/>
+  </g>
+  <g id="part-brows">
+    <path d="M118 120 L176 148 L170 160 L114 134 Z" fill="#2B2D42" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M282 120 L224 148 L230 160 L286 134 Z" fill="#2B2D42" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-eyes">
+    <path d="M132 166 L176 178 C176 196 166 206 154 206 C140 206 130 192 132 166 Z" fill="#2B2D42"/>
+    <path d="M268 166 L224 178 C224 196 234 206 246 206 C260 206 270 192 268 166 Z" fill="#2B2D42"/>
+    <circle cx="156" cy="188" r="5" fill="#FFFFFF"/>
+    <circle cx="244" cy="188" r="5" fill="#FFFFFF"/>
+  </g>
+  <g id="part-mouth">
+    <rect x="140" y="236" width="120" height="44" rx="16" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M142 258 L258 258 M170 238 L170 278 M200 238 L200 278 M230 238 L230 278" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-vein">
+    <path d="M302 72 Q320 78 314 56 M338 56 Q332 78 352 72 M352 98 Q332 92 338 114 M314 114 Q320 92 302 98" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M302 72 Q320 78 314 56 M338 56 Q332 78 352 72 M352 98 Q332 92 338 114 M314 114 Q320 92 302 98" fill="none" stroke="#EF476F" stroke-width="8"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="190" r="4"/>
+  <circle id="anchor-top" cx="200" cy="50" r="4"/>
+  <circle id="anchor-left_eye" cx="154" cy="186" r="4"/>
+  <circle id="anchor-right_eye" cx="246" cy="186" r="4"/>
+  <circle id="anchor-mouth" cx="200" cy="258" r="4"/>
+</svg>

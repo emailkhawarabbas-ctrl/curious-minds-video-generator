@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Telescope" data-tags="telescope,astronomy,stars,space,observe,observatory,stargazing,discovery,lens,night">
+<ellipse cx="200" cy="360" rx="126" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-tripod" stroke-linecap="round">
+    <path d="M200 206 L118 350 M200 206 L200 354 M200 206 L282 350" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M200 206 L118 350 M200 206 L200 354 M200 206 L282 350" fill="none" stroke="#B8BCC8" stroke-width="9"/>
+    <circle cx="200" cy="204" r="20" fill="#3D405B" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-tube" transform="rotate(-28 200 176)">
+    <rect x="62" y="160" width="36" height="32" rx="7" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+    <rect x="92" y="146" width="200" height="60" rx="14" fill="#3A86FF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M104 194 L276 194" fill="none" stroke="#2B2D42" stroke-opacity="0.18" stroke-width="12" stroke-linecap="round"/>
+    <path d="M110 160 L190 160" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="9" stroke-linecap="round"/>
+    <rect x="180" y="142" width="16" height="68" rx="5" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+    <rect x="284" y="130" width="40" height="92" rx="12" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <circle id="anchor-lens" cx="324" cy="176" r="4"/>
+    <circle id="anchor-eyepiece" cx="62" cy="176" r="4"/>
+  </g>
+  <g id="part-sparkle">
+    <path d="M330 30 Q334 52 352 56 Q334 60 330 82 Q326 60 308 56 Q326 52 330 30 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="300" cy="60" r="4"/>
+  <circle id="anchor-tripod" cx="200" cy="300" r="4"/>
+</svg>

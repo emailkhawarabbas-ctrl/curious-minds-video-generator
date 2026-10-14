@@ -1,0 +1,1855 @@
+{
+  "alarm_clock": {
+    "category": "psychology",
+    "file": "psychology/alarm_clock.svg",
+    "title": "Alarm Clock",
+    "tags": [
+      "alarm",
+      "clock",
+      "wake up",
+      "morning",
+      "time",
+      "alarm clock",
+      "schedule",
+      "sleep",
+      "circadian",
+      "routine"
+    ],
+    "anchors": [
+      "bell_left",
+      "bell_right",
+      "center",
+      "face",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "atom": {
+    "category": "science",
+    "file": "science/atom.svg",
+    "title": "Atom",
+    "tags": [
+      "atom",
+      "nucleus",
+      "electron",
+      "proton",
+      "neutron",
+      "physics",
+      "chemistry",
+      "science",
+      "energy",
+      "particle",
+      "nuclear"
+    ],
+    "anchors": [
+      "center",
+      "electron",
+      "nucleus",
+      "orbit",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "attention_target": {
+    "category": "psychology",
+    "file": "psychology/attention_target.svg",
+    "title": "Attention Target",
+    "tags": [
+      "attention",
+      "focus",
+      "target",
+      "bullseye",
+      "goal",
+      "aim",
+      "concentration",
+      "precision",
+      "success",
+      "objective"
+    ],
+    "anchors": [
+      "arrow",
+      "bullseye",
+      "center",
+      "ring",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "backpack": {
+    "category": "objects",
+    "file": "objects/backpack.svg",
+    "title": "Backpack",
+    "tags": [
+      "backpack",
+      "school bag",
+      "bag",
+      "school",
+      "student",
+      "travel",
+      "adventure",
+      "hiking",
+      "supplies",
+      "rucksack"
+    ],
+    "anchors": [
+      "center",
+      "handle",
+      "pocket",
+      "strap",
+      "top",
+      "zipper"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "bed": {
+    "category": "objects",
+    "file": "objects/bed.svg",
+    "title": "Bed",
+    "tags": [
+      "bed",
+      "sleep",
+      "bedroom",
+      "rest",
+      "night",
+      "dream",
+      "nap",
+      "tired",
+      "bedtime",
+      "furniture",
+      "mattress"
+    ],
+    "anchors": [
+      "blanket",
+      "center",
+      "headboard",
+      "mattress",
+      "pillow",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "blood_cells": {
+    "category": "human_body",
+    "file": "human_body/blood_cells.svg",
+    "title": "Blood Cells",
+    "tags": [
+      "blood cells",
+      "red blood cell",
+      "white blood cell",
+      "blood",
+      "oxygen",
+      "immune system",
+      "circulation",
+      "hemoglobin",
+      "cells",
+      "body"
+    ],
+    "anchors": [
+      "center",
+      "red_cell",
+      "red_cell_back",
+      "top",
+      "white_cell"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "bone": {
+    "category": "human_body",
+    "file": "human_body/bone.svg",
+    "title": "Bone",
+    "tags": [
+      "bone",
+      "skeleton",
+      "calcium",
+      "femur",
+      "joint",
+      "strong",
+      "body",
+      "anatomy",
+      "x-ray",
+      "growth"
+    ],
+    "anchors": [
+      "center",
+      "joint_bottom",
+      "joint_top",
+      "shaft",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "book": {
+    "category": "objects",
+    "file": "objects/book.svg",
+    "title": "Open Book",
+    "tags": [
+      "book",
+      "open book",
+      "reading",
+      "read",
+      "story",
+      "study",
+      "learning",
+      "education",
+      "library",
+      "knowledge",
+      "literature"
+    ],
+    "anchors": [
+      "center",
+      "left_page",
+      "right_page",
+      "spine",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "books_stack": {
+    "category": "objects",
+    "file": "objects/books_stack.svg",
+    "title": "Stack of Books",
+    "tags": [
+      "books",
+      "stack",
+      "library",
+      "reading",
+      "study",
+      "school",
+      "education",
+      "learning",
+      "homework",
+      "knowledge",
+      "research"
+    ],
+    "anchors": [
+      "apple",
+      "bottom_book",
+      "center",
+      "top",
+      "top_book"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "brain": {
+    "category": "human_body",
+    "file": "human_body/brain.svg",
+    "title": "Brain",
+    "tags": [
+      "brain",
+      "mind",
+      "neuroscience",
+      "thinking",
+      "memory",
+      "dream",
+      "sleep",
+      "psychology",
+      "nervous system",
+      "head"
+    ],
+    "anchors": [
+      "back",
+      "center",
+      "cerebellum",
+      "frontal",
+      "stem",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "brain_activity": {
+    "category": "psychology",
+    "file": "psychology/brain_activity.svg",
+    "title": "Brain Activity",
+    "tags": [
+      "brain",
+      "activity",
+      "neurons",
+      "thinking",
+      "signals",
+      "energy",
+      "mind",
+      "neuroscience",
+      "electrical",
+      "firing",
+      "psychology"
+    ],
+    "anchors": [
+      "center",
+      "signal",
+      "spark_left",
+      "spark_right",
+      "stem",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "building": {
+    "category": "objects",
+    "file": "objects/building.svg",
+    "title": "School Building",
+    "tags": [
+      "building",
+      "school",
+      "university",
+      "lab",
+      "laboratory",
+      "college",
+      "campus",
+      "education",
+      "institute",
+      "classroom",
+      "city"
+    ],
+    "anchors": [
+      "center",
+      "door",
+      "flag",
+      "roof",
+      "top",
+      "window"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "bus": {
+    "category": "objects",
+    "file": "objects/bus.svg",
+    "title": "School Bus",
+    "tags": [
+      "bus",
+      "school bus",
+      "transport",
+      "vehicle",
+      "travel",
+      "school",
+      "commute",
+      "public transport",
+      "road",
+      "trip"
+    ],
+    "anchors": [
+      "back_wheel",
+      "center",
+      "door",
+      "front_wheel",
+      "top",
+      "windows"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "calendar": {
+    "category": "objects",
+    "file": "objects/calendar.svg",
+    "title": "Calendar",
+    "tags": [
+      "calendar",
+      "date",
+      "schedule",
+      "month",
+      "day",
+      "plan",
+      "deadline",
+      "appointment",
+      "event",
+      "organize",
+      "week"
+    ],
+    "anchors": [
+      "center",
+      "date",
+      "header",
+      "rings",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "car": {
+    "category": "objects",
+    "file": "objects/car.svg",
+    "title": "Car",
+    "tags": [
+      "car",
+      "vehicle",
+      "automobile",
+      "drive",
+      "road",
+      "transport",
+      "travel",
+      "traffic",
+      "ride",
+      "commute"
+    ],
+    "anchors": [
+      "back_wheel",
+      "center",
+      "front_wheel",
+      "headlight",
+      "top",
+      "window"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "cell": {
+    "category": "human_body",
+    "file": "human_body/cell.svg",
+    "title": "Animal Cell",
+    "tags": [
+      "cell",
+      "animal cell",
+      "nucleus",
+      "mitochondria",
+      "biology",
+      "organelles",
+      "cytoplasm",
+      "membrane",
+      "microscope",
+      "life"
+    ],
+    "anchors": [
+      "center",
+      "membrane",
+      "mitochondria",
+      "nucleus",
+      "top",
+      "vacuole"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "chart_bars": {
+    "category": "objects",
+    "file": "objects/chart_bars.svg",
+    "title": "Bar Chart",
+    "tags": [
+      "chart",
+      "bar chart",
+      "graph",
+      "statistics",
+      "data",
+      "growth",
+      "results",
+      "analytics",
+      "report",
+      "comparison",
+      "business"
+    ],
+    "anchors": [
+      "bar_highest",
+      "bar_lowest",
+      "center",
+      "top",
+      "x_axis",
+      "y_axis"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "chart_line": {
+    "category": "objects",
+    "file": "objects/chart_line.svg",
+    "title": "Line Chart",
+    "tags": [
+      "chart",
+      "line chart",
+      "graph",
+      "trend",
+      "growth",
+      "statistics",
+      "data",
+      "progress",
+      "analytics",
+      "increase",
+      "report"
+    ],
+    "anchors": [
+      "center",
+      "dip",
+      "peak",
+      "start",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "clock": {
+    "category": "objects",
+    "file": "objects/clock.svg",
+    "title": "Wall Clock",
+    "tags": [
+      "clock",
+      "time",
+      "hour",
+      "minute",
+      "schedule",
+      "deadline",
+      "routine",
+      "watch",
+      "timer",
+      "morning",
+      "punctual"
+    ],
+    "anchors": [
+      "center",
+      "hour_hand",
+      "hour_hand_pivot",
+      "minute_hand",
+      "top",
+      "twelve"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "coffee_cup": {
+    "category": "objects",
+    "file": "objects/coffee_cup.svg",
+    "title": "Coffee Cup",
+    "tags": [
+      "coffee",
+      "cup",
+      "mug",
+      "drink",
+      "tea",
+      "break",
+      "morning",
+      "caffeine",
+      "hot drink",
+      "cafe",
+      "energy"
+    ],
+    "anchors": [
+      "center",
+      "coffee",
+      "handle",
+      "saucer",
+      "steam",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "computer": {
+    "category": "objects",
+    "file": "objects/computer.svg",
+    "title": "Laptop Computer",
+    "tags": [
+      "computer",
+      "laptop",
+      "technology",
+      "internet",
+      "coding",
+      "work",
+      "online",
+      "screen",
+      "digital",
+      "software",
+      "study"
+    ],
+    "anchors": [
+      "center",
+      "corner",
+      "keyboard",
+      "screen",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "dna": {
+    "category": "human_body",
+    "file": "human_body/dna.svg",
+    "title": "DNA",
+    "tags": [
+      "dna",
+      "double helix",
+      "genes",
+      "genetics",
+      "heredity",
+      "chromosome",
+      "biology",
+      "cell",
+      "genome",
+      "base pairs"
+    ],
+    "anchors": [
+      "base_pair",
+      "bottom",
+      "center",
+      "strand",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "dream_cloud": {
+    "category": "psychology",
+    "file": "psychology/dream_cloud.svg",
+    "title": "Dream Cloud",
+    "tags": [
+      "dream",
+      "dreams",
+      "dreaming",
+      "imagination",
+      "sleep",
+      "night",
+      "fantasy",
+      "cloud",
+      "rem",
+      "subconscious"
+    ],
+    "anchors": [
+      "center",
+      "moon",
+      "rainbow",
+      "stars",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "ear": {
+    "category": "human_body",
+    "file": "human_body/ear.svg",
+    "title": "Ear",
+    "tags": [
+      "ear",
+      "hearing",
+      "sound",
+      "listen",
+      "sense",
+      "ear canal",
+      "earlobe",
+      "audio",
+      "body",
+      "noise"
+    ],
+    "anchors": [
+      "center",
+      "ear_canal",
+      "earlobe",
+      "helix",
+      "sound",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "earth": {
+    "category": "science",
+    "file": "science/earth.svg",
+    "title": "Planet Earth",
+    "tags": [
+      "earth",
+      "planet",
+      "world",
+      "globe",
+      "geography",
+      "climate",
+      "environment",
+      "ocean",
+      "continents",
+      "home"
+    ],
+    "anchors": [
+      "center",
+      "land",
+      "north_pole",
+      "ocean",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "eeg_wave": {
+    "category": "psychology",
+    "file": "psychology/eeg_wave.svg",
+    "title": "EEG Brainwave Monitor",
+    "tags": [
+      "eeg",
+      "brainwave",
+      "brain waves",
+      "sleep stages",
+      "monitor",
+      "neuroscience",
+      "signal",
+      "rem",
+      "measurement",
+      "science"
+    ],
+    "anchors": [
+      "center",
+      "stand",
+      "top",
+      "wave_calm",
+      "wave_slow",
+      "wave_spike"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "emotion_angry": {
+    "category": "psychology",
+    "file": "psychology/emotion_angry.svg",
+    "title": "Angry Face",
+    "tags": [
+      "angry",
+      "anger",
+      "mad",
+      "furious",
+      "rage",
+      "frustration",
+      "emotion",
+      "feeling",
+      "temper",
+      "mood"
+    ],
+    "anchors": [
+      "center",
+      "left_eye",
+      "mouth",
+      "right_eye",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "emotion_happy": {
+    "category": "psychology",
+    "file": "psychology/emotion_happy.svg",
+    "title": "Happy Face",
+    "tags": [
+      "happy",
+      "happiness",
+      "joy",
+      "smile",
+      "emotion",
+      "feeling",
+      "cheerful",
+      "positive",
+      "mood",
+      "glad"
+    ],
+    "anchors": [
+      "center",
+      "left_eye",
+      "mouth",
+      "right_eye",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "emotion_sad": {
+    "category": "psychology",
+    "file": "psychology/emotion_sad.svg",
+    "title": "Sad Face",
+    "tags": [
+      "sad",
+      "sadness",
+      "unhappy",
+      "crying",
+      "tear",
+      "emotion",
+      "feeling",
+      "depression",
+      "mood",
+      "blue",
+      "grief"
+    ],
+    "anchors": [
+      "center",
+      "left_eye",
+      "mouth",
+      "right_eye",
+      "tear",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "emotion_scared": {
+    "category": "psychology",
+    "file": "psychology/emotion_scared.svg",
+    "title": "Scared Face",
+    "tags": [
+      "scared",
+      "fear",
+      "afraid",
+      "anxiety",
+      "fright",
+      "nervous",
+      "emotion",
+      "feeling",
+      "worry",
+      "panic",
+      "stress"
+    ],
+    "anchors": [
+      "center",
+      "left_eye",
+      "mouth",
+      "right_eye",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "emotion_surprised": {
+    "category": "psychology",
+    "file": "psychology/emotion_surprised.svg",
+    "title": "Surprised Face",
+    "tags": [
+      "surprised",
+      "surprise",
+      "shock",
+      "amazed",
+      "wow",
+      "astonished",
+      "emotion",
+      "feeling",
+      "wonder",
+      "mood"
+    ],
+    "anchors": [
+      "center",
+      "left_eye",
+      "mouth",
+      "right_eye",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "eye": {
+    "category": "human_body",
+    "file": "human_body/eye.svg",
+    "title": "Eye",
+    "tags": [
+      "eye",
+      "eyeball",
+      "vision",
+      "sight",
+      "seeing",
+      "iris",
+      "pupil",
+      "optics",
+      "sense",
+      "body"
+    ],
+    "anchors": [
+      "center",
+      "iris",
+      "pupil",
+      "sclera",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "flask": {
+    "category": "science",
+    "file": "science/flask.svg",
+    "title": "Lab Flask",
+    "tags": [
+      "flask",
+      "beaker",
+      "chemistry",
+      "experiment",
+      "lab",
+      "laboratory",
+      "potion",
+      "reaction",
+      "liquid",
+      "science",
+      "bubbles"
+    ],
+    "anchors": [
+      "bubbles",
+      "center",
+      "liquid",
+      "neck",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "flower": {
+    "category": "science",
+    "file": "science/flower.svg",
+    "title": "Flower",
+    "tags": [
+      "flower",
+      "plant",
+      "nature",
+      "bloom",
+      "garden",
+      "spring",
+      "petals",
+      "pollination",
+      "growth",
+      "botany"
+    ],
+    "anchors": [
+      "bloom",
+      "center",
+      "leaf",
+      "pot",
+      "stem",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "gift_box": {
+    "category": "objects",
+    "file": "objects/gift_box.svg",
+    "title": "Gift Box",
+    "tags": [
+      "gift",
+      "present",
+      "birthday",
+      "surprise",
+      "reward",
+      "celebration",
+      "party",
+      "holiday",
+      "bonus",
+      "box"
+    ],
+    "anchors": [
+      "bow",
+      "box",
+      "center",
+      "lid",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "habit_loop": {
+    "category": "psychology",
+    "file": "psychology/habit_loop.svg",
+    "title": "Habit Loop",
+    "tags": [
+      "habit",
+      "habits",
+      "loop",
+      "routine",
+      "cue",
+      "reward",
+      "behavior",
+      "cycle",
+      "repetition",
+      "trigger",
+      "psychology"
+    ],
+    "anchors": [
+      "center",
+      "cue",
+      "reward",
+      "routine",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "heart": {
+    "category": "human_body",
+    "file": "human_body/heart.svg",
+    "title": "Heart",
+    "tags": [
+      "heart",
+      "cardio",
+      "blood",
+      "pump",
+      "circulation",
+      "heartbeat",
+      "organ",
+      "body",
+      "cardiovascular",
+      "love"
+    ],
+    "anchors": [
+      "aorta",
+      "center",
+      "left_ventricle",
+      "right_ventricle",
+      "top",
+      "vena_cava"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "house": {
+    "category": "objects",
+    "file": "objects/house.svg",
+    "title": "House",
+    "tags": [
+      "house",
+      "home",
+      "family",
+      "building",
+      "shelter",
+      "neighborhood",
+      "residence",
+      "living",
+      "cozy",
+      "real estate"
+    ],
+    "anchors": [
+      "center",
+      "chimney",
+      "door",
+      "roof",
+      "top",
+      "window"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "lightbulb": {
+    "category": "psychology",
+    "file": "psychology/lightbulb.svg",
+    "title": "Idea Lightbulb",
+    "tags": [
+      "lightbulb",
+      "idea",
+      "insight",
+      "eureka",
+      "creativity",
+      "inspiration",
+      "thinking",
+      "solution",
+      "bright",
+      "innovation"
+    ],
+    "anchors": [
+      "base",
+      "bulb",
+      "center",
+      "filament",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "lightning": {
+    "category": "science",
+    "file": "science/lightning.svg",
+    "title": "Lightning Bolt",
+    "tags": [
+      "lightning",
+      "bolt",
+      "electricity",
+      "electric",
+      "power",
+      "energy",
+      "storm",
+      "thunder",
+      "charge",
+      "voltage",
+      "spark"
+    ],
+    "anchors": [
+      "center",
+      "left",
+      "right",
+      "tip",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "lungs": {
+    "category": "human_body",
+    "file": "human_body/lungs.svg",
+    "title": "Lungs",
+    "tags": [
+      "lungs",
+      "breathing",
+      "respiration",
+      "air",
+      "oxygen",
+      "breath",
+      "organ",
+      "body",
+      "trachea",
+      "chest"
+    ],
+    "anchors": [
+      "bronchi",
+      "center",
+      "left_lung",
+      "right_lung",
+      "top",
+      "trachea"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "magnet": {
+    "category": "science",
+    "file": "science/magnet.svg",
+    "title": "Magnet",
+    "tags": [
+      "magnet",
+      "magnetism",
+      "magnetic",
+      "attraction",
+      "force",
+      "physics",
+      "north",
+      "south",
+      "poles",
+      "metal",
+      "horseshoe"
+    ],
+    "anchors": [
+      "bend",
+      "center",
+      "north",
+      "south",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "magnifying_glass": {
+    "category": "objects",
+    "file": "objects/magnifying_glass.svg",
+    "title": "Magnifying Glass",
+    "tags": [
+      "magnifying glass",
+      "search",
+      "find",
+      "investigate",
+      "detective",
+      "explore",
+      "zoom",
+      "discover",
+      "research",
+      "inspect",
+      "clue"
+    ],
+    "anchors": [
+      "center",
+      "handle",
+      "lens",
+      "rim",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "map": {
+    "category": "objects",
+    "file": "objects/map.svg",
+    "title": "Map",
+    "tags": [
+      "map",
+      "treasure map",
+      "navigation",
+      "travel",
+      "route",
+      "geography",
+      "explore",
+      "adventure",
+      "journey",
+      "location",
+      "directions"
+    ],
+    "anchors": [
+      "center",
+      "pin",
+      "route",
+      "start",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "memory_photos": {
+    "category": "psychology",
+    "file": "psychology/memory_photos.svg",
+    "title": "Memory Photos",
+    "tags": [
+      "memory",
+      "memories",
+      "photos",
+      "remember",
+      "past",
+      "nostalgia",
+      "recall",
+      "pictures",
+      "polaroid",
+      "childhood",
+      "psychology"
+    ],
+    "anchors": [
+      "center",
+      "photo_front",
+      "photo_left",
+      "photo_right",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "microscope": {
+    "category": "science",
+    "file": "science/microscope.svg",
+    "title": "Microscope",
+    "tags": [
+      "microscope",
+      "lab",
+      "laboratory",
+      "biology",
+      "cells",
+      "magnify",
+      "research",
+      "science",
+      "experiment",
+      "microbes",
+      "zoom"
+    ],
+    "anchors": [
+      "base",
+      "center",
+      "eyepiece",
+      "objective",
+      "stage",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "molecule": {
+    "category": "science",
+    "file": "science/molecule.svg",
+    "title": "Water Molecule",
+    "tags": [
+      "molecule",
+      "water",
+      "h2o",
+      "chemistry",
+      "atoms",
+      "bond",
+      "oxygen",
+      "hydrogen",
+      "compound",
+      "science"
+    ],
+    "anchors": [
+      "bond",
+      "center",
+      "hydrogen_left",
+      "hydrogen_right",
+      "oxygen",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "moon": {
+    "category": "science",
+    "file": "science/moon.svg",
+    "title": "Moon",
+    "tags": [
+      "moon",
+      "full moon",
+      "lunar",
+      "night",
+      "space",
+      "crater",
+      "satellite",
+      "sky",
+      "astronomy",
+      "orbit",
+      "tides"
+    ],
+    "anchors": [
+      "center",
+      "crater",
+      "crater_small",
+      "edge",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "moon_sleepy": {
+    "category": "psychology",
+    "file": "psychology/moon_sleepy.svg",
+    "title": "Sleepy Moon",
+    "tags": [
+      "moon",
+      "night",
+      "sleep",
+      "sleepy",
+      "bedtime",
+      "nightcap",
+      "dreams",
+      "crescent",
+      "tired",
+      "rest"
+    ],
+    "anchors": [
+      "center",
+      "face",
+      "nightcap",
+      "star",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "muscle": {
+    "category": "human_body",
+    "file": "human_body/muscle.svg",
+    "title": "Muscle",
+    "tags": [
+      "muscle",
+      "bicep",
+      "arm",
+      "strength",
+      "strong",
+      "exercise",
+      "fitness",
+      "flex",
+      "body",
+      "movement"
+    ],
+    "anchors": [
+      "bicep",
+      "center",
+      "elbow",
+      "fist",
+      "forearm",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "nervous_system": {
+    "category": "human_body",
+    "file": "human_body/nervous_system.svg",
+    "title": "Nervous System",
+    "tags": [
+      "nervous system",
+      "nerves",
+      "brain",
+      "spinal cord",
+      "spine",
+      "neurons",
+      "reflex",
+      "signals",
+      "body",
+      "senses"
+    ],
+    "anchors": [
+      "brain",
+      "center",
+      "hand",
+      "leg",
+      "spine",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "neuron": {
+    "category": "human_body",
+    "file": "human_body/neuron.svg",
+    "title": "Neuron",
+    "tags": [
+      "neuron",
+      "nerve cell",
+      "brain cell",
+      "nervous system",
+      "synapse",
+      "axon",
+      "dendrite",
+      "signal",
+      "neuroscience",
+      "brain"
+    ],
+    "anchors": [
+      "axon",
+      "axon_end",
+      "center",
+      "dendrite",
+      "soma",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "nightmare_monster": {
+    "category": "psychology",
+    "file": "psychology/nightmare_monster.svg",
+    "title": "Nightmare Monster",
+    "tags": [
+      "nightmare",
+      "monster",
+      "bad dream",
+      "fear",
+      "night terror",
+      "creature",
+      "dream",
+      "sleep",
+      "scary",
+      "boo"
+    ],
+    "anchors": [
+      "center",
+      "eyes",
+      "horn",
+      "mouth",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "phone": {
+    "category": "objects",
+    "file": "objects/phone.svg",
+    "title": "Smartphone",
+    "tags": [
+      "phone",
+      "smartphone",
+      "mobile",
+      "cellphone",
+      "apps",
+      "technology",
+      "social media",
+      "screen",
+      "call",
+      "message",
+      "device"
+    ],
+    "anchors": [
+      "apps",
+      "center",
+      "home",
+      "screen",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "pillow": {
+    "category": "objects",
+    "file": "objects/pillow.svg",
+    "title": "Pillow",
+    "tags": [
+      "pillow",
+      "cushion",
+      "sleep",
+      "bed",
+      "rest",
+      "nap",
+      "comfort",
+      "soft",
+      "bedtime",
+      "dream"
+    ],
+    "anchors": [
+      "center",
+      "corner_left",
+      "corner_right",
+      "surface",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "planet_saturn": {
+    "category": "science",
+    "file": "science/planet_saturn.svg",
+    "title": "Saturn",
+    "tags": [
+      "saturn",
+      "planet",
+      "rings",
+      "space",
+      "solar system",
+      "astronomy",
+      "gas giant",
+      "universe",
+      "orbit",
+      "sky"
+    ],
+    "anchors": [
+      "center",
+      "planet",
+      "ring",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "puzzle_piece": {
+    "category": "psychology",
+    "file": "psychology/puzzle_piece.svg",
+    "title": "Puzzle Piece",
+    "tags": [
+      "puzzle",
+      "piece",
+      "jigsaw",
+      "problem solving",
+      "solution",
+      "logic",
+      "fit",
+      "thinking",
+      "brain teaser",
+      "cognition"
+    ],
+    "anchors": [
+      "center",
+      "knob_right",
+      "knob_top",
+      "notch_bottom",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "question_mark": {
+    "category": "psychology",
+    "file": "psychology/question_mark.svg",
+    "title": "Question Mark",
+    "tags": [
+      "question",
+      "question mark",
+      "curious",
+      "curiosity",
+      "why",
+      "mystery",
+      "unknown",
+      "wonder",
+      "quiz",
+      "ask"
+    ],
+    "anchors": [
+      "center",
+      "dot",
+      "hook",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "rocket": {
+    "category": "science",
+    "file": "science/rocket.svg",
+    "title": "Rocket",
+    "tags": [
+      "rocket",
+      "spaceship",
+      "space",
+      "launch",
+      "astronaut",
+      "exploration",
+      "flight",
+      "nasa",
+      "blast off",
+      "startup",
+      "mission"
+    ],
+    "anchors": [
+      "center",
+      "fin",
+      "flame",
+      "top",
+      "window"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "sheep": {
+    "category": "psychology",
+    "file": "psychology/sheep.svg",
+    "title": "Jumping Sheep",
+    "tags": [
+      "sheep",
+      "counting sheep",
+      "lamb",
+      "sleep",
+      "insomnia",
+      "bedtime",
+      "falling asleep",
+      "jump",
+      "animal",
+      "night"
+    ],
+    "anchors": [
+      "body",
+      "center",
+      "head",
+      "legs",
+      "tail",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "sleeping_person": {
+    "category": "psychology",
+    "file": "psychology/sleeping_person.svg",
+    "title": "Sleeping Person",
+    "tags": [
+      "sleep",
+      "sleeping",
+      "bed",
+      "bedtime",
+      "asleep",
+      "rest",
+      "night",
+      "nap",
+      "tired",
+      "dreaming",
+      "insomnia"
+    ],
+    "anchors": [
+      "blanket",
+      "center",
+      "head",
+      "pillow",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "star": {
+    "category": "science",
+    "file": "science/star.svg",
+    "title": "Star",
+    "tags": [
+      "star",
+      "stars",
+      "gold star",
+      "reward",
+      "achievement",
+      "success",
+      "night",
+      "sky",
+      "favorite",
+      "rating",
+      "best"
+    ],
+    "anchors": [
+      "bottom",
+      "center",
+      "point_left",
+      "point_right",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "stomach": {
+    "category": "human_body",
+    "file": "human_body/stomach.svg",
+    "title": "Stomach",
+    "tags": [
+      "stomach",
+      "digestion",
+      "food",
+      "belly",
+      "tummy",
+      "hunger",
+      "acid",
+      "organ",
+      "body",
+      "digestive system"
+    ],
+    "anchors": [
+      "center",
+      "duodenum",
+      "esophagus",
+      "pylorus",
+      "stomach",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "sun": {
+    "category": "science",
+    "file": "science/sun.svg",
+    "title": "Sun",
+    "tags": [
+      "sun",
+      "star",
+      "sunlight",
+      "daylight",
+      "solar",
+      "energy",
+      "light",
+      "heat",
+      "day",
+      "morning",
+      "summer"
+    ],
+    "anchors": [
+      "center",
+      "core",
+      "ray",
+      "surface",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "telescope": {
+    "category": "science",
+    "file": "science/telescope.svg",
+    "title": "Telescope",
+    "tags": [
+      "telescope",
+      "astronomy",
+      "stars",
+      "space",
+      "observe",
+      "observatory",
+      "stargazing",
+      "discovery",
+      "lens",
+      "night"
+    ],
+    "anchors": [
+      "center",
+      "eyepiece",
+      "lens",
+      "top",
+      "tripod"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "thermometer": {
+    "category": "science",
+    "file": "science/thermometer.svg",
+    "title": "Thermometer",
+    "tags": [
+      "thermometer",
+      "temperature",
+      "heat",
+      "hot",
+      "cold",
+      "weather",
+      "fever",
+      "degrees",
+      "climate",
+      "measure"
+    ],
+    "anchors": [
+      "bulb",
+      "center",
+      "level",
+      "scale",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "thought_cloud": {
+    "category": "psychology",
+    "file": "psychology/thought_cloud.svg",
+    "title": "Thought Cloud",
+    "tags": [
+      "thought",
+      "thinking",
+      "think",
+      "idea",
+      "bubble",
+      "cloud",
+      "mind",
+      "imagine",
+      "wonder",
+      "cognition"
+    ],
+    "anchors": [
+      "center",
+      "left",
+      "right",
+      "tail",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "tree": {
+    "category": "science",
+    "file": "science/tree.svg",
+    "title": "Tree",
+    "tags": [
+      "tree",
+      "nature",
+      "plant",
+      "forest",
+      "leaves",
+      "oak",
+      "environment",
+      "photosynthesis",
+      "wood",
+      "park",
+      "apple"
+    ],
+    "anchors": [
+      "center",
+      "fruit",
+      "leaves",
+      "roots",
+      "top",
+      "trunk"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "trophy": {
+    "category": "objects",
+    "file": "objects/trophy.svg",
+    "title": "Trophy",
+    "tags": [
+      "trophy",
+      "award",
+      "winner",
+      "prize",
+      "champion",
+      "success",
+      "achievement",
+      "victory",
+      "goal",
+      "competition",
+      "first place"
+    ],
+    "anchors": [
+      "base",
+      "center",
+      "cup",
+      "handle",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "wave_sound": {
+    "category": "science",
+    "file": "science/wave_sound.svg",
+    "title": "Sound Waves",
+    "tags": [
+      "sound",
+      "waves",
+      "speaker",
+      "audio",
+      "noise",
+      "music",
+      "vibration",
+      "volume",
+      "hearing",
+      "acoustics",
+      "loud"
+    ],
+    "anchors": [
+      "center",
+      "speaker",
+      "top",
+      "waves"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "weather_cloud_rain": {
+    "category": "science",
+    "file": "science/weather_cloud_rain.svg",
+    "title": "Rain Cloud",
+    "tags": [
+      "rain",
+      "cloud",
+      "weather",
+      "storm",
+      "rainy",
+      "water cycle",
+      "precipitation",
+      "climate",
+      "wet",
+      "drizzle"
+    ],
+    "anchors": [
+      "center",
+      "cloud",
+      "rain",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "zzz": {
+    "category": "psychology",
+    "file": "psychology/zzz.svg",
+    "title": "Sleep Z's",
+    "tags": [
+      "zzz",
+      "sleep",
+      "sleeping",
+      "snore",
+      "snoring",
+      "asleep",
+      "tired",
+      "nap",
+      "rest",
+      "bedtime"
+    ],
+    "anchors": [
+      "center",
+      "top",
+      "z_large",
+      "z_medium",
+      "z_small"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  }
+}

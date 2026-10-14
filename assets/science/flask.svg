@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lab Flask" data-tags="flask,beaker,chemistry,experiment,lab,laboratory,potion,reaction,liquid,science,bubbles">
+<ellipse cx="200" cy="362" rx="112" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-flask">
+    <path d="M176 84 L176 162 L104 322 Q96 352 126 352 L274 352 Q304 352 296 322 L224 162 L224 84 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <g id="part-liquid">
+    <path d="M146 240 C180 228 220 254 254 240 L290 318 Q298 344 272 344 L128 344 Q102 344 110 318 Z" fill="#8E7DFF"/>
+    <path d="M236 246 C244 246 250 244 254 240 L290 318 Q298 344 272 344 L248 344 Q266 300 236 246 Z" fill="#5B4BC4" fill-opacity="0.55"/>
+    <path d="M146 240 C180 228 220 254 254 240" fill="none" stroke="#2B2D42" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <path d="M164 190 L128 268" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="11" stroke-linecap="round"/>
+  <rect x="162" y="66" width="76" height="26" rx="9" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+  <g id="part-bubbles" fill="#CFC6FF" stroke="#2B2D42" stroke-width="5">
+    <circle cx="170" cy="300" r="11"/>
+    <circle cx="224" cy="282" r="8"/>
+    <circle cx="252" cy="316" r="6"/>
+    <circle cx="208" cy="136" r="9"/>
+    <circle cx="190" cy="112" r="6"/>
+    <circle cx="222" cy="44" r="11"/>
+    <circle cx="194" cy="24" r="7"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="220" r="4"/>
+  <circle id="anchor-top" cx="200" cy="24" r="4"/>
+  <circle id="anchor-liquid" cx="200" cy="300" r="4"/>
+  <circle id="anchor-neck" cx="200" cy="124" r="4"/>
+  <circle id="anchor-bubbles" cx="210" cy="36" r="4"/>
+</svg>

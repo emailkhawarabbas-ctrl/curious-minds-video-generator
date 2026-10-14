@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Brain Activity" data-tags="brain,activity,neurons,thinking,signals,energy,mind,neuroscience,electrical,firing,psychology">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="340" rx="104" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- brain (brain.svg at 85%); strokes compensated for the scale -->
+  <g transform="translate(21 38) scale(0.85)">
+    <path id="part-stem" d="M214 262 C222 290 222 312 212 336 L190 336 C196 314 196 292 188 268 Z" fill="#E9799A" stroke="#2B2D42" stroke-width="9.4"/>
+    <path id="part-cerebellum" d="M236 248 C268 246 292 262 288 286 C284 308 252 314 228 300 C214 290 216 256 236 248 Z" fill="#F47FA0" stroke="#2B2D42" stroke-width="9.4"/>
+    <g id="part-brain">
+      <path d="M96 210 C70 196 66 150 92 128 C96 92 136 70 168 82 C188 58 236 58 256 80 C292 70 330 96 330 132 C356 150 356 196 330 214 C330 246 298 268 266 260 C246 280 206 282 186 266 C156 282 118 270 112 244 C98 238 92 226 96 210 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="9.4"/>
+      <path d="M120 120 C134 98 162 92 178 100" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="12"/>
+      <path d="M200 86 C196 112 214 124 206 150 C198 176 214 196 204 226 C198 244 206 258 200 268" fill="none" stroke="#2B2D42" stroke-width="7"/>
+      <path d="M118 158 C140 150 152 166 170 160" fill="none" stroke="#2B2D42" stroke-width="6"/>
+      <path d="M110 206 C130 196 146 214 166 204 C178 198 180 186 176 178" fill="none" stroke="#2B2D42" stroke-width="6"/>
+      <path d="M146 118 C150 134 166 136 172 128" fill="none" stroke="#2B2D42" stroke-width="6"/>
+      <path d="M236 108 C244 124 262 120 270 132 C278 144 290 142 300 136" fill="none" stroke="#2B2D42" stroke-width="6"/>
+      <path d="M232 168 C252 158 266 174 284 166 C296 160 306 170 314 166" fill="none" stroke="#2B2D42" stroke-width="6"/>
+      <path d="M230 222 C244 208 262 222 276 212 C286 206 292 214 300 210" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    </g>
+    <!-- firing neurons -->
+    <g id="part-signals">
+      <path d="M128 182 L168 132 L222 192 L262 146 L306 190" fill="none" stroke="#FFD23F" stroke-width="8"/>
+      <circle cx="128" cy="182" r="13" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+      <circle cx="168" cy="132" r="9" fill="#FFE98A" stroke="#2B2D42" stroke-width="5"/>
+      <circle cx="222" cy="192" r="13" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+      <circle cx="262" cy="146" r="9" fill="#FFE98A" stroke="#2B2D42" stroke-width="5"/>
+      <circle cx="306" cy="190" r="13" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+    </g>
+  </g>
+  <!-- sparks around -->
+  <g id="part-sparks">
+    <path transform="translate(58 78) rotate(-22) scale(1.3)" d="M6 -30 L-14 4 L0 4 L-8 30 L16 -6 L2 -6 L12 -30 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="4.6"/>
+    <path transform="translate(344 76) rotate(20) scale(1.3)" d="M6 -30 L-14 4 L0 4 L-8 30 L16 -6 L2 -6 L12 -30 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="4.6"/>
+    <path transform="translate(40 250) rotate(-12)" d="M6 -30 L-14 4 L0 4 L-8 30 L16 -6 L2 -6 L12 -30 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path transform="translate(362 248) rotate(14)" d="M6 -30 L-14 4 L0 4 L-8 30 L16 -6 L2 -6 L12 -30 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="200" cy="44" r="11" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="124" cy="46" r="7" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+    <circle cx="278" cy="44" r="7" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+    <circle cx="30" cy="164" r="8" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+    <circle cx="372" cy="164" r="8" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M160 40 L152 24 M240 40 L248 24 M200 22 L200 10" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="190" r="4"/>
+  <circle id="anchor-top" cx="200" cy="44" r="4"/>
+  <circle id="anchor-signal" cx="210" cy="201" r="4"/>
+  <circle id="anchor-spark_left" cx="58" cy="78" r="4"/>
+  <circle id="anchor-spark_right" cx="344" cy="76" r="4"/>
+  <circle id="anchor-stem" cx="194" cy="300" r="4"/>
+</svg>

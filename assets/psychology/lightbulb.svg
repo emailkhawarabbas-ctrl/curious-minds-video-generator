@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Idea Lightbulb" data-tags="lightbulb,idea,insight,eureka,creativity,inspiration,thinking,solution,bright,innovation">
+  <ellipse cx="200" cy="370" rx="60" ry="9" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- rays -->
+  <g id="part-rays">
+    <path d="M200 40 L200 14 M118 70 L100 50 M282 70 L300 50 M74 148 L46 140 M326 148 L354 140 M84 226 L58 238 M316 226 L342 238" fill="none" stroke="#2B2D42" stroke-width="16"/>
+    <path d="M200 40 L200 14 M118 70 L100 50 M282 70 L300 50 M74 148 L46 140 M326 148 L354 140 M84 226 L58 238 M316 226 L342 238" fill="none" stroke="#FFD23F" stroke-width="6"/>
+  </g>
+  <!-- glass -->
+  <g id="part-bulb">
+    <path d="M158 272 C158 240 100 222 100 160 C100 102 146 62 200 62 C254 62 300 102 300 160 C300 222 242 240 242 272 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M276 116 C292 150 290 196 262 222 C250 234 238 248 236 266 L222 266 C224 240 246 226 256 210 C278 178 280 146 276 116 Z" fill="#F5B82A"/>
+    <path d="M126 150 C126 118 148 92 176 86" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="13"/>
+    <!-- filament -->
+    <path d="M178 268 L178 210 C170 186 190 180 192 198 C194 180 208 180 210 198 C212 180 232 186 222 210 L222 268" fill="none" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <!-- base -->
+  <g id="part-base">
+    <rect x="150" y="266" width="100" height="26" rx="12" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+    <rect x="154" y="290" width="92" height="24" rx="11" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+    <rect x="160" y="312" width="80" height="22" rx="10" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M176 334 C178 352 222 352 224 334 Z" fill="#3D405B" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M166 278 L190 278" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="180" r="4"/>
+  <circle id="anchor-top" cx="200" cy="20" r="4"/>
+  <circle id="anchor-bulb" cx="200" cy="150" r="4"/>
+  <circle id="anchor-base" cx="200" cy="300" r="4"/>
+  <circle id="anchor-filament" cx="200" cy="210" r="4"/>
+</svg>

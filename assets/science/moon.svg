@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Moon" data-tags="moon,full moon,lunar,night,space,crater,satellite,sky,astronomy,orbit,tides">
+<g id="part-surface">
+    <circle cx="200" cy="200" r="148" fill="#FFE98A" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M324.7 128 A144 144 0 0 1 128 324.7 A200 200 0 0 0 324.7 128 Z" fill="#FFD23F" fill-opacity="0.8"/>
+    <path d="M86.6 167.5 A118 118 0 0 1 152 92.2" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g id="part-craters">
+    <circle cx="150" cy="146" r="28" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M132.9 143 A17.4 17.4 0 0 1 153 128.9" fill="none" stroke="#E07B00" stroke-opacity="0.45" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="252" cy="124" r="17" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M241.6 122.2 A10.5 10.5 0 0 1 253.8 113.6" fill="none" stroke="#E07B00" stroke-opacity="0.45" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="246" cy="244" r="34" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M225.2 240.3 A21.1 21.1 0 0 1 249.7 223.2" fill="none" stroke="#E07B00" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="136" cy="252" r="16" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M126.2 250.3 A9.9 9.9 0 0 1 137.7 242.2" fill="none" stroke="#E07B00" stroke-opacity="0.45" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="306" cy="196" r="13" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M298.1 194.6 A8.1 8.1 0 0 1 307.4 188.1" fill="none" stroke="#E07B00" stroke-opacity="0.45" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="190" cy="306" r="14" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M181.5 304.5 A8.7 8.7 0 0 1 191.5 297.5" fill="none" stroke="#E07B00" stroke-opacity="0.45" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="196" cy="196" r="10" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M189.9 194.9 A6.2 6.2 0 0 1 197.1 189.9" fill="none" stroke="#E07B00" stroke-opacity="0.45" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="52" r="4"/>
+  <circle id="anchor-crater" cx="246" cy="244" r="4"/>
+  <circle id="anchor-crater_small" cx="150" cy="146" r="4"/>
+  <circle id="anchor-edge" cx="348" cy="200" r="4"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lungs" data-tags="lungs,breathing,respiration,air,oxygen,breath,organ,body,trachea,chest">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="362" rx="130" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- left lung (viewer's left) -->
+  <g id="part-right-lung">
+    <path d="M176 128 C136 108 92 138 76 204 C62 264 70 320 104 338 C134 352 170 340 182 312 C188 296 186 260 186 236 L186 150 C186 140 182 132 176 128 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M90 236 C92 196 106 160 132 144" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+    <path d="M90 300 C96 326 124 340 150 334 C166 330 176 318 178 300 C160 316 120 318 90 300 Z" fill="#E9799A"/>
+    <path d="M84 236 C120 226 150 238 184 222" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M102 300 C130 280 160 286 184 268" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- right lung (viewer's right, cardiac notch) -->
+  <g id="part-left-lung">
+    <path d="M224 128 C264 108 308 138 324 204 C338 264 330 320 296 338 C266 352 234 340 222 318 C232 300 240 288 236 272 C230 256 214 254 214 240 L214 150 C214 140 218 132 224 128 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M248 140 C268 136 288 148 298 166" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+    <path d="M318 270 C320 306 306 330 282 336 C260 340 240 334 230 322 C266 326 300 306 318 270 Z" fill="#E9799A"/>
+    <path d="M316 250 C286 248 260 232 220 226" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- trachea + bronchi -->
+  <g id="part-trachea">
+    <path d="M200 140 L200 176 M200 176 C186 190 162 196 150 214 M200 176 C214 190 238 196 250 214 M150 214 C140 232 128 244 122 266 M150 214 C156 236 154 262 158 284 M250 214 C260 232 272 244 278 266 M250 214 C244 236 246 262 242 284 M168 200 C150 196 136 182 120 186 M232 200 C250 196 264 182 280 186" fill="none" stroke="#2B2D42" stroke-width="18"/>
+    <path d="M200 140 L200 176 M200 176 C186 190 162 196 150 214 M200 176 C214 190 238 196 250 214 M150 214 C140 232 128 244 122 266 M150 214 C156 236 154 262 158 284 M250 214 C260 232 272 244 278 266 M250 214 C244 236 246 262 242 284 M168 200 C150 196 136 182 120 186 M232 200 C250 196 264 182 280 186" fill="none" stroke="#FFD6E0" stroke-width="8"/>
+    <rect x="184" y="44" width="32" height="110" rx="10" fill="#FFD6E0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M186 70 L214 70 M186 92 L214 92 M186 114 L214 114 M186 136 L214 136" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-top" cx="200" cy="44" r="4"/>
+  <circle id="anchor-center" cx="200" cy="230" r="4"/>
+  <circle id="anchor-trachea" cx="200" cy="96" r="4"/>
+  <circle id="anchor-left_lung" cx="290" cy="200" r="4"/>
+  <circle id="anchor-right_lung" cx="110" cy="200" r="4"/>
+  <circle id="anchor-bronchi" cx="200" cy="178" r="4"/>
+</svg>

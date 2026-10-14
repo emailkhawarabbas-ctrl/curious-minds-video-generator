@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Heart" data-tags="heart,cardio,blood,pump,circulation,heartbeat,organ,body,cardiovascular,love">
+  <!-- soft shadow -->
+  <ellipse cx="205" cy="362" rx="110" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- vena cava (blue, behind) -->
+  <g id="part-vena-cava">
+    <path d="M132 176 L132 76 C132 66 162 66 162 76 L162 176 Z" fill="#3A86FF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M142 86 L142 132" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6"/>
+  </g>
+  <!-- aorta arch (red) -->
+  <g id="part-aorta">
+    <path d="M206 92 L200 56 M234 86 L236 48 M260 96 L270 62" fill="none" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M206 92 L200 56 M234 86 L236 48 M260 96 L270 62" fill="none" stroke="#EF476F" stroke-width="10"/>
+    <path d="M184 176 L184 124 C184 78 218 68 244 72 C278 76 296 102 296 136 L296 168 L266 168 L266 138 C266 116 256 104 240 104 C224 104 214 114 214 132 L214 176 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M200 120 C202 100 214 90 230 88" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6"/>
+  </g>
+  <!-- heart body -->
+  <g id="part-ventricles">
+    <path d="M150 150 C104 160 86 214 106 258 C126 300 186 332 236 346 C270 312 312 278 318 226 C324 178 302 142 262 144 C240 144 224 154 212 166 C198 152 178 146 150 150 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="8"/>
+    <!-- darker shade bottom-right -->
+    <path d="M302 212 C308 262 276 306 244 334 C264 300 282 268 286 234 C288 218 296 208 302 212 Z" fill="#E03A5C"/>
+    <!-- highlight -->
+    <path d="M118 210 C116 186 128 168 148 164" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+    <!-- coronary groove -->
+    <path d="M214 176 C206 214 226 256 220 296 C218 316 226 332 234 340" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M214 214 C240 210 256 226 276 220" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M166 230 C178 244 190 244 204 252" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- pulmonary artery (front, purple-blue) -->
+  <g id="part-pulmonary">
+    <path d="M196 196 C192 166 196 138 222 128 C240 120 262 122 284 112 L332 92 C342 88 352 112 340 118 L292 140 C268 152 248 150 236 160 C226 170 228 184 230 198 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M208 172 C208 152 214 142 228 138" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6"/>
+  </g>
+  <circle id="anchor-top" cx="236" cy="52" r="4"/>
+  <circle id="anchor-center" cx="210" cy="230" r="4"/>
+  <circle id="anchor-aorta" cx="280" cy="150" r="4"/>
+  <circle id="anchor-vena_cava" cx="147" cy="96" r="4"/>
+  <circle id="anchor-left_ventricle" cx="268" cy="256" r="4"/>
+  <circle id="anchor-right_ventricle" cx="150" cy="226" r="4"/>
+</svg>

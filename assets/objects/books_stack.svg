@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Stack of Books" data-tags="books,stack,library,reading,study,school,education,learning,homework,knowledge,research">
+<ellipse cx="200" cy="352" rx="160" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-books">
+    <rect x="58" y="290" width="284" height="56" rx="9" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="64" y="332" width="272" height="9" rx="4" fill="#2B2D42" fill-opacity="0.15"/>
+    <rect x="308" y="298" width="22" height="40" rx="4" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M88 296 L88 340 M102 296 L102 340" fill="none" stroke="#FFD23F" stroke-width="6"/>
+    <rect x="80" y="236" width="250" height="54" rx="9" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="86" y="276" width="238" height="9" rx="4" fill="#2B2D42" fill-opacity="0.15"/>
+    <rect x="92" y="244" width="22" height="38" rx="4" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M286 242 L286 284 M300 242 L300 284" fill="none" stroke="#FFD23F" stroke-width="6"/>
+    <rect x="64" y="186" width="252" height="50" rx="9" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="70" y="222" width="240" height="9" rx="4" fill="#2B2D42" fill-opacity="0.15"/>
+    <rect x="282" y="194" width="22" height="34" rx="4" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M94 192 L94 230 M108 192 L108 230" fill="none" stroke="#FFD23F" stroke-width="6"/>
+    <rect x="96" y="140" width="210" height="46" rx="9" fill="#FF5D73" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="102" y="172" width="198" height="9" rx="4" fill="#2B2D42" fill-opacity="0.15"/>
+    <rect x="108" y="148" width="22" height="30" rx="4" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M262 146 L262 180 M276 146 L276 180" fill="none" stroke="#FFD23F" stroke-width="6"/>
+    <path d="M110 150 L180 150" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="part-apple">
+    <path d="M200 92 C176 76 144 86 146 114 C148 140 174 150 200 140 C226 150 252 140 254 114 C256 86 224 76 200 92 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M200 92 C200 80 202 70 208 62" fill="none" stroke="#2B2D42" stroke-width="7" stroke-linecap="round"/>
+    <path d="M210 74 C222 58 242 58 248 64 C240 78 222 82 210 74 Z" fill="#7BD389" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M162 104 C164 96 170 92 176 92" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="230" r="4"/>
+  <circle id="anchor-top" cx="204" cy="60" r="4"/>
+  <circle id="anchor-apple" cx="200" cy="116" r="4"/>
+  <circle id="anchor-top_book" cx="200" cy="163" r="4"/>
+  <circle id="anchor-bottom_book" cx="200" cy="318" r="4"/>
+</svg>

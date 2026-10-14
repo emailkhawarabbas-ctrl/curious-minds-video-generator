@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Ear" data-tags="ear,hearing,sound,listen,sense,ear canal,earlobe,audio,body,noise">
+  <!-- soft shadow -->
+  <ellipse cx="220" cy="370" rx="100" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- sound waves -->
+  <g id="part-sound-waves">
+    <path d="M90 170 C76 186 76 214 90 230" fill="none" stroke="#3A86FF" stroke-width="8"/>
+    <path d="M62 146 C38 176 38 224 62 254" fill="none" stroke="#3A86FF" stroke-width="8"/>
+  </g>
+  <!-- outer ear -->
+  <g id="part-pinna">
+    <path d="M150 94 C192 38 298 40 324 122 C344 190 300 226 284 262 C270 296 262 346 216 352 C178 356 160 326 172 304 C182 286 188 276 180 258 C168 232 140 222 134 186 C128 148 134 116 150 94 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M296 228 C284 252 276 274 270 300 C264 326 248 342 228 346 C250 330 258 302 264 278 C270 256 282 240 296 228 Z" fill="#E9A97F"/>
+    <path d="M150 140 C154 112 172 92 198 82" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="9"/>
+    <!-- helix rim -->
+    <path d="M168 110 C206 70 286 76 294 140 C300 186 266 206 254 238" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <!-- antihelix -->
+    <path d="M208 128 C246 118 266 146 254 180 C246 202 232 214 230 236" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <!-- concha -->
+    <path d="M196 168 C220 156 246 172 240 200 C236 226 222 250 202 248 C188 246 188 232 196 222 C180 218 174 200 182 186 C186 176 190 172 196 168 Z" fill="#E9A97F" stroke="#2B2D42" stroke-width="5"/>
+    <!-- ear canal -->
+    <ellipse cx="200" cy="208" rx="12" ry="16" fill="#2B2D42"/>
+    <!-- tragus -->
+    <path d="M170 194 C184 190 192 206 188 220 C184 232 172 234 166 226 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="5"/>
+    <!-- earlobe crease -->
+    <path d="M196 300 C206 290 222 292 230 302" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-top" cx="240" cy="54" r="4"/>
+  <circle id="anchor-center" cx="230" cy="200" r="4"/>
+  <circle id="anchor-ear_canal" cx="200" cy="208" r="4"/>
+  <circle id="anchor-earlobe" cx="214" cy="330" r="4"/>
+  <circle id="anchor-helix" cx="300" cy="120" r="4"/>
+  <circle id="anchor-sound" cx="62" cy="200" r="4"/>
+</svg>

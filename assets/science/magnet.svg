@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Magnet" data-tags="magnet,magnetism,magnetic,attraction,force,physics,north,south,poles,metal,horseshoe">
+<ellipse cx="200" cy="356" rx="118" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-body">
+    <path d="M80 130 L80 214 A120 120 0 0 0 320 214 L320 130 L240 130 L240 214 A40 40 0 0 1 160 214 L160 130 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M308 150 L308 214 A108 108 0 0 1 222 320 L220 298 A86 86 0 0 0 298 214 L298 150 Z" fill="#2B2D42" fill-opacity="0.15"/>
+    <path d="M100 148 L100 214 C100 240 108 262 122 280" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="11" stroke-linecap="round"/>
+  </g>
+  <g id="part-pole_north">
+    <rect x="80" y="74" width="80" height="58" rx="6" fill="#B8BCC8" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M96 90 L96 116" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-pole_south">
+    <rect x="240" y="74" width="80" height="58" rx="6" fill="#B8BCC8" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M256 90 L256 116" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-field" fill="none" stroke="#2B2D42" stroke-width="6" stroke-linecap="round">
+    <path d="M98 50 L88 30"/>
+    <path d="M120 46 L120 24"/>
+    <path d="M142 50 L152 30"/>
+    <path d="M258 50 L248 30"/>
+    <path d="M280 46 L280 24"/>
+    <path d="M302 50 L312 30"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="30" r="4"/>
+  <circle id="anchor-north" cx="120" cy="100" r="4"/>
+  <circle id="anchor-south" cx="280" cy="100" r="4"/>
+  <circle id="anchor-bend" cx="200" cy="320" r="4"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Stomach" data-tags="stomach,digestion,food,belly,tummy,hunger,acid,organ,body,digestive system">
+  <!-- soft shadow -->
+  <ellipse cx="210" cy="362" rx="125" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- esophagus -->
+  <g id="part-esophagus">
+    <path d="M160 128 L156 44 C156 34 190 34 190 44 L194 126 Z" fill="#F47FA0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M166 54 L168 96" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6"/>
+  </g>
+  <!-- stomach body -->
+  <g id="part-stomach">
+    <path d="M158 112 C148 158 96 180 96 244 C96 306 156 342 226 336 C274 332 304 306 314 278 L322 266 L318 236 L304 240 C284 248 262 246 246 230 C230 214 226 188 220 160 C214 136 206 122 198 112 C186 104 168 104 158 112 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8"/>
+    <!-- shade -->
+    <path d="M122 296 C150 326 200 336 240 326 C270 318 292 300 302 282 C270 300 220 312 176 306 C152 302 134 298 122 296 Z" fill="#E9799A"/>
+    <!-- highlight -->
+    <path d="M112 236 C114 206 130 184 150 168" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+    <!-- rugae folds -->
+    <path d="M150 210 C170 200 184 218 204 210" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M136 256 C158 244 176 266 200 254 C216 246 228 260 246 256" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M168 296 C190 284 212 304 236 292 C252 284 266 292 280 284" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- duodenum -->
+  <g id="part-duodenum">
+    <path d="M310 236 C342 230 356 246 356 270 L356 330 C356 342 326 342 326 330 L326 278 C326 272 320 270 310 272 Z" fill="#F47FA0" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <circle id="anchor-top" cx="173" cy="40" r="4"/>
+  <circle id="anchor-center" cx="190" cy="250" r="4"/>
+  <circle id="anchor-esophagus" cx="174" cy="80" r="4"/>
+  <circle id="anchor-stomach" cx="150" cy="280" r="4"/>
+  <circle id="anchor-pylorus" cx="312" cy="256" r="4"/>
+  <circle id="anchor-duodenum" cx="341" cy="320" r="4"/>
+</svg>

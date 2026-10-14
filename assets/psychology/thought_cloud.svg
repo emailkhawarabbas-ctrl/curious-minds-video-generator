@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Thought Cloud" data-tags="thought,thinking,think,idea,bubble,cloud,mind,imagine,wonder,cognition">
+  <!-- trailing bubbles -->
+  <g id="part-tail">
+    <circle cx="62" cy="346" r="10" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="88" cy="308" r="16" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6"/>
+    <circle cx="126" cy="262" r="23" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-cloud">
+    <path d="M118 222 C74 222 60 166 100 150 C88 106 138 80 170 100 C182 58 250 52 268 92 C300 68 356 90 350 136 C388 150 386 212 348 224 C350 260 304 276 276 254 C258 282 202 284 184 254 C160 278 114 264 118 222 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <!-- shade -->
+    <path d="M128 230 C140 250 168 252 180 240 C196 262 248 266 264 240 C290 258 330 250 334 222 C340 220 346 216 350 212 C330 222 310 220 296 212 C280 234 240 238 222 222 C200 236 166 236 150 218 C142 226 134 228 128 230 Z" fill="#D7F0FA"/>
+    <!-- highlight -->
+    <path d="M114 170 C108 150 120 132 140 128" fill="none" stroke="#D7F0FA" stroke-width="10"/>
+    <path d="M190 96 C200 80 222 76 238 82" fill="none" stroke="#D7F0FA" stroke-width="10"/>
+  </g>
+  <circle id="anchor-center" cx="226" cy="168" r="4"/>
+  <circle id="anchor-top" cx="226" cy="66" r="4"/>
+  <circle id="anchor-tail" cx="62" cy="346" r="4"/>
+  <circle id="anchor-left" cx="82" cy="186" r="4"/>
+  <circle id="anchor-right" cx="372" cy="180" r="4"/>
+</svg>

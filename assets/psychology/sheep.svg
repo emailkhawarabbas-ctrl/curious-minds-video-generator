@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Jumping Sheep" data-tags="sheep,counting sheep,lamb,sleep,insomnia,bedtime,falling asleep,jump,animal,night">
+  <ellipse cx="196" cy="356" rx="96" ry="11" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- motion lines -->
+  <path id="part-motion" d="M30 196 L64 196 M20 230 L58 230 M38 264 L70 260" fill="none" stroke="#2B2D42" stroke-width="6" stroke-opacity="0.5"/>
+  <!-- legs (behind body) -->
+  <g id="part-legs">
+    <path d="M128 226 L86 266" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M128 226 L86 266" fill="none" stroke="#3D405B" stroke-width="12"/>
+    <path d="M158 236 L124 284" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M158 236 L124 284" fill="none" stroke="#3D405B" stroke-width="12"/>
+    <path d="M250 232 L298 262" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M250 232 L298 262" fill="none" stroke="#3D405B" stroke-width="12"/>
+    <path d="M226 240 L262 290" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M226 240 L262 290" fill="none" stroke="#3D405B" stroke-width="12"/>
+  </g>
+  <!-- fluffy body -->
+  <g id="part-body">
+    <path d="M104 214 C76 206 76 168 100 158 C96 126 130 108 154 120 C166 94 206 90 222 112 C244 94 282 106 284 134 C312 142 316 182 296 196 C304 222 276 244 252 236 C240 258 200 262 186 244 C170 262 128 258 124 236 C108 238 98 226 104 214 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M118 236 C136 250 162 248 174 236 C194 254 230 252 244 232 C262 240 286 230 292 212 C276 216 262 214 252 208 C236 226 202 228 188 216 C170 228 140 226 128 214 C124 222 120 230 118 236 Z" fill="#DDE1EA"/>
+    <path d="M112 166 C110 148 120 136 136 132" fill="none" stroke="#D7F0FA" stroke-width="9"/>
+    <circle cx="86" cy="186" r="14" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <!-- head -->
+  <g id="part-head">
+    <ellipse cx="282" cy="132" rx="16" ry="9" transform="rotate(-30 282 132)" fill="#B8BCC8" stroke="#2B2D42" stroke-width="6"/>
+    <ellipse cx="310" cy="166" rx="38" ry="46" transform="rotate(-20 310 166)" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M286 126 C290 108 316 104 326 120 C338 118 344 132 336 140 C322 130 300 132 286 126 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6"/>
+    <ellipse cx="350" cy="140" rx="17" ry="9" transform="rotate(20 350 140)" fill="#B8BCC8" stroke="#2B2D42" stroke-width="6"/>
+    <circle cx="304" cy="160" r="9" fill="#FFFFFF"/>
+    <circle cx="330" cy="156" r="9" fill="#FFFFFF"/>
+    <circle cx="306" cy="162" r="4.5" fill="#2B2D42"/>
+    <circle cx="332" cy="158" r="4.5" fill="#2B2D42"/>
+    <ellipse cx="300" cy="182" rx="8" ry="5" fill="#FF8FAB" fill-opacity="0.8"/>
+    <path d="M318 188 C322 194 330 194 334 186" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="180" r="4"/>
+  <circle id="anchor-top" cx="200" cy="96" r="4"/>
+  <circle id="anchor-head" cx="316" cy="166" r="4"/>
+  <circle id="anchor-body" cx="196" cy="176" r="4"/>
+  <circle id="anchor-tail" cx="86" cy="186" r="4"/>
+  <circle id="anchor-legs" cx="200" cy="276" r="4"/>
+</svg>

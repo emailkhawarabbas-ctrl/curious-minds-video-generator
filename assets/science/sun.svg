@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sun" data-tags="sun,star,sunlight,daylight,solar,energy,light,heat,day,morning,summer">
+<g id="part-rays" stroke="#2B2D42" stroke-width="7">
+    <path d="M180 112 L200 36 L220 112 Z" fill="#FF9F1C" transform="rotate(0 200 200)"/>
+    <path d="M184 112 L200 60 L216 112 Z" fill="#FFD23F" transform="rotate(30 200 200)"/>
+    <path d="M180 112 L200 36 L220 112 Z" fill="#FF9F1C" transform="rotate(60 200 200)"/>
+    <path d="M184 112 L200 60 L216 112 Z" fill="#FFD23F" transform="rotate(90 200 200)"/>
+    <path d="M180 112 L200 36 L220 112 Z" fill="#FF9F1C" transform="rotate(120 200 200)"/>
+    <path d="M184 112 L200 60 L216 112 Z" fill="#FFD23F" transform="rotate(150 200 200)"/>
+    <path d="M180 112 L200 36 L220 112 Z" fill="#FF9F1C" transform="rotate(180 200 200)"/>
+    <path d="M184 112 L200 60 L216 112 Z" fill="#FFD23F" transform="rotate(210 200 200)"/>
+    <path d="M180 112 L200 36 L220 112 Z" fill="#FF9F1C" transform="rotate(240 200 200)"/>
+    <path d="M184 112 L200 60 L216 112 Z" fill="#FFD23F" transform="rotate(270 200 200)"/>
+    <path d="M180 112 L200 36 L220 112 Z" fill="#FF9F1C" transform="rotate(300 200 200)"/>
+    <path d="M184 112 L200 60 L216 112 Z" fill="#FFD23F" transform="rotate(330 200 200)"/>
+  </g>
+  <g id="part-core">
+    <circle cx="200" cy="200" r="104" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M290.6 157.7 A100 100 0 0 1 157.7 290.6 A150 150 0 0 0 290.6 157.7 Z" fill="#FF9F1C" fill-opacity="0.55"/>
+    <path d="M126.6 180.3 A76 76 0 0 1 174 128.6" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="36" r="4"/>
+  <circle id="anchor-core" cx="236" cy="236" r="4"/>
+  <circle id="anchor-ray" cx="347" cy="115" r="4"/>
+  <circle id="anchor-surface" cx="96" cy="200" r="4"/>
+</svg>

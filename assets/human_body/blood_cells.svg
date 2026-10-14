@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Blood Cells" data-tags="blood cells,red blood cell,white blood cell,blood,oxygen,immune system,circulation,hemoglobin,cells,body">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="364" rx="130" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- white blood cell (back right) -->
+  <g id="part-white-cell">
+    <path d="M300 64 C318 60 330 74 338 84 C354 90 360 108 352 120 C360 134 352 152 338 156 C332 172 312 178 300 170 C286 178 266 172 262 158 C248 152 244 132 252 120 C246 104 256 88 270 86 C276 72 288 64 300 64 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M284 104 C296 92 314 100 312 114 C326 112 332 128 320 136 C314 146 300 142 298 134 C284 140 272 128 280 118 C274 112 278 106 284 104 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M266 108 C268 96 276 90 286 86" fill="none" stroke="#CFC6FF" stroke-width="6"/>
+  </g>
+  <!-- red blood cell (back left) -->
+  <g id="part-red-cell-back">
+    <ellipse cx="128" cy="136" rx="82" ry="58" transform="rotate(-18 128 136)" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <ellipse cx="132" cy="140" rx="46" ry="28" transform="rotate(-18 132 140)" fill="#C9304F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M70 140 C70 118 88 100 112 92" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="8"/>
+  </g>
+  <!-- small red cell, side view -->
+  <g id="part-red-cell-side">
+    <path d="M318 196 C344 196 352 222 340 252 C334 268 338 282 344 300 C352 326 336 344 318 340 C300 336 292 320 300 296 C306 280 302 266 296 252 C284 224 292 196 318 196 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M304 222 C306 212 312 206 320 206" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6"/>
+  </g>
+  <!-- red blood cell (front) -->
+  <g id="part-red-cell">
+    <ellipse cx="186" cy="262" rx="112" ry="78" fill="#FF5D73" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M292 270 C284 312 236 340 186 340 C240 330 276 304 292 270 Z" fill="#E03A5C"/>
+    <ellipse cx="192" cy="266" rx="62" ry="38" fill="#E03A5C" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M136 260 C142 240 166 230 196 228" fill="none" stroke="#C9304F" stroke-width="8"/>
+    <path d="M90 250 C94 222 118 200 150 192" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+  </g>
+  <circle id="anchor-top" cx="300" cy="60" r="4"/>
+  <circle id="anchor-center" cx="200" cy="210" r="4"/>
+  <circle id="anchor-red_cell" cx="192" cy="266" r="4"/>
+  <circle id="anchor-white_cell" cx="300" cy="118" r="4"/>
+  <circle id="anchor-red_cell_back" cx="96" cy="120" r="4"/>
+</svg>

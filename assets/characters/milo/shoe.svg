@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -20 110 60" data-title="Milo sneaker" data-tags="milo,shoe">
+  <!-- Rig-local: ankle at (0,0); toes point +x. -->
+  <path d="M-26 -8 L14 -8 C40 -8 58 6 58 20 L58 26 L-28 26 L-28 2 C-28 -4 -27 -8 -26 -8 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="7"/>
+  <path d="M-28 18 L58 18 L58 28 C58 32 55 34 51 34 L-22 34 C-26 34 -28 32 -28 28 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M10 -4 L22 4 M18 -6 L30 2" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M-18 -2 C-14 -6 -8 -6 -4 -6" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="4"/>
+  <circle id="anchor-center" cx="12" cy="12" r="2"/>
+  <circle id="anchor-top" cx="0" cy="-8" r="2"/>
+</svg>

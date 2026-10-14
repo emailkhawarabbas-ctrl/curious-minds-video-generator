@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Neuron" data-tags="neuron,nerve cell,brain cell,nervous system,synapse,axon,dendrite,signal,neuroscience,brain">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="364" rx="130" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- dendrites -->
+  <g id="part-dendrites">
+    <path d="M112 124 C100 104 96 88 78 72 M98 96 C88 92 76 96 62 92 M100 150 C80 150 66 160 48 156 M70 154 C62 140 60 128 52 118 M116 176 C106 196 92 208 84 228 M100 200 C86 200 74 196 62 202 M140 116 C146 96 160 84 166 64 M152 90 C164 88 178 92 190 84" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M112 124 C100 104 96 88 78 72 M98 96 C88 92 76 96 62 92 M100 150 C80 150 66 160 48 156 M70 154 C62 140 60 128 52 118 M116 176 C106 196 92 208 84 228 M100 200 C86 200 74 196 62 202 M140 116 C146 96 160 84 166 64 M152 90 C164 88 178 92 190 84" fill="none" stroke="#8E7DFF" stroke-width="12"/>
+  </g>
+  <!-- axon -->
+  <g id="part-axon">
+    <path d="M140 150 C250 170 170 300 290 304" fill="none" stroke="#2B2D42" stroke-width="24"/>
+    <path d="M140 150 C250 170 170 300 290 304" fill="none" stroke="#8E7DFF" stroke-width="12"/>
+    <ellipse cx="189" cy="177" rx="24" ry="17" transform="rotate(52 189 177)" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <ellipse cx="206" cy="212" rx="24" ry="17" transform="rotate(74 206 212)" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <ellipse cx="216" cy="250" rx="24" ry="17" transform="rotate(73 216 250)" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <ellipse cx="233" cy="283" rx="24" ry="17" transform="rotate(47 233 283)" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- axon terminals -->
+  <g id="part-terminals">
+    <path d="M290 304 C310 304 322 290 336 276 M290 304 C312 308 326 312 344 318 M290 304 C302 316 308 330 312 346" fill="none" stroke="#2B2D42" stroke-width="22"/>
+    <path d="M290 304 C310 304 322 290 336 276 M290 304 C312 308 326 312 344 318 M290 304 C302 316 308 330 312 346" fill="none" stroke="#8E7DFF" stroke-width="10"/>
+    <circle cx="338" cy="274" r="14" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="347" cy="319" r="14" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="313" cy="349" r="14" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- cell body (soma) -->
+  <g id="part-soma" transform="translate(128 144) scale(1.35) translate(-128 -144)">
+    <path d="M120 98 C140 100 150 116 160 126 C172 138 170 160 160 172 C148 186 128 188 114 180 C96 172 84 156 88 136 C92 116 104 98 120 98 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M162 150 C160 168 148 182 128 184 C146 172 154 162 162 150 Z" fill="#5B4BC4"/>
+    <path d="M100 136 C100 122 108 112 120 110" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="7"/>
+    <circle cx="128" cy="144" r="18" fill="#CFC6FF" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="132" cy="148" r="7" fill="#5B4BC4"/>
+  </g>
+  <circle id="anchor-top" cx="166" cy="62" r="4"/>
+  <circle id="anchor-center" cx="200" cy="210" r="4"/>
+  <circle id="anchor-soma" cx="128" cy="144" r="4"/>
+  <circle id="anchor-dendrite" cx="62" cy="92" r="4"/>
+  <circle id="anchor-axon" cx="211" cy="231" r="4"/>
+  <circle id="anchor-axon_end" cx="330" cy="312" r="4"/>
+</svg>

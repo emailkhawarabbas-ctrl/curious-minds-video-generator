@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="House" data-tags="house,home,family,building,shelter,neighborhood,residence,living,cozy,real estate">
+<ellipse cx="200" cy="350" rx="150" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-chimney">
+    <rect x="252" y="76" width="40" height="80" rx="4" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="244" y="66" width="56" height="20" rx="6" fill="#EF476F" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-walls">
+    <rect x="86" y="170" width="228" height="176" rx="6" fill="#9BE7DF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M290 178 L306 178 L306 340 L290 340 Z" fill="#1A9E92" fill-opacity="0.5"/>
+  </g>
+  <g id="part-roof">
+    <path d="M56 194 L200 62 L344 194 C350 200 344 206 336 204 L64 204 C56 206 50 200 56 194 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M90 180 L172 104" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="200" cy="152" r="20" fill="#FFE98A" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M200 132 L200 172 M180 152 L220 152" fill="none" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <g id="part-door">
+    <path d="M122 346 L122 266 A30 30 0 0 1 182 266 L182 346 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7"/>
+    <circle cx="170" cy="302" r="5" fill="#2B2D42"/>
+  </g>
+  <g id="part-window">
+    <rect x="218" y="236" width="70" height="62" rx="6" fill="#FFE98A" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M253 236 L253 298 M218 267 L288 267" fill="none" stroke="#2B2D42" stroke-width="5"/>
+    <rect x="210" y="296" width="86" height="12" rx="5" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="220" r="4"/>
+  <circle id="anchor-top" cx="200" cy="64" r="4"/>
+  <circle id="anchor-door" cx="152" cy="300" r="4"/>
+  <circle id="anchor-roof" cx="200" cy="120" r="4"/>
+  <circle id="anchor-window" cx="253" cy="267" r="4"/>
+  <circle id="anchor-chimney" cx="272" cy="70" r="4"/>
+</svg>

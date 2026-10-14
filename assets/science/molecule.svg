@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Water Molecule" data-tags="molecule,water,h2o,chemistry,atoms,bond,oxygen,hydrogen,compound,science">
+<g id="part-bonds" stroke-linecap="round">
+    <line x1="200" y1="168" x2="88" y2="284" stroke="#2B2D42" stroke-width="34"/>
+    <line x1="200" y1="168" x2="312" y2="284" stroke="#2B2D42" stroke-width="34"/>
+    <line x1="200" y1="168" x2="88" y2="284" stroke="#B8BCC8" stroke-width="18"/>
+    <line x1="200" y1="168" x2="312" y2="284" stroke="#B8BCC8" stroke-width="18"/>
+  </g>
+  <g id="part-hydrogen_left">
+    <circle cx="88" cy="284" r="54" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M135 266.9 A50 50 0 0 1 66.9 329.3 A78.3 78.3 0 0 0 135 266.9 Z" fill="#2B2D42" fill-opacity="0.14"/>
+    <path d="M54.5 271.8 A35.6 35.6 0 0 1 78.8 249.6" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-hydrogen_right">
+    <circle cx="312" cy="284" r="54" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M359 266.9 A50 50 0 0 1 290.9 329.3 A78.3 78.3 0 0 0 359 266.9 Z" fill="#2B2D42" fill-opacity="0.14"/>
+    <path d="M278.5 271.8 A35.6 35.6 0 0 1 302.8 249.6" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-oxygen">
+    <circle cx="200" cy="168" r="86" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M277.1 140 A82 82 0 0 1 165.3 242.3 A124.7 124.7 0 0 0 277.1 140 Z" fill="#2B2D42" fill-opacity="0.14"/>
+    <path d="M146.7 148.6 A56.8 56.8 0 0 1 185.3 113.2" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="210" r="4"/>
+  <circle id="anchor-top" cx="200" cy="82" r="4"/>
+  <circle id="anchor-oxygen" cx="200" cy="168" r="4"/>
+  <circle id="anchor-hydrogen_left" cx="88" cy="284" r="4"/>
+  <circle id="anchor-hydrogen_right" cx="312" cy="284" r="4"/>
+  <circle id="anchor-bond" cx="144" cy="226" r="4"/>
+</svg>

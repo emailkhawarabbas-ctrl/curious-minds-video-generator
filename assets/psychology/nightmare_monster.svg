@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Nightmare Monster" data-tags="nightmare,monster,bad dream,fear,night terror,creature,dream,sleep,scary,boo">
+  <ellipse cx="200" cy="358" rx="104" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- horns -->
+  <g id="part-horns">
+    <path d="M140 118 C126 96 128 70 140 56 C150 76 164 92 172 104 Z" fill="#CFC6FF" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M260 118 C274 96 272 70 260 56 C250 76 236 92 228 104 Z" fill="#CFC6FF" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <!-- feet -->
+  <g id="part-feet">
+    <ellipse cx="160" cy="340" rx="30" ry="16" fill="#5B4BC4" stroke="#2B2D42" stroke-width="7"/>
+    <ellipse cx="240" cy="340" rx="30" ry="16" fill="#5B4BC4" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <!-- arms raised: boo! -->
+  <g id="part-arms">
+    <path d="M96 220 C70 206 56 180 60 156 C70 150 80 156 82 166 C86 154 98 156 98 168 C100 182 110 194 120 200" fill="#8E7DFF" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M304 220 C330 206 344 180 340 156 C330 150 320 156 318 166 C314 154 302 156 302 168 C300 182 290 194 280 200" fill="#8E7DFF" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <!-- fuzzy body -->
+  <g id="part-body">
+    <path d="M312 222 Q331 238.6 308.7 250.2 Q323.4 270.9 299.2 276.8 Q308.6 300.4 283.8 300.2 Q287.5 325.3 263.6 319.1 Q261.3 344.2 239.7 332.3 Q231.6 356 213.5 339.1 Q200 360 186.5 339.1 Q168.4 356 160.3 332.3 Q138.7 344.2 136.4 319.1 Q112.5 325.3 116.2 300.2 Q91.4 300.4 100.8 276.8 Q76.6 270.9 91.3 250.2 Q69 238.6 88 222 Q69 205.4 91.3 193.8 Q76.6 173.1 100.8 167.2 Q91.4 143.6 116.2 143.8 Q112.5 118.7 136.4 124.9 Q138.7 99.8 160.3 111.7 Q168.4 88 186.5 104.9 Q200 84 213.5 104.9 Q231.6 88 239.7 111.7 Q261.3 99.8 263.6 124.9 Q287.5 118.7 283.8 143.8 Q308.6 143.6 299.2 167.2 Q323.4 173.1 308.7 193.8 Q331 205.4 312 222 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M296 238 C300 290 250 330 196 330 C240 318 286 290 296 238 Z" fill="#5B4BC4"/>
+    <ellipse cx="200" cy="278" rx="56" ry="42" fill="#CFC6FF"/>
+    <path d="M114 186 C116 158 136 136 162 128" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="10"/>
+  </g>
+  <!-- face -->
+  <g id="part-eyes">
+    <circle cx="164" cy="190" r="28" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6"/>
+    <circle cx="238" cy="196" r="22" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6"/>
+    <circle cx="170" cy="194" r="12" fill="#2B2D42"/>
+    <circle cx="242" cy="199" r="10" fill="#2B2D42"/>
+    <circle cx="175" cy="188" r="4.5" fill="#FFFFFF"/>
+    <circle cx="246" cy="194" r="4" fill="#FFFFFF"/>
+  </g>
+  <g id="part-mouth">
+    <path d="M160 240 C176 266 226 266 242 240 C222 248 182 248 160 240 Z" fill="#2B2D42" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M176 245 L182 258 L188 247 Z M214 247 L220 258 L226 245 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2"/>
+    <ellipse cx="128" cy="236" rx="14" ry="8" fill="#FF8FAB" fill-opacity="0.75"/>
+    <ellipse cx="276" cy="236" rx="14" ry="8" fill="#FF8FAB" fill-opacity="0.75"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="222" r="4"/>
+  <circle id="anchor-top" cx="200" cy="60" r="4"/>
+  <circle id="anchor-eyes" cx="200" cy="192" r="4"/>
+  <circle id="anchor-mouth" cx="200" cy="250" r="4"/>
+  <circle id="anchor-horn" cx="140" cy="62" r="4"/>
+</svg>

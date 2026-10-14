@@ -1,0 +1,937 @@
+{
+  "topic": "Why Do We Dream?",
+  "niche": "psychology",
+  "format": "long",
+  "source": "curated",
+  "title": "Why Do We Dream? The Fascinating Science of Sleep and Dreams",
+  "hook": "Last night, you probably flew, ran, laughed, or maybe even showed up to school in your pajamas. Then you woke up and thought, where did that come from? Today, let's find out why we dream.",
+  "cta": "Subscribe for more!",
+  "sections": [
+    {
+      "title": "Welcome to dreamland",
+      "beats": [
+        {
+          "id": "l1",
+          "narration": "Last night, you probably flew, ran, laughed, or maybe even showed up to school in your pajamas. Then you woke up and thought, where did that come from? Today, let's find out why we dream.",
+          "visual": {
+            "layout": "hook_title",
+            "title": "Why do we dream?",
+            "assets": [
+              "dream_cloud"
+            ],
+            "action": "surprised",
+            "expression": "surprised",
+            "background": "burst_purple"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l2",
+          "narration": "Hi, I'm Milo, and welcome to Curious Minds! Dreams feel personal and mysterious, but scientists have been studying them in sleep labs for decades.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "microscope",
+              "lab"
+            ],
+            "labels": [
+              "Sleep science!"
+            ],
+            "action": "wave",
+            "expression": "happy",
+            "background": "lab"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l3",
+          "narration": "Here's something surprising. Humans generally spend more than two hours dreaming every single night, and each dream lasts around 5–20 minutes.",
+          "visual": {
+            "layout": "fact_card",
+            "number": {
+              "value": 2,
+              "suffix": "+ HOURS",
+              "label": "spent dreaming every night"
+            },
+            "assets": [
+              "alarm_clock"
+            ],
+            "action": "excited",
+            "expression": "excited",
+            "background": "burst_teal"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l4",
+          "narration": "That adds up to a lot of dreaming over a lifetime. So if dreams take up that much of our nights, they must be doing something. Or are they?",
+          "visual": {
+            "layout": "question",
+            "title": "What are dreams for?",
+            "assets": [
+              "question_mark"
+            ],
+            "action": "think",
+            "expression": "curious",
+            "background": "burst_orange"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l5",
+          "narration": "In this video, we'll explore what a dream actually is, what happens in your brain while you sleep, the big theories about why we dream, and some truly strange dream facts.",
+          "visual": {
+            "layout": "timeline",
+            "items": [
+              {
+                "text": "What is a dream?",
+                "asset": "dream_cloud",
+                "cue": "actually"
+              },
+              {
+                "text": "Your sleeping brain",
+                "asset": "brain",
+                "cue": "happens"
+              },
+              {
+                "text": "Big theories",
+                "asset": "lightbulb",
+                "cue": "theories"
+              },
+              {
+                "text": "Strange facts",
+                "asset": "question_mark",
+                "cue": "strange"
+              }
+            ],
+            "action": "explain",
+            "expression": "happy",
+            "background": "night_sky"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "What is a dream?",
+      "beats": [
+        {
+          "id": "l6",
+          "narration": "Let's start simple. A dream is a series of images, scenes, ideas, emotions and sensations that happen in your mind during sleep, usually without you choosing them.",
+          "visual": {
+            "layout": "thought_bubble",
+            "assets": [
+              "memory_photos",
+              "emotion_happy",
+              "rocket"
+            ],
+            "action": "think",
+            "expression": "thinking",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l7",
+          "narration": "Dreams can include pictures, sounds, feelings and even tastes and smells. And while you're dreaming, it usually feels completely real.",
+          "visual": {
+            "layout": "network",
+            "assets": [
+              "brain",
+              "eye",
+              "ear",
+              "emotion_surprised",
+              "coffee_cup"
+            ],
+            "labels": [
+              "Sights",
+              "Sounds",
+              "Feelings",
+              "Smells"
+            ],
+            "action": "point",
+            "expression": "curious",
+            "background": "brain_space"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l8",
+          "narration": "Researchers describe dreams as often bizarre, with places and objects blending into each other and time getting stretched or squeezed.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "clock",
+              "house"
+            ],
+            "labels": [
+              "Time gets weird"
+            ],
+            "action": "explain",
+            "expression": "confused",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l9",
+          "narration": "Dreams sometimes borrow pieces of your recent experiences, like the friend you saw yesterday or the game you were playing before bed.",
+          "visual": {
+            "layout": "diagram_flow",
+            "assets": [
+              "phone",
+              "memory_photos",
+              "dream_cloud"
+            ],
+            "labels": [
+              "Your day",
+              "Memories",
+              "Tonight's dream"
+            ],
+            "action": "explain",
+            "expression": "happy",
+            "background": "paper"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l10",
+          "narration": "And here's a funny twist. People often can't remember their dreams, even though research suggests we dream every night.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "thought_cloud"
+            ],
+            "labels": [
+              "Forgotten!"
+            ],
+            "action": "shrug",
+            "expression": "confused",
+            "background": "bedroom_night"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "Sleep cycles and REM",
+      "beats": [
+        {
+          "id": "l11",
+          "narration": "To understand dreams, we need to understand sleep. Sleep isn't one long, flat state. It moves in cycles.",
+          "visual": {
+            "layout": "story_scene",
+            "assets": [
+              "sleeping_person"
+            ],
+            "action": "talk",
+            "expression": "happy",
+            "background": "bedroom_night"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l12",
+          "narration": "In adults, one sleep cycle lasts about 90 minutes. During each cycle, you move through lighter sleep, deeper sleep, and a special stage called REM sleep.",
+          "visual": {
+            "layout": "fact_card",
+            "number": {
+              "value": 90,
+              "suffix": " MIN",
+              "label": "one sleep cycle"
+            },
+            "assets": [
+              "alarm_clock"
+            ],
+            "action": "point",
+            "expression": "happy",
+            "background": "burst_purple"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l13",
+          "narration": "Here's what a typical night can look like. As the night goes on, the cycles shift toward more and more REM sleep, especially toward morning.",
+          "visual": {
+            "layout": "chart",
+            "chart": {
+              "kind": "step",
+              "points": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.04,
+                  0.333
+                ],
+                [
+                  0.1,
+                  0
+                ],
+                [
+                  0.18,
+                  0.333
+                ],
+                [
+                  0.22,
+                  0.667
+                ],
+                [
+                  0.26,
+                  0.333
+                ],
+                [
+                  0.33,
+                  0
+                ],
+                [
+                  0.42,
+                  0.333
+                ],
+                [
+                  0.47,
+                  0.667
+                ],
+                [
+                  0.53,
+                  0.333
+                ],
+                [
+                  0.62,
+                  0.333
+                ],
+                [
+                  0.66,
+                  0.667
+                ],
+                [
+                  0.75,
+                  0.333
+                ],
+                [
+                  0.8,
+                  0.667
+                ],
+                [
+                  0.93,
+                  0.333
+                ],
+                [
+                  0.97,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "labels": [
+                "Deep sleep",
+                "Light sleep",
+                "REM",
+                "Awake"
+              ],
+              "x_labels": [
+                "11 pm",
+                "2 am",
+                "5 am",
+                "7 am"
+              ],
+              "highlight_level": 2
+            },
+            "title": "A typical night (illustration)",
+            "action": "point",
+            "expression": "curious",
+            "background": "paper"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l14",
+          "narration": "REM stands for rapid eye movement, because during this stage your eyes dart around quickly beneath your eyelids.",
+          "visual": {
+            "layout": "object_focus",
+            "assets": [
+              "eye"
+            ],
+            "labels": [
+              "Rapid",
+              "Eye",
+              "Movement"
+            ],
+            "action": "point",
+            "expression": "excited",
+            "background": "lab"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l15",
+          "narration": "In 1953, researchers Eugene Aserinsky and Nathaniel Kleitman described REM sleep and linked it to dreaming. That discovery kicked off modern dream science.",
+          "visual": {
+            "layout": "fact_card",
+            "number": {
+              "value": 1953,
+              "label": "REM sleep linked to dreams"
+            },
+            "assets": [
+              "microscope"
+            ],
+            "action": "excited",
+            "expression": "excited",
+            "background": "burst_teal"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l16",
+          "narration": "Dreams happen mainly during REM sleep. By one estimate, about 80% of dreams occur in this stage.",
+          "visual": {
+            "layout": "fact_card",
+            "number": {
+              "value": 80,
+              "suffix": "%",
+              "label": "of dreams in REM (one estimate)"
+            },
+            "assets": [
+              "dream_cloud"
+            ],
+            "action": "point",
+            "expression": "happy",
+            "background": "burst_purple"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l17",
+          "narration": "But dreaming isn't limited to REM. People also dream in non-REM sleep, although those dreams tend to be shorter and less story-like.",
+          "visual": {
+            "layout": "comparison",
+            "assets": [
+              "dream_cloud",
+              "thought_cloud"
+            ],
+            "labels": [
+              "REM: long stories",
+              "Non-REM: short"
+            ],
+            "action": "explain",
+            "expression": "thinking",
+            "background": "night_sky"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "Your brain in REM sleep",
+      "beats": [
+        {
+          "id": "l18",
+          "narration": "So what's going on inside your head during REM? Something pretty amazing. Your brain becomes busy, with activity that looks a lot like being awake.",
+          "visual": {
+            "layout": "wave_monitor",
+            "items": [
+              {
+                "text": "Awake: fast, busy waves",
+                "cue": "busy"
+              },
+              {
+                "text": "REM: busy again!",
+                "cue": "awake"
+              }
+            ],
+            "action": "point",
+            "expression": "surprised",
+            "background": "lab"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l19",
+          "narration": "In fact, the brain's energy use during REM sleep can equal or even exceed its energy use while you're awake. Your brain is definitely not switched off.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "brain_activity",
+              "lightning"
+            ],
+            "labels": [
+              "Full power!"
+            ],
+            "action": "excited",
+            "expression": "excited",
+            "background": "brain_space"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l20",
+          "narration": "Areas involved in sophisticated thinking show activity similar to wakefulness. The amygdala, a region linked to emotions, is also active.",
+          "visual": {
+            "layout": "object_focus",
+            "assets": [
+              "brain"
+            ],
+            "labels": [
+              "Thinking areas",
+              "Emotion center",
+              "Busy signals"
+            ],
+            "action": "point",
+            "expression": "curious",
+            "background": "brain_space"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l21",
+          "narration": "That may help explain why dreams can feel so emotional. Researchers note that dreams are often accompanied by strong feelings, including fear or worry.",
+          "visual": {
+            "layout": "list_reveal",
+            "items": [
+              {
+                "text": "Excitement",
+                "asset": "emotion_happy",
+                "cue": "emotional"
+              },
+              {
+                "text": "Surprise",
+                "asset": "emotion_surprised",
+                "cue": "feelings"
+              },
+              {
+                "text": "Fear or worry",
+                "asset": "emotion_scared",
+                "cue": "fear"
+              }
+            ],
+            "action": "explain",
+            "expression": "worried",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l22",
+          "narration": "Meanwhile, your body is doing the opposite. During REM, almost all your muscles go limp, a state called REM atonia. Your body is basically paralyzed.",
+          "visual": {
+            "layout": "story_scene",
+            "assets": [
+              "sleeping_person"
+            ],
+            "bubble": "Brain: ON. Body: OFF.",
+            "action": "talk",
+            "expression": "happy",
+            "background": "bedroom_night"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l23",
+          "narration": "That's a clever safety feature. In a condition called REM sleep behavior disorder, this paralysis fails, and people can act out their dreams, kicking, punching, or even jumping out of bed.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "bed"
+            ],
+            "labels": [
+              "Safety switch"
+            ],
+            "action": "surprised",
+            "expression": "worried",
+            "background": "bedroom_night"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l24",
+          "narration": "So during REM, you have an active, emotional brain inside a body that's sound asleep. No wonder scientists call it paradoxical sleep.",
+          "visual": {
+            "layout": "comparison",
+            "assets": [
+              "brain_activity",
+              "sleeping_person"
+            ],
+            "labels": [
+              "Brain: awake-ish",
+              "Body: asleep"
+            ],
+            "action": "think",
+            "expression": "thinking",
+            "background": "paper"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "Why do we dream? The big theories",
+      "beats": [
+        {
+          "id": "l25",
+          "narration": "Now for the big question: why do we dream at all? The honest answer is that nobody knows for sure. Scientists have proposed several theories, and they're still being tested.",
+          "visual": {
+            "layout": "question",
+            "title": "Why do we dream?",
+            "assets": [
+              "question_mark"
+            ],
+            "action": "shrug",
+            "expression": "confused",
+            "background": "burst_orange"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l26",
+          "narration": "Theory number one is the activation-synthesis hypothesis from Hobson and McCarley in 1977. During REM, signals from the brainstem fire, and the rest of the brain tries to make sense of them.",
+          "visual": {
+            "layout": "diagram_flow",
+            "assets": [
+              "lightning",
+              "brain",
+              "dream_cloud"
+            ],
+            "labels": [
+              "Random signals",
+              "Brain makes sense",
+              "A dream story"
+            ],
+            "action": "explain",
+            "expression": "thinking",
+            "background": "chalkboard"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l27",
+          "narration": "In other words, a dream might be your brain's storyteller trying to create a story out of random neural signals. That could explain why dreams are so strange.",
+          "visual": {
+            "layout": "thought_bubble",
+            "assets": [
+              "sheep",
+              "rocket",
+              "trophy"
+            ],
+            "action": "think",
+            "expression": "curious",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l28",
+          "narration": "Theory number two links dreams to memory and learning. Some researchers think dreaming helps the brain process and organize what you've learned, and a 2010 study found dreams were correlated with improved learning.",
+          "visual": {
+            "layout": "network",
+            "assets": [
+              "brain",
+              "books_stack",
+              "memory_photos",
+              "lightbulb"
+            ],
+            "labels": [
+              "Learning",
+              "Memories",
+              "New ideas"
+            ],
+            "action": "point",
+            "expression": "happy",
+            "background": "brain_space"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l29",
+          "narration": "A related idea from 1983, by scientists Crick and Mitchison, compared dreaming to a computer cleaning up while it's offline, clearing away mental junk.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "computer"
+            ],
+            "labels": [
+              "Brain cleanup?"
+            ],
+            "action": "explain",
+            "expression": "curious",
+            "background": "lab"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l30",
+          "narration": "Theory number three is about emotions. In 1995, a researcher named Hartmann suggested dreams could work a bit like therapy, letting us process difficult feelings in a safe place.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "emotion_sad",
+              "emotion_happy"
+            ],
+            "labels": [
+              "Processing feelings"
+            ],
+            "action": "talk",
+            "expression": "sad",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l31",
+          "narration": "Theory number four is the threat simulation hypothesis, proposed by Revonsuo in 2000. It suggests dreams let us rehearse dealing with dangers, a bit like a safe training simulator.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "nightmare_monster"
+            ],
+            "labels": [
+              "Practice mode"
+            ],
+            "action": "surprised",
+            "expression": "scared",
+            "background": "night_sky"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l32",
+          "narration": "Revonsuo later proposed that dreams may also help us practise social skills and relationships. Many researchers think the truth may be a mix of several of these ideas.",
+          "visual": {
+            "layout": "list_reveal",
+            "items": [
+              {
+                "text": "Making sense of signals",
+                "asset": "lightning"
+              },
+              {
+                "text": "Memory and learning",
+                "asset": "books_stack"
+              },
+              {
+                "text": "Emotions and safety practice",
+                "asset": "emotion_happy"
+              }
+            ],
+            "action": "explain",
+            "expression": "happy",
+            "background": "paper"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "Strange dream facts",
+      "beats": [
+        {
+          "id": "l33",
+          "narration": "Now let's have some fun with strange but true dream facts. First up: lucid dreaming. That's when you realize you're dreaming while the dream is still happening.",
+          "visual": {
+            "layout": "thought_bubble",
+            "assets": [
+              "lightbulb",
+              "dream_cloud"
+            ],
+            "action": "excited",
+            "expression": "excited",
+            "background": "dreamscape"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l34",
+          "narration": "Scientists study lucid dreams in sleep labs, and researchers are still testing methods to help people have them on purpose.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "microscope"
+            ],
+            "labels": [
+              "Sleep lab"
+            ],
+            "action": "point",
+            "expression": "curious",
+            "background": "lab"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l35",
+          "narration": "Do animals dream? REM sleep is found in all mammals, in birds and even in some reptiles. Your dog twitching in its sleep makes us wonder.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "sheep",
+              "dream_cloud"
+            ],
+            "labels": [
+              "Mammals, birds, reptiles"
+            ],
+            "action": "think",
+            "expression": "curious",
+            "background": "sunny_outdoors"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l36",
+          "narration": "But here's the catch. Studying a dream requires someone to describe it, so for now, dreaming in non-human animals is impossible to prove.",
+          "visual": {
+            "layout": "question",
+            "title": "Can we ever know?",
+            "assets": [
+              "magnifying_glass"
+            ],
+            "action": "shrug",
+            "expression": "confused",
+            "background": "burst_orange"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l37",
+          "narration": "From the 1940s to 1985, researcher Calvin Hall collected more than 50,000 dream reports. That's a giant library of dreams!",
+          "visual": {
+            "layout": "fact_card",
+            "number": {
+              "value": 50000,
+              "suffix": "+",
+              "label": "dream reports collected"
+            },
+            "assets": [
+              "books_stack"
+            ],
+            "action": "excited",
+            "expression": "excited",
+            "background": "burst_teal"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l38",
+          "narration": "And world events can shape our dreams too. A study of over 15,000 dream reports found themes of fear, illness and death became more common after the COVID-19 pandemic began.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "earth"
+            ],
+            "labels": [
+              "Dreams reflect life"
+            ],
+            "action": "talk",
+            "expression": "worried",
+            "background": "night_sky"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l39",
+          "narration": "Here's a fun word fact. In Old English, the word dream meant noise, joy or music. Only in the 13th century did it start to mean the stories we see in our sleep.",
+          "visual": {
+            "layout": "timeline",
+            "items": [
+              {
+                "text": "Old English: noise, joy, music",
+                "asset": "wave_sound",
+                "cue": "Old"
+              },
+              {
+                "text": "13th century: sleep stories",
+                "asset": "dream_cloud",
+                "cue": "century"
+              }
+            ],
+            "action": "explain",
+            "expression": "happy",
+            "background": "chalkboard"
+          },
+          "fact_ids": []
+        }
+      ]
+    },
+    {
+      "title": "Wrapping up",
+      "beats": [
+        {
+          "id": "l40",
+          "narration": "So, why do we dream? Here's what we know. Dreams happen mostly in REM sleep, when your brain is busy and your body is still.",
+          "visual": {
+            "layout": "list_reveal",
+            "items": [
+              {
+                "text": "Mostly during REM sleep",
+                "asset": "eeg_wave",
+                "cue": "REM"
+              },
+              {
+                "text": "Busy brain, still body",
+                "asset": "brain_activity",
+                "cue": "busy"
+              }
+            ],
+            "action": "explain",
+            "expression": "happy",
+            "background": "paper"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l41",
+          "narration": "Scientists have strong ideas about why, from making sense of brain signals to memory, emotions and practice. But the full answer is still a mystery.",
+          "visual": {
+            "layout": "network",
+            "assets": [
+              "dream_cloud",
+              "lightning",
+              "memory_photos",
+              "emotion_happy",
+              "nightmare_monster"
+            ],
+            "labels": [
+              "Signals",
+              "Memory",
+              "Emotions",
+              "Practice"
+            ],
+            "action": "point",
+            "expression": "curious",
+            "background": "brain_space"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l42",
+          "narration": "And that's exciting, because maybe one day, someone watching this will help solve it. If something about your sleep ever worries you, talk to a doctor.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "trophy"
+            ],
+            "labels": [
+              "Future scientist?"
+            ],
+            "action": "happy",
+            "expression": "joyful",
+            "background": "sunny_outdoors"
+          },
+          "fact_ids": []
+        },
+        {
+          "id": "l43",
+          "narration": "Thanks for exploring with me! Subscribe to Curious Minds for more fun science, stay curious, and sweet dreams!",
+          "visual": {
+            "layout": "outro",
+            "action": "wave",
+            "expression": "happy"
+          },
+          "fact_ids": []
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Curated for the MVP acceptance test. Every claim is supported by research/source_texts.json (Wikipedia 'Dream' and 'Rapid eye movement sleep'; PubMed reviews 2023/2025). Theories are hedged."
+  ]
+}

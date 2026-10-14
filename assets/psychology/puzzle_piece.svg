@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Puzzle Piece" data-tags="puzzle,piece,jigsaw,problem solving,solution,logic,fit,thinking,brain teaser,cognition">
+  <ellipse cx="208" cy="360" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g transform="translate(-32 10)">
+    <!-- thickness -->
+    <path id="part-depth" transform="translate(10 12)" d="M100 120 L165 120 C170 120 172 112 166 104 C150 84 168 56 200 56 C232 56 250 84 234 104 C228 112 230 120 235 120 L300 120 L300 185 C300 190 308 192 316 186 C336 170 364 188 364 220 C364 252 336 270 316 254 C308 248 300 250 300 255 L300 320 L235 320 C230 320 230 312 236 306 C252 290 232 268 200 268 C168 268 148 290 164 306 C170 312 170 320 165 320 L100 320 L100 255 C100 250 108 248 114 252 C132 266 158 252 158 220 C158 188 132 174 114 188 C108 192 100 190 100 185 Z" fill="#5B4BC4" stroke="#2B2D42" stroke-width="8"/>
+    <g id="part-piece">
+      <path d="M100 120 L165 120 C170 120 172 112 166 104 C150 84 168 56 200 56 C232 56 250 84 234 104 C228 112 230 120 235 120 L300 120 L300 185 C300 190 308 192 316 186 C336 170 364 188 364 220 C364 252 336 270 316 254 C308 248 300 250 300 255 L300 320 L235 320 C230 320 230 312 236 306 C252 290 232 268 200 268 C168 268 148 290 164 306 C170 312 170 320 165 320 L100 320 L100 255 C100 250 108 248 114 252 C132 266 158 252 158 220 C158 188 132 174 114 188 C108 192 100 190 100 185 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+      <path d="M118 140 L150 140 M180 80 C186 72 194 70 202 70" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="10"/>
+    </g>
+  </g>
+  <circle id="anchor-center" cx="200" cy="210" r="4"/>
+  <circle id="anchor-top" cx="168" cy="66" r="4"/>
+  <circle id="anchor-knob_top" cx="168" cy="90" r="4"/>
+  <circle id="anchor-knob_right" cx="306" cy="230" r="4"/>
+  <circle id="anchor-notch_bottom" cx="168" cy="296" r="4"/>
+</svg>

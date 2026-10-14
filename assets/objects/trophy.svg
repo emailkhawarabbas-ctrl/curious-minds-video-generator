@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Trophy" data-tags="trophy,award,winner,prize,champion,success,achievement,victory,goal,competition,first place">
+<ellipse cx="200" cy="358" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-handles" fill="none" stroke-linecap="round">
+    <path d="M126 96 C66 90 62 186 140 190 M274 96 C334 90 338 186 260 190" stroke="#2B2D42" stroke-width="30"/>
+    <path d="M126 96 C66 90 62 186 140 190 M274 96 C334 90 338 186 260 190" stroke="#FFD23F" stroke-width="14"/>
+  </g>
+  <g id="part-cup">
+    <rect x="182" y="222" width="36" height="60" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M112 62 L288 62 L284 140 C280 200 242 236 200 238 C158 236 120 200 116 140 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M250 70 L280 70 L276 140 C272 190 248 220 218 230 C244 206 256 170 256 130 Z" fill="#FF9F1C" fill-opacity="0.6"/>
+    <path d="M138 84 L140 150" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-linecap="round" stroke-width="12"/>
+    <polygon points="200,104 211,128 237,130 217,147 224,172 200,158 176,172 183,147 163,130 189,128" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+    <rect x="104" y="50" width="192" height="24" rx="10" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
+  </g>
+  <g id="part-base">
+    <rect x="142" y="276" width="116" height="24" rx="7" fill="#FFD23F" stroke="#2B2D42" stroke-width="7"/>
+    <rect x="114" y="296" width="172" height="54" rx="10" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="160" y="312" width="80" height="22" rx="5" fill="#FFE98A" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="190" r="4"/>
+  <circle id="anchor-top" cx="200" cy="50" r="4"/>
+  <circle id="anchor-cup" cx="200" cy="140" r="4"/>
+  <circle id="anchor-handle" cx="84" cy="140" r="4"/>
+  <circle id="anchor-base" cx="200" cy="323" r="4"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Star" data-tags="star,stars,gold star,reward,achievement,success,night,sky,favorite,rating,best">
+<g id="part-star">
+    <polygon points="200,40 249.4,144 363.6,158.8 279.9,238 301.1,351.2 200,296 98.9,351.2 120.1,238 36.4,158.8 150.6,144" fill="#FFD23F" stroke="#2B2D42" stroke-width="10"/>
+    <g fill="#FF9F1C" fill-opacity="0.5">
+    <polygon points="200,212 200,40 249.4,144"/>
+    <polygon points="200,212 363.6,158.8 279.9,238"/>
+    <polygon points="200,212 301.1,351.2 200,296"/>
+    <polygon points="200,212 98.9,351.2 120.1,238"/>
+    <polygon points="200,212 36.4,158.8 150.6,144"/>
+    </g>
+    <path d="M150 154 L178 112" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="212" r="4"/>
+  <circle id="anchor-top" cx="200" cy="40" r="4"/>
+  <circle id="anchor-point_right" cx="363.6" cy="158.8" r="4"/>
+  <circle id="anchor-point_left" cx="36.4" cy="158.8" r="4"/>
+  <circle id="anchor-bottom" cx="200" cy="296" r="4"/>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Eye" data-tags="eye,eyeball,vision,sight,seeing,iris,pupil,optics,sense,body">
+  <!-- soft shadow -->
+  <ellipse cx="200" cy="362" rx="115" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- eyeball -->
+  <g id="part-eyeball">
+    <circle cx="196" cy="200" r="138" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M318 150 C346 236 296 318 210 334 C278 300 316 236 318 150 Z" fill="#D7F0FA"/>
+    <path d="M88 150 C104 112 136 88 170 80" fill="none" stroke="#D7F0FA" stroke-width="10"/>
+  </g>
+  <!-- iris -->
+  <g id="part-iris">
+    <circle cx="170" cy="190" r="70" fill="#3A86FF" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M220 232 C196 258 150 262 124 236 C148 248 190 248 220 232 Z" fill="#2563D9"/>
+    <path d="M170 132 L170 146 M212 148 L202 158 M228 190 L214 190 M128 148 L138 158 M112 190 L126 190 M128 232 L138 222 M212 232 L202 222 M170 248 L170 234" fill="none" stroke="#8ECAE6" stroke-width="5"/>
+  </g>
+  <!-- pupil -->
+  <g id="part-pupil">
+    <circle cx="170" cy="190" r="32" fill="#2B2D42"/>
+    <circle cx="154" cy="172" r="12" fill="#FFFFFF"/>
+    <circle cx="186" cy="204" r="5" fill="#FFFFFF" fill-opacity="0.8"/>
+  </g>
+  <circle id="anchor-top" cx="196" cy="62" r="4"/>
+  <circle id="anchor-center" cx="196" cy="200" r="4"/>
+  <circle id="anchor-pupil" cx="170" cy="190" r="4"/>
+  <circle id="anchor-iris" cx="226" cy="168" r="4"/>
+  <circle id="anchor-sclera" cx="270" cy="270" r="4"/>
+</svg>

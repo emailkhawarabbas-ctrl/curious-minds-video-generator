@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" data-title="EEG Brainwave Monitor" data-tags="eeg,brainwave,brain waves,sleep stages,monitor,neuroscience,signal,rem,measurement,science">
+  <ellipse cx="300" cy="286" rx="150" ry="9" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- stand -->
+  <g id="part-stand">
+    <rect x="270" y="244" width="60" height="30" rx="6" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+    <rect x="216" y="266" width="168" height="16" rx="8" fill="#B8BCC8" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <!-- monitor -->
+  <g id="part-monitor">
+    <rect x="30" y="16" width="540" height="236" rx="26" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="52" y="36" width="496" height="182" rx="14" fill="#1B1F3B" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M52 127 L548 127 M114 36 L114 218 M176 36 L176 218 M238 36 L238 218 M300 36 L300 218 M362 36 L362 218 M424 36 L424 218 M486 36 L486 218 M52 82 L548 82 M52 172 L548 172" fill="none" stroke="#8ECAE6" stroke-opacity="0.18" stroke-width="2"/>
+    <path d="M70 52 L180 52" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="7"/>
+    <circle cx="510" cy="235" r="6" fill="#06D6A0" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="488" cy="235" r="6" fill="#FFD23F" stroke="#2B2D42" stroke-width="3"/>
+    <path d="M60 235 L120 235" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <!-- brainwave -->
+  <g id="part-wave">
+    <path transform="translate(0 -8)" d="M70 135 Q81 115 92 135 Q103 155 114 135 Q125 115 136 135 Q147 155 158 135 Q169 115 180 135 Q191 155 202 135 Q209 59 216 135 Q223 211 230 135 Q237 59 244 135 Q251 211 258 135 Q265 59 272 135 Q279 211 286 135 Q293 59 300 135 Q310 159 320 135 Q330 111 340 135 Q350 159 360 135 Q390 55 420 135 Q450 215 480 135 Q510 55 530 135" fill="none" stroke="#06D6A0" stroke-width="7"/>
+    <circle cx="530" cy="127" r="8" fill="#9BE7DF" stroke="#06D6A0" stroke-width="4"/>
+  </g>
+  <circle id="anchor-center" cx="300" cy="130" r="4"/>
+  <circle id="anchor-top" cx="300" cy="16" r="4"/>
+  <circle id="anchor-wave_calm" cx="125" cy="127" r="4"/>
+  <circle id="anchor-wave_spike" cx="250" cy="127" r="4"/>
+  <circle id="anchor-wave_slow" cx="450" cy="127" r="4"/>
+  <circle id="anchor-stand" cx="300" cy="270" r="4"/>
+</svg>

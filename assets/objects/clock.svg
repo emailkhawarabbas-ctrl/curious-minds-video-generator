@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Wall Clock" data-tags="clock,time,hour,minute,schedule,deadline,routine,watch,timer,morning,punctual">
+<g id="part-rim">
+    <circle cx="200" cy="200" r="162" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M336.8 121 A158 158 0 0 1 121 336.8 A230 230 0 0 0 336.8 121 Z" fill="#1A9E92" fill-opacity="0.7"/>
+    <path d="M57.7 159.2 A148 148 0 0 1 135.1 67" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-face">
+    <circle cx="200" cy="200" r="130" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M324.1 221.9 A126 126 0 0 1 137 309.1 A190 190 0 0 0 324.1 221.9 Z" fill="#D7F0FA"/>
+  </g>
+  <g id="part-ticks" fill="none" stroke="#2B2D42" stroke-linecap="round">
+    <path d="M200 88 L200 108" stroke-width="8"/>
+    <path d="M256 103 L250 113.4" stroke-width="5"/>
+    <path d="M297 144 L286.6 150" stroke-width="5"/>
+    <path d="M312 200 L292 200" stroke-width="8"/>
+    <path d="M297 256 L286.6 250" stroke-width="5"/>
+    <path d="M256 297 L250 286.6" stroke-width="5"/>
+    <path d="M200 312 L200 292" stroke-width="8"/>
+    <path d="M144 297 L150 286.6" stroke-width="5"/>
+    <path d="M103 256 L113.4 250" stroke-width="5"/>
+    <path d="M88 200 L108 200" stroke-width="8"/>
+    <path d="M103 144 L113.4 150" stroke-width="5"/>
+    <path d="M144 103 L150 113.4" stroke-width="5"/>
+  </g>
+  <g id="part-hour_hand">
+    <path d="M200 200 L146.3 169" stroke="#2B2D42" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <g id="part-minute_hand">
+    <path d="M200 200 L281.4 153" stroke="#2B2D42" stroke-width="11" stroke-linecap="round"/>
+  </g>
+  <g id="part-second_hand">
+    <path d="M200 200 L150 286.6" stroke="#EF476F" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="200" cy="200" r="13" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="38" r="4"/>
+  <circle id="anchor-hour_hand_pivot" cx="200" cy="200" r="4"/>
+  <circle id="anchor-hour_hand" cx="146.3" cy="169" r="4"/>
+  <circle id="anchor-minute_hand" cx="281.4" cy="153" r="4"/>
+  <circle id="anchor-twelve" cx="200" cy="96" r="4"/>
+</svg>

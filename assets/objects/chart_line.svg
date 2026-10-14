@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Line Chart" data-tags="chart,line chart,graph,trend,growth,statistics,data,progress,analytics,increase,report">
+<rect x="52" y="60" width="312" height="300" rx="24" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-card">
+    <rect x="40" y="46" width="312" height="300" rx="24" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M76 84 L170 84" fill="none" stroke="#2B2D42" stroke-opacity="0.3" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="316" cy="84" r="10" fill="#FFD23F" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <g id="part-axes" fill="none" stroke-linecap="round">
+    <path d="M84 168 L316 168 M84 234 L316 234" stroke="#B8BCC8" stroke-width="4"/>
+    <path d="M80 114 L80 302 L320 302" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-area">
+    <path d="M100 262 L150 216 L198 240 L250 172 L300 132 L300 300 L100 300 Z" fill="#9BE7DF" fill-opacity="0.7"/>
+  </g>
+  <g id="part-line" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="100 262 150 216 198 240 250 172 300 132" stroke="#2B2D42" stroke-width="18"/>
+    <polyline points="100 262 150 216 198 240 250 172 300 132" stroke="#2EC4B6" stroke-width="8"/>
+  </g>
+  <g id="part-points" fill="#FFD23F" stroke="#2B2D42" stroke-width="5">
+    <circle cx="100" cy="262" r="8"/>
+    <circle cx="150" cy="216" r="8"/>
+    <circle cx="198" cy="240" r="8"/>
+    <circle cx="250" cy="172" r="8"/>
+    <circle cx="300" cy="132" r="11" fill="#FF5D73"/>
+  </g>
+  <circle id="anchor-center" cx="196" cy="196" r="4"/>
+  <circle id="anchor-top" cx="196" cy="46" r="4"/>
+  <circle id="anchor-peak" cx="300" cy="132" r="4"/>
+  <circle id="anchor-start" cx="100" cy="262" r="4"/>
+  <circle id="anchor-dip" cx="198" cy="240" r="4"/>
+</svg>

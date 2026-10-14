@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -290 300 300" data-title="Milo head" data-tags="milo,mascot,head">
+  <!-- Rig-local: neck joint at (0,0); head centre (0,-120). Face features are drawn by the expression engine. -->
+  <g id="part-back">
+    <path d="M-112 -118 C-128 -190 -80 -246 0 -248 C80 -246 128 -190 112 -118 C100 -150 -100 -150 -112 -118 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="-104" cy="-108" r="22" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M-110 -116 C-100 -112 -100 -102 -108 -98" fill="none" stroke="#E9A97F" stroke-width="5"/>
+    <circle cx="104" cy="-108" r="22" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M110 -116 C100 -112 100 -102 108 -98" fill="none" stroke="#E9A97F" stroke-width="5"/>
+    <path d="M-102 -124 C-104 -194 -60 -228 0 -228 C60 -228 104 -194 102 -124 C102 -52 60 -10 0 -10 C-60 -10 -102 -52 -102 -124 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M60 -40 C78 -60 90 -90 92 -120" fill="none" stroke="#E9A97F" stroke-width="10" stroke-opacity="0.7"/>
+  </g>
+  <g id="part-front">
+    <!-- swoosh fringe -->
+    <path d="M-106 -132 C-114 -206 -62 -246 2 -246 C66 -246 112 -206 106 -140 C96 -166 72 -178 44 -172 C56 -194 34 -206 10 -194 C-6 -212 -40 -208 -50 -186 C-74 -186 -96 -166 -106 -132 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M-62 -222 C-40 -236 -10 -238 14 -232" fill="none" stroke="#8A5A3B" stroke-width="8"/>
+    <!-- cowlick -->
+    <path d="M-6 -244 C-18 -270 8 -288 30 -274 C14 -272 6 -262 10 -246 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="7"/>
+    <!-- goggles strap + lenses (explorer signature) -->
+    <path d="M-104 -176 C-60 -200 60 -200 104 -176" fill="none" stroke="#3D405B" stroke-width="14"/>
+    <circle cx="-38" cy="-198" r="27" fill="#3D405B" stroke="#2B2D42" stroke-width="7"/>
+    <circle cx="-38" cy="-198" r="17" fill="#FFB547" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M-48 -206 C-44 -212 -38 -213 -33 -211" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-opacity="0.85"/>
+    <circle cx="38" cy="-198" r="27" fill="#3D405B" stroke="#2B2D42" stroke-width="7"/>
+    <circle cx="38" cy="-198" r="17" fill="#FFB547" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M28 -206 C32 -212 38 -213 43 -211" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-opacity="0.85"/>
+    <rect x="-11" y="-204" width="22" height="12" rx="5" fill="#3D405B" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-center" cx="0" cy="-120" r="4"/>
+  <circle id="anchor-top" cx="0" cy="-260" r="4"/>
+  <circle id="anchor-chin" cx="0" cy="-14" r="4"/>
+</svg>

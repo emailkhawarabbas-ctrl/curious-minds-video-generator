@@ -1,0 +1,67 @@
+{
+  "id": "milo",
+  "name": "Milo",
+  "role": "Main mascot — a young scientist / explorer",
+  "personality": ["curious", "intelligent", "funny", "friendly", "enthusiastic", "loves discovering things"],
+  "locked_design": {
+    "height_units": 720,
+    "head_to_body_ratio": 0.36,
+    "outfit": "teal explorer jacket (rolled sleeves), yellow shirt with lightbulb badge, navy cargo trousers, red sneakers, orange backpack, amber goggles worn on the forehead",
+    "hair": "brown swoosh fringe with a cowlick",
+    "eyes": "large white ovals, dark pupils with highlight, thick expressive brown brows",
+    "do_not_change": ["proportions", "colours", "goggles", "backpack", "badge", "hair shape"]
+  },
+  "colors": {
+    "skin": "#F8C9A0",
+    "skin_shadow": "#E9A97F",
+    "hair": "#5B3A29",
+    "sleeve": "#2EC4B6",
+    "sleeve_cuff": "#1A9E92",
+    "pants": "#3D405B",
+    "pants_cuff": "#2B2D42",
+    "outline": "#2B2D42",
+    "brow": "#5B3A29",
+    "pupil": "#2B2D42",
+    "mouth": "#7A2E3A",
+    "tongue": "#FF8FAB",
+    "blush": "#FF8FAB"
+  },
+  "parts": {
+    "head": "head.svg",
+    "torso": "torso.svg",
+    "backpack": "backpack.svg",
+    "shoe": "shoe.svg",
+    "hands": {
+      "open": "hand_open.svg",
+      "fist": "hand_fist.svg",
+      "point": "hand_point.svg",
+      "thumbs_up": "hand_thumbs_up.svg",
+      "hold": "hand_hold.svg"
+    }
+  },
+  "rig": {
+    "neck": [0, -226],
+    "shoulder_l": [-84, -200],
+    "shoulder_r": [84, -200],
+    "hip_l": [-38, 6],
+    "hip_r": [38, 6],
+    "upper_arm": 92,
+    "forearm": 86,
+    "thigh": 92,
+    "shin": 92,
+    "arm_width": 34,
+    "leg_width": 44,
+    "neck_width": 40,
+    "neck_length": 14,
+    "ground_offset": 222,
+    "head_top": -500,
+    "eye_l": [-40, -114],
+    "eye_r": [40, -114],
+    "mouth": [0, -58],
+    "nose": [0, -84],
+    "cheek_l": [-68, -76],
+    "cheek_r": [68, -76],
+    "chin": [0, -14]
+  },
+  "recolor": {}
+}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Memory Photos" data-tags="memory,memories,photos,remember,past,nostalgia,recall,pictures,polaroid,childhood,psychology">
+  <ellipse cx="200" cy="350" rx="140" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- back left photo: sun over hills -->
+  <g id="part-photo_left" transform="translate(132 196) rotate(-15)">
+    <rect x="-76" y="-96" width="152" height="184" rx="8" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="-62" y="-82" width="124" height="118" rx="4" fill="#D7F0FA" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="22" cy="-46" r="18" fill="#FFD23F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-62 14 C-40 -14 -12 -14 8 6 C24 -8 46 -10 62 2 L62 32 C62 34 60 36 58 36 L-58 36 C-60 36 -62 34 -62 32 Z" fill="#7BD389" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-40 62 L20 62" fill="none" stroke="#B8BCC8" stroke-width="6"/>
+  </g>
+  <!-- back right photo: heart -->
+  <g id="part-photo_right" transform="translate(268 192) rotate(13)">
+    <rect x="-76" y="-96" width="152" height="184" rx="8" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="-62" y="-82" width="124" height="118" rx="4" fill="#FFD6E0" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M0 18 C-30 -2 -44 -18 -40 -38 C-36 -56 -12 -60 0 -40 C12 -60 36 -56 40 -38 C44 -18 30 -2 0 18 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M-28 -38 C-26 -46 -20 -50 -14 -50" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="5"/>
+    <path d="M-20 62 L40 62" fill="none" stroke="#B8BCC8" stroke-width="6"/>
+  </g>
+  <!-- front photo: house -->
+  <g id="part-photo_front" transform="translate(200 218) rotate(-2)">
+    <rect x="-70" y="-84" width="152" height="184" rx="8" fill="#2B2D42" fill-opacity="0.12"/>
+    <rect x="-76" y="-92" width="152" height="184" rx="8" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="-62" y="-78" width="124" height="118" rx="4" fill="#8ECAE6" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-62 18 L62 18 L62 36 C62 38 60 40 58 40 L-58 40 C-60 40 -62 38 -62 36 Z" fill="#7BD389" stroke="#2B2D42" stroke-width="5"/>
+    <rect x="-30" y="-24" width="60" height="44" rx="2" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-40 -22 L0 -56 L40 -22 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+    <rect x="-8" y="-4" width="16" height="24" rx="2" fill="#5B3A29" stroke="#2B2D42" stroke-width="4"/>
+    <circle cx="-42" cy="-56" r="9" fill="#FFFFFF" stroke="#2B2D42" stroke-width="4"/>
+    <circle cx="-32" cy="-60" r="10" fill="#FFFFFF" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M-52 -68 C-50 -74 -46 -76 -40 -76" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="5"/>
+    <path d="M-44 66 C-30 58 -16 72 0 64 C14 58 26 70 40 62" fill="none" stroke="#B8BCC8" stroke-width="6"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="96" r="4"/>
+  <circle id="anchor-photo_left" cx="112" cy="150" r="4"/>
+  <circle id="anchor-photo_right" cx="290" cy="150" r="4"/>
+  <circle id="anchor-photo_front" cx="200" cy="200" r="4"/>
+</svg>

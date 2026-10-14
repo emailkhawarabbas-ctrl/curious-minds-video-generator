@@ -1,0 +1,20 @@
+{
+  "_doc": "Joint angles in degrees. Limb direction for angle a is (sin a, cos a) in screen space: 0 = straight down, 90 = toward the facing direction (+x), -90 = backwards, 180 = up. Elbow/knee angles are relative to the parent limb. arm_l is the screen-left arm, arm_r the screen-right arm (facing right). head_turn -1..1 turns the face; look_x/look_y move pupils.",
+  "stand": {"arm_l_sh": -12, "arm_l_el": 8, "arm_r_sh": 12, "arm_r_el": -8, "hand_l": "open", "hand_r": "open"},
+  "relaxed": {"arm_l_sh": -8, "arm_l_el": 20, "arm_r_sh": 8, "arm_r_el": -20, "hand_l": "open", "hand_r": "open", "head_tilt": 3},
+  "wave": {"arm_l_sh": -12, "arm_l_el": 8, "arm_r_sh": 140, "arm_r_el": 30, "hand_l": "open", "hand_r": "open", "head_tilt": 5},
+  "point_forward": {"arm_l_sh": -14, "arm_l_el": 10, "arm_r_sh": 80, "arm_r_el": 6, "hand_l": "open", "hand_r": "point", "head_turn": 0.5},
+  "point_up": {"arm_l_sh": -14, "arm_l_el": 10, "arm_r_sh": 150, "arm_r_el": 22, "hand_l": "fist", "hand_r": "point", "look_y": -1},
+  "think": {"ik_r": [30, -226], "ik_l": [44, -150], "hand_l": "fist", "hand_r": "fist", "head_tilt": -7, "look_x": 0.6, "look_y": -0.9},
+  "explain": {"arm_l_sh": -48, "arm_l_el": -38, "arm_r_sh": 52, "arm_r_el": 40, "hand_l": "open", "hand_r": "open"},
+  "explain_alt": {"arm_l_sh": -22, "arm_l_el": -70, "arm_r_sh": 70, "arm_r_el": 50, "hand_l": "open", "hand_r": "open", "head_tilt": 4},
+  "present": {"arm_l_sh": -10, "arm_l_el": 10, "arm_r_sh": 62, "arm_r_el": 34, "hand_l": "open", "hand_r": "open", "head_turn": 0.45},
+  "excited": {"arm_l_sh": -150, "arm_l_el": -20, "arm_r_sh": 150, "arm_r_el": 20, "hand_l": "fist", "hand_r": "fist", "body_y": -10},
+  "surprised": {"arm_l_sh": -70, "arm_l_el": -80, "arm_r_sh": 70, "arm_r_el": 80, "hand_l": "open", "hand_r": "open", "torso_lean": -4},
+  "sad": {"arm_l_sh": -4, "arm_l_el": 4, "arm_r_sh": 4, "arm_r_el": -4, "hand_l": "open", "hand_r": "open", "head_tilt": 10, "torso_lean": 4, "look_y": 0.8, "body_y": 6},
+  "shrug": {"arm_l_sh": -40, "arm_l_el": -90, "arm_r_sh": 40, "arm_r_el": 90, "hand_l": "open", "hand_r": "open", "head_tilt": 8},
+  "thumbs_up": {"arm_l_sh": -12, "arm_l_el": 8, "arm_r_sh": 45, "arm_r_el": 55, "hand_l": "open", "hand_r": "thumbs_up", "head_tilt": 5},
+  "hold": {"ik_l": [-62, -112], "ik_r": [62, -112], "hand_l": "hold", "hand_r": "hold"},
+  "hands_on_hips": {"arm_l_sh": -40, "arm_l_el": 95, "arm_r_sh": 40, "arm_r_el": -95, "hand_l": "fist", "hand_r": "fist"},
+  "yawn": {"arm_l_sh": -160, "arm_l_el": 30, "arm_r_sh": 160, "arm_r_el": -30, "hand_l": "fist", "hand_r": "fist", "head_tilt": -6, "torso_lean": -3}
+}

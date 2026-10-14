@@ -1,0 +1,68 @@
+{
+  "short": {
+    "titles": [
+      "Why Do We Dream? 🌙 The Science in 60 Seconds",
+      "Your Brain Makes a Movie Every Night. Here's Why",
+      "What Happens in Your Brain When You Dream?"
+    ],
+    "description": "Every night your brain makes a movie, and you're the star. Milo explains REM sleep, why your body stays still while you dream, and the leading scientific ideas about why we dream.",
+    "hashtags": [
+      "#CuriousMinds",
+      "#Dreams",
+      "#Sleep",
+      "#Psychology",
+      "#Brain",
+      "#ScienceFacts",
+      "#Shorts"
+    ],
+    "thumbnail_concepts": [
+      {
+        "name": "question",
+        "text": "WHY DO WE DREAM?",
+        "asset": "dream_cloud",
+        "expression": "surprised",
+        "rationale": "Mascot surprised by a dream cloud; the topic as a direct question."
+      },
+      {
+        "name": "brain_movie",
+        "text": "YOUR BRAIN AT NIGHT",
+        "asset": "brain_activity",
+        "expression": "excited",
+        "rationale": "Mascot pointing at an active brain; promises the 'what happens inside' explanation."
+      }
+    ]
+  },
+  "long": {
+    "titles": [
+      "Why Do We Dream? The Fascinating Science of Sleep and Dreams",
+      "What Really Happens in Your Brain When You Dream",
+      "Dreams Explained: REM Sleep, Big Theories and Strange Facts"
+    ],
+    "description": "Why do we dream? In this Curious Minds episode, Milo explores what dreams are, how sleep cycles and REM sleep work, why your body is paralyzed while your brain is busy, the major scientific theories about the purpose of dreaming, and some truly strange dream facts, from lucid dreaming to whether animals dream.",
+    "hashtags": [
+      "#CuriousMinds",
+      "#Dreams",
+      "#Sleep",
+      "#REMSleep",
+      "#Psychology",
+      "#Neuroscience",
+      "#Science"
+    ],
+    "thumbnail_concepts": [
+      {
+        "name": "question",
+        "text": "WHY DO WE DREAM?",
+        "asset": "dream_cloud",
+        "expression": "surprised",
+        "rationale": "Clear topic question with the main visual; high contrast purple/yellow."
+      },
+      {
+        "name": "brain_on",
+        "text": "BRAIN ON, BODY OFF",
+        "asset": "brain_activity",
+        "expression": "excited",
+        "rationale": "The paradox of REM sleep as the hook; mascot pointing at an active brain."
+      }
+    ]
+  }
+}
