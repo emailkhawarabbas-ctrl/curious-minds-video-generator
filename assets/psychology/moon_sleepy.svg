@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sleepy Moon" data-tags="moon,night,sleep,sleepy,bedtime,nightcap,dreams,crescent,tired,rest">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sleepy Moon" data-tags="moon,night,sleep,sleepy,bedtime,nightcap,dreams,crescent,tired,rest" data-subcategory="sleep" data-style="mind_storybook" data-animations="pop,float,wiggle">
   <!-- crescent body -->
   <g id="part-moon">
     <path d="M197 70 A140 140 0 1 0 323 255 A112 112 0 1 1 197 70 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>

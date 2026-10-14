@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Map" data-tags="map,treasure map,navigation,travel,route,geography,explore,adventure,journey,location,directions">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Map" data-tags="map,treasure map,navigation,travel,route,geography,explore,adventure,journey,location,directions" data-subcategory="exploration" data-style="everyday_doodle" data-animations="pop,float,draw">
 <ellipse cx="200" cy="350" rx="160" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-paper">
     <path d="M44 96 L148 66 L252 96 L356 66 L356 310 L252 340 L148 310 L44 340 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>

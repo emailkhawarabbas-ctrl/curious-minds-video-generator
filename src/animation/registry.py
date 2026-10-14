@@ -22,7 +22,20 @@ LAYOUTS = {
     "timeline": "3-5 milestones along a line revealed in order (stages, history, a night of sleep).",
     "wave_monitor": "A monitor showing animated waves (brain waves / heartbeat / sound) with a state label.",
     "outro": "Brand sign-off: logo, tagline, call to action, mascot waving, confetti.",
+    "demonstration": "Animated scientific diagram (see DEMOS) fills the stage and plays in stages synced to the "
+                     "narration; Milo points at the active part. Use for every process / mechanism explanation.",
+    "full_illustration": "One large environmental illustration (e.g. a sunset, the body's circulation) explored by "
+                         "the camera with labelled callouts; Milo peeks in from a corner.",
+    "character_closeup": "Milo big and expressive, talking straight to the viewer with one prop beside him "
+                         "(relatable moments, reactions, direct questions). Use sparingly.",
 }
+
+# Animated explanatory diagrams for the "demonstration" layout (implemented in src/animation/demos.py)
+from src.animation.demos import DEMO_KINDS as DEMOS  # noqa: E402
+
+# Story roles a script beat can carry (retention structure; see src/content/story_engine.py)
+STORY_ROLES = ("hook", "curiosity_gap", "relatable", "question", "explanation", "discovery", "surprise", "insight",
+               "example", "transition", "recap", "ending")
 
 BACKGROUNDS = {
     "paper": "Cream paper with faint doodle grid (default explainer).",
@@ -38,13 +51,28 @@ BACKGROUNDS = {
     "burst_teal": "Rotating sunburst rays in brand teal.",
     "burst_orange": "Rotating sunburst rays in brand orange.",
     "burst_purple": "Rotating sunburst rays in brand purple.",
+    # Human Body identity
+    "bloodstream": "Inside a blood vessel: warm red lumen with drifting blood cells (circulation, heart, blood).",
+    "body_lab": "Bright medical clinic with anatomy poster and a live ECG wall monitor.",
+    "anatomy_blueprint": "Deep-blue medical blueprint grid with faint organ outlines and a scan line.",
+    "cell_world": "Microscope view: soft field of translucent cells (cells, immunity, DNA).",
+    # Science identity
+    "sky_day": "Wide blue sky from zenith to pale horizon with sun glow and drifting clouds (sky, light, weather).",
+    "science_grid": "Explorer's graph-paper notebook with faint orbit, wave and atom sketches.",
+    "atmosphere_view": "Earth's limb from high above: space, glowing atmosphere band, planet below.",
+    "sunset_sky": "Low sun with purple-pink-orange sky and silhouetted hills (sunsets, light, evening).",
+    # Psychology identity
+    "mind_maze": "Abstract mind: violet field with rotating thought rings and looping spirals.",
+    "thought_room": "Quiet room late at night: desk, lamp glow, window, ticking wall clock (overthinking, worry).",
+    "emotion_waves": "Soft layered colour waves for feelings, insight and calm endings.",
 }
 
 TRANSITIONS = ("cut", "circle_wipe", "doodle_swipe", "slide", "star_zoom", "dots", "dip_cream", "blinds")
 
-CAMERA_MOVES = ("static", "zoom_in", "zoom_out", "pan_left", "pan_right", "drift", "punch_in", "shake")
+CAMERA_MOVES = ("static", "zoom_in", "zoom_out", "pan_left", "pan_right", "drift", "punch_in", "shake",
+                "focus", "follow", "reveal")
 
-CHARACTER_POSITIONS = ("left", "right", "center", "corner_left", "corner_right")
+CHARACTER_POSITIONS = ("left", "right", "center", "corner_left", "corner_right", "closeup")
 
 OBJECT_ROLES = ("main", "secondary", "item", "prop")
 

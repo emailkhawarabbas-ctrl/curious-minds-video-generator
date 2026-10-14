@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" data-title="Person Looking Up at the Sky" data-tags="observer,person,looking up,sky watcher,stargazer,eye,viewer,human,seeing,curious kid" data-subcategory="observation" data-style="science_explorer" data-animations="pop,float,wiggle">
+  <ellipse cx="150" cy="388" rx="80" ry="10" fill="#2B2D42" fill-opacity="0.15"/>
+  <g id="part-body">
+    <path d="M110 380 L118 270 L182 270 L190 380 L162 380 L152 310 L148 310 L138 380 Z" fill="#3D405B" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M96 286 C96 214 112 176 150 176 C188 176 204 214 204 286 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M190 210 C214 186 232 150 238 112" fill="none" stroke="#2B2D42" stroke-width="22" stroke-linecap="round"/>
+    <path d="M190 210 C214 186 232 150 238 112" fill="none" stroke="#FF9F1C" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="240" cy="104" r="13" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-head">
+    <circle cx="146" cy="128" r="48" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M100 118 C102 84 130 70 158 74 C184 78 196 96 194 116 C176 98 140 96 100 118 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <ellipse cx="136" cy="118" rx="9" ry="11" fill="#FFFFFF" stroke="#2B2D42" stroke-width="4"/>
+    <ellipse cx="168" cy="114" rx="9" ry="11" fill="#FFFFFF" stroke="#2B2D42" stroke-width="4"/>
+    <circle cx="139" cy="112" r="4.5" fill="#2B2D42"/>
+    <circle cx="171" cy="108" r="4.5" fill="#2B2D42"/>
+    <ellipse cx="156" cy="150" rx="9" ry="7" fill="#2B2D42"/>
+  </g>
+  <circle id="anchor-top" cx="146" cy="76" r="4"/>
+  <circle id="anchor-center" cx="150" cy="240" r="4"/>
+  <circle id="anchor-eyes" cx="152" cy="114" r="4"/>
+  <circle id="anchor-hand" cx="240" cy="104" r="4"/>
+</svg>

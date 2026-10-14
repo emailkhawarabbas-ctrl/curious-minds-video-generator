@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" data-title="Blood Vessel (Artery Cutaway)" data-tags="blood vessel,artery,vein,capillary,blood flow,circulation,red blood cells,bloodstream,vessel wall" data-subcategory="circulation" data-style="medical_cartoon" data-animations="draw,flow,pulse">
+  <ellipse cx="300" cy="276" rx="250" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-wall">
+    <path d="M40 70 C160 54 440 54 560 70 L560 230 C440 246 160 246 40 230 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+  <g id="part-lumen">
+    <path d="M40 100 C160 88 440 88 560 100 L560 200 C440 212 160 212 40 200 Z" fill="#FFD6E0" stroke="#2B2D42" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <ellipse cx="40" cy="150" rx="26" ry="80" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8"/>
+  <ellipse cx="40" cy="150" rx="15" ry="50" fill="#FFD6E0" stroke="#2B2D42" stroke-width="5"/>
+  <g id="part-cells">
+    <ellipse cx="140" cy="132" rx="34" ry="22" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+    <ellipse cx="140" cy="132" rx="16" ry="9" fill="#C9284F"/>
+    <ellipse cx="236" cy="170" rx="34" ry="22" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+    <ellipse cx="236" cy="170" rx="16" ry="9" fill="#C9284F"/>
+    <ellipse cx="338" cy="128" rx="34" ry="22" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+    <ellipse cx="338" cy="128" rx="16" ry="9" fill="#C9284F"/>
+    <ellipse cx="440" cy="168" rx="34" ry="22" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+    <ellipse cx="440" cy="168" rx="16" ry="9" fill="#C9284F"/>
+    <circle cx="512" cy="126" r="20" fill="#F4F1FF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <path d="M470 78 L520 80 M500 66 L522 80 L500 94" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M90 84 C200 72 300 72 400 76" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="8" stroke-linecap="round"/>
+  <circle id="anchor-top" cx="300" cy="58" r="4"/>
+  <circle id="anchor-center" cx="300" cy="150" r="4"/>
+  <circle id="anchor-wall" cx="300" cy="226" r="4"/>
+  <circle id="anchor-cells" cx="236" cy="170" r="4"/>
+  <circle id="anchor-flow" cx="520" cy="80" r="4"/>
+</svg>

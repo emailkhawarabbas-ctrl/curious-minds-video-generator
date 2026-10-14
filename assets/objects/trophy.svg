@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Trophy" data-tags="trophy,award,winner,prize,champion,success,achievement,victory,goal,competition,first place">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Trophy" data-tags="trophy,award,winner,prize,champion,success,achievement,victory,goal,competition,first place" data-subcategory="rewards" data-style="everyday_doodle" data-animations="pop,float,draw">
 <ellipse cx="200" cy="358" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-handles" fill="none" stroke-linecap="round">
     <path d="M126 96 C66 90 62 186 140 190 M274 96 C334 90 338 186 260 190" stroke="#2B2D42" stroke-width="30"/>

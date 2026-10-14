@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sun" data-tags="sun,star,sunlight,daylight,solar,energy,light,heat,day,morning,summer">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sun" data-tags="sun,star,sunlight,daylight,solar,energy,light,heat,day,morning,summer" data-subcategory="space" data-style="science_explorer" data-animations="pop,float,spin,orbit">
 <g id="part-rays" stroke="#2B2D42" stroke-width="7">
     <path d="M180 112 L200 36 L220 112 Z" fill="#FF9F1C" transform="rotate(0 200 200)"/>
     <path d="M184 112 L200 60 L216 112 Z" fill="#FFD23F" transform="rotate(30 200 200)"/>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Conversation Bubbles" data-tags="conversation,chat,talking,social,message,texting,friends,communication,what did they mean,social interaction" data-subcategory="social" data-style="mind_storybook" data-animations="pop,float,bounce">
+  <ellipse cx="200" cy="370" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-bubble_back">
+    <path d="M150 70 L330 70 C352 70 370 88 370 110 L370 200 C370 222 352 240 330 240 L300 240 L322 284 L262 240 L150 240 C128 240 110 222 110 200 L110 110 C110 88 128 70 150 70 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M150 104 L300 104 M150 140 L330 140 M150 176 L250 176" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g id="part-bubble_front">
+    <path d="M70 180 L230 180 C252 180 270 198 270 220 L270 290 C270 312 252 330 230 330 L120 330 L70 366 L84 330 L70 330 C48 330 30 312 30 290 L30 220 C30 198 48 180 70 180 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <circle cx="96" cy="256" r="16" fill="#FF8FAB" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="150" cy="256" r="16" fill="#FF8FAB" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="204" cy="256" r="16" fill="#FF8FAB" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-top" cx="240" cy="70" r="4"/>
+  <circle id="anchor-center" cx="200" cy="210" r="4"/>
+  <circle id="anchor-typing" cx="150" cy="256" r="4"/>
+  <circle id="anchor-message" cx="330" cy="140" r="4"/>
+</svg>

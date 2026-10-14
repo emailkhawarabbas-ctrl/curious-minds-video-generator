@@ -25,6 +25,10 @@ DEMO = {
     "timeline": dict(items=[{"text": "A"}, {"text": "B"}, {"text": "C"}]),
     "wave_monitor": dict(items=[{"text": "Awake"}, {"text": "Deep sleep"}]),
     "outro": dict(text_overlays=[{"text": "Follow!", "style": "cta"}]),
+    "demonstration": dict(demo={"kind": "heart_pump", "labels": ["Oxygen-poor blood"]}),
+    "full_illustration": dict(objects=[{"asset": "heart_cutaway"}], text_overlays=[{"text": "Left atrium",
+                                                                                   "style": "label"}]),
+    "character_closeup": dict(objects=[{"asset": "pulse_monitor"}], character={"position": "closeup"}),
 }
 
 

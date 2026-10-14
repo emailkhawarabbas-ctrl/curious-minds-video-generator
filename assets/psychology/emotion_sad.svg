@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sad Face" data-tags="sad,sadness,unhappy,crying,tear,emotion,feeling,depression,mood,blue,grief">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Sad Face" data-tags="sad,sadness,unhappy,crying,tear,emotion,feeling,depression,mood,blue,grief" data-subcategory="emotions" data-style="mind_storybook" data-animations="pop,wiggle,bounce">
   <ellipse cx="200" cy="350" rx="112" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-face">
     <circle cx="200" cy="190" r="140" fill="#8ECAE6" stroke="#2B2D42" stroke-width="8"/>

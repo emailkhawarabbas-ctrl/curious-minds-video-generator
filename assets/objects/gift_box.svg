@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Gift Box" data-tags="gift,present,birthday,surprise,reward,celebration,party,holiday,bonus,box">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Gift Box" data-tags="gift,present,birthday,surprise,reward,celebration,party,holiday,bonus,box" data-subcategory="rewards" data-style="everyday_doodle" data-animations="pop,float,draw">
 <ellipse cx="200" cy="354" rx="150" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-box">
     <rect x="76" y="176" width="248" height="170" rx="10" fill="#FF5D73" stroke="#2B2D42" stroke-width="8"/>

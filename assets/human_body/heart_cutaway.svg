@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Heart Cutaway (Four Chambers)" data-tags="heart,chambers,atrium,ventricle,valve,cross section,cutaway,anatomy,cardiovascular,pump,circulation,septum" data-subcategory="cardiovascular" data-style="medical_cartoon" data-animations="draw,beat,pulse,highlight,flow">
+  <ellipse cx="200" cy="372" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- great vessels behind -->
+  <g id="part-vena_cava">
+    <path d="M108 40 L108 150 L140 150 L140 40 Z" fill="#3A86FF" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M118 52 L118 100" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6"/>
+  </g>
+  <g id="part-aorta">
+    <path d="M196 160 L196 96 C196 56 236 40 266 48 C296 56 312 80 312 110 L312 150 L282 150 L282 112 C282 92 272 80 256 80 C238 80 226 92 226 110 L226 160 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M210 110 C212 84 228 70 248 66" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6"/>
+  </g>
+  <g id="part-pulmonary">
+    <path d="M150 168 C146 136 156 112 182 106 L230 98 C244 96 246 122 232 124 L190 132 C178 136 176 150 178 170 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+  <!-- heart outer wall -->
+  <path d="M112 150 C70 168 56 230 84 276 C112 322 176 352 210 362 C246 348 312 316 334 262 C356 206 334 156 290 148 C262 142 236 152 214 168 C190 150 150 138 112 150 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+  <!-- right atrium: viewer left, oxygen-poor blood (blue) -->
+  <g id="part-right_atrium">
+    <path d="M98 176 C112 160 148 158 176 172 C184 190 182 212 172 226 C144 232 114 230 96 220 C88 206 90 188 98 176 Z" fill="#8ECAE6" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <!-- left atrium: viewer right, oxygen-rich blood (red) -->
+  <g id="part-left_atrium">
+    <path d="M236 180 C258 164 296 162 316 178 C324 194 322 214 312 226 C286 232 256 230 240 222 C230 208 230 192 236 180 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <g id="part-right_ventricle">
+    <path d="M96 238 C120 246 158 248 182 240 C190 272 192 306 198 338 C160 326 122 304 104 280 C96 266 94 252 96 238 Z" fill="#3A86FF" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M112 252 C118 270 132 286 150 296" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="6"/>
+  </g>
+  <g id="part-left_ventricle">
+    <path d="M222 240 C250 248 290 246 314 236 C318 268 304 296 282 316 C262 332 238 342 222 346 C218 310 218 274 222 240 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M298 252 C296 274 286 292 270 306" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="6"/>
+  </g>
+  <g id="part-septum">
+    <path d="M190 170 C196 220 196 290 208 350 L216 350 C214 290 216 220 226 170 Z" fill="#E03A5C" stroke="#2B2D42" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <g id="part-valves">
+    <path d="M110 232 C126 228 140 238 152 232 C162 228 172 236 180 232" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+    <path d="M236 232 C250 228 264 238 276 232 C290 228 302 236 312 232" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+    <path d="M110 232 C126 228 140 238 152 232 C162 228 172 236 180 232" fill="none" stroke="#2B2D42" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M236 232 C250 228 264 238 276 232 C290 228 302 236 312 232" fill="none" stroke="#2B2D42" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <!-- flow chevrons -->
+  <path d="M130 196 L140 206 L130 216" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M278 196 L268 206 L278 216" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M140 262 L150 274 L162 262" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M256 262 L266 274 L278 262" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle id="anchor-top" cx="250" cy="44" r="4"/>
+  <circle id="anchor-center" cx="208" cy="250" r="4"/>
+  <circle id="anchor-right_atrium" cx="136" cy="196" r="4"/>
+  <circle id="anchor-left_atrium" cx="276" cy="198" r="4"/>
+  <circle id="anchor-right_ventricle" cx="146" cy="282" r="4"/>
+  <circle id="anchor-left_ventricle" cx="268" cy="286" r="4"/>
+  <circle id="anchor-valves" cx="276" cy="232" r="4"/>
+  <circle id="anchor-aorta" cx="300" cy="120" r="4"/>
+  <circle id="anchor-vena_cava" cx="124" cy="70" r="4"/>
+  <circle id="anchor-pulmonary" cx="216" cy="112" r="4"/>
+</svg>

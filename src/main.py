@@ -5,6 +5,7 @@ Examples:
   python -m src.main generate --topic "Why Do We Hiccup?" --niche human_body --no-long
   python -m src.main research --topic "How Do Magnets Work?"
   python -m src.main qc --video generated/why_do_we_dream/curious_minds_shorts_9x16.mp4 --profile vertical
+  python -m src.main voice preview --extra am_puck am_fenrir
   python -m src.main assets index
   python -m src.main analytics import --platform youtube --csv export.csv
   python -m src.main analytics report
@@ -34,16 +35,9 @@ def _bool(v: str) -> bool:
     raise argparse.ArgumentTypeError(f"expected true/false, got {v!r}")
 
 
-VOICE_ALIASES = {
-    "us english friendly male": "en_US-joe-medium",
-    "us english male (calm)": "en_US-norman-medium",
-    "us english male (narrator)": "en_US-john-medium",
-}
-
-
 def cmd_generate(a, settings) -> int:
     from src.pipeline import GenerationRequest, Pipeline
-    voice = VOICE_ALIASES.get((a.voice or "").strip().lower(), a.voice) if a.voice else None
+    voice = a.voice.strip() if a.voice else None   # profile label/key, Kokoro voice or Piper id (see tts_engine)
     req = GenerationRequest(topic=a.topic, niche=a.niche, generate_short=a.short, generate_long=a.long,
                             short_duration=a.short_duration, long_duration=a.long_duration * 60 if a.long_duration <= 10
                             else a.long_duration, voice=voice, subtitles=a.subtitles, thumbnail=a.thumbnail,
@@ -53,6 +47,17 @@ def cmd_generate(a, settings) -> int:
                       "report": str((Path(a.out) if a.out else settings.paths.generated) / manifest["slug"] /
                                     "production_report.json")}, indent=2))
     return 0 if manifest["status"] == "success" else 1
+
+
+def cmd_voice(a, settings) -> int:
+    from src.audio.tts_engine import resolve_voice
+    from src.audio.voice_preview import preview
+    if a.voice:
+        resolve_voice(settings, a.voice)
+    out = Path(a.out) if a.out else settings.paths.generated / "voice_preview"
+    rep = preview(settings, out, extra_voices=a.extra or [], asr=not a.no_asr)
+    print((out / "voice_comparison.md").read_text(encoding="utf-8"))
+    return 0 if any("error" not in r for r in rep["candidates"]) else 1
 
 
 def cmd_research(a, settings) -> int:
@@ -130,12 +135,22 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--no-long", dest="long", action="store_false")
     g.add_argument("--short-duration", type=float, default=75, help="seconds (60-90)")
     g.add_argument("--long-duration", type=float, default=8, help="minutes (6-10) or seconds (360-600)")
-    g.add_argument("--voice", default=None, help="Piper voice id or alias, e.g. 'US English Friendly Male'")
+    g.add_argument("--voice", default=None,
+                   help="voice profile label/key (e.g. 'US English Friendly Male', energetic), a Kokoro voice "
+                        "(am_michael or a blend) or a Piper voice id")
     g.add_argument("--subtitles", type=_bool, default=True)
     g.add_argument("--thumbnail", type=_bool, default=True)
     g.add_argument("--script-source", choices=["auto", "llm", "curated", "offline"], default=None)
     g.add_argument("--out", default=None, help="output root (default: generated/)")
     g.set_defaults(func=cmd_generate)
+
+    v = sub.add_parser("voice", help="narration voice tools")
+    v.add_argument("action", choices=["preview"])
+    v.add_argument("--voice", help="profile/voice to treat as the default for this preview")
+    v.add_argument("--extra", nargs="*", help="extra voices to compare, e.g. am_puck am_fenrir")
+    v.add_argument("--out", help="output dir (default: generated/voice_preview)")
+    v.add_argument("--no-asr", action="store_true", help="skip the Whisper intelligibility measurement")
+    v.set_defaults(func=cmd_voice)
 
     r = sub.add_parser("research", help="run topic research only")
     r.add_argument("--topic", required=True)

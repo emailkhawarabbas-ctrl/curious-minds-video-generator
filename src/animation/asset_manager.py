@@ -34,6 +34,9 @@ class AssetRecord:
     tags: tuple
     anchors: tuple
     license: str
+    subcategory: str = ""
+    style: str = ""
+    animations: tuple = ()
 
 
 class AssetManager:
@@ -62,7 +65,8 @@ class AssetManager:
                 self._cache[f.stem] = a
                 self._records[f.stem] = AssetRecord(
                     asset_id=f.stem, category=cat, file=str(f.relative_to(self.root)),
-                    title=a.title, tags=a.tags, anchors=tuple(sorted(a.anchors)), license=a.license)
+                    title=a.title, tags=a.tags, anchors=tuple(sorted(a.anchors)), license=a.license,
+                    subcategory=a.subcategory, style=a.style, animations=a.animations)
 
     # ---------------------------------------------------------------- queries
     def ids(self, category: Optional[str] = None) -> List[str]:
@@ -106,9 +110,23 @@ class AssetManager:
 
     # ---------------------------------------------------------------- manifests
     def manifest(self) -> Dict[str, dict]:
-        return {k: {"category": r.category, "file": r.file, "title": r.title, "tags": list(r.tags),
+        return {k: {"name": r.title, "category": r.category, "subcategory": r.subcategory, "file": r.file,
+                    "keywords": list(r.tags), "style": r.style, "animations": list(r.animations),
                     "anchors": list(r.anchors), "license": r.license}
                 for k, r in sorted(self._records.items())}
+
+    def missing_metadata(self) -> Dict[str, List[str]]:
+        """Assets lacking any required metadata field (validated by tests and `assets index`)."""
+        out: Dict[str, List[str]] = {}
+        for k, r in self._records.items():
+            if r.category == "characters":
+                continue
+            miss = [f for f, v in (("title", r.title != k and r.title), ("keywords", len(r.tags) >= 3),
+                                   ("subcategory", r.subcategory), ("style", r.style),
+                                   ("animations", r.animations), ("license", r.license)) if not v]
+            if miss:
+                out[k] = miss
+        return out
 
     def write_manifest(self, path: Optional[Path] = None) -> Path:
         path = path or self.root / "manifest.json"

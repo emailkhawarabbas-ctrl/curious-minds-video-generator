@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Microscope" data-tags="microscope,lab,laboratory,biology,cells,magnify,research,science,experiment,microbes,zoom">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Microscope" data-tags="microscope,lab,laboratory,biology,cells,magnify,research,science,experiment,microbes,zoom" data-subcategory="instruments" data-style="science_explorer" data-animations="pop,float,draw">
 <ellipse cx="226" cy="358" rx="124" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-arm">
     <path d="M250 330 L250 300 C290 286 308 230 290 186 C280 160 262 140 244 128 L218 156 C236 168 252 186 258 206 C268 240 252 270 222 282 L222 330 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>

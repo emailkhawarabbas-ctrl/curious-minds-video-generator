@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Blood Cells" data-tags="blood cells,red blood cell,white blood cell,blood,oxygen,immune system,circulation,hemoglobin,cells,body">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Blood Cells" data-tags="blood cells,red blood cell,white blood cell,blood,oxygen,immune system,circulation,hemoglobin,cells,body" data-subcategory="blood" data-style="medical_cartoon" data-animations="pop,float,flow">
   <!-- soft shadow -->
   <ellipse cx="200" cy="364" rx="130" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- white blood cell (back right) -->

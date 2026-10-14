@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" data-title="Human Body Circulation" data-tags="circulatory system,circulation,blood vessels,arteries,veins,human body,heart,lungs,blood flow,cardiovascular,whole body" data-subcategory="circulation" data-style="medical_cartoon" data-animations="draw,flow,pulse,highlight">
+  <ellipse cx="150" cy="404" rx="96" ry="10" fill="#2B2D42" fill-opacity="0.12"/>
+  <!-- body silhouette -->
+  <g id="part-body">
+    <circle cx="150" cy="52" r="34" fill="#9BE7DF" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M136 84 L164 84 L166 98 C196 100 220 112 226 140 L248 236 C252 252 232 258 226 244 L206 166 L204 240 L214 392 C216 408 192 410 188 394 L158 266 L142 266 L112 394 C108 410 84 408 86 392 L96 240 L94 166 L74 244 C68 258 48 252 52 236 L74 140 C80 112 104 100 134 98 Z" fill="#9BE7DF" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M86 150 C88 130 100 118 118 112" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <!-- lungs -->
+  <g id="part-lungs">
+    <path d="M112 118 C98 128 96 168 104 190 C114 198 132 194 138 182 L140 124 C134 114 120 112 112 118 Z" fill="#FFD6E0" stroke="#2B2D42" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M188 118 C202 128 204 168 196 190 C186 198 168 194 162 182 L160 124 C166 114 180 112 188 118 Z" fill="#FFD6E0" stroke="#2B2D42" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <!-- veins (blue, oxygen-poor) -->
+  <g id="part-veins">
+    <path d="M142 150 L142 90 M142 150 C120 150 100 170 84 230 M142 168 L130 260 L108 390" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M150 196 L150 260 M150 236 L176 260 L198 390 M150 150 C176 156 196 176 214 230" fill="none" stroke="#3A86FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- arteries (red, oxygen-rich) -->
+  <g id="part-arteries">
+    <path d="M158 150 L158 86 M158 152 C182 150 204 172 220 230 M158 170 L172 262 L194 392" fill="none" stroke="#EF476F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M150 170 C126 158 104 178 90 232 M150 190 L136 262 L114 392" fill="none" stroke="#EF476F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- heart -->
+  <g id="part-heart">
+    <path d="M150 160 C140 146 120 150 122 168 C124 184 142 194 152 202 C164 192 180 182 180 166 C180 150 160 146 150 160 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M130 166 C130 158 136 154 142 156" fill="none" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-top" cx="150" cy="18" r="4"/>
+  <circle id="anchor-center" cx="150" cy="210" r="4"/>
+  <circle id="anchor-heart" cx="152" cy="174" r="4"/>
+  <circle id="anchor-lungs" cx="194" cy="150" r="4"/>
+  <circle id="anchor-arteries" cx="216" cy="222" r="4"/>
+  <circle id="anchor-veins" cx="88" cy="222" r="4"/>
+  <circle id="anchor-head" cx="150" cy="52" r="4"/>
+  <circle id="anchor-legs" cx="194" cy="380" r="4"/>
+</svg>

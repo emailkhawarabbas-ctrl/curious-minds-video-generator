@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Alarm Clock" data-tags="alarm,clock,wake up,morning,time,alarm clock,schedule,sleep,circadian,routine">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Alarm Clock" data-tags="alarm,clock,wake up,morning,time,alarm clock,schedule,sleep,circadian,routine" data-subcategory="sleep" data-style="mind_storybook" data-animations="pop,float,wiggle">
   <ellipse cx="200" cy="364" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- legs -->
   <g id="part-legs">

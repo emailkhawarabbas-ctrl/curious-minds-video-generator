@@ -20,6 +20,7 @@ content:
   script_source: "auto"
   storyboard_source: "auto"      # auto = LLM-assisted when a key is set, else rule-based
   allow_unresearched: false      # refuse to write scripts when no research could be gathered
+  block_on_review_fail: true     # a failed storytelling/visual review check (see review/) fails the video
   short_duration: [60, 90]       # seconds, inclusive range
   long_duration: [360, 600]
 
@@ -51,17 +52,51 @@ research:
     - science.org
 
 tts:
-  provider: "piper"
-  voice: "en_US-joe-medium"           # "US English – Friendly Male" (CC0 dataset)
-  voice_label: "US English Friendly Male"
-  length_scale: 1.15                  # >1 = slower. Joe speaks fast; 1.15 gives a clear educational pace
-  noise_scale: 0.72                   # expressiveness
-  noise_w_scale: 0.85
+  # kokoro     = Kokoro-82M neural TTS, local & free (Apache-2.0 model + voices) — default, studio-like clarity
+  # piper      = Piper VITS, local & lightweight (older, flatter delivery) — opt-in fallback
+  # elevenlabs = cloud, needs ELEVENLABS_API_KEY (or TTS_API_KEY) + a voice id
+  # openai     = cloud, needs OPENAI_API_KEY (or TTS_API_KEY); delivery intents become spoken instructions
+  provider: "kokoro"
+  fallback_provider: "none"           # "none" = fail loudly instead of silently using a weaker voice
+  profile: "friendly"
+  profiles:
+    friendly:
+      label: "US English Friendly Male"
+      description: "Professional Friendly Male: warm, clear, conversational presenter"
+      kokoro_voice: "am_michael"
+      piper_voice: "en_US-joe-medium"
+      openai_voice: "ash"
+      speed: 1.0
+      expressiveness: 0.6
+      words_per_second: 2.85          # measured incl. directed pauses (voice preview, 2026-10-14)
+    energetic:
+      label: "US English Male (Energetic)"
+      description: "Energetic Educational Male: brighter, quicker, more emphatic"
+      kokoro_voice: "am_puck:0.6,am_michael:0.4"
+      piper_voice: "en_US-john-medium"
+      openai_voice: "verse"
+      speed: 1.04
+      expressiveness: 0.85
+      words_per_second: 3.15
+    documentary:
+      label: "US English Male (Calm)"
+      description: "Calm Documentary Male: measured, warm, authoritative"
+      kokoro_voice: "am_michael:0.65,am_fenrir:0.35"
+      piper_voice: "en_US-norman-medium"
+      openai_voice: "onyx"
+      speed: 0.93
+      expressiveness: 0.45
+      words_per_second: 2.7
+  length_scale: 1.0                   # tempo multiplier on top of the profile speed (>1 = slower)
+  noise_scale: 0.667                  # Piper only (its trained default; higher values add artefacts)
+  noise_w_scale: 0.8
   sentence_pause_s: 0.22
   scene_lead_in_s: 0.30
   scene_tail_s: 0.45
-  speed_fit_range: [0.95, 1.24]       # allowed length_scale range when fitting to target duration
+  speed_fit_range: [0.92, 1.1]        # allowed tempo range when fitting narration to the target duration
   voice_base_url: "https://huggingface.co/rhasspy/piper-voices/resolve/main"
+  cache: true
+  asr_check: "auto"                   # Whisper intelligibility check when faster-whisper is installed
 
 audio:
   sample_rate: 44100

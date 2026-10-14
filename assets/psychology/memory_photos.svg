@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Memory Photos" data-tags="memory,memories,photos,remember,past,nostalgia,recall,pictures,polaroid,childhood,psychology">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Memory Photos" data-tags="memory,memories,photos,remember,past,nostalgia,recall,pictures,polaroid,childhood,psychology" data-subcategory="memory" data-style="mind_storybook" data-animations="pop,float,draw">
   <ellipse cx="200" cy="350" rx="140" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- back left photo: sun over hills -->
   <g id="part-photo_left" transform="translate(132 196) rotate(-15)">

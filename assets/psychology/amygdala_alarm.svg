@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Brain Alarm (Amygdala)" data-tags="amygdala,alarm,threat detection,fear center,stress response,brain alarm,fight or flight,anxiety,danger,emotion" data-subcategory="brain_activity" data-style="mind_storybook" data-animations="pop,pulse,signal,wiggle">
+  <ellipse cx="200" cy="366" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-waves">
+    <path d="M80 110 C60 130 56 160 66 184 M50 90 C22 122 18 170 36 204" fill="none" stroke="#EF476F" stroke-width="9" stroke-linecap="round"/>
+    <path d="M320 110 C340 130 344 160 334 184 M350 90 C378 122 382 170 364 204" fill="none" stroke="#EF476F" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-brain">
+    <path d="M110 250 C76 240 66 196 88 170 C80 130 112 100 148 108 C160 76 210 70 232 96 C262 80 304 100 304 136 C334 150 340 196 318 220 C326 254 296 282 262 276 C246 300 204 306 182 286 C152 300 116 284 110 250 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M150 140 C164 156 190 154 200 136 M232 120 C230 148 254 164 278 156 M120 200 C146 196 160 214 156 238 M240 220 C262 206 290 212 300 232" fill="none" stroke="#2B2D42" stroke-width="6" stroke-linecap="round"/>
+    <path d="M108 160 C112 138 128 124 146 122" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g id="part-amygdala">
+    <ellipse cx="214" cy="216" rx="30" ry="20" transform="rotate(-20 214 216)" fill="#EF476F" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M200 208 C206 202 216 200 224 204" fill="none" stroke="#FFD6E0" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="part-bolt">
+    <path d="M210 30 L184 82 L206 82 L192 124 L236 66 L212 66 L226 30 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <circle id="anchor-top" cx="210" cy="30" r="4"/>
+  <circle id="anchor-center" cx="200" cy="196" r="4"/>
+  <circle id="anchor-amygdala" cx="214" cy="216" r="4"/>
+  <circle id="anchor-waves" cx="356" cy="150" r="4"/>
+</svg>

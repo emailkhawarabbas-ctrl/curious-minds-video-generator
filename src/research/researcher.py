@@ -17,6 +17,7 @@ from __future__ import annotations
 import html
 import logging
 import re
+import time
 import xml.etree.ElementTree as ET
 from typing import Callable, Dict, List, Optional
 
@@ -32,7 +33,15 @@ log = logging.getLogger(__name__)
 STOPWORDS = set("""a an the do does did why how what when where who which is are was were be been being we you
 your our us i me my it its this that these those of in on at to for from by with about into over under can
 could should would will just really actually ever happen happens happening there their they them and or
-but if so as than then too very much many most more some any all every each make makes made get gets""".split())
+but if so as than then too very much many most more some any all every each make makes made get gets
+work works working everything anything something thing things kind happen""".split())
+
+# Wikipedia pages about media, organisations, people or colour names are never sources for a science explainer
+OFF_TOPIC_DESC = re.compile(
+    r"\b(album|song|single|soundtrack|film|movie|band|studio|company|corporation|television|tv series|series|"
+    r"sitcom|novel|book|video game|football|soccer|club|team|character|manga|anime|magazine|newspaper|"
+    r"record label|musician|singer|rapper|actor|actress|episode|musical|play by|brand|colou?r|crayon|"
+    r"disambiguation|surname|given name|politician|footballer|businessperson|preschool)\b", re.I)
 
 
 def keywords(topic: str) -> List[str]:
@@ -48,7 +57,15 @@ def keywords(topic: str) -> List[str]:
 # Small related-term map used for query expansion when no LLM is available.
 RELATED = {
     "dream": ["REM sleep", "sleep"], "nightmare": ["sleep", "REM sleep"], "sleep": ["sleep"],
-    "memory": ["memory consolidation", "brain"], "memories": ["memory", "brain"], "heart": ["heart"],
+    "memory": ["memory consolidation", "brain"], "memories": ["memory", "brain"],
+    "heart": ["cardiac cycle", "circulatory system", "heart"], "blood": ["circulatory system", "blood"],
+    "pulse": ["heart rate", "pulse"], "lung": ["respiratory system", "lung"], "breath": ["breathing"],
+    "sky": ["diffuse sky radiation", "Rayleigh scattering"], "sunset": ["sunset", "Rayleigh scattering"],
+    "rainbow": ["rainbow", "dispersion (optics)"], "light": ["light", "visible spectrum"],
+    "black": ["black hole"], "magnet": ["magnetism"], "volcano": ["volcano"], "thunder": ["thunder", "lightning"],
+    "overthink": ["rumination (psychology)", "worry"], "worry": ["worry", "anxiety"], "anxiety": ["anxiety"],
+    "decision": ["decision-making", "choice overload"], "procrastinat": ["procrastination"],
+    "motivation": ["motivation"], "fear": ["fear", "amygdala"], "stress": ["psychological stress"],
     "habit": ["habit formation", "behavior"], "habits": ["habit formation", "behavior"],
     "emotion": ["emotion", "brain"], "emotions": ["emotion", "brain"], "yawn": ["yawning"],
     "hiccup": ["hiccups"], "hiccups": ["hiccups"], "goosebumps": ["goose bumps"],
@@ -62,6 +79,11 @@ def related_terms(topic: str) -> List[str]:
             if k.startswith(key):
                 out += [v for v in vals if v not in out]
     return out
+
+
+def expanded_topic(topic: str) -> str:
+    """Topic plus its concept expansions (parentheticals dropped), for relevance and fact extraction."""
+    return " ".join([topic] + [re.sub(r"\s*\([^)]*\)", "", t) for t in related_terms(topic)])
 
 
 def relevance(text: str, topic: str) -> int:
@@ -89,26 +111,57 @@ class Researcher:
         self.source_texts: Dict[str, str] = {}
 
     # ------------------------------------------------------------------ providers
+    def _get_json(self, url: str, params: Dict) -> Dict:
+        """GET JSON politely; one retry after a short pause (Wikipedia rate-limits bursts)."""
+        for attempt in range(4):
+            r = self.http.get(url, params=params, timeout=self.timeout)
+            if r.status_code == 429 and attempt < 3:
+                wait = float(r.headers.get("Retry-After") or 0) or 2.0 * (attempt + 1)
+                log.info("rate limited by %s; retrying in %.0f s", url.split("/")[2], min(wait, 20))
+                time.sleep(min(wait, 20))
+                continue
+            r.raise_for_status()
+            try:
+                return r.json()
+            except ValueError:
+                if attempt >= 3:
+                    raise
+                time.sleep(1.5)
+        return {}
+
     def _wikipedia(self, topic: str, sm: SourceManager) -> int:
+        """Search with the natural question, the keywords and concept expansions; drop media/organisation pages."""
         api = "https://en.wikipedia.org/w/api.php"
         titles: List[str] = []
-        for q in [" ".join(keywords(topic))] + related_terms(topic)[:1]:
-            r = self.http.get(api, params={"action": "query", "list": "search", "srsearch": q, "srlimit": 3,
-                                           "format": "json"}, timeout=self.timeout)
-            r.raise_for_status()
-            for h in r.json().get("query", {}).get("search", []):
-                if "disambiguation" not in h["title"].lower() and h["title"] not in titles:
-                    titles.append(h["title"])
+        rejected: List[str] = []
+        queries = [topic.rstrip("?"), " ".join(keywords(topic))] + related_terms(topic)[:2]
+        for q in dict.fromkeys(queries):
+            hits = self._get_json(api, {"action": "query", "list": "search", "srsearch": q, "srlimit": 4,
+                                        "format": "json"}).get("query", {}).get("search", [])
+            names = [h["title"] for h in hits if h["title"] not in titles]
+            if not names:
+                continue
+            pages = self._get_json(api, {"action": "query", "prop": "description", "titles": "|".join(names),
+                                         "format": "json", "redirects": 1}).get("query", {}).get("pages", {})
+            desc = {pg.get("title"): pg.get("description", "") for pg in pages.values()}
+            for name in names:
+                d = desc.get(name, "")
+                if OFF_TOPIC_DESC.search(d) or "disambiguation" in name.lower() or "same term" in d.lower():
+                    rejected.append(f"{name} ({d})")
+                    continue
+                titles.append(name)
+            time.sleep(0.2)
+        if rejected:
+            log.info("wikipedia: skipped off-topic pages: %s", "; ".join(rejected[:8]))
         added = 0
         for title in titles[: self.n]:
-            r2 = self.http.get(api, params={"action": "query", "prop": "extracts|info|revisions", "explaintext": 1,
-                                            "exsectionformat": "plain", "titles": title, "inprop": "url",
-                                            "rvprop": "timestamp", "format": "json", "redirects": 1},
-                               timeout=self.timeout)
-            r2.raise_for_status()
-            for page in r2.json().get("query", {}).get("pages", {}).values():
+            data = self._get_json(api, {"action": "query", "prop": "extracts|info|revisions", "explaintext": 1,
+                                        "exsectionformat": "plain", "titles": title, "inprop": "url",
+                                        "rvprop": "timestamp", "format": "json", "redirects": 1})
+            time.sleep(0.3)
+            for page in data.get("query", {}).get("pages", {}).values():
                 text = (page.get("extract") or "")[:15000]
-                if not text or relevance(text, topic) < 3:
+                if not text or relevance(text, expanded_topic(topic)) < 3:
                     continue
                 ts = (page.get("revisions") or [{}])[0].get("timestamp", "")[:10] or None
                 sm.add(title=f"{page.get('title')} — Wikipedia", url=page.get("fullurl"), provider="wikipedia",
@@ -213,7 +266,7 @@ class Researcher:
                 log.warning("research provider %s failed: %s", name, exc)
         sources = sm.sources
         self.source_texts = dict(sm.texts)
-        facts, uncertain = extract_facts(topic, sources, sm.texts)
+        facts, uncertain = extract_facts(expanded_topic(topic), sources, sm.texts)
         ok_count = sum(1 for v in status.values() if v.startswith("ok") and not v.startswith("ok (0"))
         state = "unavailable" if not sources else ("ok" if ok_count >= 2 else "partial")
         notes = []

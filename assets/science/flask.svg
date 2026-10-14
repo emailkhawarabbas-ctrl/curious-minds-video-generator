@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lab Flask" data-tags="flask,beaker,chemistry,experiment,lab,laboratory,potion,reaction,liquid,science,bubbles">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lab Flask" data-tags="flask,beaker,chemistry,experiment,lab,laboratory,potion,reaction,liquid,science,bubbles" data-subcategory="chemistry" data-style="science_explorer" data-animations="pop,float,draw">
 <ellipse cx="200" cy="362" rx="112" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-flask">
     <path d="M176 84 L176 162 L104 322 Q96 352 126 352 L274 352 Q304 352 296 322 L224 162 L224 84 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>

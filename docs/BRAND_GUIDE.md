@@ -60,3 +60,43 @@ goggles on his forehead over brown swoosh hair. Big expressive eyes, thick brows
 * Doodles are *drawn on* (stroke reveal) then fills fade in.
 * Idle life everywhere: breathing, blinking, gentle floating (±2–4 % of size).
 * Transitions are colourful cover/reveal wipes in brand colours (0.35–0.5 s).
+
+## 7. Niche visual identities (`src/animation/themes.py`)
+Milo, the palette, line language and typography never change. What changes per niche is the
+*world around him* — environments, illustration subjects, diagram language, accents, particles,
+transitions, camera temperament and music:
+
+| | Human Body | Science | Psychology |
+|---|---|---|---|
+| Look | Professional medical cartoon | Exploration & discovery | Mind & behaviour storytelling |
+| Environments | `bloodstream`, `body_lab` (live ECG), `anatomy_blueprint`, `cell_world` | `sky_day`, `science_grid`, `atmosphere_view`, `sunset_sky`, `space`, `lab` | `mind_maze`, `thought_room`, `emotion_waves`, `brain_space`, `city` |
+| Illustrations | Organs, cutaways, blood cells, vessels, medical tools | Light, atmosphere, molecules, planets, instruments | Heads & people, thought loops, emotions, decisions, conversations |
+| Demonstrations | heart pump, circulation loop, ECG heartbeat | light scattering, wavelengths, sunset path | thought loop, decision tree, stress alarm, neural signal |
+| Accents | coral · teal · blue · pink | blue · orange · teal · purple | purple · pink · teal · orange |
+| Foreground depth | soft out-of-focus blood cells | floating light motes | slow thought rings |
+| Transitions | circle wipe, blinds, slide, dots | star zoom, slide, circle wipe, doodle swipe | doodle swipe, dots, circle wipe, blinds |
+| Music mood | curious | upbeat | calm |
+
+Rules:
+* Choose illustrations that **depict the sentence being spoken** (the visual selector enforces
+  this); generic stars / planets / rockets are fillers and are only allowed when the narration is
+  about them.
+* Every mechanism or process gets a **demonstration** on a diagram card: cream card, 34 px radius,
+  7 px ink outline, soft ink drop shadow, contents clipped to the card, stages revealed on the
+  narration's cue words, leader-line callouts that follow the stages.
+* Colour conventions inside diagrams: oxygen-rich blood red / oxygen-poor blue (and say it is a
+  colour code); blue light = `blue`, red light = `red`; worry = `lavender` loops; decisions = `green`
+  for the chosen path.
+* New SVGs carry full metadata on the root: `data-title`, `data-tags` (6–12 keywords),
+  `data-subcategory`, `data-style` (`medical_cartoon` · `science_explorer` · `mind_storybook` ·
+  `everyday_doodle`), `data-animations` (e.g. `draw,beat,pulse,highlight`). Run
+  `python scripts/annotate_assets.py` then `python -m src.main assets index`.
+
+## 8. Character direction
+* Milo participates: he looks at and points to the active part of a diagram when it is named,
+  thinks on questions, reacts to surprises (short reaction, then back to talking), explains with
+  gestures, and waves at the end. Cues fire on the spoken word, not on a fixed fraction.
+* Close-ups (`character_closeup`, waist-up) are for relatable moments and direct questions —
+  at most 2 per short.
+* In demonstrations Milo stands small in a corner so the diagram owns the frame; in full
+  illustrations he sometimes leaves the frame entirely.

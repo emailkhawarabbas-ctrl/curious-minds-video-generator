@@ -1,0 +1,111 @@
+{
+  "topic": "Why Is the Sky Blue?",
+  "niche": "science",
+  "format": "long",
+  "source": "curated",
+  "title": "Why Is the Sky Blue? The Real Science of a Blue Sky",
+  "hook": "Sunlight is white. Space is black. And yet, every clear day, the sky above you glows blue. Where does all that blue actually come from?",
+  "cta": "Subscribe for more curious science!",
+  "notes": [
+    "Curated long-form sample (science identity). Sources: Wikipedia 'Diffuse sky radiation', 'Rayleigh scattering', 'Twilight'. Numbers used: about 23 percent of direct sunlight scattered; Leonardo da Vinci c. 1506-1510; John Tyndall 1869; Lord Rayleigh 1871; twilight ends when the Sun is 18 degrees below the horizon. Leonardo's idea is presented as a conjecture."
+  ],
+  "sections": [
+    {
+      "title": "An everyday mystery",
+      "beats": [
+        {"id": "l1", "role": "hook", "narration": "Sunlight is white. Space is black. And yet, every clear day, the sky above you glows blue. Where does all that blue actually come from?",
+         "visual": {"layout": "hook_title", "title": "Why is the sky blue?", "assets": ["sun"], "action": "surprised", "expression": "surprised", "background": "sky_day"}},
+        {"id": "l2", "role": "relatable", "narration": "Think about the last time you lay on the grass and looked up. That deep, endless blue feels so normal that most of us never question it.",
+         "visual": {"layout": "character_closeup", "assets": ["observer_kid"], "background": "sunny_outdoors"}},
+        {"id": "l3", "role": "curiosity_gap", "narration": "But the sky isn't painted blue. The air you breathe looks perfectly clear in a glass. So how can a clear gas turn an entire sky blue?",
+         "visual": {"layout": "question", "title": "How does clear air look blue?", "assets": ["question_mark"], "background": "sky_day"}},
+        {"id": "l4", "role": "question", "narration": "And while we're at it, why are sunsets orange and red instead? And why are clouds white? It turns out all three questions share one beautiful answer.",
+         "visual": {"layout": "list_reveal", "items": [{"text": "Why is the sky blue?", "asset": "sun", "cue": "while"}, {"text": "Why are sunsets red?", "asset": "sunset_scene", "cue": "sunsets"}, {"text": "Why are clouds white?", "asset": "weather_cloud_rain", "cue": "clouds"}], "background": "science_grid"}}
+      ]
+    },
+    {
+      "title": "What sunlight really is",
+      "beats": [
+        {"id": "l5", "role": "explanation", "narration": "Let's start with sunlight itself. It looks white, but it's really a mixture of every color of the rainbow, all traveling together.",
+         "visual": {"layout": "full_illustration", "assets": ["prism"], "labels": ["White sunlight", "Blue", "Red"], "background": "science_grid"}},
+        {"id": "l6", "role": "example", "narration": "You can see this for yourself with a glass prism. Shine white light through it, and the colors fan out into a rainbow, from red on one side to violet on the other.",
+         "visual": {"layout": "object_focus", "assets": ["prism"], "labels": ["White light in", "Colors fan out"], "background": "lab"}},
+        {"id": "l7", "role": "discovery", "narration": "Each color is a wave of light, and the colors differ in one important way: their wavelength. Red light has long, lazy waves. Blue light has short, tightly packed waves.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "wavelength_compare", "labels": ["Blue: short waves", "Red: long waves", "Tiny air molecule"], "stage_cues": ["Red", "Blue"]}, "background": "science_grid"}},
+        {"id": "l8", "role": "transition", "narration": "Remember that difference, because it's about to matter a lot.",
+         "visual": {"layout": "character_explains", "assets": ["light_wave"], "action": "point", "expression": "excited", "background": "lab"}}
+      ]
+    },
+    {
+      "title": "A collision in the air",
+      "beats": [
+        {"id": "l9", "role": "explanation", "narration": "Above you sits a thin blanket of air called the atmosphere. Most of it is nitrogen, with some oxygen, made of molecules far too small to see.",
+         "visual": {"layout": "full_illustration", "assets": ["atmosphere_layers"], "labels": ["Air near the ground", "Thinner air above"], "background": "atmosphere_view"}},
+        {"id": "l10", "role": "explanation", "narration": "These molecules are much smaller than the wavelength of light. And when light meets particles that tiny, something special happens: the light gets scattered, bounced off in new directions.",
+         "visual": {"layout": "comparison", "assets": ["nitrogen_n2", "oxygen_o2"], "labels": ["Nitrogen", "Oxygen"], "background": "science_grid"}},
+        {"id": "l11", "role": "discovery", "narration": "Here's the key. Shorter wavelengths are scattered far more strongly than longer ones. So blue light gets bounced around the sky, while red light mostly carries straight on.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "light_scattering", "labels": ["Sunlight", "Air molecules", "Blue scatters", "You"], "stage_cues": ["Shorter", "blue", "red"]}, "background": "sky_day"}},
+        {"id": "l12", "role": "surprise", "narration": "And it's not a small effect. About 23 percent of direct sunlight is scattered out of the beam like this, filling the whole sky with light.",
+         "visual": {"layout": "fact_card", "number": {"value": 23, "suffix": "%", "label": "of direct sunlight is scattered"}, "assets": ["sun"], "action": "excited", "expression": "excited", "background": "sunset_sky"}},
+        {"id": "l13", "role": "insight", "narration": "That's why the sky glows even in places where the Sun isn't. Look away from the Sun, and the light reaching your eyes is mostly this scattered blue, arriving from every direction.",
+         "visual": {"layout": "story_scene", "assets": ["observer_kid", "sun"], "background": "sky_day"}},
+        {"id": "l14", "role": "recap", "narration": "In other words, the blue sky is sunlight that has been sorted. The air pulls the blue out of the beam and spreads it across the sky above you.",
+         "visual": {"layout": "diagram_flow", "assets": ["sun", "nitrogen_n2", "observer_kid"], "labels": ["White sunlight", "Air scatters blue", "Blue sky for you"], "background": "science_grid"}}
+      ]
+    },
+    {
+      "title": "Centuries of curiosity",
+      "beats": [
+        {"id": "l15", "role": "transition", "narration": "So who figured this out? The story takes centuries, and it starts with a famous painter.",
+         "visual": {"layout": "character_explains", "assets": ["books_stack"], "action": "think", "expression": "curious", "background": "lab"}},
+        {"id": "l16", "role": "discovery", "narration": "Around 1506 to 1510, Leonardo da Vinci suggested that sunlight scattering off tiny particles in the air might give the sky its blue color. It was a remarkable guess.",
+         "visual": {"layout": "timeline", "items": [{"text": "Leonardo's idea", "asset": "lightbulb", "cue": "Leonardo"}, {"text": "Tyndall's experiments", "asset": "flask", "cue": "remarkable"}, {"text": "Rayleigh's explanation", "asset": "light_wave", "cue": "guess"}], "background": "science_grid"}},
+        {"id": "l17", "role": "discovery", "narration": "In 1869, the physicist John Tyndall noticed that bright light scattering off extremely tiny particles took on a bluish tint. The idea was getting closer.",
+         "visual": {"layout": "object_focus", "assets": ["flask"], "labels": ["Tiny particles", "Bluish glow"], "background": "lab"}},
+        {"id": "l18", "role": "insight", "narration": "Then in 1871, Lord Rayleigh worked out the math. He showed exactly why tiny molecules scatter short blue wavelengths so much more than long red ones. Today we call it Rayleigh scattering.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "wavelength_compare", "labels": ["Short blue waves", "Long red waves", "Molecule"], "stage_cues": ["math", "exactly"]}, "background": "chalkboard"}},
+        {"id": "l19", "role": "explanation", "narration": "His paper set up the basic scientific model for the color of the sky, and it's still the explanation scientists use today.",
+         "visual": {"layout": "character_explains", "assets": ["telescope"], "action": "present", "expression": "happy", "background": "science_grid"}}
+      ]
+    },
+    {
+      "title": "Sunsets, twilight and clouds",
+      "beats": [
+        {"id": "l20", "role": "transition", "narration": "Now for the plot twist. If air scatters blue light so well, why does the sky turn orange and red at sunset?",
+         "visual": {"layout": "question", "title": "Why are sunsets red?", "assets": ["sunset_scene"], "background": "sunset_sky"}},
+        {"id": "l21", "role": "discovery", "narration": "At noon, sunlight takes a short trip straight down through the air. But when the Sun is low, its light has to cross a much longer stretch of atmosphere to reach you.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "sunset_path", "labels": ["Low sun", "You", "Long path through air"], "stage_cues": ["But", "longer"]}, "background": "sunset_sky"}},
+        {"id": "l22", "role": "surprise", "narration": "Along that long path, most of the blue gets scattered away before it ever arrives. What's left is the light that scatters least: yellow, orange and red.",
+         "visual": {"layout": "full_illustration", "assets": ["sunset_scene"], "labels": ["Red light left over", "Blue scattered away"], "background": "sunset_sky"}},
+        {"id": "l23", "role": "explanation", "narration": "As the Sun sinks lower, the sky keeps dimming. When the Sun is 18 degrees below the horizon, the light from the sky is nearly zero and twilight becomes night.",
+         "visual": {"layout": "fact_card", "number": {"value": 18, "suffix": "°", "label": "below the horizon: night"}, "assets": ["moon"], "background": "night_sky"}},
+        {"id": "l24", "role": "discovery", "narration": "And clouds? Their water droplets are much bigger than the wavelength of light, so they scatter all colors about equally. Mix every color together, and you get white.",
+         "visual": {"layout": "comparison", "assets": ["weather_cloud_rain", "nitrogen_n2"], "labels": ["Big droplets: all colors", "Tiny molecules: blue"], "background": "sky_day"}},
+        {"id": "l25", "role": "example", "narration": "On a fully overcast day there's no direct sunlight at all. Every bit of light you see has been scattered through the clouds, which is why it looks so soft and gray.",
+         "visual": {"layout": "story_scene", "assets": ["weather_cloud_rain", "observer_kid"], "background": "city"}}
+      ]
+    },
+    {
+      "title": "Why not violet?",
+      "beats": [
+        {"id": "l26", "role": "question", "narration": "But wait. Violet waves are even shorter than blue ones. So shouldn't the sky be violet?",
+         "visual": {"layout": "question", "title": "Why not a violet sky?", "assets": ["prism"], "background": "science_grid"}},
+        {"id": "l27", "role": "insight", "narration": "The scattered light really does contain both blue and violet, coming from all over the sky. But your eyes respond to that mix as if it were blue mixed with white.",
+         "visual": {"layout": "full_illustration", "assets": ["eye"], "labels": ["Sees blue plus white"], "background": "sky_day"}},
+        {"id": "l28", "role": "explanation", "narration": "That's why the sky looks a soft, pale blue rather than a deep, saturated violet. The color you see depends on the light and on the eyes doing the seeing.",
+         "visual": {"layout": "character_explains", "assets": ["observer_kid"], "action": "explain", "expression": "happy", "background": "sky_day"}}
+      ]
+    },
+    {
+      "title": "The answer",
+      "beats": [
+        {"id": "l29", "role": "recap", "narration": "So let's put it all together. Sunlight is a mix of colors. Tiny air molecules scatter the short blue waves across the sky. Long red waves travel on.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "light_scattering", "labels": ["Sunlight", "Air", "Blue everywhere", "You"], "stage_cues": ["Tiny", "scatter", "Long"]}, "background": "sky_day"}},
+        {"id": "l30", "role": "insight", "narration": "At sunset the long path strips the blue away, leaving reds and oranges. And big cloud droplets scatter everything, so clouds look white.",
+         "visual": {"layout": "comparison", "assets": ["sunset_scene", "weather_cloud_rain"], "labels": ["Sunset: blue removed", "Clouds: all colors"], "background": "sunset_sky"}},
+        {"id": "l31", "role": "ending", "narration": "So the next time you look up at a blue sky, remember: you're seeing sunlight that the air has sorted, just for you. Stay curious!",
+         "visual": {"layout": "outro", "action": "wave", "expression": "happy", "background": "sunset_sky"}}
+      ]
+    }
+  ]
+}

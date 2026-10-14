@@ -117,9 +117,32 @@ class NumberSpec(Strict):
     label: str = Field("", max_length=R.MAX_LABEL_CHARS + 10)
 
 
+class DemoSpec(Strict):
+    """An animated explanatory diagram (see ``src/animation/demos.py``)."""
+    kind: str
+    labels: List[str] = Field(default_factory=list, max_length=5)        # callouts, in reveal order
+    stage_cues: List[str] = Field(default_factory=list, max_length=5)    # narration words that start each stage
+
+    @field_validator("kind")
+    @classmethod
+    def _kind(cls, v):
+        if v not in R.DEMOS:
+            raise ValueError(f"unknown demo {v!r}")
+        return v
+
+    @field_validator("labels")
+    @classmethod
+    def _labels(cls, v):
+        for lab in v:
+            if len(lab) > R.MAX_LABEL_CHARS:
+                raise ValueError(f"demo label too long: {lab!r}")
+        return v
+
+
 class VisualHint(Strict):
     """Visual direction attached to a script beat (by the writer / LLM / curator)."""
     layout: Optional[str] = None
+    demo: Optional[DemoSpec] = None
     assets: List[str] = Field(default_factory=list)
     labels: List[str] = Field(default_factory=list)
     items: List[ItemSpec] = Field(default_factory=list)
@@ -152,9 +175,17 @@ class VisualHint(Strict):
 # =========================================================================== script
 class ScriptBeat(Strict):
     id: str
+    role: Optional[str] = None                 # story role (hook, curiosity_gap, discovery, ...)
     narration: str = Field(min_length=3)
     visual: VisualHint = Field(default_factory=VisualHint)
     fact_ids: List[str] = Field(default_factory=list)
+
+    @field_validator("role")
+    @classmethod
+    def _role(cls, v):
+        if v is not None and v not in R.STORY_ROLES:
+            raise ValueError(f"unknown story role {v!r}")
+        return v
 
 
 class ScriptSection(Strict):
@@ -205,6 +236,8 @@ class CharacterCueSpec(Strict):
     at: float = Field(ge=0, le=1)          # fraction of the scene
     action: str
     expression: str
+    cue: Optional[str] = None              # or: when this word/phrase is spoken (overrides ``at``)
+    target: Optional[Literal["main", "demo", "viewer", "up"]] = None
 
     @model_validator(mode="after")
     def _vocab(self) -> "CharacterCueSpec":
@@ -216,13 +249,13 @@ class CharacterCueSpec(Strict):
 class CharacterDirection(Strict):
     character: str = "milo"
     present: bool = True
-    position: Literal["left", "right", "center", "corner_left", "corner_right"] = "left"
+    position: Literal["left", "right", "center", "corner_left", "corner_right", "closeup"] = "left"
     action: str = "talk"
     expression: str = "happy"
     pose: str = "stand"
     entrance: Literal["none", "walk", "run", "pop", "slide"] = "pop"
     cues: List[CharacterCueSpec] = Field(default_factory=list)
-    look_at: Optional[Literal["main", "viewer", "up", "down"]] = None
+    look_at: Optional[Literal["main", "viewer", "up", "down", "demo"]] = None
 
     @model_validator(mode="after")
     def _vocab(self) -> "CharacterDirection":
@@ -282,7 +315,8 @@ class SfxCue(Strict):
 
 
 class CameraSpec(Strict):
-    move: Literal["static", "zoom_in", "zoom_out", "pan_left", "pan_right", "drift", "punch_in", "shake"] = "drift"
+    move: Literal["static", "zoom_in", "zoom_out", "pan_left", "pan_right", "drift", "punch_in", "shake",
+                  "focus", "follow", "reveal"] = "drift"
     intensity: float = Field(0.5, ge=0, le=1)
 
 
@@ -295,12 +329,16 @@ class Scene(Strict):
     duration: Optional[float] = Field(None, gt=0, le=90)      # actual, set after TTS
     layout: str
     background: str
+    purpose: str = "explain"                                   # story purpose (hook, process, surprise, ...)
+    role: Optional[str] = None                                 # story role of the source beat
+    theme: str = ""                                            # niche visual identity
     character: CharacterDirection = Field(default_factory=CharacterDirection)
     objects: List[ObjectSpec] = Field(default_factory=list)
     items: List[ItemSpec] = Field(default_factory=list, max_length=5)
     text_overlays: List[TextOverlay] = Field(default_factory=list, max_length=4)
     number: Optional[NumberSpec] = None
     chart: Optional[ChartSpec] = None
+    demo: Optional[DemoSpec] = None
     doodles: List[str] = Field(default_factory=list)
     illustration_notes: str = ""
     animation_notes: List[str] = Field(default_factory=list)
@@ -356,6 +394,10 @@ class Scene(Strict):
             raise ValueError("comparison needs exactly 2 objects")
         if L == "network" and len(self.objects) < 3:
             raise ValueError("network needs a main object and >= 2 satellites")
+        if L == "demonstration" and self.demo is None:
+            raise ValueError("demonstration layout needs a demo")
+        if L == "full_illustration" and not mains:
+            raise ValueError("full_illustration needs a main object")
         if self.duration is not None and self.duration < 1.0:
             raise ValueError("scene shorter than 1 s")
         return self
@@ -364,6 +406,7 @@ class Scene(Strict):
 class Storyboard(Strict):
     topic: str
     title: str
+    theme: str = ""
     format: Format
     orientation: Orientation
     width: int

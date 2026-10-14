@@ -1,0 +1,118 @@
+{
+  "topic": "How Does Your Heart Actually Work?",
+  "niche": "human_body",
+  "format": "long",
+  "source": "curated",
+  "title": "How Does Your Heart Actually Work? Inside Your Body's Nonstop Pump",
+  "hook": "Right now, without you thinking about it, a muscle in your chest is squeezing, relaxing and squeezing again. It never takes a break. So what is it actually doing in there?",
+  "cta": "Subscribe for more amazing body science!",
+  "notes": [
+    "Curated long-form sample (human-body identity). Sources: Wikipedia 'Heart', 'Cardiac cycle', 'Systole', 'Diastole'; MedlinePlus heart topics. Numbers used: 250-350 grams; 72 beats per minute; about 0.8 seconds per beat (0.3 s squeeze, 0.5 s relax); pacemaker cells about 1 percent of heart cells; about 80 percent of filling happens before the atria contract. No medical advice; the fist-size comparison is avoided because it is disputed."
+  ],
+  "sections": [
+    {
+      "title": "The muscle that never rests",
+      "beats": [
+        {"id": "k1", "role": "hook", "narration": "Right now, without you thinking about it, a muscle in your chest is squeezing, relaxing and squeezing again. It never takes a break. So what is it actually doing in there?",
+         "visual": {"layout": "hook_title", "title": "How does your heart work?", "assets": ["heart"], "action": "surprised", "expression": "surprised", "background": "bloodstream"}},
+        {"id": "k2", "role": "relatable", "narration": "You've felt it after running up the stairs, or in a scary movie, that thump, thump, thump getting faster. But most of us have no idea what's happening with each beat.",
+         "visual": {"layout": "character_closeup", "assets": ["stethoscope"], "background": "body_lab"}},
+        {"id": "k3", "role": "curiosity_gap", "narration": "Here's what makes it mysterious. Your heart decides when to beat all by itself. No thought, no instruction from you. So who, or what, is giving the orders?",
+         "visual": {"layout": "question", "title": "Who tells your heart to beat?", "assets": ["pulse_monitor"], "background": "anatomy_blueprint"}},
+        {"id": "k4", "role": "explanation", "narration": "An adult heart weighs only about 250 to 350 grams. Yet it moves blood through your entire body, every moment of your life.",
+         "visual": {"layout": "full_illustration", "assets": ["body_circulation"], "labels": ["Your heart", "Lungs"], "background": "body_lab"}}
+      ]
+    },
+    {
+      "title": "Four rooms",
+      "beats": [
+        {"id": "k5", "role": "explanation", "narration": "Let's look inside. Your heart is split into a right side and a left side, and each side has two rooms, called chambers. That's four chambers in total.",
+         "visual": {"layout": "full_illustration", "assets": ["heart_cutaway"], "labels": ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"], "background": "anatomy_blueprint"}},
+        {"id": "k6", "role": "explanation", "narration": "The two top chambers are the atria. They're the receiving rooms, collecting blood as it returns. The two bottom chambers are the ventricles, the powerful pumping rooms that push blood out.",
+         "visual": {"layout": "object_focus", "assets": ["heart_cutaway"], "labels": ["Atria: receive", "Ventricles: pump"], "background": "body_lab"}},
+        {"id": "k7", "role": "discovery", "narration": "Big blood vessels connect at the top: the venae cavae bringing blood in, the pulmonary trunk heading to the lungs, and the aorta, the main highway out to your body.",
+         "visual": {"layout": "full_illustration", "assets": ["heart_cutaway"], "labels": ["Vena cava", "Pulmonary trunk", "Aorta"], "background": "anatomy_blueprint"}},
+        {"id": "k8", "role": "transition", "narration": "But why would one heart need two separate sides? The answer is one of the cleverest designs in your body.",
+         "visual": {"layout": "character_explains", "assets": ["heart"], "action": "think", "expression": "curious", "background": "body_lab"}}
+      ]
+    },
+    {
+      "title": "Two loops",
+      "beats": [
+        {"id": "k9", "role": "discovery", "narration": "Your heart is really two pumps working side by side. The right side sends blood on a short loop to your lungs. The left side sends it on a long loop to the rest of your body.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "circulation_loop", "labels": ["Heart", "Lungs", "Body"], "stage_cues": ["right", "left", "rest"]}, "background": "bloodstream"}},
+        {"id": "k10", "role": "explanation", "narration": "Blood coming back from your body is low on oxygen. The right side pumps it into the lungs, where it picks up fresh oxygen and gives off carbon dioxide.",
+         "visual": {"layout": "diagram_flow", "assets": ["heart", "lungs", "oxygen_o2"], "labels": ["Right heart", "Lungs", "Fresh oxygen"], "background": "body_lab"}},
+        {"id": "k11", "role": "explanation", "narration": "That oxygen-rich blood flows back into the left side. And the left side pumps it out through the aorta to your brain, your muscles, and every other part of you.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "heart_pump", "labels": ["Oxygen-poor blood", "Oxygen-rich blood"], "stage_cues": ["flows", "pumps", "brain"]}, "background": "body_lab"}},
+        {"id": "k12", "role": "example", "narration": "Think of it like a delivery service with two routes. One quick trip to the lungs to load up oxygen, then a long trip around the body to drop it off.",
+         "visual": {"layout": "full_illustration", "assets": ["body_circulation"], "labels": ["Oxygen-rich arteries", "Oxygen-poor veins"], "background": "anatomy_blueprint"}},
+        {"id": "k13", "role": "insight", "narration": "And in diagrams, oxygen-rich blood is usually drawn red and oxygen-poor blood blue. That's just a color code, so you can follow the two loops at a glance.",
+         "visual": {"layout": "comparison", "assets": ["red_blood_cell", "blood_vessel"], "labels": ["Oxygen-rich", "On its way back"], "background": "cell_world"}}
+      ]
+    },
+    {
+      "title": "One-way doors",
+      "beats": [
+        {"id": "k14", "role": "question", "narration": "So what stops blood from sloshing backwards every time the heart squeezes?",
+         "visual": {"layout": "question", "title": "Why doesn't blood flow backwards?", "assets": ["heart_cutaway"], "background": "anatomy_blueprint"}},
+        {"id": "k15", "role": "discovery", "narration": "Valves. Between the chambers, and at the exits, sit little flaps that act like one-way doors. In a healthy heart, they make sure blood only ever flows forward.",
+         "visual": {"layout": "object_focus", "assets": ["heart_cutaway"], "labels": ["One-way valves"], "background": "body_lab"}},
+        {"id": "k16", "role": "explanation", "narration": "On the right side, the tricuspid valve sits between the right atrium and the right ventricle. Each valve opens to let blood through, then closes behind it.",
+         "visual": {"layout": "full_illustration", "assets": ["heart_cutaway"], "labels": ["Right atrium", "Valves", "Right ventricle"], "background": "anatomy_blueprint"}}
+      ]
+    },
+    {
+      "title": "The secret spark",
+      "beats": [
+        {"id": "k17", "role": "transition", "narration": "Now back to our mystery. Who's giving the orders?",
+         "visual": {"layout": "character_closeup", "assets": ["lightning"], "action": "surprised", "expression": "excited", "background": "body_lab"}},
+        {"id": "k18", "role": "discovery", "narration": "The rhythm comes from a small group of special pacemaker cells in a spot called the sinoatrial node. They fire an electrical signal that sets off every single heartbeat.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "ecg_heartbeat", "labels": ["Pacemaker spark", "Heartbeat trace"], "stage_cues": ["fire", "every"]}, "background": "body_lab"}},
+        {"id": "k19", "role": "surprise", "narration": "Here's the surprising part: these pacemaker cells make up only about 1 percent of the heart's cells. A tiny team, running the whole show, for your entire life.",
+         "visual": {"layout": "fact_card", "number": {"value": 1, "suffix": "%", "label": "of heart cells set the rhythm"}, "assets": ["lightning"], "action": "excited", "expression": "excited", "background": "bloodstream"}},
+        {"id": "k20", "role": "explanation", "narration": "The signal spreads through the heart's own wiring, the conduction system, telling the chambers when to squeeze, in just the right order.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "neural_signal", "labels": ["Pacemaker", "Signal spreads", "Chambers squeeze"], "stage_cues": ["spreads", "telling", "order"]}, "background": "anatomy_blueprint"}},
+        {"id": "k21", "role": "insight", "narration": "And a healthy heart isn't a perfect metronome. Researchers describe its rhythm as both complex and stable, constantly adjusting to what your body needs.",
+         "visual": {"layout": "full_illustration", "assets": ["pulse_monitor"], "labels": ["Rhythm adapts"], "background": "body_lab"}}
+      ]
+    },
+    {
+      "title": "One heartbeat, step by step",
+      "beats": [
+        {"id": "k22", "role": "explanation", "narration": "At rest, an adult heart beats about 72 times a minute. At that pace, each complete beat, called the cardiac cycle, takes about 0.8 seconds.",
+         "visual": {"layout": "fact_card", "number": {"value": 72, "suffix": " BPM", "label": "resting heart rate"}, "assets": ["pulse_monitor"], "background": "bloodstream"}},
+        {"id": "k23", "role": "discovery", "narration": "Those 0.8 seconds split into two phases. About 0.3 seconds of squeezing, called systole, pushes blood out. About 0.5 seconds of relaxing, called diastole, lets the chambers refill.",
+         "visual": {"layout": "chart", "chart": {"kind": "bar", "values": [0.3, 0.5], "labels": ["Systole: squeeze", "Diastole: refill"], "value_suffix": " s"}, "background": "body_lab"}},
+        {"id": "k24", "role": "surprise", "narration": "And here's something unexpected. About 80 percent of the blood flows into the ventricles before the atria even squeeze. The atria's push just tops them up.",
+         "visual": {"layout": "fact_card", "number": {"value": 80, "suffix": "%", "label": "fills the ventricles first"}, "assets": ["heart_cutaway"], "action": "surprised", "expression": "surprised", "background": "anatomy_blueprint"}},
+        {"id": "k25", "role": "insight", "narration": "Even stranger, your heart feeds itself mostly while it relaxes. Blood flow to the heart muscle's own vessels happens mainly during diastole, not while it squeezes.",
+         "visual": {"layout": "full_illustration", "assets": ["blood_vessel"], "labels": ["Heart muscle's own supply"], "background": "cell_world"}},
+        {"id": "k26", "role": "explanation", "narration": "Then the ventricles relax, the valves between the chambers open again, and the cycle begins once more. Squeeze, relax, repeat.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "heart_pump", "labels": ["Squeeze", "Relax and refill"], "stage_cues": ["relax", "valves", "cycle"]}, "background": "bloodstream"}}
+      ]
+    },
+    {
+      "title": "Your heart, every day",
+      "beats": [
+        {"id": "k27", "role": "example", "narration": "When you run, your body needs more oxygen, so your heart beats faster. When you rest, it slows down again. It's constantly listening and adjusting.",
+         "visual": {"layout": "comparison", "assets": ["muscle", "sleeping_person"], "labels": ["Running: faster", "Resting: slower"], "background": "sunny_outdoors"}},
+        {"id": "k28", "role": "explanation", "narration": "The heart even sits inside its own protective sac, the pericardium, which holds a small amount of fluid around it.",
+         "visual": {"layout": "full_illustration", "assets": ["heart"], "labels": ["Protective sac"], "background": "anatomy_blueprint"}},
+        {"id": "k29", "role": "explanation", "narration": "Doctors who specialize in the heart are called cardiologists. And if anything about your own heart ever worries you, talking to a doctor is always the right move.",
+         "visual": {"layout": "character_explains", "assets": ["stethoscope"], "action": "explain", "expression": "happy", "background": "body_lab"}}
+      ]
+    },
+    {
+      "title": "Putting it together",
+      "beats": [
+        {"id": "k30", "role": "recap", "narration": "So, how does your heart actually work? It's two pumps in one. The right side sends blood to your lungs for oxygen, and the left side sends it around your body.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "circulation_loop", "labels": ["Heart", "Lungs", "Body"], "stage_cues": ["right", "left", "around"]}, "background": "bloodstream"}},
+        {"id": "k31", "role": "insight", "narration": "One-way valves keep it flowing forward, and a tiny group of pacemaker cells sparks every beat, about 72 times a minute, squeeze and relax.",
+         "visual": {"layout": "list_reveal", "items": [{"text": "Two pumps, two loops", "asset": "heart_cutaway", "cue": "One-way"}, {"text": "One-way valves", "asset": "heart", "cue": "flowing"}, {"text": "A pacemaker spark", "asset": "lightning", "cue": "pacemaker"}], "background": "body_lab"}},
+        {"id": "k32", "role": "ending", "narration": "So next time you feel that thump in your chest, remember the tiny spark and the perfectly timed squeeze behind it. Stay curious!",
+         "visual": {"layout": "outro", "action": "wave", "expression": "happy", "background": "body_lab"}}
+      ]
+    }
+  ]
+}

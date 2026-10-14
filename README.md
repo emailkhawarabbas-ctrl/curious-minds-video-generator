@@ -2,12 +2,18 @@
 
 *Understand the world in a fun way.*
 
-Give it one topic. It researches the topic from real sources, writes original narration,
-builds format-specific storyboards, animates the mascot **Milo** with colourful doodle
-illustrations, narrates in a friendly US-English male voice, mixes music and sound
+Give it one topic. It researches the topic from real sources, writes original narration with
+a retention-focused story arc, builds format-specific storyboards in one of **three niche
+visual identities** (Human Body · Science · Psychology), animates the mascot **Milo** acting
+alongside topic-specific illustrations and **animated scientific demonstrations**, narrates
+with a directed, natural **neural US-English male voice** (Kokoro, local and free), mixes music and sound
 effects, renders a **9:16 TikTok/Shorts video** and a **16:9 YouTube long-form video**,
 burns in captions, exports SRT, draws thumbnails, writes titles/descriptions/chapters, runs
-automated quality control, and saves everything for manual review.
+automated voice / visual / storytelling / technical quality control with a per-video report, and
+saves everything for manual review.
+
+See [`docs/QUALITY_UPGRADE.md`](docs/QUALITY_UPGRADE.md) for the root-cause analysis of the
+previous voice, visuals and storytelling, and a before/after comparison.
 
 Runs locally or on GitHub Actions. **No paid service is required.** Claude (via `LLM_API_KEY`)
 is optional and used for writing scripts/metadata for new topics.
@@ -28,8 +34,12 @@ cp .env.example .env            # optional: add LLM_API_KEY / RESEARCH_API_KEY
 python -m src.main generate --topic "Why Do We Dream?" --niche psychology
 ```
 
-Output lands in `generated/why_do_we_dream/` (see §5). The Piper voice model (~60 MB) is
-downloaded automatically on first use into `models/piper/`.
+Output lands in `generated/why_do_we_dream/` (see §5). The Kokoro voice model (~350 MB) is
+downloaded automatically on first use into `models/kokoro/`; the Whisper model used for the
+intelligibility check (~140 MB) into the Hugging Face cache.
+
+> **Windows:** works with Python 3.11 + a static FFmpeg build on `PATH` (pycairo, piper-tts and
+> kokoro-onnx ship Windows wheels). Set `PYTHONUTF8=1` so text files are read as UTF-8.
 
 > If your system cannot build `pycairo` (no Python headers), create the venv with
 > `python3 -m venv --system-site-packages .venv` and install `python3-cairo` from apt.
@@ -43,14 +53,21 @@ python -m src.main generate --topic "Why Do We Get Goosebumps?" --niche human_bo
 # only a Short, 60 s
 python -m src.main generate --topic "Why Is the Sky Blue?" --niche science --no-long --short-duration 60
 
-# only a long video, 10 minutes, calmer voice, no burned-in captions
+# only a long video, 10 minutes, calm documentary voice, no burned-in captions
 python -m src.main generate --topic "How Does Your Brain Create Memories?" --niche psychology \
     --no-short --long-duration 10 --voice "US English Male (Calm)" --subtitles false
+
+# the three niche samples (curated content packs)
+python -m src.main generate --topic "Why Do We Overthink Everything?" --niche psychology
+python -m src.main generate --topic "How Does Your Heart Actually Work?" --niche human_body
+python -m src.main generate --topic "Why Is the Sky Blue?" --niche science
 
 # force the script source: auto | llm | curated | offline
 python -m src.main generate --topic "How Do Magnets Work?" --niche science --script-source llm
 
 # tools
+python -m src.main voice preview                       # same passage in every voice profile + scores
+python -m src.main voice preview --extra am_fenrir am_puck en_US-joe-medium
 python -m src.main research --topic "Why Do We Hiccup?" --out research.json
 python -m src.main qc --video generated/why_do_we_dream/curious_minds_shorts_9x16.mp4 --profile vertical
 python -m src.main assets index            # rebuild assets/manifest.json
@@ -76,17 +93,18 @@ Workflow: `.github/workflows/generate-video.yml` → **Actions → Generate Curi
 | `generate_shorts`, `generate_long_video` | true / false |
 | `short_duration` | 60–90 s |
 | `long_duration` | 6–10 min |
-| `voice` | US English Friendly Male (default) / Calm / Narrator |
+| `voice` | US English Friendly Male (default) / Energetic / Calm / Narrator |
 | `generate_subtitles`, `generate_thumbnail` | true / false |
 | `script_source` | auto / llm / curated / offline |
 
 Secrets (all optional): `LLM_API_KEY` (Anthropic, for LLM scripts/metadata),
-`RESEARCH_API_KEY` (Tavily web search limited to authoritative domains), `TTS_API_KEY`
-(reserved for a paid TTS provider; Piper needs none).
+`RESEARCH_API_KEY` (Tavily web search limited to authoritative domains), and, only if you switch
+`tts.provider` to a cloud narrator, `ELEVENLABS_API_KEY` + `ELEVENLABS_VOICE_ID` or `OPENAI_API_KEY`
+(`TTS_API_KEY` works as a generic fallback key). The default Kokoro narrator needs no key.
 
 The job: checks out, validates inputs (passed via env vars — no shell interpolation),
-installs FFmpeg/Cairo, caches pip and the voice model, runs unit tests, generates, writes a
-QC summary to the run page, uploads `generated/<slug>/` as an artifact (14-day retention),
+installs FFmpeg/Cairo, caches pip, the Kokoro/Piper voice models and the Whisper QC model,
+runs unit tests, generates, writes a voice / story / visual / technical QC summary to the run page, uploads `generated/<slug>/` as an artifact (14-day retention),
 and fails the run if any requested video failed or did not pass QC. Generated media is never
 committed (`.gitignore`). Timeout: 120 min (a full short + 8-min long run takes roughly
 10–20 min on a 4-vCPU runner).
@@ -96,13 +114,17 @@ committed (`.gitignore`). Timeout: 120 min (a full short + 8-min long run takes 
 ```
 topic ─► research (Wikipedia, MedlinePlus/NIH, PubMed, opt. Tavily) ─► facts + sources + statuses
       ─► script  (curated pack │ Claude JSON + Pydantic + fact-check repair loop │ offline template)
-      ─► storyboard per orientation (vertical for the short, horizontal for the long)
+      ─► story roles (hook, curiosity gap, discovery, ...) ─► niche theme (human_body / science / psychology)
+      ─► storyboard per orientation: niche-aware visual selector (concept ontology), animated
+         demonstrations, composition variety, word-cued character acting, purposeful camera
       ─► validation & repair (vocabulary, assets, text lengths, durations, transitions)
-      ─► narration per sentence (Piper) ─► measured durations ─► speed fit into target range
+      ─► directed narration per sentence (Kokoro; delivery per intent) ─► measured durations ─► speed fit
+      ─► narration QC (clipping, cut-offs, pace, intonation, Whisper intelligibility) + preview WAV
+      ─► storytelling & visual review (hook, curiosity loop, repetition, relevance, niche identity)
       ─► parallel scene rendering (Cairo vectors → raw frames → libx264 segments)
       ─► concat ─► mix (voice + ducked music + SFX) ─► 2-pass loudnorm (-14 LUFS) ─► MP4
       ─► QC (ffprobe streams, size, fps, duration, A/V sync, blank/frozen frames, loudness, SRT)
-      ─► metadata, chapters, thumbnails ─► production_report.json
+      ─► metadata, chapters, thumbnails ─► review/quality_report_<fmt>.md ─► production_report.json
 ```
 
 ### Project layout
@@ -114,22 +136,26 @@ src/
   research/               researcher.py (providers) · fact_checker.py · source_manager.py
   content/                models.py (Pydantic contracts) · llm_client.py (Claude) ·
                           script_generator.py · storyboard_generator.py · seo_generator.py ·
-                          topic_generator.py
+                          topic_generator.py · story_engine.py (roles, hooks, mini-hooks) ·
+                          visual_selector.py (niche-aware concept ontology) · retention_review.py
   animation/              svg_loader.py · asset_manager.py · palette.py · easing.py ·
                           character_rig.py · expression_engine.py · character_engine.py ·
                           doodle_engine.py · backgrounds.py · scene_engine.py ·
-                          transition_engine.py · text_render.py · registry.py (vocabulary)
-  audio/                  tts_engine.py · music_engine.py · sound_effects.py · mixer.py
+                          transition_engine.py · text_render.py · registry.py (vocabulary) ·
+                          themes.py (3 niche identities) · demos.py (animated demonstrations)
+  audio/                  tts_engine.py (Kokoro / Piper / ElevenLabs / OpenAI) · narration_director.py ·
+                          audio_qc.py · voice_preview.py · music_engine.py · sound_effects.py · mixer.py
   rendering/              renderer.py · vertical_renderer.py · horizontal_renderer.py ·
-                          subtitle_engine.py · thumbnail_engine.py · quality_control.py
+                          subtitle_engine.py · thumbnail_engine.py · quality_control.py · quality_report.py
   analytics/              csv_importer.py · performance_analyzer.py · weekly_report.py
 assets/                   characters/ (milo, zoe, poses.json) · expressions/ · human_body/ ·
                           psychology/ · science/ · objects/ · fonts/ · sound_effects/ · manifest.json
 content_packs/<slug>/     curated scripts + metadata (used automatically when present)
 prompts/                  LLM prompt templates
 config/                   default.yaml · pronunciations.yaml
-scripts/                  preview_assets.py · character_sheet.py · layout_gallery.py (visual QA tools)
-docs/                     BRAND_GUIDE.md · IMPLEMENTATION_CHECKLIST.md
+scripts/                  preview_assets.py · character_sheet.py · layout_gallery.py · storyboard_preview.py ·
+                          annotate_assets.py (visual QA + asset metadata tools)
+docs/                     BRAND_GUIDE.md · IMPLEMENTATION_CHECKLIST.md · QUALITY_UPGRADE.md
 tests/                    unit + integration tests
 ```
 
@@ -148,13 +174,26 @@ tests/                    unit + integration tests
   pop text, counters, icon pops (pop/elastic/bounce/draw/spin), morphing shapes, particles
   (burst, confetti, twinkles, zzz, bubbles), pathways with travelling pulses, animated bar/line/
   step charts and brain-wave monitors.
-* **Assets** — 72 original SVG illustrations (human body, psychology, science, everyday
-  objects) with tags, anchors and highlightable parts; drawn on with a progressive outline
-  reveal. 13 procedural backgrounds with ambient animation.
-* **Scenes** — 15 layout templates (hook, explainer, object focus, diagram flow, list, comparison,
-  thought bubble, fact card, story scene, network, chart, question, timeline, wave monitor, outro),
-  each with separate vertical/horizontal composition inside the platform-safe area and out of the
-  caption band; reveals are synced to the narration (cue words).
+* **Assets** — 96 original SVG illustrations (human body, psychology, science, everyday
+  objects) with full metadata (name, category, subcategory, keywords, visual style, licence,
+  supported animations), anchors and highlightable parts; drawn on with a progressive outline
+  reveal. 24 procedural backgrounds with ambient animation, 11 of them niche environments.
+* **Niche identities** (`themes.py`) — Human Body (medical cartoon: bloodstream, clinic with live ECG,
+  anatomy blueprint, microscope cell world), Science (exploration: open sky, notebook grid, Earth's
+  limb, sunset), Psychology (mind & behaviour: mind maze, late-night thought room, emotion waves).
+  Each theme picks environments per scene purpose, accent colours, particles, transitions, camera
+  temperament, music mood and foreground depth props; Milo stays the same everywhere.
+* **Animated demonstrations** (`demos.py`) — staged scientific diagrams on a "diagram card", synced to
+  narration cue words: heart pump, two-loop circulation, ECG heartbeat, light scattering, wavelength
+  comparison, sunset path, thought loop, what-if decision tree, neural signal, stress alarm response.
+* **Scenes** — 18 layout templates (hook, explainer, object focus, diagram flow, list, comparison,
+  thought bubble, fact card, story scene, network, chart, question, timeline, wave monitor, outro,
+  demonstration, full illustration, character close-up), each with separate vertical/horizontal
+  composition inside the platform-safe area and out of the caption band; reveals are synced to the
+  narration (cue words). Camera moves `focus` / `follow` / `reveal` glide to whatever was just
+  revealed; the background moves less than the stage (parallax) and niche foreground props more.
+* **Acting** — Milo reacts sentence by sentence: thinks on questions, is surprised by surprises,
+  points at the active part of a diagram when it is mentioned, explains with gestures, waves at the end.
 * **Transitions** — circle wipe, doodle swipe, slide, star zoom, dots, blinds, dip — rendered as
   cover/reveal halves so scenes render independently in parallel.
 
@@ -166,19 +205,44 @@ tests/                    unit + integration tests
 * Fact-check: every number in a script must appear in the retrieved sources; medical-advice
   phrasing fails the check; hypotheses must be hedged (warning).
 * Secrets only come from env/GitHub Secrets and are redacted from logs.
-* Success is only reported when every requested video exists and passes QC.
+* Success is only reported when every requested video exists and passes technical QC, the hard
+  narration checks (clipping, cut-off sentences, narration fits, intelligibility) and — with
+  `content.block_on_review_fail` — the storytelling / visual review. Every failure is listed with
+  its reason in `review/quality_report_<fmt>.md` and `production_report.json`.
+* The narrator never changes silently: if the configured TTS provider is unavailable the run fails,
+  unless `tts.fallback_provider` is set, in which case the fallback is recorded in the report.
 
 ## 4. Configuration
 
 `config/default.yaml` (override with `--config my.yaml` or env `CM__SECTION__KEY=value`):
-voice and pace (`tts.voice`, `tts.length_scale`), duration ranges, render profiles (resolution,
+voice provider and profiles (`tts.*`), duration ranges, review gating (`content.block_on_review_fail`), render profiles (resolution,
 fps, safe areas, caption position), CRF/preset/workers, loudness target (-14 LUFS), music and SFX
 levels, research providers, LLM model (`claude-opus-5-5`, effort, refusal fallback).
 Pronunciation fixes: `config/pronunciations.yaml`.
 
-Voices (Piper, local): default **`en_US-joe-medium`** ("US English Friendly Male", CC0
-dataset). Alternatives: `en_US-norman-medium`, `en_US-john-medium` (public-domain datasets).
-Popular voices `ryan` and `hfc_male` are **CC BY-NC-SA (non-commercial)** and deliberately not used.
+### Narration voices
+
+| Profile (`--voice`) | Persona | Kokoro voice | Pace |
+|---|---|---|---|
+| **US English Friendly Male** (default, `friendly`) | Professional Friendly Male | `am_michael` | natural |
+| US English Male (Energetic) (`energetic`) | Energetic Educational Male | `am_puck` 60 % + `am_michael` 40 % | 1.04×, most expressive |
+| US English Male (Calm) / (Narrator) (`documentary`) | Calm Documentary Male | `am_michael` 65 % + `am_fenrir` 35 % | 0.93×, measured |
+
+* **Provider** (`tts.provider`): `kokoro` (default, local, Apache-2.0), `piper` (local, legacy),
+  `elevenlabs` or `openai` (cloud, keys from env only). Each profile maps to every provider's own
+  voice id. `--voice` also accepts a Kokoro voice/blend (`am_fenrir`, `am_michael:0.7,am_puck:0.3`) or
+  a Piper id (`en_US-norman-medium`).
+* **Direction** (`src/audio/narration_director.py`): every sentence gets an intent (hook, question,
+  relatable, explanation, transition, surprise, discovery, ending) that sets tempo, pauses before/after
+  and a small emphasis offset, scaled by the profile's `expressiveness`; cloud providers additionally
+  receive it as a style / spoken instruction. Pitch (`pitch_semitones`) uses provider-native control
+  where available, otherwise a formant-preserving resample (default 0 — no effects on the voice).
+* **Levels**: each sentence is normalised on its speech frames (-20 dBFS RMS, peaks ≤ -1 dBFS by gain),
+  then the mix is 2-pass loudness-normalised to -14 LUFS.
+* **Fallback**: `tts.fallback_provider: none` — an unavailable provider fails the run rather than
+  silently using a weaker voice.
+* Pronunciation fixes for scientific / medical terms: `config/pronunciations.yaml`.
+* Piper voices `ryan` and `hfc_male` are **CC BY-NC-SA (non-commercial)** and deliberately not used.
 
 ## 5. Output of one episode
 
@@ -191,7 +255,9 @@ generated/why_do_we_dream/
   research/   research.json (facts + statuses), source_texts.json, fact_check_*.json
   scripts/    script_short.json/.txt, script_long.json/.txt
   storyboards/ storyboard_vertical.json, storyboard_horizontal.json
-  audio/      per-scene narration WAVs + timing (sentences, words, lip-sync envelope)
+  audio/      per-scene narration WAVs + timing (sentences, words, deliveries, lip-sync envelope),
+              preview_<fmt>.wav (first scenes, for a quick listen), narration_qc_<fmt>.json
+  review/     storytelling_<fmt>.json (story + visual review), quality_report_<fmt>.md
   subtitles/  *.srt
   thumbnails/ 2 concepts × (16:9 + 9:16) JPG
   metadata/   3 titles, description (+chapters, sources, hashtags), keywords, thumbnail concepts
@@ -205,8 +271,9 @@ generated/why_do_we_dream/
 |---|---|---|
 | FFmpeg / FFprobe | encoding, muxing, loudness, probing | LGPL/GPL |
 | Cairo / pycairo | vector rendering | LGPL / LGPL-MPL |
-| Piper TTS (`piper-tts`, onnxruntime) | narration | GPL-3.0 (engine) |
-| Voice `en_US-joe-medium` | default narrator | dataset CC0 |
+| Kokoro-82M (`kokoro-onnx`, onnxruntime, espeak-ng) | default narrator | Apache-2.0 (model & voices) · GPL-3.0 (espeak-ng) |
+| Piper TTS (`piper-tts`) | optional local narrator | GPL-3.0 (engine), voice datasets CC0 / public domain |
+| faster-whisper (Whisper base.en) | narration intelligibility QC | MIT |
 | numpy, Pydantic, PyYAML, requests, Pillow, python-dotenv | core | BSD/MIT/HPND |
 | anthropic (optional) | Claude API client | MIT |
 | Luckiest Guy · Lilita One · Patrick Hand fonts | typography | Apache-2.0 · OFL-1.1 · OFL-1.1 |
@@ -216,7 +283,8 @@ generated/why_do_we_dream/
 ## 7. Known limitations
 
 * **Script quality without an LLM**: curated content packs give production quality; the offline
-  template only rephrases extracted research sentences (accurate but plain, generic visuals).
+  template now follows a story arc (hook, curiosity gap, varied mini-hooks, hedged theories, payoff)
+  but still assembles extracted research sentences, so it remains plainer than a written script.
   For new topics at production quality set `LLM_API_KEY` (Claude) — that path is implemented and
   unit-tested with a mocked client, but was **not exercised against the live API** during
   development (no key was available).
@@ -225,6 +293,13 @@ generated/why_do_we_dream/
 * **Word-level caption timing** is phoneme-weighted inside each sentence (sentence boundaries are
   exact); it is phrase-accurate but not forced-alignment accurate.
 * **Lip sync** follows loudness (open/close + width variation), not phoneme visemes.
+* **Voice quality is measured, not listened to, in CI**: narration QC uses signal metrics and a
+  Whisper word-error rate; "pleasant" is still a human judgement — use `voice preview` to compare.
+* **Kokoro has no native pitch or emotion control**: delivery intents are realised through pacing,
+  pauses and emphasis; ElevenLabs / OpenAI providers can use richer style control (keys required,
+  implemented with mocked tests only — not exercised against the live APIs).
+* **Animated demonstrations** exist for ten mechanisms; other processes fall back to labelled
+  illustrations, diagram flows and networks. New demos are added in `src/animation/demos.py`.
 * **Character views**: Milo is drawn in a front/three-quarter view and mirrored for left/right;
   there is no true side or back view. Walks/runs are stylised.
 * **Music** is procedurally generated (pleasant, unobtrusive, royalty-free) but simpler than

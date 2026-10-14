@@ -1,0 +1,83 @@
+{
+  "topic": "Why Is the Sky Blue?",
+  "niche": "science",
+  "format": "short",
+  "source": "curated",
+  "title": "Why Is the Sky Blue?",
+  "hook": "Sunlight is white. Space is black. So why is the sky above you bright blue?",
+  "cta": "Follow for more!",
+  "notes": [
+    "Curated sample for the science visual identity. Claims follow the research pack (Wikipedia: Diffuse sky radiation, Rayleigh scattering, Twilight). The only statistic (about 23 percent of direct sunlight scattered) is from 'Diffuse sky radiation'."
+  ],
+  "sections": [
+    {
+      "title": "The blue mystery",
+      "beats": [
+        {
+          "id": "s1",
+          "role": "hook",
+          "narration": "Sunlight is white. Space is black. So why is the sky above you bright blue?",
+          "visual": {"layout": "hook_title", "title": "Why is the sky blue?", "assets": ["sun"], "action": "surprised", "expression": "surprised", "background": "sky_day"}
+        },
+        {
+          "id": "s2",
+          "role": "curiosity_gap",
+          "narration": "Most of us never question it. But the answer is hiding in the air itself, and it took scientists centuries to figure it out.",
+          "visual": {"layout": "full_illustration", "assets": ["atmosphere_layers"], "labels": ["The air we breathe"], "background": "atmosphere_view"}
+        }
+      ]
+    },
+    {
+      "title": "Sorting sunlight",
+      "beats": [
+        {
+          "id": "s3",
+          "role": "explanation",
+          "narration": "Sunlight is really a mix of every color, from red to violet. Each color travels as a wave, and blue waves are much shorter than red ones.",
+          "visual": {"layout": "full_illustration", "assets": ["prism"], "labels": ["White sunlight", "Blue", "Red"], "background": "science_grid"}
+        },
+        {
+          "id": "s4",
+          "role": "discovery",
+          "narration": "Now picture sunlight crashing into the air. The air is mostly tiny nitrogen molecules. They bounce the short blue waves around in every direction, while red light mostly passes straight through.",
+          "visual": {"layout": "demonstration", "demo": {"kind": "light_scattering", "labels": ["Sunlight", "Air molecules", "Blue bounces around", "You"], "stage_cues": ["air", "bounce", "red"]}, "background": "sky_day"}
+        },
+        {
+          "id": "s5",
+          "role": "surprise",
+          "narration": "And it's a lot of light. About 23 percent of direct sunlight gets scattered across the sky like this.",
+          "visual": {"layout": "fact_card", "number": {"value": 23, "suffix": "%", "label": "of direct sunlight is scattered"}, "assets": ["sun"], "action": "excited", "expression": "excited"}
+        },
+        {
+          "id": "s6",
+          "role": "insight",
+          "narration": "So wherever you look, scattered blue light reaches your eyes from every part of the sky. That glowing blue blanket is what you see.",
+          "visual": {"layout": "story_scene", "assets": ["observer_kid", "sun"], "background": "sky_day"}
+        }
+      ]
+    },
+    {
+      "title": "Sunsets and clouds",
+      "beats": [
+        {
+          "id": "s7",
+          "role": "surprise",
+          "narration": "But here's the twist: at sunset, the light crosses much more air to reach you. Most of the blue gets scattered away first, so reds and oranges are what's left.",
+          "visual": {"layout": "demonstration", "demo": {"kind": "sunset_path", "labels": ["Low sun", "You", "Blue scattered away"], "stage_cues": ["crosses", "blue"]}, "background": "sunset_sky"}
+        },
+        {
+          "id": "s8",
+          "role": "discovery",
+          "narration": "And clouds? Their water droplets are big, so they scatter every color equally. That's why they look white.",
+          "visual": {"layout": "comparison", "assets": ["weather_cloud_rain", "nitrogen_n2"], "labels": ["Big droplets: all colors", "Tiny molecules: blue"], "background": "sky_day"}
+        },
+        {
+          "id": "s9",
+          "role": "ending",
+          "narration": "So the blue sky is sunlight, sorted by the air. Next time you look up, you'll know the secret. Stay curious!",
+          "visual": {"layout": "outro", "action": "wave", "expression": "happy", "background": "sunset_sky"}
+        }
+      ]
+    }
+  ]
+}

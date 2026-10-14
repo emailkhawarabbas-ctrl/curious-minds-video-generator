@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Tree" data-tags="tree,nature,plant,forest,leaves,oak,environment,photosynthesis,wood,park,apple">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Tree" data-tags="tree,nature,plant,forest,leaves,oak,environment,photosynthesis,wood,park,apple" data-subcategory="nature" data-style="science_explorer" data-animations="pop,float,draw">
 <ellipse cx="200" cy="348" rx="116" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-trunk">
     <path d="M176 220 C180 270 176 312 164 346 L236 346 C224 312 220 270 224 220 Z" fill="#B5703A" stroke="#2B2D42" stroke-width="8"/>

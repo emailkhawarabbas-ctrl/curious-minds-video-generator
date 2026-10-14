@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Brain Activity" data-tags="brain,activity,neurons,thinking,signals,energy,mind,neuroscience,electrical,firing,psychology">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Brain Activity" data-tags="brain,activity,neurons,thinking,signals,energy,mind,neuroscience,electrical,firing,psychology" data-subcategory="brain_activity" data-style="mind_storybook" data-animations="pop,pulse,signal">
   <!-- soft shadow -->
   <ellipse cx="200" cy="340" rx="104" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- brain (brain.svg at 85%); strokes compensated for the scale -->

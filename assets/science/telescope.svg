@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Telescope" data-tags="telescope,astronomy,stars,space,observe,observatory,stargazing,discovery,lens,night">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Telescope" data-tags="telescope,astronomy,stars,space,observe,observatory,stargazing,discovery,lens,night" data-subcategory="instruments" data-style="science_explorer" data-animations="pop,float,draw">
 <ellipse cx="200" cy="360" rx="126" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-tripod" stroke-linecap="round">
     <path d="M200 206 L118 350 M200 206 L200 354 M200 206 L282 350" fill="none" stroke="#2B2D42" stroke-width="24"/>

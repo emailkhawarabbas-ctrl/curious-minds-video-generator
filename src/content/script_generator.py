@@ -27,16 +27,16 @@ from src.utils.text import slugify, split_sentences
 
 log = logging.getLogger(__name__)
 
-# Spoken pace of the default voice incl. sentence pauses (measured: ~2.9 words/s at length_scale 1.15)
-WORDS_PER_SECOND = 2.9
+# Planning pace incl. directed pauses; the active voice profile's measured words_per_second overrides it
+WORDS_PER_SECOND = 2.85
 
 
 class ScriptError(RuntimeError):
     pass
 
 
-def target_words(fmt: Format, seconds: float) -> int:
-    return int(seconds * WORDS_PER_SECOND * (0.93 if fmt == "short" else 0.95))
+def target_words(fmt: Format, seconds: float, wps: float = WORDS_PER_SECOND) -> int:
+    return int(seconds * wps * (0.93 if fmt == "short" else 0.95))
 
 
 # --------------------------------------------------------------------------- JSON schema for the LLM
@@ -51,12 +51,17 @@ def llm_script_schema() -> Dict:
     item = {"type": "object", "additionalProperties": False, "required": ["text", "asset", "cue"],
             "properties": {"text": {"type": "string"}, "asset": _nullable({"type": "string", "enum": am.ids()}),
                            "cue": _nullable({"type": "string"})}}
+    demo = _nullable({"type": "object", "additionalProperties": False, "required": ["kind", "labels", "stage_cues"],
+                      "properties": {"kind": {"type": "string", "enum": list(R.DEMOS)},
+                                     "labels": {"type": "array", "items": {"type": "string"}},
+                                     "stage_cues": {"type": "array", "items": {"type": "string"}}}})
     visual = {
         "type": "object", "additionalProperties": False,
-        "required": ["layout", "assets", "labels", "items", "title", "bubble", "number", "chart", "background",
+        "required": ["layout", "demo", "assets", "labels", "items", "title", "bubble", "number", "chart", "background",
                      "action", "expression", "sfx"],
         "properties": {
             "layout": {"type": "string", "enum": list(R.LAYOUTS)},
+            "demo": demo,
             "assets": {"type": "array", "items": {"type": "string", "enum": am.ids()}},
             "labels": {"type": "array", "items": {"type": "string"}},
             "items": {"type": "array", "items": item},
@@ -78,8 +83,10 @@ def llm_script_schema() -> Dict:
             "expression": _nullable({"type": "string", "enum": sorted(load_expressions())}),
             "sfx": {"type": "array", "items": {"type": "string", "enum": list(R.SFX)}},
         }}
-    beat = {"type": "object", "additionalProperties": False, "required": ["id", "narration", "fact_ids", "visual"],
-            "properties": {"id": {"type": "string"}, "narration": {"type": "string"},
+    beat = {"type": "object", "additionalProperties": False,
+            "required": ["id", "role", "narration", "fact_ids", "visual"],
+            "properties": {"id": {"type": "string"}, "role": {"type": "string", "enum": list(R.STORY_ROLES)},
+                           "narration": {"type": "string"},
                            "fact_ids": {"type": "array", "items": {"type": "string"}}, "visual": visual}}
     return {"type": "object", "additionalProperties": False, "required": ["title", "hook", "sections", "cta"],
             "properties": {"title": {"type": "string"}, "hook": {"type": "string"}, "cta": {"type": "string"},
@@ -99,14 +106,19 @@ def _clean_visual(v: Dict) -> Dict:
         out["chart"] = {k: val for k, val in out["chart"].items() if val not in (None,)}
     if "items" in out:
         out["items"] = [{k: val for k, val in it.items() if val is not None} for it in out["items"]]
+    if "demo" in out:
+        d = out["demo"]
+        out["demo"] = {"kind": d["kind"], "labels": [str(x)[:R.MAX_LABEL_CHARS] for x in d.get("labels", [])][:5],
+                       "stage_cues": [str(x).split()[0] for x in d.get("stage_cues", []) if str(x).strip()][:5]}
     return out
 
 
 def script_from_llm_json(data: Dict, topic: str, niche: str, fmt: Format) -> Script:
     sections = []
     for sec in data.get("sections", []):
-        beats = [{"id": b["id"], "narration": b["narration"].strip(), "fact_ids": b.get("fact_ids", []),
-                  "visual": _clean_visual(b.get("visual", {}))} for b in sec.get("beats", [])]
+        beats = [{"id": b["id"], "role": b.get("role"), "narration": b["narration"].strip(),
+                  "fact_ids": b.get("fact_ids", []), "visual": _clean_visual(b.get("visual", {}))}
+                 for b in sec.get("beats", [])]
         sections.append({"title": sec["title"][:60], "beats": beats})
     return Script.model_validate({"topic": topic, "niche": niche, "format": fmt, "title": data["title"],
                                   "hook": data["hook"], "cta": data.get("cta", ""), "sections": sections,
@@ -167,18 +179,23 @@ class ScriptGenerator:
         am = get_asset_manager()
         from src.animation.character_engine import ACTIONS
         from src.animation.expression_engine import load_expressions
-        words = target_words(fmt, duration_s)
-        structure = ("Structure: a curiosity hook, a relatable intro, a simple explanation with 1-2 vivid examples, "
-                     "a surprising fact, and a satisfying conclusion. 1-3 sections, 7-11 beats in total."
+        words = target_words(fmt, duration_s, self.s.tts.active.words_per_second)
+        structure = ("Structure (a guideline, not a stopwatch): opening hook -> curiosity gap -> relatable "
+                     "situation -> unexpected discovery -> visual scientific explanation (demonstration) -> "
+                     "surprising insight -> memorable ending that answers the hook. 1-4 sections, 8-11 beats."
                      if fmt == "short" else
-                     "Structure: strong opening hook, detailed introduction, 4-6 educational sections with "
-                     "scientific explanations, real-life examples, interesting facts and mini-stories, then a final "
-                     "summary and sign-off. 6-8 sections, 30-45 beats in total. This must genuinely fill the "
-                     "target length with substance, not filler.")
+                     "Documentary structure: strong opening mystery, a relatable real-world scenario, clear "
+                     "questions, then 4-6 sections of progressive discoveries, each with a visual demonstration, "
+                     "a scientific explanation and an interesting example; meaningful mini-hook transitions between "
+                     "sections; unexpected connections; a satisfying conclusion that resolves the opening mystery. "
+                     "6-8 sections, 30-45 beats. Every section must add genuine educational value; no padding.")
         facts = "\n".join(f"{f.id} | {f.status} | {f.text}" for f in research.facts) or "(none)"
+        from src.animation.themes import resolve_theme
+        theme = resolve_theme(niche, topic)
         user = load_prompt(
             "script_user", format_label="60-90 second vertical short" if fmt == "short" else "6-10 minute long-form",
-            topic=topic, niche=niche, target_words=str(words),
+            topic=topic, niche=niche, theme=theme.label, target_words=str(words),
+            demos="\n".join(f"- {k}: {v}" for k, v in R.DEMOS.items()),
             duration_label=f"~{int(duration_s)} seconds of narration", structure=structure,
             layouts="\n".join(f"- {k}: {v}" for k, v in R.LAYOUTS.items()),
             assets="\n".join(f"- {a}: {', '.join(am.record(a).tags[:6])}" for a in am.ids()),
@@ -196,6 +213,12 @@ class ScriptGenerator:
                 report = check_script(script, research, source_texts)
                 if not report["passed"]:
                     raise ScriptError("fact-check failed: " + json.dumps(report["issues"])[:2000])
+                from src.content.retention_review import review_story
+                story = review_story(script)
+                bad = [c for c in story["checks"] if c["level"] == "fail"]
+                if bad:
+                    raise ScriptError("storytelling review failed: " + "; ".join(f"{c['check']}: {c['detail']}"
+                                                                                 for c in bad))
                 n = script.word_count
                 if not (0.75 * words <= n <= 1.3 * words):
                     raise ScriptError(f"script has {n} words; target is about {words}")
@@ -212,7 +235,7 @@ class ScriptGenerator:
     # ------------------------------------------------------------------ offline template
     def _offline(self, topic: str, niche: str, fmt: Format, research: ResearchPack, duration_s: float) -> Script:
         """Plain but factual template: every sentence is (lightly adapted) research text."""
-        words_target = target_words(fmt, duration_s)
+        words_target = target_words(fmt, duration_s, self.s.tts.active.words_per_second)
         am = get_asset_manager()
         est = [f for f in research.facts if f.status == "established"]
         hyp = [f for f in research.facts if f.status == "hypothesis"]
@@ -221,38 +244,55 @@ class ScriptGenerator:
         if not pool:
             raise ScriptError("offline generator needs at least one research fact")
 
-        def beat(i: int, text: str, fids: List[str], layout: Optional[str] = None, **vis) -> Dict:
-            assets = am.search(text, 2)
-            v = {"layout": layout or ("character_explains" if assets else "question"), "assets": assets}
+        from src.content.story_engine import ConnectorPool
+
+        def beat(i: int, text: str, fids: List[str], layout: Optional[str] = None, role: Optional[str] = None,
+                 **vis) -> Dict:
+            v = {"layout": layout} if layout else {}
             v.update(vis)
-            if v["layout"] == "character_explains" and not assets:
-                v["layout"] = "question"
-            return {"id": f"b{i}", "narration": text, "fact_ids": fids, "visual": v}
+            return {"id": f"b{i}", "role": role, "narration": text, "fact_ids": fids, "visual": v}
 
         q = topic.rstrip("?")
-        beats_intro = [beat(1, f"{q}? It's one of those questions we all wonder about. Let's find out what "
-                               f"scientists actually know.", [], "hook_title", title=topic[:48],
-                            action="surprised", expression="curious")]
+        hooks = {"human_body": f"Your body does this every single day without asking you. {q}?",
+                 "psychology": f"We all do it, and almost nobody stops to ask why. {q}?",
+                 "science": f"It looks simple, until you really look closer. {q}?"}
+        beats_intro = [beat(1, hooks.get(niche, hooks["science"]), [], "hook_title", "hook", title=topic[:48],
+                            action="surprised", expression="curious"),
+                       beat(2, "The real answer is hiding in plain sight, and it's stranger than most people think.",
+                            [], None, "curiosity_gap", action="think", expression="curious")]
+        pool_c = ConnectorPool(seed=len(topic))
         body: List[Dict] = []
-        i = 2
+        i = 3
         used = 0
-        for f in pool:
-            if used >= words_target * 0.7:
+        for k, f in enumerate(pool):
+            if used >= words_target * 0.68:
                 break
             sent = _spoken(f.text)
-            body.append(beat(i, sent, [f.id]))
+            role = "explanation"
+            if f.numbers and k > 0:
+                lead = pool_c.take("surprise")
+                if lead:
+                    sent, role = f"{lead} {sent[0].lower() + sent[1:] if sent[:2] != 'I ' else sent}", "surprise"
+            elif k == 1:
+                role = "discovery"
+            body.append(beat(i, sent, [f.id], None, role))
             used += len(sent.split())
             i += 1
+            if k in (2, 6) and len(pool) > k + 1:
+                t = pool_c.take("deeper")
+                if t:
+                    body.append(beat(i, t, [], None, "transition"))
+                    i += 1
         theories: List[Dict] = []
         for f in hyp[: (2 if fmt == "short" else 6)]:
-            theories.append(beat(i, "One idea scientists are still testing: " + _spoken(f.text), [f.id],
-                                 action="think", expression="thinking"))
+            theories.append(beat(i, "One idea scientists are still testing: " + _spoken(f.text), [f.id], None,
+                                 "insight", action="think", expression="thinking"))
             i += 1
-        outro = [beat(i, f"So next time you think about {q.lower()}, remember: science is still exploring it, "
-                         f"and that's what makes it exciting. Stay curious!", [], "outro")]
+        outro = [beat(i, f"So, {q[0].lower() + q[1:]}? Now you know what's going on behind the scenes. "
+                         f"Stay curious!", [], "outro", "ending")]
         if fmt == "short":
             sections = [{"title": "The question", "beats": beats_intro + body[:6]},
-                        {"title": "What scientists think", "beats": theories + outro}]
+                        {"title": "What scientists think", "beats": theories[:2] + outro}]
         else:
             chunk = max(3, len(body) // 4)
             sections = [{"title": "Introduction", "beats": beats_intro}]

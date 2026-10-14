@@ -108,7 +108,8 @@ def extract_facts(topic: str, sources: List[Source], texts: Dict[str, str],
 
 
 def _numbers_in(text: str) -> List[str]:
-    out = [m.group().strip().rstrip("%").replace(",", "") for m in NUMBER.finditer(text)]
+    # "23%", "23 %", "23 percent" and "23 per cent" are the same number
+    out = [re.sub(r"\s*(%|percent|per cent)$", "", m.group().strip()).replace(",", "") for m in NUMBER.finditer(text)]
     for w, d in NUMBER_WORDS.items():
         if re.search(rf"\b{w}\b", text, re.I):
             out.append(d)

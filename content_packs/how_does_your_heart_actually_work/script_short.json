@@ -1,0 +1,83 @@
+{
+  "topic": "How Does Your Heart Actually Work?",
+  "niche": "human_body",
+  "format": "short",
+  "source": "curated",
+  "title": "How Does Your Heart Actually Work?",
+  "hook": "Put your hand on your chest. That steady thump is a muscle that never stops working, not even while you sleep. But what is it actually doing?",
+  "cta": "Follow for more!",
+  "notes": [
+    "Curated sample for the human-body visual identity. Claims follow the research pack (Wikipedia: Heart, Cardiac cycle, Systole, Diastole; MedlinePlus heart topics). Numbers used: 72 beats per minute, 0.8 seconds per cycle, pacemaker cells about 1 percent of heart cells."
+  ],
+  "sections": [
+    {
+      "title": "The nonstop pump",
+      "beats": [
+        {
+          "id": "h1",
+          "role": "hook",
+          "narration": "Put your hand on your chest. That steady thump is a muscle that never stops working, not even while you sleep. But what is it actually doing?",
+          "visual": {"layout": "hook_title", "title": "How does your heart work?", "assets": ["heart"], "action": "surprised", "expression": "surprised", "background": "bloodstream"}
+        },
+        {
+          "id": "h2",
+          "role": "curiosity_gap",
+          "narration": "Every beat follows the same precise routine. And a tiny group of cells is secretly in charge of all of it.",
+          "visual": {"layout": "character_closeup", "assets": ["pulse_monitor"], "action": "think", "expression": "curious", "background": "body_lab"}
+        }
+      ]
+    },
+    {
+      "title": "Four rooms, two loops",
+      "beats": [
+        {
+          "id": "h3",
+          "role": "explanation",
+          "narration": "Inside, your heart has four rooms called chambers. The two on top, the atria, collect blood. The two below, the ventricles, push it out.",
+          "visual": {"layout": "full_illustration", "assets": ["heart_cutaway"], "labels": ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"], "background": "anatomy_blueprint"}
+        },
+        {
+          "id": "h4",
+          "role": "discovery",
+          "narration": "The right side sends oxygen-poor blood to your lungs to pick up fresh oxygen. Then the left side pumps that oxygen-rich blood out to your whole body.",
+          "visual": {"layout": "demonstration", "demo": {"kind": "heart_pump", "labels": ["Oxygen-poor blood", "Oxygen-rich blood"], "stage_cues": ["sends", "left", "whole"]}, "background": "body_lab"}
+        },
+        {
+          "id": "h5",
+          "role": "explanation",
+          "narration": "Between the chambers are valves, like little one-way doors. In a healthy heart, they make sure blood only ever flows forward.",
+          "visual": {"layout": "object_focus", "assets": ["heart_cutaway"], "labels": ["One-way valves"], "background": "anatomy_blueprint"}
+        }
+      ]
+    },
+    {
+      "title": "The secret spark",
+      "beats": [
+        {
+          "id": "h6",
+          "role": "surprise",
+          "narration": "So who's in charge? A tiny group of pacemaker cells, only about 1 percent of heart cells, fires an electrical spark that starts every single beat.",
+          "visual": {"layout": "demonstration", "demo": {"kind": "ecg_heartbeat", "labels": ["Pacemaker spark", "Every beat"], "stage_cues": ["fires", "every"]}, "background": "body_lab"}
+        },
+        {
+          "id": "h7",
+          "role": "discovery",
+          "narration": "At rest, an adult heart beats about 72 times a minute. Each full beat takes less than a second, about 0.8 seconds from start to finish.",
+          "visual": {"layout": "fact_card", "number": {"value": 72, "suffix": " BPM", "label": "resting heart rate"}, "assets": ["pulse_monitor"], "action": "excited", "expression": "excited", "background": "bloodstream"}
+        },
+        {
+          "id": "h8",
+          "role": "insight",
+          "narration": "Here's the wild part: your heart feeds itself between beats. Its own blood supply flows mainly while it relaxes, not while it squeezes.",
+          "visual": {"layout": "full_illustration", "assets": ["blood_vessel"], "labels": ["Heart muscle's own supply"], "background": "cell_world"}
+        },
+        {
+          "id": "h9",
+          "role": "ending",
+          "narration": "So every thump is a perfectly timed squeeze and relax, sending blood on a nonstop round trip. Pretty amazing for one muscle. Stay curious!",
+          "visual": {"layout": "outro", "action": "wave", "expression": "happy", "background": "body_lab"}
+        }
+      ]
+    }
+  ]
+}

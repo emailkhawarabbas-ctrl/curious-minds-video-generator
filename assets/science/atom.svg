@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Atom" data-tags="atom,nucleus,electron,proton,neutron,physics,chemistry,science,energy,particle,nuclear">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Atom" data-tags="atom,nucleus,electron,proton,neutron,physics,chemistry,science,energy,particle,nuclear" data-subcategory="physics" data-style="science_explorer" data-animations="pop,float,draw">
 <g id="part-orbits" fill="none" stroke="#2B2D42" stroke-width="7">
     <ellipse cx="200" cy="200" rx="170" ry="58" transform="rotate(0 200 200)"/>
     <ellipse cx="200" cy="200" rx="170" ry="58" transform="rotate(60 200 200)"/>

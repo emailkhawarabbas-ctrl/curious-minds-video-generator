@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lightning Bolt" data-tags="lightning,bolt,electricity,electric,power,energy,storm,thunder,charge,voltage,spark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lightning Bolt" data-tags="lightning,bolt,electricity,electric,power,energy,storm,thunder,charge,voltage,spark" data-subcategory="energy" data-style="science_explorer" data-animations="pop,float,draw">
 <g id="part-bolt">
     <path d="M214 28 L104 214 L182 214 L140 374 L306 152 L222 152 L290 28 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>
     <path d="M232 166 L284 166 L170 318 Z" fill="#FF9F1C" fill-opacity="0.6"/>

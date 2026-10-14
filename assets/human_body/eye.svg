@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Eye" data-tags="eye,eyeball,vision,sight,seeing,iris,pupil,optics,sense,body">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Eye" data-tags="eye,eyeball,vision,sight,seeing,iris,pupil,optics,sense,body" data-subcategory="senses" data-style="medical_cartoon" data-animations="pop,float,draw">
   <!-- soft shadow -->
   <ellipse cx="200" cy="362" rx="115" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- eyeball -->

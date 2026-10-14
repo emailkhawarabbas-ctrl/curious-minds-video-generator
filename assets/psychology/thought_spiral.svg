@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Thought Loop Spiral" data-tags="thought loop,rumination,spiral,repeating thoughts,cycle,overthinking,worry loop,stuck,loop" data-subcategory="thoughts" data-style="mind_storybook" data-animations="pop,spin,draw,pulse">
+  <ellipse cx="200" cy="366" rx="110" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-spiral">
+    <path d="M200 200 C214 186 232 196 230 214 C226 240 190 248 172 228 C146 202 160 156 200 148 C250 138 286 178 282 222 C278 276 222 304 176 290 C118 272 98 206 124 156 C152 104 220 86 270 112" fill="none" stroke="#2B2D42" stroke-width="22" stroke-linecap="round"/>
+    <path d="M200 200 C214 186 232 196 230 214 C226 240 190 248 172 228 C146 202 160 156 200 148 C250 138 286 178 282 222 C278 276 222 304 176 290 C118 272 98 206 124 156 C152 104 220 86 270 112" fill="none" stroke="#8E7DFF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M250 86 L290 116 L248 136" fill="none" stroke="#2B2D42" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M250 86 L290 116 L248 136" fill="none" stroke="#8E7DFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="part-marks">
+    <circle cx="320" cy="250" r="20" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M314 244 C314 236 326 236 326 244 C326 250 320 250 320 256" fill="none" stroke="#2B2D42" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="86" cy="280" r="16" fill="#FF8FAB" stroke="#2B2D42" stroke-width="6"/>
+    <circle cx="96" cy="96" r="12" fill="#9BE7DF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-top" cx="200" cy="90" r="4"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-arrow" cx="290" cy="116" r="4"/>
+  <circle id="anchor-core" cx="210" cy="212" r="4"/>
+</svg>

@@ -22,11 +22,13 @@ from src.animation.asset_manager import AssetManager, get_asset_manager
 from src.animation.backgrounds import Background
 from src.animation.character_engine import CharacterAnimator, CharacterCue
 from src.animation.character_rig import Placement, Skeleton
+from src.animation.demos import Demo, make_demo
 from src.animation.doodle_engine import (Arrow, BarChart, Burst, CircleHighlight, Counter, Doodle, IconPop, Label,
                                          LineChart, MarkerHighlight, MorphShape, Particles, Pathway, PopText,
                                          Sparkle, SpeechBubble, StarDoodle, WaveLine, rounded_rect)
-from src.animation.easing import clamp, ease_in_out_sine, ease_out_back, progress
-from src.animation.palette import ACCENTS, PALETTE
+from src.animation.easing import clamp, ease_in_out_sine, ease_out_back, ease_out_cubic, progress
+from src.animation.palette import ACCENTS, PALETTE, lighten
+from src.animation.themes import THEMES
 from src.animation.text_render import TextStyle, draw_lines, fit_size
 from src.content.models import ObjectSpec, Scene
 from src.utils.fonts import CAPTION_FONT, HAND_FONT, TITLE_FONT
@@ -128,6 +130,26 @@ class SceneComposition:
     camera_intensity: float = 0.5
     events: List[Tuple[float, str]] = field(default_factory=list)   # auto sound effects (time, sfx)
     post: List[Callable[[cairo.Context, float], None]] = field(default_factory=list)
+    focus_keys: List[Tuple[float, Point]] = field(default_factory=list)   # (time, point) the camera visits
+    focus_fn: Optional[Callable[[float], Point]] = None                   # live focus (demonstrations)
+    foreground: Optional["_Foreground"] = None
+    parallax: float = 0.4                                                 # background follows 40 % of the camera
+
+    def _glide(self, t: float) -> Optional[Point]:
+        """Smoothed point of interest at time t: glides between focus keys / follows a demo."""
+        if self.focus_fn is not None:
+            pts = [self.focus_fn(max(0.0, t - k * 0.15)) for k in range(6)]
+            return sum(q[0] for q in pts) / 6, sum(q[1] for q in pts) / 6
+        keys = sorted(self.focus_keys)
+        if not keys:
+            return None
+        if t <= keys[0][0]:
+            return keys[0][1]
+        for (t0, p0), (t1, p1) in zip(keys, keys[1:]):
+            if t0 <= t < t1:
+                f = ease_in_out_sine(clamp((t - t0) / 0.9))
+                return p0[0] + (p1[0] - p0[0]) * f, p0[1] + (p1[1] - p0[1]) * f
+        return keys[-1][1]
 
     def camera(self, t: float) -> Tuple[float, float, float]:
         d = self.ctx_info.duration
@@ -136,6 +158,24 @@ class SceneComposition:
         m = self.camera_move
         p = ease_in_out_sine(clamp(t / max(d, 0.1)))
         s, dx, dy = 1.0, 0.0, 0.0
+        W, H = self.ctx_info.W, self.ctx_info.H
+        if m in ("focus", "follow", "reveal"):
+            fp = self._glide(t)
+            if fp is None:
+                m = "drift"
+            else:
+                if m == "reveal":
+                    pull = ease_in_out_sine(clamp(t / max(1.0, d * 0.65)))
+                    s = 1.0 + 0.16 * k * (1 - pull) + 0.02 * k
+                    a = 0.45 * (1 - pull) + 0.12
+                else:
+                    s = 1.0 + (0.06 if m == "focus" else 0.05) * k + 0.015 * math.sin(t * 0.4)
+                    a = 0.28 if m == "focus" else 0.36
+                # move the point of interest toward the frame centre (point q maps to C + d + s(q - C))
+                dx = (fp[0] - W / 2) * (1 - a - s)
+                dy = (fp[1] - H / 2) * (1 - a - s)
+                lim_x, lim_y = W * 0.09 * s, H * 0.07 * s
+                return s, clamp(dx, -lim_x, lim_x), clamp(dy, -lim_y, lim_y)
         if m == "zoom_in":
             s = 1.0 + 0.07 * k * p
         elif m == "zoom_out":
@@ -159,11 +199,19 @@ class SceneComposition:
     def draw(self, ctx: cairo.Context, t: float) -> None:
         W, H = self.ctx_info.W, self.ctx_info.H
         s, dx, dy = self.camera(t)
+        # depth: the background layer moves less than the stage (parallax)
+        k = self.parallax
+        sb = 1.0 + (s - 1.0) * k
+        ctx.save()
+        ctx.translate(W / 2 + dx * k, H / 2 + dy * k)
+        ctx.scale(sb, sb)
+        ctx.translate(-W / 2, -H / 2)
+        self.background.draw(ctx, t)
+        ctx.restore()
         ctx.save()
         ctx.translate(W / 2 + dx, H / 2 + dy)
         ctx.scale(s, s)
         ctx.translate(-W / 2, -H / 2)
-        self.background.draw(ctx, t)
         drawn_char = False
         for el in sorted(self.elements, key=lambda e: e.z):
             if not drawn_char and el.z >= self.char_z and self.character is not None:
@@ -175,6 +223,15 @@ class SceneComposition:
         for fn in self.post:
             fn(ctx, t)
         ctx.restore()
+        if self.foreground is not None:
+            kf = 1.3                                    # foreground moves more than the stage
+            sf = 1.0 + (s - 1.0) * kf
+            ctx.save()
+            ctx.translate(W / 2 + dx * kf, H / 2 + dy * kf)
+            ctx.scale(sf, sf)
+            ctx.translate(-W / 2, -H / 2)
+            self.foreground.draw(ctx, t)
+            ctx.restore()
 
 
 # --------------------------------------------------------------------------- helpers
@@ -208,6 +265,18 @@ def _icon_height(asset, h: float, max_w: float) -> float:
     return min(h, max_w / max(asset.aspect, 0.01))
 
 
+def _anchor_for_label(text: str, anchors: Sequence[str], i: int) -> str:
+    """Anchor a label to the part it names ("Left atrium" -> left_atrium, "One-way valves" -> valves)."""
+    words = set(re.findall(r"[a-z]+", text.lower()))
+    best, score = None, 0
+    for a in anchors:
+        parts = set(a.split("_"))
+        hit = sum(1 for p in parts for w in words if w.startswith(p[:5]) or p.startswith(w[:5]))
+        if hit > score:
+            best, score = a, hit
+    return best if best else anchors[i % len(anchors)]
+
+
 def _label_style(L: LayoutContext) -> Dict:
     return {"unit": L.u, "size": 40 if L.vertical else 38}
 
@@ -221,6 +290,8 @@ class Builder:
         self.events: List[Tuple[float, str]] = []
         self.main_icon: Optional[IconPop] = None
         self.seed = L.seed
+        self.focus_keys: List[Tuple[float, Point]] = []
+        self.demo: Optional[Demo] = None
 
     def add(self, el: Doodle, sfx: Optional[str] = None) -> Doodle:
         el.unit = self.L.u
@@ -238,6 +309,8 @@ class Builder:
         el = IconPop(asset=a, center=center, height=h, start=start, duration=0.55, entrance=entrance,
                      idle=idle, z=z, highlight_groups=tuple(highlight) or None, highlight_start=start + 1.2)
         self.add(el, sfx)
+        if z >= 3:
+            self.focus_keys.append((start, center))
         return el
 
     def label(self, text: str, pos: Point, start: float, anchor: Optional[Point] = None, color: str = "white",
@@ -252,6 +325,8 @@ class Builder:
         el = Label(text=text, pos=pos, anchor=anchor, start=start, duration=0.45, bg=bg, fg=fg, z=z,
                    size=size or (48 if self.L.vertical else 44), max_width=max_width)
         self.add(el, "click")
+        if anchor is not None:
+            self.focus_keys.append((start, ((anchor[0] + pos[0]) / 2, (anchor[1] + pos[1]) / 2)))
         return el
 
 
@@ -316,7 +391,7 @@ def _layout_object_focus(b: Builder) -> None:
     anchors = [n for n in a.anchors if n not in ("center", "top")]
     hh = b.main_icon.height
     for i, text in enumerate(labels[:4]):
-        an = anchors[i % len(anchors)] if anchors else "center"
+        an = _anchor_for_label(text, anchors, i) if anchors else "center"
         ax, ay = a.anchor(an, cx, cy, hh) if anchors else (cx, cy)
         ang = math.atan2(ay - cy, ax - cx) if (ax, ay) != (cx, cy) else (-math.pi / 2 + i * 2.1)
         rx = hh * a.aspect * 0.5 + (150 if not L.vertical else 70) * L.u
@@ -386,7 +461,7 @@ def _layout_comparison(b: Builder) -> None:
     L, sc = b.L, b.scene
     a, c = sc.objects[:2]
     if L.vertical:
-        pa, pc, h = (L.sx(0.27), L.sy(0.3)), (L.sx(0.73), L.sy(0.3)), L.sh * 0.28
+        pa, pc, h = (L.sx(0.26), L.sy(0.3)), (L.sx(0.74), L.sy(0.3)), L.sh * 0.36
     else:
         pa, pc, h = (L.sx(0.44), L.sy(0.42)), (L.sx(0.82), L.sy(0.42)), L.sh * 0.48
     for i, (o, p) in enumerate(((a, pa), (c, pc))):
@@ -459,6 +534,10 @@ def _layout_story_scene(b: Builder, char_pos: str) -> None:
             h = maxw / a.aspect
         cx = L.sx(0.5) if L.vertical else L.sx(0.64 if right else 0.36)
         cy = L.sy(0.32) if L.vertical else L.ground_y - h * 0.5 - 10 * L.u
+        if L.vertical and a.aspect < 0.85:
+            # standing figures (people) belong on the ground beside Milo, not floating in the sky
+            h = L.char_height() * 0.9
+            cx, cy = L.sx(0.74), L.ground_y - h * 0.5
         b.main_icon = b.icon(mains[0].asset, (cx, cy), h, 0.25, max_w=maxw, entrance=mains[0].entrance,
                              idle="none" if mains[0].idle == "float" else mains[0].idle, z=2, sfx=None)
     for i, o in enumerate(_others(sc)[:3]):
@@ -589,6 +668,131 @@ def _layout_outro(b: Builder) -> None:
                        tail_to=(L.sx(0.32 if L.vertical else 0.3), L.ground_y - L.char_height() * 0.75)), "pop")
     b.add(Particles(kind="confetti", center=(L.sx(0.5), L.sy(0.35)), count=40, size=12, start=0.4, z=9))
     b.add(Particles(kind="confetti", center=(L.sx(0.5), L.sy(0.35)), count=30, size=10, start=2.4, z=9))
+
+
+def _demo_box(L: LayoutContext, char_pos: str) -> Tuple[float, float, float, float]:
+    if L.vertical:
+        return (L.sx(0.02), L.sy(0.0), L.sw * 0.96, L.sh * 0.74)
+    left = char_pos in ("left", "corner_left")
+    return (L.sx(0.24 if left else 0.03), L.sy(0.02), L.sw * 0.73, L.sh * 0.95)
+
+
+def _layout_demonstration(b: Builder, char_pos: str) -> None:
+    """Animated explanatory diagram; stages start on their cue words, callouts follow the stages."""
+    L, sc = b.L, b.scene
+    spec = sc.demo
+    assert spec is not None
+    from src.animation.demos import STAGE_COUNT
+    n = STAGE_COUNT.get(spec.kind, 3)
+    stages = [0.25]
+    for k in range(1, n):
+        cue = spec.stage_cues[k - 1] if k - 1 < len(spec.stage_cues) else None
+        default = L.spread(k, n, 0.0, 0.8)
+        stages.append(max(stages[-1] + 0.6, L.cue_time(cue, default)))
+    demo = make_demo(spec.kind, _demo_box(L, char_pos), stages, L.assets, L.u, seed=L.seed)
+    b.add(demo, "whoosh")
+    demo.seed = L.seed
+    b.demo = demo
+    for k, t in enumerate(stages[1:], start=1):
+        b.events.append((t, ("pop", "sparkle", "click", "ding")[k % 4]))
+    names = list(demo.label_points)
+    x0, y0, x1, y1 = L.stage
+    for i, text in enumerate(spec.labels[:len(names)]):
+        ax, ay = demo.label_points[names[i]]
+        cx, cy = demo.cx, demo.cy
+        ang = math.atan2(ay - cy, ax - cx) if (ax, ay) != (cx, cy) else -math.pi / 2
+        px = clamp(ax + math.cos(ang) * 150 * L.u, x0 + 160 * L.u, x1 - 160 * L.u)
+        py = clamp(ay + math.sin(ang) * 110 * L.u - 30 * L.u, y0 + 40 * L.u, y1 - 50 * L.u)
+        start = stages[min(i + 1, len(stages) - 1)] + 0.35
+        b.label(text, (px, py), start, anchor=(ax, ay), color=ACCENTS[(i + L.seed) % len(ACCENTS)],
+                size=38 if L.vertical else 36, max_width=360)
+
+
+def _layout_full_illustration(b: Builder, char_pos: str) -> None:
+    """One big illustration drawn on, then toured by the camera via labelled callouts."""
+    L, sc = b.L, b.scene
+    main = _mains(sc)[0]
+    a = L.assets.get(main.asset)
+    left = char_pos in ("left", "corner_left")
+    if L.vertical:
+        cx, cy, h, maxw = L.sx(0.5), L.sy(0.38), L.sh * 0.6, L.sw * 0.98
+    else:
+        cx, cy, h, maxw = L.sx(0.58 if left else 0.42), L.sy(0.5), L.sh * 0.86, L.sw * 0.74
+    b.main_icon = b.icon(main.asset, (cx, cy), h, 0.15, max_w=maxw, entrance="draw", idle="none", z=2,
+                         highlight=main.highlight, sfx="sparkle")
+    b.main_icon.duration = 1.1
+    labels = [o.text for o in sc.text_overlays if o.style == "label"] or ([main.label] if main.label else [])
+    anchors = [n for n in a.anchors if n not in ("center", "top")]
+    hh = b.main_icon.height
+    for i, text in enumerate(labels[:4]):
+        an = _anchor_for_label(text, anchors, i) if anchors else "center"
+        ax, ay = a.anchor(an, cx, cy, hh) if anchors else (cx, cy)
+        ang = math.atan2(ay - cy, ax - cx) if (ax, ay) != (cx, cy) else (-math.pi / 2 + i * 2.1)
+        px = clamp(ax + math.cos(ang) * 170 * L.u, L.stage[0] + 170 * L.u, L.stage[2] - 170 * L.u)
+        py = clamp(ay + math.sin(ang) * 120 * L.u, L.stage[1] + 50 * L.u, L.stage[3] - 50 * L.u)
+        cue = next((o.cue for o in sc.text_overlays if o.text == text), None)
+        b.label(text, (px, py), L.cue_time(cue, L.spread(i, max(2, len(labels)), 0.2, 0.75)), anchor=(ax, ay),
+                color=ACCENTS[(i + L.seed) % len(ACCENTS)], size=38 if L.vertical else 36)
+    if not labels:
+        b.focus_keys.append((0.2, (cx, cy - hh * 0.15)))
+        b.focus_keys.append((L.duration * 0.6, (cx, cy)))
+
+
+def _layout_character_closeup(b: Builder, char_pos: str) -> None:
+    """Milo big, talking to the viewer; one prop pops in beside him on the far side."""
+    L, sc = b.L, b.scene
+    mains = _mains(sc)
+    if mains:
+        p = (L.sx(0.74), L.sy(0.22)) if L.vertical else (L.sx(0.74), L.sy(0.3))
+        b.main_icon = b.icon(mains[0].asset, p, L.sh * (0.24 if L.vertical else 0.36), L.cue_time(mains[0].cue, 0.6),
+                             entrance="elastic", idle="float", z=4)
+        b.add(Sparkle(center=(p[0] + 90 * L.u, p[1] - 80 * L.u), radius=28, start=b.main_icon.start + 0.3, z=5))
+    b.focus_keys.append((0.0, (L.sx(0.4), L.sy(0.45))))
+
+
+@dataclass
+class _Foreground(Doodle):
+    """Out-of-focus depth props in front of the stage, per niche (subtle, kept to the frame edges)."""
+    kind: str = "science"
+    W: int = 1080
+    H: int = 1920
+
+    def draw(self, ctx, t):
+        u = self.unit
+        rnd = __import__("random").Random(self.seed * 31 + 7)
+        k = clamp(t / 0.8)
+        if self.kind == "medical":
+            for i in range(4):
+                side = i % 2
+                x = (-30 + rnd.random() * 160) * u if side == 0 else self.W - (-30 + rnd.random() * 160) * u
+                y = self.H * (0.12 + 0.7 * rnd.random()) + math.sin(t * 0.6 + i) * 18 * u
+                r = (60 + 50 * rnd.random()) * u
+                ctx.save()
+                ctx.translate(x, y)
+                ctx.scale(1, 0.7)
+                ctx.arc(0, 0, r, 0, 2 * math.pi)
+                ctx.restore()
+                ctx.set_source_rgba(*PALETTE["red"], 0.16 * k)
+                ctx.fill()
+        elif self.kind == "mind":
+            for i in range(3):
+                x = self.W * (0.05 if i % 2 == 0 else 0.95)
+                y = self.H * (0.18 + 0.32 * i)
+                r = (120 + 60 * i) * u
+                ctx.set_line_width(14 * u)
+                ctx.set_source_rgba(*PALETTE["lavender"], 0.16 * k)
+                a0 = t * 0.2 * (1 if i % 2 else -1) + i
+                ctx.arc(x, y, r, a0, a0 + 2.2)
+                ctx.stroke()
+        else:
+            for i in range(7):
+                x = self.W * rnd.random()
+                y = self.H * (rnd.random() * 0.25 if i % 2 else 0.6 + rnd.random() * 0.15)
+                y += math.sin(t * 0.5 + i) * 12 * u
+                r = (10 + 18 * rnd.random()) * u
+                ctx.arc(x, y, r, 0, 2 * math.pi)
+                ctx.set_source_rgba(*lighten(PALETTE["yellow_light"], 0.3), 0.22 * k)
+                ctx.fill()
 
 
 # --------------------------------------------------------------------------- custom small elements
@@ -835,7 +1039,8 @@ def _apply_text_overlays(b: Builder, layout: str, char_anim: Optional[CharacterA
     """Overlays not consumed by the layout: titles, notes, speech bubbles."""
     L, sc = b.L, b.scene
     consumed = {"hook_title": ("title",), "question": ("title", "bubble"), "outro": ("cta",),
-                "object_focus": ("label",), "fact_card": ("fact",)}.get(layout, ())
+                "object_focus": ("label",), "fact_card": ("fact",),
+                "full_illustration": ("label",)}.get(layout, ())
     for ov in sc.text_overlays:
         if ov.style in consumed:
             continue
@@ -934,7 +1139,16 @@ def compose_scene(scene: Scene, L: LayoutContext, envelope: Optional[Sequence[fl
         position = "left" if not L.vertical else "corner_left"
     if layout == "fact_card" and not L.vertical:
         position = "left"                                     # keep the mascot clear of the big number
-    cx, small, facing = _char_x(L, position)
+    if layout == "demonstration" and position not in ("corner_left", "corner_right"):
+        position = "corner_left" if position in ("left", "center") else "corner_right"
+    if layout == "full_illustration" and position in ("left", "right", "center"):
+        position = "corner_left" if position == "left" else "corner_right"
+    if position == "closeup":
+        cx, small, facing = (L.sx(0.3), False, 1)
+    else:
+        cx, small, facing = _char_x(L, position)
+    if layout == "demonstration" and not L.vertical:
+        cx = L.sx(0.11) if position == "corner_left" else L.sx(0.89)
     if layout == "hook_title":
         cx, small = (L.sx(0.3), False) if L.vertical else (L.sx(0.28), False)
 
@@ -954,30 +1168,52 @@ def compose_scene(scene: Scene, L: LayoutContext, envelope: Optional[Sequence[fl
         "timeline": lambda: _layout_timeline(b),
         "wave_monitor": lambda: _layout_wave_monitor(b),
         "outro": lambda: _layout_outro(b),
+        "demonstration": lambda: _layout_demonstration(b, position),
+        "full_illustration": lambda: _layout_full_illustration(b, position),
+        "character_closeup": lambda: _layout_character_closeup(b, position),
     }
     builders[layout]()
 
     character: Optional[CharacterAnimator] = None
     if cd.present:
         h = L.char_height(small)
+        ground = L.ground_y
         if layout == "comparison" and L.vertical:
             h *= 0.85
-        char_place = Placement(cx, L.ground_y, h, facing)
-        target = None
-        if b.main_icon is not None:
-            target = b.main_icon.center
-        elif hasattr(b, "chart_center"):
-            target = b.chart_center  # type: ignore[attr-defined]
-        if cd.look_at == "up":
-            target = (cx, L.sy(0.0))
-        cues = [CharacterCue(cd.action, cd.expression, 0.0, target=target if cd.action in
+        if position == "closeup":
+            h = L.sh * (1.15 if L.vertical else 1.45)    # waist-up: the lower body sits below the stage edge
+            ground = L.ground_y + h * (0.58 if L.vertical else 0.55)
+        if layout == "demonstration":
+            h *= 0.6 if L.vertical else 0.72
+        char_place = Placement(cx, ground, h, facing)
+        main_t = b.main_icon.center if b.main_icon is not None else (
+            b.chart_center if hasattr(b, "chart_center") else None)  # type: ignore[attr-defined]
+        demo = b.demo
+
+        def target_for(kind: Optional[str], at: float) -> Optional[Point]:
+            if kind == "up":
+                return (cx, L.sy(0.0))
+            if kind == "viewer":
+                return None
+            if demo is not None and kind in (None, "demo", "main"):
+                return demo.focus(at + 0.4)
+            return main_t
+
+        base_target = target_for("demo" if cd.look_at == "demo" else cd.look_at, 0.0)
+        cues = [CharacterCue(cd.action, cd.expression, 0.0, target=base_target if cd.action in
                              ("point", "interact", "look_at") else None)]
         for cs in cd.cues:
-            cues.append(CharacterCue(cs.action, cs.expression, cs.at * L.duration,
-                                     target=target if cs.action in ("point", "interact", "look_at") else None))
-        if cd.look_at == "main" and target is not None and cd.action not in ("point", "interact"):
-            cues[0] = CharacterCue("look_at", cd.expression, 0.0, target=target)
+            at = L.cue_time(cs.cue, cs.at * L.duration) if cs.cue else cs.at * L.duration
+            tgt = target_for(cs.target, at)
+            cues.append(CharacterCue(cs.action, cs.expression, at,
+                                     target=tgt if cs.action in ("point", "interact", "look_at") else None))
+            if cs.action == "surprised":                     # reactions are short: settle back into talking
+                cues.append(CharacterCue("talk", "excited", at + 0.9))
+        if cd.look_at in ("main", "demo") and base_target is not None and cd.action not in ("point", "interact"):
+            cues[0] = CharacterCue("look_at", cd.expression, 0.0, target=base_target)
             cues.insert(1, CharacterCue(cd.action, cd.expression, min(1.2, L.duration * 0.25)))
+        cues.sort(key=lambda c: c.start)
+        cues = [c for i, c in enumerate(cues) if i == 0 or c.start - cues[i - 1].start > 0.25 or c.start == 0]
         held = None
         props = [o for o in scene.objects if o.role == "prop"]
         if props and cd.action == "hold":
@@ -992,6 +1228,12 @@ def compose_scene(scene: Scene, L: LayoutContext, envelope: Optional[Sequence[fl
     _apply_doodles(b, character, char_place)
     _apply_text_overlays(b, layout, character, char_place)
     bg = Background(scene.background, L.W, L.H, seed=L.seed)
+    theme = THEMES.get(scene.theme)
+    fg = None
+    if theme is not None and layout not in ("outro", "hook_title"):
+        fg = _Foreground(kind=theme.foreground, W=L.W, H=L.H, z=20)
+        fg.unit, fg.seed = L.u, L.seed
     return SceneComposition(ctx_info=L, background=bg, elements=b.elements, character=character, char_z=5,
                             camera_move=scene.camera.move, camera_intensity=scene.camera.intensity,
-                            events=b.events)
+                            events=b.events, focus_keys=b.focus_keys,
+                            focus_fn=b.demo.focus if b.demo is not None else None, foreground=fg)

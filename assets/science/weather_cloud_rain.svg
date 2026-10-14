@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Rain Cloud" data-tags="rain,cloud,weather,storm,rainy,water cycle,precipitation,climate,wet,drizzle">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Rain Cloud" data-tags="rain,cloud,weather,storm,rainy,water cycle,precipitation,climate,wet,drizzle" data-subcategory="weather" data-style="science_explorer" data-animations="pop,float,draw">
 <g id="part-cloud">
     <path d="M92 214 C54 214 46 160 82 148 C74 104 122 80 154 100 C170 56 240 50 258 96 C292 80 338 104 328 146 C362 158 356 214 314 214 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
     <path d="M90 206 C76 202 70 190 74 178 C130 196 272 196 340 176 C344 192 334 206 316 206 Z" fill="#8ECAE6" fill-opacity="0.8"/>

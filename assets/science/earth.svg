@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Planet Earth" data-tags="earth,planet,world,globe,geography,climate,environment,ocean,continents,home">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Planet Earth" data-tags="earth,planet,world,globe,geography,climate,environment,ocean,continents,home" data-subcategory="space" data-style="science_explorer" data-animations="pop,float,spin,orbit">
 <g id="part-ocean">
     <circle cx="200" cy="200" r="146" fill="#3A86FF" stroke="#2B2D42" stroke-width="8"/>
   </g>
