@@ -260,14 +260,21 @@ class ScriptGenerator:
                             action="surprised", expression="curious"),
                        beat(2, "The real answer is hiding in plain sight, and it's stranger than most people think.",
                             [], None, "curiosity_gap", action="think", expression="curious")]
+        outro_text = f"So, {q[0].lower() + q[1:]}? Now you know what's going on behind the scenes. Stay curious!"
+        # Budget the whole script (intro, transitions, theories and outro included) so the narration can be
+        # fitted to the target duration; research sentences can be long, so check before adding each one.
+        budget = words_target - sum(len(b["narration"].split()) for b in beats_intro) - len(outro_text.split())
+        body_budget = budget * (0.75 if hyp else 1.0)
         pool_c = ConnectorPool(seed=len(topic))
         body: List[Dict] = []
         i = 3
         used = 0
         for k, f in enumerate(pool):
-            if used >= words_target * 0.68:
+            if fmt == "short" and len(body) >= 6:
                 break
             sent = _spoken(f.text)
+            if body and used + len(sent.split()) > body_budget:
+                continue
             role = "explanation"
             if f.numbers and k > 0:
                 lead = pool_c.take("surprise")
@@ -280,18 +287,24 @@ class ScriptGenerator:
             i += 1
             if k in (2, 6) and len(pool) > k + 1:
                 t = pool_c.take("deeper")
-                if t:
+                if t and used + len(t.split()) <= body_budget:
                     body.append(beat(i, t, [], None, "transition"))
+                    used += len(t.split())
                     i += 1
+        if fmt == "short":
+            body = body[:6]
+            used = sum(len(b["narration"].split()) for b in body)
         theories: List[Dict] = []
         for f in hyp[: (2 if fmt == "short" else 6)]:
-            theories.append(beat(i, "One idea scientists are still testing: " + _spoken(f.text), [f.id], None,
-                                 "insight", action="think", expression="thinking"))
+            text = "One idea scientists are still testing: " + _spoken(f.text)
+            if used + len(text.split()) > budget:
+                continue
+            theories.append(beat(i, text, [f.id], None, "insight", action="think", expression="thinking"))
+            used += len(text.split())
             i += 1
-        outro = [beat(i, f"So, {q[0].lower() + q[1:]}? Now you know what's going on behind the scenes. "
-                         f"Stay curious!", [], "outro", "ending")]
+        outro = [beat(i, outro_text, [], "outro", "ending")]
         if fmt == "short":
-            sections = [{"title": "The question", "beats": beats_intro + body[:6]},
+            sections = [{"title": "The question", "beats": beats_intro + body},
                         {"title": "What scientists think", "beats": theories[:2] + outro}]
         else:
             chunk = max(3, len(body) // 4)
