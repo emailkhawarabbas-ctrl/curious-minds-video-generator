@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="School Building" data-tags="building,school,university,lab,laboratory,college,campus,education,institute,classroom,city">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="School Building" data-tags="building,school,university,lab,laboratory,college,campus,education,institute,classroom,city" data-subcategory="places" data-style="everyday_doodle" data-animations="pop,float,draw">
 <ellipse cx="200" cy="350" rx="172" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-walls">
     <rect x="56" y="158" width="288" height="188" rx="6" fill="#FFE98A" stroke="#2B2D42" stroke-width="8"/>

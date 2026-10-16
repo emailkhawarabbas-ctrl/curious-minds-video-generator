@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Decision Signpost" data-tags="decision,choice,choices,options,crossroads,signpost,which way,decision making,dilemma,paths" data-subcategory="decisions" data-style="mind_storybook" data-animations="pop,wiggle,draw">
+  <ellipse cx="200" cy="370" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-pole">
+    <rect x="184" y="60" width="32" height="306" rx="10" fill="#B8774A" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M194 80 L194 340" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round"/>
+    <path d="M150 366 C170 352 230 352 250 366 Z" fill="#7BD389" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <g id="part-sign_left">
+    <path d="M196 92 L76 92 L44 122 L76 152 L196 152 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M90 122 L170 122" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-sign_right">
+    <path d="M204 170 L324 170 L356 200 L324 230 L204 230 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M230 200 L310 200" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-sign_third">
+    <path d="M196 248 L96 248 L68 274 L96 300 L196 300 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M108 274 L176 274" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <circle cx="200" cy="52" r="20" fill="#FFD23F" stroke="#2B2D42" stroke-width="7"/>
+  <circle id="anchor-top" cx="200" cy="32" r="4"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-left" cx="60" cy="122" r="4"/>
+  <circle id="anchor-right" cx="346" cy="200" r="4"/>
+  <circle id="anchor-third" cx="80" cy="274" r="4"/>
+</svg>

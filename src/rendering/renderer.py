@@ -213,7 +213,8 @@ class EpisodeRenderer:
         stats: List[Dict] = []
         order = sorted(range(len(jobs)), key=lambda i: -jobs[i]["frames"])
         if workers > 1:
-            ctx = mp.get_context("fork")
+            # fork is fastest (Linux/CI); spawn keeps Windows/macOS working (the worker is a top-level function)
+            ctx = mp.get_context("fork" if "fork" in mp.get_all_start_methods() else "spawn")
             with ctx.Pool(workers, maxtasksperchild=8) as pool:
                 for k, r in enumerate(pool.imap_unordered(_render_segment, [jobs[i] for i in order]), 1):
                     stats.append(r)

@@ -1,0 +1,83 @@
+{
+  "topic": "Why Do We Overthink Everything?",
+  "niche": "psychology",
+  "format": "short",
+  "source": "curated",
+  "title": "Why Do We Overthink Everything?",
+  "hook": "It's late at night, and you're replaying one awkward sentence from this afternoon, again and again. Why does your brain do this?",
+  "cta": "Follow for more!",
+  "notes": [
+    "Curated sample for the psychology visual identity. Claims follow the research pack (Wikipedia: Rumination (psychology), Co-rumination). Coping ideas are presented as psychologists' suggestions (refocus on planning, positive distraction), not medical advice. No statistics are used."
+  ],
+  "sections": [
+    {
+      "title": "The 2 a.m. replay",
+      "beats": [
+        {
+          "id": "o1",
+          "role": "hook",
+          "narration": "It's late at night, and you're replaying one awkward sentence from this afternoon, again and again. Why does your brain do this?",
+          "visual": {"layout": "hook_title", "title": "Why do we overthink?", "assets": ["overthinking_head"], "action": "surprised", "expression": "worried", "background": "thought_room"}
+        },
+        {
+          "id": "o2",
+          "role": "relatable",
+          "narration": "We've all been there: a text that went unanswered, a choice that's already made, a conversation we just can't stop rewinding.",
+          "visual": {"layout": "story_scene", "assets": ["chat_bubbles", "phone", "clock"], "background": "thought_room"}
+        },
+        {
+          "id": "o3",
+          "role": "curiosity_gap",
+          "narration": "Psychologists have a name for this loop. And the surprising part? It feels like solving a problem, when it usually isn't.",
+          "visual": {"layout": "question", "title": "Is it really problem-solving?", "assets": ["puzzle_piece"], "background": "mind_maze"}
+        }
+      ]
+    },
+    {
+      "title": "Inside the loop",
+      "beats": [
+        {
+          "id": "o4",
+          "role": "discovery",
+          "narration": "It's called rumination: repetitively focusing on a problem, its causes and its consequences. Your thoughts circle the same track, over and over, without going anywhere new.",
+          "visual": {"layout": "demonstration", "demo": {"kind": "thought_loop", "labels": ["The same worry", "Round and round"], "stage_cues": ["repetitively", "circle", "over"]}, "background": "mind_maze"}
+        },
+        {
+          "id": "o5",
+          "role": "explanation",
+          "narration": "Researchers noticed that ruminators focus on their feelings about a problem, instead of on actions that could change it. So the loop keeps feeding itself.",
+          "visual": {"layout": "comparison", "assets": ["worried_face", "lightbulb"], "labels": ["Focus on feelings", "Focus on action"], "background": "emotion_waves"}
+        },
+        {
+          "id": "o6",
+          "role": "explanation",
+          "narration": "And every what-if opens up more what-ifs. One small choice becomes a whole tree of possibilities, most of which will never happen.",
+          "visual": {"layout": "demonstration", "demo": {"kind": "decision_tree", "labels": ["One choice", "Endless what-ifs"], "stage_cues": ["opens", "whole", "most"]}, "background": "brain_space"}
+        },
+        {
+          "id": "o7",
+          "role": "surprise",
+          "narration": "Here's the twist: even talking it over can keep the loop spinning. One study found that stress hormones rise when friends dwell on problems together.",
+          "visual": {"layout": "demonstration", "demo": {"kind": "alarm_response", "labels": ["Stress response", "Heart speeds up"], "stage_cues": ["talking", "stress", "together"]}, "background": "thought_room"}
+        }
+      ]
+    },
+    {
+      "title": "Breaking the loop",
+      "beats": [
+        {
+          "id": "o8",
+          "role": "discovery",
+          "narration": "So what breaks the loop? Psychologists suggest shifting from why did this happen, to what can I do next, or switching to something genuinely absorbing.",
+          "visual": {"layout": "list_reveal", "items": [{"text": "Ask: what can I do next?", "asset": "decision_signpost", "cue": "shifting"}, {"text": "Turn worry into a plan", "asset": "lightbulb", "cue": "what can"}, {"text": "Switch to something absorbing", "asset": "attention_target", "cue": "switching"}], "background": "emotion_waves"}
+        },
+        {
+          "id": "o9",
+          "role": "ending",
+          "narration": "Overthinking feels like progress, but real progress starts with one small next step. Stay curious!",
+          "visual": {"layout": "outro", "action": "wave", "expression": "happy", "background": "emotion_waves"}
+        }
+      ]
+    }
+  ]
+}

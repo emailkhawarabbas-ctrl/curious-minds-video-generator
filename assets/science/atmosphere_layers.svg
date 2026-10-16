@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" data-title="Earth Atmosphere Layers" data-tags="atmosphere,air,sky,earth,layers,troposphere,ozone,gas,blanket of air,climate" data-subcategory="atmosphere" data-style="science_explorer" data-animations="draw,fade,pan">
+  <g id="part-space">
+    <rect x="10" y="10" width="540" height="340" rx="30" fill="#1B1F3B" stroke="#2B2D42" stroke-width="7"/>
+    <circle cx="70" cy="50" r="4" fill="#FFFFFF"/>
+    <circle cx="160" cy="36" r="3" fill="#FFE98A"/>
+    <circle cx="430" cy="44" r="4" fill="#FFFFFF"/>
+    <circle cx="510" cy="74" r="3" fill="#FFFFFF"/>
+  </g>
+  <g id="part-thermosphere">
+    <path d="M14 200 C120 92 440 92 546 200 L546 346 L14 346 Z" fill="#5B4BC4" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-stratosphere">
+    <path d="M14 240 C130 144 430 144 546 240 L546 346 L14 346 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-troposphere">
+    <path d="M14 278 C140 196 420 196 546 278 L546 346 L14 346 Z" fill="#8ECAE6" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M190 236 C200 224 222 224 228 234 C240 228 254 236 250 246 L186 246 C178 244 180 236 190 236 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="4"/>
+    <path d="M350 228 C358 218 376 218 382 226 C392 222 404 230 400 238 L346 238 C340 236 342 230 350 228 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="4"/>
+  </g>
+  <g id="part-earth">
+    <path d="M14 320 C150 254 410 254 546 320 L546 340 C546 346 540 350 534 350 L26 350 C20 350 14 346 14 340 Z" fill="#06D6A0" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M120 312 C160 296 200 292 240 300 C220 314 170 320 120 312 Z" fill="#3A86FF"/>
+    <path d="M340 296 C380 290 430 296 470 312 C430 318 380 314 340 296 Z" fill="#3A86FF"/>
+  </g>
+  <circle id="anchor-top" cx="280" cy="14" r="4"/>
+  <circle id="anchor-center" cx="280" cy="230" r="4"/>
+  <circle id="anchor-troposphere" cx="300" cy="250" r="4"/>
+  <circle id="anchor-stratosphere" cx="420" cy="196" r="4"/>
+  <circle id="anchor-thermosphere" cx="150" cy="150" r="4"/>
+  <circle id="anchor-earth" cx="280" cy="300" r="4"/>
+</svg>

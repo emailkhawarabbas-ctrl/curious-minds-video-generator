@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Black Hole" data-tags="black hole,gravity,event horizon,accretion disk,space,spacetime,collapsed star,astrophysics,gravitational lensing" data-subcategory="space" data-style="science_explorer" data-animations="pop,spin,pulse,orbit">
+  <g id="part-lensing">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#FFD23F" stroke-opacity="0.35" stroke-width="10"/>
+    <circle cx="200" cy="200" r="122" fill="none" stroke="#FF9F1C" stroke-opacity="0.5" stroke-width="8"/>
+  </g>
+  <g id="part-disk_back">
+    <path d="M44 210 C60 168 340 168 356 210 C320 192 80 192 44 210 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <g id="part-horizon">
+    <circle cx="200" cy="200" r="78" fill="#FFD23F" stroke="#2B2D42" stroke-width="6"/>
+    <circle cx="200" cy="200" r="68" fill="#1B1F3B" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-disk_front">
+    <path d="M30 206 C50 262 350 262 370 206 C380 226 362 252 300 266 C240 280 160 280 100 266 C40 252 20 226 30 206 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M64 236 C120 258 280 258 336 236" fill="none" stroke="#FFE98A" stroke-width="9" stroke-linecap="round"/>
+    <path d="M96 254 C150 268 250 268 304 254" fill="none" stroke="#EF476F" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <circle cx="64" cy="70" r="5" fill="#FFFFFF"/>
+  <circle cx="330" cy="80" r="4" fill="#FFFFFF"/>
+  <circle cx="350" cy="320" r="5" fill="#FFE98A"/>
+  <circle id="anchor-top" cx="200" cy="50" r="4"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-horizon" cx="200" cy="160" r="4"/>
+  <circle id="anchor-disk" cx="340" cy="236" r="4"/>
+</svg>

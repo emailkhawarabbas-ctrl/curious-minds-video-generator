@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Thought Cloud" data-tags="thought,thinking,think,idea,bubble,cloud,mind,imagine,wonder,cognition">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Thought Cloud" data-tags="thought,thinking,think,idea,bubble,cloud,mind,imagine,wonder,cognition" data-subcategory="thoughts" data-style="mind_storybook" data-animations="pop,float,spin">
   <!-- trailing bubbles -->
   <g id="part-tail">
     <circle cx="62" cy="346" r="10" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>

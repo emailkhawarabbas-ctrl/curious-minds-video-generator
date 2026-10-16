@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Thermometer" data-tags="thermometer,temperature,heat,hot,cold,weather,fever,degrees,climate,measure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Thermometer" data-tags="thermometer,temperature,heat,hot,cold,weather,fever,degrees,climate,measure" data-subcategory="weather" data-style="science_explorer" data-animations="pop,float,draw">
 <ellipse cx="200" cy="370" rx="80" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-tube">
     <path d="M160 80 A40 40 0 0 1 240 80 L240 250 A64 64 0 1 1 160 250 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>

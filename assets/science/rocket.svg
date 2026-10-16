@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Rocket" data-tags="rocket,spaceship,space,launch,astronaut,exploration,flight,nasa,blast off,startup,mission">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Rocket" data-tags="rocket,spaceship,space,launch,astronaut,exploration,flight,nasa,blast off,startup,mission" data-subcategory="space" data-style="science_explorer" data-animations="pop,float,spin,orbit">
 <g id="part-flame">
     <path d="M166 276 C160 318 184 340 200 378 C216 340 240 318 234 276 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7"/>
     <path d="M184 282 C182 310 192 324 200 346 C208 324 218 310 216 282 Z" fill="#FFD23F"/>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Wall Clock" data-tags="clock,time,hour,minute,schedule,deadline,routine,watch,timer,morning,punctual">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Wall Clock" data-tags="clock,time,hour,minute,schedule,deadline,routine,watch,timer,morning,punctual" data-subcategory="time" data-style="everyday_doodle" data-animations="pop,float,draw">
 <g id="part-rim">
     <circle cx="200" cy="200" r="162" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>
     <path d="M336.8 121 A158 158 0 0 1 121 336.8 A230 230 0 0 0 336.8 121 Z" fill="#1A9E92" fill-opacity="0.7"/>

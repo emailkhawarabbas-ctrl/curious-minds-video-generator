@@ -6,7 +6,10 @@ from src.config.settings import load_settings
 
 def test_defaults_load(settings):
     assert settings.brand.name == "CURIOUS MINDS"
-    assert settings.tts.voice == "en_US-joe-medium"
+    assert settings.tts.provider == "kokoro" and settings.tts.profile == "friendly"
+    assert settings.tts.voice_label == "US English Friendly Male"
+    assert settings.tts.fallback_provider == "none"          # never switch voices silently
+    assert {"friendly", "energetic", "documentary"} <= set(settings.tts.profiles)
     v, h = settings.profile("vertical"), settings.profile("horizontal")
     assert (v.width, v.height, v.fps) == (1080, 1920, 30) and v.is_vertical
     assert (h.width, h.height, h.fps) == (1920, 1080, 30) and not h.is_vertical

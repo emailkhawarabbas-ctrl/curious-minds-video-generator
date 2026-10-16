@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Laptop Computer" data-tags="computer,laptop,technology,internet,coding,work,online,screen,digital,software,study">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Laptop Computer" data-tags="computer,laptop,technology,internet,coding,work,online,screen,digital,software,study" data-subcategory="technology" data-style="everyday_doodle" data-animations="pop,float,draw">
 <ellipse cx="200" cy="312" rx="176" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-screen">
     <rect x="66" y="56" width="268" height="194" rx="16" fill="#3D405B" stroke="#2B2D42" stroke-width="8"/>

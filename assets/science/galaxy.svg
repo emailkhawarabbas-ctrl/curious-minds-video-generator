@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Spiral Galaxy" data-tags="galaxy,milky way,spiral galaxy,stars,universe,space,cosmos,astronomy,billions of stars" data-subcategory="space" data-style="science_explorer" data-animations="pop,spin,float">
+  <g id="part-arms">
+    <path d="M200 200 C250 150 330 160 350 220 C362 260 330 300 290 300 C320 280 330 240 304 214 C276 188 232 196 200 200 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M200 200 C150 250 70 240 50 180 C38 140 70 100 110 100 C80 120 70 160 96 186 C124 212 168 204 200 200 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M200 200 C246 168 296 176 314 214" fill="none" stroke="#CFC6FF" stroke-width="8" stroke-linecap="round"/>
+    <path d="M200 200 C154 232 104 224 86 186" fill="none" stroke="#CFC6FF" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g id="part-core">
+    <ellipse cx="200" cy="200" rx="56" ry="44" fill="#FFE98A" stroke="#2B2D42" stroke-width="7"/>
+    <ellipse cx="192" cy="192" rx="24" ry="16" fill="#FFFFFF"/>
+  </g>
+  <g id="part-stars">
+    <circle cx="300" cy="250" r="5" fill="#FFFFFF" stroke="#2B2D42" stroke-width="2"/>
+    <circle cx="96" cy="150" r="5" fill="#FFFFFF" stroke="#2B2D42" stroke-width="2"/>
+    <circle cx="330" cy="200" r="4" fill="#FFD23F"/>
+    <circle cx="70" cy="200" r="4" fill="#FFD23F"/>
+    <circle cx="250" cy="300" r="4" fill="#FFFFFF"/>
+    <circle cx="150" cy="104" r="4" fill="#FFFFFF"/>
+    <circle cx="60" cy="320" r="5" fill="#FFFFFF"/>
+    <circle cx="350" cy="80" r="5" fill="#FFFFFF"/>
+  </g>
+  <circle id="anchor-top" cx="200" cy="96" r="4"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-core" cx="200" cy="200" r="4"/>
+  <circle id="anchor-arms" cx="330" cy="260" r="4"/>
+</svg>

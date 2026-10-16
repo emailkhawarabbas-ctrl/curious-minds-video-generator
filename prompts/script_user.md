@@ -1,5 +1,5 @@
 Write a $format_label script for the topic: "$topic"
-Niche / content pillar: $niche
+Niche / content pillar: $niche (visual identity: $theme)
 
 Target length: about $target_words spoken words in total ($duration_label).
 $structure
@@ -7,10 +7,14 @@ $structure
 Allowed layouts (name: purpose):
 $layouts
 
-Allowed assets (id: tags):
+Animated demonstrations for the "demonstration" layout (kind: what it shows, with its stages).
+Give "stage_cues": single narration words that start stages 2, 3, ... and up to 4 short "labels":
+$demos
+
+Allowed assets (id: tags) — prefer the ones that literally depict the narration:
 $assets
 
-Allowed backgrounds: $backgrounds
+Allowed backgrounds (leave null to let the $theme identity choose): $backgrounds
 Allowed character actions: $actions
 Allowed expressions: $expressions
 Allowed sound effects: $sfx

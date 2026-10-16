@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Calendar" data-tags="calendar,date,schedule,month,day,plan,deadline,appointment,event,organize,week">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Calendar" data-tags="calendar,date,schedule,month,day,plan,deadline,appointment,event,organize,week" data-subcategory="time" data-style="everyday_doodle" data-animations="pop,float,draw">
 <rect x="62" y="74" width="292" height="282" rx="24" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-page">
     <rect x="52" y="62" width="292" height="282" rx="24" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>

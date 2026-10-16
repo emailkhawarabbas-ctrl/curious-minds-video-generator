@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" data-title="Short vs Long Light Waves" data-tags="wavelength,light waves,blue light,red light,short wave,long wave,spectrum,frequency,electromagnetic,light" data-subcategory="waves" data-style="science_explorer" data-animations="draw,flow">
+  <g id="part-panel">
+    <rect x="16" y="16" width="528" height="288" rx="34" fill="#FDF6E3" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M40 160 L520 160" fill="none" stroke="#B8BCC8" stroke-width="4" stroke-dasharray="10 12"/>
+  </g>
+  <g id="part-blue_wave">
+    <path d="M44 98 Q64 58 84 98 T124 98 T164 98 T204 98 T244 98 T284 98 T324 98 T364 98 T404 98 T444 98 T484 98 T524 98" fill="none" stroke="#2B2D42" stroke-width="16" stroke-linecap="round"/>
+    <path d="M44 98 Q64 58 84 98 T124 98 T164 98 T204 98 T244 98 T284 98 T324 98 T364 98 T404 98 T444 98 T484 98 T524 98" fill="none" stroke="#3A86FF" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g id="part-red_wave">
+    <path d="M44 236 C84 176 124 176 164 236 S244 296 284 236 S364 176 404 236 S484 296 524 236" fill="none" stroke="#2B2D42" stroke-width="16" stroke-linecap="round"/>
+    <path d="M44 236 C84 176 124 176 164 236 S244 296 284 236 S364 176 404 236 S484 296 524 236" fill="none" stroke="#EF476F" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-top" cx="280" cy="16" r="4"/>
+  <circle id="anchor-center" cx="280" cy="160" r="4"/>
+  <circle id="anchor-blue_wave" cx="64" cy="66" r="4"/>
+  <circle id="anchor-red_wave" cx="104" cy="186" r="4"/>
+</svg>

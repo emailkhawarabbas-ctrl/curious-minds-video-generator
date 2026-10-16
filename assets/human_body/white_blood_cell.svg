@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="White Blood Cell" data-tags="white blood cell,immune system,immune cell,leukocyte,defense,germs,infection,body defense,antibody" data-subcategory="immune" data-style="medical_cartoon" data-animations="pop,float,wiggle,pulse">
+  <ellipse cx="200" cy="356" rx="110" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-membrane">
+    <path d="M200 52 C230 50 240 72 262 74 C290 76 304 64 324 92 C344 120 324 138 336 164 C350 194 362 214 340 246 C320 276 300 268 284 292 C266 318 252 336 214 336 C178 336 168 314 142 306 C112 296 90 302 72 270 C54 238 74 218 64 188 C54 156 52 130 76 104 C100 78 124 92 146 76 C168 60 176 54 200 52 Z" fill="#F4F1FF" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M300 280 C278 306 250 326 214 326 C250 316 280 300 300 280 Z" fill="#CFC6FF"/>
+  </g>
+  <g id="part-nucleus">
+    <path d="M132 170 C122 140 156 124 178 140 C190 120 226 116 238 140 C262 132 288 152 276 180 C296 200 280 236 252 232 C246 258 206 266 194 242 C170 256 136 244 142 216 C116 208 114 180 132 170 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M150 168 C160 156 176 154 188 160" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <circle cx="110" cy="250" r="9" fill="#CFC6FF" stroke="#2B2D42" stroke-width="4"/>
+  <circle cx="300" cy="124" r="8" fill="#CFC6FF" stroke="#2B2D42" stroke-width="4"/>
+  <circle cx="306" cy="232" r="7" fill="#CFC6FF" stroke="#2B2D42" stroke-width="4"/>
+  <path d="M96 118 C110 96 134 86 156 86" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  <circle id="anchor-top" cx="200" cy="50" r="4"/>
+  <circle id="anchor-center" cx="204" cy="194" r="4"/>
+  <circle id="anchor-nucleus" cx="208" cy="188" r="4"/>
+  <circle id="anchor-membrane" cx="340" cy="246" r="4"/>
+</svg>

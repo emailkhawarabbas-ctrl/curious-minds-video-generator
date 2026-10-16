@@ -37,7 +37,7 @@ on:
         description: "Narration voice"
         type: choice
         default: "US English Friendly Male"
-        options: ["US English Friendly Male", "US English Male (Calm)", "US English Male (Narrator)"]
+        options: ["US English Friendly Male", "US English Male (Energetic)", "US English Male (Calm)", "US English Male (Narrator)"]
       generate_subtitles:
         description: "Burn in subtitles (SRT files are always produced)"
         type: boolean
@@ -79,6 +79,10 @@ jobs:
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
       RESEARCH_API_KEY: ${{ secrets.RESEARCH_API_KEY }}
       TTS_API_KEY: ${{ secrets.TTS_API_KEY }}
+      # Optional cloud narrators (only used if tts.provider is switched to them; never a silent fallback)
+      ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+      ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       PYTHONUNBUFFERED: "1"
       CM__RENDER__WORKERS: "4"
       CM__RENDER__PRESET: "faster"
@@ -128,11 +132,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Cache TTS voice models
+      - name: Cache TTS voice models (Kokoro + Piper) and the Whisper QC model
         uses: actions/cache@v4
         with:
-          path: models/piper
-          key: piper-voices-v1-${{ inputs.voice }}
+          path: |
+            models/kokoro
+            models/piper
+            ~/.cache/huggingface
+          key: tts-models-v2-kokoro1.0-whisper-base.en
 
       - name: Run unit tests (fast)
         run: python -m pytest -m "not integration" -q
@@ -173,6 +180,19 @@ jobs:
               print(f"| {fmt} | {o.get('status')} | {o.get('duration_s', '—')} s | {o.get('scenes', '—')} | {o.get('script_source', '—')} |")
           for fmt, qc in r.get("qc", {}).items():
               print(f"\n**QC {fmt}:** " + ", ".join(("✅ " if c["passed"] else "❌ ") + c["check"] for c in qc["checks"]))
+          v = r.get("configuration", {}).get("tts", {})
+          if v:
+              print(f"\n**Narrator:** {v.get('label')} ({v.get('provider')} `{v.get('voice')}`)"
+                    + (f" — fallback used: {v['fallback']}" if v.get("fallback") else ""))
+          for fmt, n in r.get("narration_qc", {}).items():
+              print(f"\n**Voice QC {fmt}:** " + ", ".join(("✅ " if c["passed"] else ("❌ " if c.get("severity") == "hard" else "⚠️ "))
+                                                     + c["check"] for c in n.get("checks", [])))
+          for fmt, rv in r.get("review", {}).items():
+              icon = {"pass": "✅ ", "warn": "⚠️ ", "fail": "❌ "}
+              print(f"\n**Story & visual review {fmt}:** " + ", ".join(icon[c["level"]] + c["check"] for c in rv.get("checks", [])))
+          for fmt, o in r.get("outputs", {}).items():
+              for reason in o.get("failed_checks", []):
+                  print(f"\n- {fmt} failed: {reason}")
           for s in r.get("stages", []):
               if s["status"] != "ok":
                   print(f"\n- stage `{s['name']}`: {s['status']} — {s.get('error')}")

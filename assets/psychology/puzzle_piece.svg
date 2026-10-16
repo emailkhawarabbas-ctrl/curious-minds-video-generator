@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Puzzle Piece" data-tags="puzzle,piece,jigsaw,problem solving,solution,logic,fit,thinking,brain teaser,cognition">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Puzzle Piece" data-tags="puzzle,piece,jigsaw,problem solving,solution,logic,fit,thinking,brain teaser,cognition" data-subcategory="problem_solving" data-style="mind_storybook" data-animations="pop,float,draw">
   <ellipse cx="208" cy="360" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g transform="translate(-32 10)">
     <!-- thickness -->

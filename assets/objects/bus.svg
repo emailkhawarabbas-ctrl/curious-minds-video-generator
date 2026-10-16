@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="School Bus" data-tags="bus,school bus,transport,vehicle,travel,school,commute,public transport,road,trip">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="School Bus" data-tags="bus,school bus,transport,vehicle,travel,school,commute,public transport,road,trip" data-subcategory="transport" data-style="everyday_doodle" data-animations="pop,float,draw">
 <ellipse cx="206" cy="342" rx="178" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-body">
     <path d="M32 288 L32 112 C32 96 44 86 60 86 L298 86 C314 86 324 94 330 108 L352 188 L360 190 C370 192 376 202 376 214 L376 288 C376 300 370 306 358 306 L48 306 C38 306 32 300 32 288 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="8"/>

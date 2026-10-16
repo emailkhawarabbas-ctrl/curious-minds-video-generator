@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lungs" data-tags="lungs,breathing,respiration,air,oxygen,breath,organ,body,trachea,chest">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Lungs" data-tags="lungs,breathing,respiration,air,oxygen,breath,organ,body,trachea,chest" data-subcategory="respiration" data-style="medical_cartoon" data-animations="draw,breathe,pulse,highlight">
   <!-- soft shadow -->
   <ellipse cx="200" cy="362" rx="130" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- left lung (viewer's left) -->

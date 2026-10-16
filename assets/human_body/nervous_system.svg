@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Nervous System" data-tags="nervous system,nerves,brain,spinal cord,spine,neurons,reflex,signals,body,senses">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Nervous System" data-tags="nervous system,nerves,brain,spinal cord,spine,neurons,reflex,signals,body,senses" data-subcategory="nervous" data-style="medical_cartoon" data-animations="draw,pulse,signal,highlight">
   <!-- soft shadow -->
   <ellipse cx="200" cy="370" rx="110" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- body silhouette -->

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Open Book" data-tags="book,open book,reading,read,story,study,learning,education,library,knowledge,literature">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Open Book" data-tags="book,open book,reading,read,story,study,learning,education,library,knowledge,literature" data-subcategory="school" data-style="everyday_doodle" data-animations="pop,float,draw">
 <ellipse cx="200" cy="340" rx="170" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
   <g id="part-cover">
     <path d="M28 104 L28 314 C96 296 156 300 200 326 C244 300 304 296 372 314 L372 104 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="8"/>

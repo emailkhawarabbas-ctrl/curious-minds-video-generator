@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" data-title="Prism Splitting Light" data-tags="prism,light,spectrum,rainbow,colors,white light,refraction,wavelength,optics,newton" data-subcategory="light" data-style="science_explorer" data-animations="draw,shine,pop">
+  <ellipse cx="250" cy="334" rx="170" ry="11" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-beam_in">
+    <path d="M20 196 L196 172 L200 186 L24 212 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <g id="part-spectrum">
+    <path d="M262 178 L500 92 L500 118 L264 186 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M264 186 L500 118 L500 144 L266 194 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M266 194 L500 144 L500 170 L268 202 Z" fill="#FFD23F" stroke="#2B2D42" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M268 202 L500 170 L500 196 L270 210 Z" fill="#06D6A0" stroke="#2B2D42" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M270 210 L500 196 L500 222 L272 218 Z" fill="#3A86FF" stroke="#2B2D42" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M272 218 L500 222 L500 248 L274 226 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+  <g id="part-prism">
+    <path d="M230 56 L330 300 L130 300 Z" fill="#D7F0FA" fill-opacity="0.92" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M230 56 L262 300 L330 300 Z" fill="#8ECAE6" fill-opacity="0.8"/>
+    <path d="M216 104 L168 228" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+    <path d="M230 56 L330 300 L130 300 Z" fill="none" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+  <circle id="anchor-top" cx="230" cy="52" r="4"/>
+  <circle id="anchor-center" cx="230" cy="210" r="4"/>
+  <circle id="anchor-beam_in" cx="90" cy="194" r="4"/>
+  <circle id="anchor-blue" cx="470" cy="214" r="4"/>
+  <circle id="anchor-red" cx="470" cy="112" r="4"/>
+</svg>

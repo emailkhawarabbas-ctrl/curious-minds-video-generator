@@ -22,10 +22,13 @@ from typing import Dict, List, Optional, Tuple
 from src.animation.asset_manager import get_asset_manager
 from src.audio.music_engine import LICENSE as MUSIC_LICENSE
 from src.audio.sound_effects import LICENSE as SFX_LICENSE, ensure_library
-from src.audio.tts_engine import SceneAudio, TTSEngine
+from src.audio.audio_qc import narration_qc
+from src.audio.tts_engine import SceneAudio, SceneContext, TTSEngine, resolve_voice
 from src.config.settings import Settings
 from src.content.llm_client import get_llm
 from src.content.models import Format, ResearchPack, Script, Storyboard
+from src.content.retention_review import review as story_review
+from src.rendering.quality_report import write_quality_report
 from src.content.script_generator import ScriptError, ScriptGenerator
 from src.content.seo_generator import SEOGenerator, write_metadata
 from src.content.storyboard_generator import StoryboardGenerator
@@ -122,9 +125,11 @@ class Pipeline:
         lead, tail = self.s.tts.scene_lead_in_s, self.s.tts.scene_tail_s
         history: List[float] = []
         audios: Dict[str, SceneAudio] = {}
+        n = len(storyboard.scenes)
         for attempt in range(3):
-            audios = {sc.scene_id: tts.synthesize_scene(sc.scene_id, sc.narration, audio_dir, ls, storyboard.fps)
-                      for sc in storyboard.scenes}
+            audios = {sc.scene_id: tts.synthesize_scene(sc.scene_id, sc.narration, audio_dir, ls, storyboard.fps,
+                                                        context=SceneContext(i, n, sc.role))
+                      for i, sc in enumerate(storyboard.scenes)}
             total = sum(t.duration for t in plan_timeline(storyboard, audios, storyboard.fps, lead, tail))
             history.append(round(total, 2))
             log.info("narration pass %d: length_scale=%.3f -> %.1f s (target %.0f, range %s)", attempt + 1, ls,
@@ -149,14 +154,14 @@ class Pipeline:
         require_binaries()
         req.validate(self.s)
         if req.voice:
-            self.s.tts.voice = req.voice
+            resolve_voice(self.s, req.voice)
         if req.script_source:
             self.s.content.script_source = req.script_source  # type: ignore[assignment]
         self.s.render.burn_subtitles = req.subtitles
         slug = slugify(req.topic)
         root = (req.output_root or self.s.paths.generated) / slug
         dirs = {k: root / k for k in ("research", "scripts", "storyboards", "assets", "audio", "subtitles",
-                                      "thumbnails", "metadata", "work")}
+                                      "thumbnails", "metadata", "review", "work")}
         for d in dirs.values():
             d.mkdir(parents=True, exist_ok=True)
         (root / "logs").mkdir(exist_ok=True)
@@ -166,7 +171,8 @@ class Pipeline:
             "request": {k: (str(v) if isinstance(v, Path) else v) for k, v in req.__dict__.items()},
             "configuration": {"llm": {"provider": self.s.llm.provider, "model": self.s.llm.model,
                                       "available": self.llm is not None},
-                              "tts": {"provider": self.s.tts.provider, "voice": self.s.tts.voice,
+                              "tts": {"provider": self.s.tts.provider, "profile": self.s.tts.profile,
+                                      "voice": self.s.tts.voice or self.s.tts.active.kokoro_voice,
                                       "label": self.s.tts.voice_label},
                               "render": json.loads(self.s.render.model_dump_json()),
                               "audio": json.loads(self.s.audio.model_dump_json())},
@@ -178,6 +184,8 @@ class Pipeline:
             ensure_library()
             tts = self._run("tts_init", TTSEngine, self.s)
             manifest["licenses"] = self._licenses(tts)
+            manifest["configuration"]["tts"] = tts.voice_report()
+            manifest["narration_qc"], manifest["review"] = {}, {}
             formats: List[Tuple[Format, EpisodeRenderer, float, Tuple[float, float], str]] = []
             if req.generate_short:
                 formats.append(("short", VerticalRenderer(self.s), req.short_duration, self.s.content.short_duration,
@@ -253,8 +261,19 @@ class Pipeline:
         sb_name = f"storyboard_{'vertical' if renderer.profile.is_vertical else 'horizontal'}.json"
         (dirs["storyboards"] / sb_name).write_text(sb.model_dump_json(indent=2))
         (dirs["audio"] / f"narration_{fmt}.json").write_text(json.dumps(
-            {"length_scale": ls, "fit_history_s": hist, "scenes": {k: v.to_json() for k, v in audios.items()}},
-            indent=1))
+            {"length_scale": ls, "fit_history_s": hist, "voice": tts.voice_report(),
+             "scenes": {k: v.to_json() for k, v in audios.items()}}, indent=1))
+        # narration preview (first scenes) + narration QC, before spending time on video rendering
+        _write_preview(audios, [sc.scene_id for sc in sb.scenes[:3]], dirs["audio"] / f"preview_{fmt}.wav")
+        nqc = self._run(f"narration_qc_{tag}", narration_qc, audios, {sc.scene_id: sc.duration for sc in sb.scenes},
+                        self.s.tts.asr_check, 0 if fmt == "short" else 12, critical=False) or {"passed": True,
+                                                                                               "checks": []}
+        manifest["narration_qc"][fmt] = nqc
+        (dirs["audio"] / f"narration_qc_{fmt}.json").write_text(json.dumps(nqc, indent=2))
+        rev = self._run(f"review_{tag}", story_review, script, sb, {sc.scene_id: sc.duration for sc in sb.scenes},
+                        critical=False) or {"passed": True, "checks": []}
+        manifest["review"][fmt] = rev
+        (dirs["review"] / f"storytelling_{fmt}.json").write_text(json.dumps(rev, indent=2, ensure_ascii=False))
         out = root / out_name
         srt = dirs["subtitles"] / f"{out_name.rsplit('.', 1)[0]}.srt"
         res = self._run(f"render_{tag}", renderer.render, sb, audios, out, dirs["work"], srt)
@@ -276,8 +295,20 @@ class Pipeline:
             paths = self._run(f"thumbnail_{tag}", render_thumbnails, concepts, dirs["thumbnails"] / fmt,
                               sb.character, critical=False) or []
             thumbs = [str(p.relative_to(root)) for p in paths]
+        block = self.s.content.block_on_review_fail
+        reasons = [f"technical: {c['check']} (got {c.get('value')}, expected {c.get('expected')})" for c in qc["checks"]
+                   if not c["passed"]]
+        reasons += [f"voice: {c['check']} ({c['detail']})" for c in nqc["checks"]
+                    if not c["passed"] and c.get("severity") == "hard"]
+        if block:
+            reasons += [f"{c['area']}: {c['check']} ({c['detail']})" for c in rev["checks"] if c["level"] == "fail"]
+        passed = not reasons
+        report_md = write_quality_report(dirs["review"] / f"quality_report_{fmt}.md", req.topic, fmt, out_name,
+                                         nqc, rev, qc, tts.voice_report(), passed, reasons)
         manifest["outputs"][fmt] = {
-            "status": "rendered" if qc["passed"] else "qc_failed", "video": out_name,
+            "status": "rendered" if passed else "qc_failed", "video": out_name,
+            "quality_report": str(report_md.relative_to(root)), "failed_checks": reasons,
+            "theme": sb.theme,
             "subtitles": str(srt.relative_to(root)), "duration_s": round(res.duration, 2), "frames": res.frames,
             "scenes": len(sb.scenes), "script_source": script.source, "script_words": script.word_count,
             "length_scale": round(ls, 3), "render_seconds": res.render_seconds, "audio_mix": res.audio_report,
@@ -285,7 +316,7 @@ class Pipeline:
             "storyboard": f"storyboards/{sb_name}", "storyboard_notes": sb.notes,
             "fact_check_warnings": len(fc["warnings"]),
         }
-        return bool(qc["passed"])
+        return passed
 
     @staticmethod
     def _concepts(meta: Optional[Dict], sb: Storyboard, topic: str) -> List[ThumbnailConcept]:
@@ -323,12 +354,33 @@ class Pipeline:
         manifest["assets_used"] = sorted(used)
 
 
+def _write_preview(audios: Dict[str, SceneAudio], ids: List[str], path: Path) -> None:
+    """Concatenate the first scenes' narration into a quick listening preview."""
+    import wave
+    import numpy as np
+    chunks, sr = [], None
+    for sid in ids:
+        a = audios.get(sid)
+        if a is None:
+            continue
+        with wave.open(a.wav_path) as w:
+            sr = w.getframerate()
+            chunks += [np.frombuffer(w.readframes(w.getnframes()), np.int16), np.zeros(int(sr * 0.5), np.int16)]
+    if not chunks:
+        return
+    with wave.open(str(path), "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(sr)
+        w.writeframes(np.concatenate(chunks).tobytes())
+
+
 def _script_text(script: Script) -> str:
     out = [f"{script.title}", f"Topic: {script.topic} | Format: {script.format} | Source: {script.source}",
            f"Words: {script.word_count}", ""]
     for sec in script.sections:
         out.append(f"## {sec.title}")
         for b in sec.beats:
-            out.append(f"[{b.id}] {b.narration}")
+            out.append(f"[{b.id}{' · ' + b.role if b.role else ''}] {b.narration}")
         out.append("")
     return "\n".join(out)

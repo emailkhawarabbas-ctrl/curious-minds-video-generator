@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Water Molecule" data-tags="molecule,water,h2o,chemistry,atoms,bond,oxygen,hydrogen,compound,science">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Water Molecule" data-tags="molecule,water,h2o,chemistry,atoms,bond,oxygen,hydrogen,compound,science" data-subcategory="chemistry" data-style="science_explorer" data-animations="pop,float,draw">
 <g id="part-bonds" stroke-linecap="round">
     <line x1="200" y1="168" x2="88" y2="284" stroke="#2B2D42" stroke-width="34"/>
     <line x1="200" y1="168" x2="312" y2="284" stroke="#2B2D42" stroke-width="34"/>

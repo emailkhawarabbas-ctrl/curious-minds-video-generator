@@ -1,0 +1,118 @@
+{
+  "topic": "Why Do We Overthink Everything?",
+  "niche": "psychology",
+  "format": "long",
+  "source": "curated",
+  "title": "Why Do We Overthink Everything? The Psychology of the Thought Loop",
+  "hook": "It's late at night. Your body is exhausted, but your mind is replaying one awkward moment from this afternoon, again, and again, and again. Why can't your brain just let it go?",
+  "cta": "Subscribe for more curious psychology!",
+  "notes": [
+    "Curated long-form sample (psychology identity). Sources: Wikipedia 'Rumination (psychology)', 'Co-rumination'. Theories (response styles theory, goal progress theory) and intervention findings are hedged. Only one number is used (a questionnaire asking about 22 ruminative thoughts or behaviors). Not medical advice; viewers are pointed to professionals if overthinking affects their life."
+  ],
+  "sections": [
+    {
+      "title": "The late-night replay",
+      "beats": [
+        {"id": "r1", "role": "hook", "narration": "It's late at night. Your body is exhausted, but your mind is replaying one awkward moment from this afternoon, again, and again, and again. Why can't your brain just let it go?",
+         "visual": {"layout": "hook_title", "title": "Why do we overthink?", "assets": ["overthinking_head"], "action": "surprised", "expression": "worried", "background": "thought_room"}},
+        {"id": "r2", "role": "relatable", "narration": "Maybe it's a message you sent that got no reply. A decision you already made. Or something you said in a meeting that now sounds terrible in your head.",
+         "visual": {"layout": "story_scene", "assets": ["chat_bubbles", "phone", "clock"], "background": "thought_room"}},
+        {"id": "r3", "role": "curiosity_gap", "narration": "Here's the strange thing. While it's happening, overthinking feels useful, like you're about to solve something. But you rarely end up with an answer. So what's really going on?",
+         "visual": {"layout": "question", "title": "Useful thinking, or a trap?", "assets": ["puzzle_piece"], "background": "mind_maze"}},
+        {"id": "r4", "role": "explanation", "narration": "Psychologists have studied this pattern for decades, and they have a name for one of its most common forms. Let's open up the loop and look inside.",
+         "visual": {"layout": "character_explains", "assets": ["magnifying_glass"], "action": "point", "expression": "curious", "background": "brain_space"}}
+      ]
+    },
+    {
+      "title": "Meet rumination",
+      "beats": [
+        {"id": "r5", "role": "discovery", "narration": "It's called rumination. In psychology, it means repetitively focusing on a problem or a bad feeling, along with its possible causes and consequences.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "thought_loop", "labels": ["The same thought", "Round and round"], "stage_cues": ["means", "repetitively", "causes"]}, "background": "mind_maze"}},
+        {"id": "r6", "role": "example", "narration": "Ruminative thoughts often sound like this: why am I like this? Why did that happen? Why can't I just feel better? Questions that circle, without moving forward.",
+         "visual": {"layout": "thought_bubble", "assets": ["question_mark", "worried_face", "thought_spiral"], "background": "thought_room"}},
+        {"id": "r7", "role": "insight", "narration": "And the word itself is a clue. It comes from the way some animals chew the same food over and over. Rumination is chewing the same thought over and over.",
+         "visual": {"layout": "full_illustration", "assets": ["thought_spiral"], "labels": ["Same thought, again"], "background": "emotion_waves"}},
+        {"id": "r8", "role": "explanation", "narration": "Researchers even measure it with questionnaires. One asks people how often they engage in 22 ruminative thoughts or behaviors when they feel sad or down.",
+         "visual": {"layout": "list_reveal", "items": [{"text": "How often do you replay it?", "asset": "clock", "cue": "measure"}, {"text": "Do you ask why, again and again?", "asset": "question_mark", "cue": "asks"}, {"text": "Does it lead to a plan?", "asset": "lightbulb", "cue": "behaviors"}], "background": "paper"}}
+      ]
+    },
+    {
+      "title": "Why it feels like problem-solving",
+      "beats": [
+        {"id": "r9", "role": "transition", "narration": "So if rumination is so unhelpful, why does it feel so productive? This is where it gets interesting.",
+         "visual": {"layout": "character_closeup", "assets": ["lightbulb"], "action": "think", "expression": "curious", "background": "mind_maze"}},
+        {"id": "r10", "role": "discovery", "narration": "When researchers looked closely, they noticed that ruminators tend to focus on their emotions, how bad they feel and why, instead of on goal-directed action that could actually change things.",
+         "visual": {"layout": "comparison", "assets": ["worried_face", "decision_signpost"], "labels": ["Focus on feelings", "Focus on action"], "background": "emotion_waves"}},
+        {"id": "r11", "role": "explanation", "narration": "One idea, called goal progress theory, suggests rumination is tied to goals we care about but haven't reached. The mind keeps returning to the unfinished business.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "decision_tree", "labels": ["Unfinished goal", "What if?", "Stuck"], "stage_cues": ["suggests", "haven't", "keeps"]}, "background": "brain_space"}},
+        {"id": "r12", "role": "insight", "narration": "And when people dwell on the same problem without making progress, they're more likely to feel worse. The loop doesn't solve the problem. It just keeps it alive.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "thought_loop", "labels": ["No progress", "Feeling worse"], "stage_cues": ["dwell", "without", "keeps"]}, "background": "thought_room"}},
+        {"id": "r13", "role": "explanation", "narration": "Rumination can also magnify emotions in the body, which feeds more negative thoughts, which feed more emotion. Psychologists describe it as a downward spiral.",
+         "visual": {"layout": "full_illustration", "assets": ["thought_spiral"], "labels": ["Thoughts feed feelings"], "background": "mind_maze"}}
+      ]
+    },
+    {
+      "title": "The what-if machine",
+      "beats": [
+        {"id": "r14", "role": "question", "narration": "Have you ever tried to make a simple decision and ended up lost in possibilities?",
+         "visual": {"layout": "question", "title": "Lost in what-ifs?", "assets": ["decision_signpost"], "background": "thought_room"}},
+        {"id": "r15", "role": "explanation", "narration": "Every what-if opens more what-ifs. One choice becomes two scenarios, each of those splits again, and soon your mind is juggling futures that will never happen.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "decision_tree", "labels": ["One choice", "Endless what-ifs", "Pick a path"], "stage_cues": ["opens", "splits", "juggling"]}, "background": "brain_space"}},
+        {"id": "r16", "role": "insight", "narration": "Weighing options is healthy. Overthinking is when the weighing never ends, and the scale keeps tipping back and forth without a decision.",
+         "visual": {"layout": "full_illustration", "assets": ["balance_scale"], "labels": ["Option A", "Option B"], "background": "emotion_waves"}}
+      ]
+    },
+    {
+      "title": "Talking it over",
+      "beats": [
+        {"id": "r17", "role": "transition", "narration": "Now here's a twist most people don't expect. Even talking about your problems can keep the loop spinning.",
+         "visual": {"layout": "character_closeup", "assets": ["chat_bubbles"], "action": "surprised", "expression": "surprised", "background": "city"}},
+        {"id": "r18", "role": "discovery", "narration": "Psychologists call it co-rumination: friends talking excessively about each other's problems, going over them again and again, focusing on the bad feelings.",
+         "visual": {"layout": "story_scene", "assets": ["chat_bubbles", "phone"], "background": "city"}},
+        {"id": "r19", "role": "surprise", "narration": "Co-rumination is linked with close, high-quality friendships. But one study also found that stress hormones rise during co-rumination.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "alarm_response", "labels": ["Stress response", "Heart speeds up"], "stage_cues": ["But", "stress", "during"]}, "background": "thought_room"}},
+        {"id": "r20", "role": "insight", "narration": "So the difference isn't whether you talk, it's how. Researchers have found that sharing feelings helps most when it leads to new insight about the source of the problem.",
+         "visual": {"layout": "comparison", "assets": ["chat_bubbles", "lightbulb"], "labels": ["Going in circles", "Finding insight"], "background": "emotion_waves"}}
+      ]
+    },
+    {
+      "title": "Who overthinks?",
+      "beats": [
+        {"id": "r21", "role": "explanation", "narration": "Some people are more prone to rumination than others. Research suggests it's more common in people who tend to be pessimistic or anxious by nature.",
+         "visual": {"layout": "network", "assets": ["person_thinking", "worried_face", "emotion_sad", "thought_cloud"], "labels": ["Pessimism", "Worry", "Low mood"], "background": "brain_space"}},
+        {"id": "r22", "role": "explanation", "narration": "Studies also suggest women may be slightly more likely to ruminate than men, though the difference seems to be small.",
+         "visual": {"layout": "character_explains", "assets": ["balance_scale"], "action": "explain", "expression": "thinking", "background": "paper"}},
+        {"id": "r23", "role": "insight", "narration": "And rumination isn't just unpleasant. Researchers link it with anxiety, low mood and stress. That's why psychologists take it seriously.",
+         "visual": {"layout": "full_illustration", "assets": ["amygdala_alarm"], "labels": ["Stress builds up"], "background": "mind_maze"}}
+      ]
+    },
+    {
+      "title": "Breaking the loop",
+      "beats": [
+        {"id": "r24", "role": "question", "narration": "So how do you step out of a thought loop once you're in it?",
+         "visual": {"layout": "question", "title": "How do you break the loop?", "assets": ["thought_spiral"], "background": "emotion_waves"}},
+        {"id": "r25", "role": "discovery", "narration": "First, notice it. One therapy built around rumination starts by teaching people to recognize the moment they begin to ruminate. Naming the loop is the first crack in it.",
+         "visual": {"layout": "character_explains", "assets": ["magnifying_glass"], "action": "point", "expression": "excited", "background": "paper"}},
+        {"id": "r26", "role": "explanation", "narration": "Next, shift the question. Instead of why did this happen, ask what can I do next? Some research suggests refocusing on planning can ease worry.",
+         "visual": {"layout": "comparison", "assets": ["question_mark", "decision_signpost"], "labels": ["Why did this happen?", "What can I do next?"], "background": "emotion_waves"}},
+        {"id": "r27", "role": "explanation", "narration": "Another healthy alternative is positive distraction: turning your attention to something genuinely absorbing, like a walk, a game, or a good conversation about something else.",
+         "visual": {"layout": "list_reveal", "items": [{"text": "Go for a walk", "asset": "tree", "cue": "walk"}, {"text": "Get absorbed in a game", "asset": "puzzle_piece", "cue": "game"}, {"text": "Talk about something else", "asset": "chat_bubbles", "cue": "conversation"}], "background": "sunny_outdoors"}},
+        {"id": "r28", "role": "insight", "narration": "And some studies suggest mindfulness-based approaches can reduce rumination, by teaching people to watch thoughts pass without getting pulled into them.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "thought_loop", "labels": ["Watch it pass", "Loop slows down"], "stage_cues": ["teaching", "watch", "pulled"]}, "background": "emotion_waves"}},
+        {"id": "r29", "role": "explanation", "narration": "If overthinking is getting in the way of your life, talking with a mental health professional can really help. You don't have to untangle it alone.",
+         "visual": {"layout": "character_explains", "assets": ["chat_bubbles"], "action": "explain", "expression": "happy", "background": "paper"}}
+      ]
+    },
+    {
+      "title": "The answer",
+      "beats": [
+        {"id": "r30", "role": "recap", "narration": "So, why do we overthink everything? Often it's rumination: replaying problems and feelings over and over, which feels like problem-solving but rarely leads to action.",
+         "visual": {"layout": "demonstration", "demo": {"kind": "thought_loop", "labels": ["Replay", "No action"], "stage_cues": ["replaying", "feels", "rarely"]}, "background": "mind_maze"}},
+        {"id": "r31", "role": "insight", "narration": "The way out isn't to stop thinking. It's to think differently: notice the loop, ask what you can do next, and give your mind something better to hold.",
+         "visual": {"layout": "list_reveal", "items": [{"text": "Notice the loop", "asset": "magnifying_glass", "cue": "notice"}, {"text": "Ask: what can I do next?", "asset": "decision_signpost", "cue": "ask"}, {"text": "Give your mind a new focus", "asset": "attention_target", "cue": "give"}], "background": "emotion_waves"}},
+        {"id": "r32", "role": "ending", "narration": "Your thoughts are powerful. Point them toward one small next step, and the loop starts to loosen. Stay curious!",
+         "visual": {"layout": "outro", "action": "wave", "expression": "happy", "background": "emotion_waves"}}
+      ]
+    }
+  ]
+}

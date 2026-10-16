@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" data-title="Red Sunset Sky" data-tags="sunset,sunrise,red sky,orange sky,horizon,evening,sun,atmosphere,sky color,dusk" data-subcategory="atmosphere" data-style="science_explorer" data-animations="draw,fade,pan">
+  <g id="part-sky">
+    <rect x="10" y="10" width="540" height="340" rx="30" fill="#FFD23F" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M10 40 C10 24 24 10 40 10 L520 10 C536 10 550 24 550 40 L550 110 L10 110 Z" fill="#8E7DFF"/>
+    <path d="M10 110 L550 110 L550 170 L10 170 Z" fill="#FF8FAB"/>
+    <path d="M10 170 L550 170 L550 220 L10 220 Z" fill="#FF9F1C"/>
+  </g>
+  <g id="part-sun">
+    <path d="M200 262 C200 210 236 180 280 180 C324 180 360 210 360 262 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M230 230 C240 210 258 200 280 198" fill="none" stroke="#FFE98A" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-ground">
+    <path d="M10 262 C130 240 220 270 300 256 C390 240 470 252 550 262 L550 320 C550 336 536 350 520 350 L40 350 C24 350 10 336 10 320 Z" fill="#5B4BC4" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M60 300 C140 286 240 304 320 292" fill="none" stroke="#8E7DFF" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <path d="M90 70 C100 60 118 60 124 68 C134 64 146 70 144 80 L86 80 C80 78 82 72 90 70 Z" fill="#FFD6E0" stroke="#2B2D42" stroke-width="4"/>
+  <path d="M420 120 C428 110 446 110 452 118 C462 114 474 120 472 130 L416 130 C410 128 412 122 420 120 Z" fill="#FFE98A" stroke="#2B2D42" stroke-width="4"/>
+  <circle id="anchor-top" cx="280" cy="14" r="4"/>
+  <circle id="anchor-center" cx="280" cy="190" r="4"/>
+  <circle id="anchor-sun" cx="280" cy="222" r="4"/>
+  <circle id="anchor-sky" cx="120" cy="140" r="4"/>
+  <circle id="anchor-horizon" cx="460" cy="250" r="4"/>
+</svg>

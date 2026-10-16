@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" data-title="EEG Brainwave Monitor" data-tags="eeg,brainwave,brain waves,sleep stages,monitor,neuroscience,signal,rem,measurement,science">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" data-title="EEG Brainwave Monitor" data-tags="eeg,brainwave,brain waves,sleep stages,monitor,neuroscience,signal,rem,measurement,science" data-subcategory="brain_activity" data-style="mind_storybook" data-animations="pop,pulse,signal">
   <ellipse cx="300" cy="286" rx="150" ry="9" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- stand -->
   <g id="part-stand">

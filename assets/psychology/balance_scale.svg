@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Balance Scale (Weighing Options)" data-tags="balance,scale,weighing options,pros and cons,decision,judgment,compare,choice,trade-off" data-subcategory="decisions" data-style="mind_storybook" data-animations="pop,wiggle,draw">
+  <ellipse cx="200" cy="370" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-stand">
+    <rect x="186" y="80" width="28" height="270" rx="10" fill="#B8BCC8" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M120 362 C130 340 270 340 280 362 Z" fill="#3D405B" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="200" cy="78" r="18" fill="#FFD23F" stroke="#2B2D42" stroke-width="7"/>
+  </g>
+  <g id="part-beam">
+    <path d="M60 118 L340 94" fill="none" stroke="#2B2D42" stroke-width="22" stroke-linecap="round"/>
+    <path d="M60 118 L340 94" fill="none" stroke="#3D405B" stroke-width="12" stroke-linecap="round"/>
+    <path d="M60 118 L30 210 M60 118 L100 210 M340 94 L300 186 M340 94 L376 186" fill="none" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-pan_left">
+    <path d="M18 210 L112 210 C108 240 88 256 65 256 C42 256 22 240 18 210 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="65" cy="196" r="18" fill="#06D6A0" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-pan_right">
+    <path d="M290 186 L384 186 C380 216 360 232 337 232 C314 232 294 216 290 186 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <rect x="320" y="156" width="34" height="30" rx="6" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-top" cx="200" cy="60" r="4"/>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-pan_left" cx="65" cy="232" r="4"/>
+  <circle id="anchor-pan_right" cx="337" cy="210" r="4"/>
+</svg>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Dream Cloud" data-tags="dream,dreams,dreaming,imagination,sleep,night,fantasy,cloud,rem,subconscious">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Dream Cloud" data-tags="dream,dreams,dreaming,imagination,sleep,night,fantasy,cloud,rem,subconscious" data-subcategory="dreams" data-style="mind_storybook" data-animations="pop,float">
   <ellipse cx="206" cy="352" rx="130" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
   <!-- rainbow peeking behind the cloud -->
   <g id="part-rainbow">

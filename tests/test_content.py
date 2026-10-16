@@ -115,14 +115,39 @@ def _llm_payload(narr):
                                     for i, n in enumerate(narr)]}]}
 
 
+GOOD_STORY = [
+    "Every night your brain makes a movie, and you are the star. But why do we dream at all?",
+    "You might not remember it, yet you spend more than two hours dreaming every single night.",
+    "Think about the strangest dream you ever had, the kind that felt completely real until you woke up.",
+    "Here's the surprising part: most vivid dreams happen in one special stage of sleep called REM sleep.",
+    "During REM your eyes dart around behind closed lids while your brain becomes almost as busy as when awake.",
+    "A whole sleep cycle lasts about 90 minutes, and you go through several of them before the alarm rings.",
+    "Each dream might only last somewhere between 5 and 20 minutes, even when it feels like hours.",
+    "So what is the brain actually doing? Several hypotheses suggest dreams may help with memory and emotions.",
+    "One idea says your brain replays the day, sorting what to keep and what to forget overnight.",
+    "Another idea says dreams let us rehearse feelings safely, like a practice run for real life.",
+    "Nobody knows for sure yet, and that mystery is exactly what keeps researchers studying sleep.",
+    "So why do we dream? Probably to sort memories and feelings while we rest. Stay curious!",
+]
+
+
 def test_llm_script_path_with_repair(settings, research_pack):
-    good = ["Dreams happen mostly in REM sleep, and we spend more than two hours dreaming."] * 2
     bad = ["Exactly 73% of people dream every night."] * 2
-    fake = FakeLLM([_llm_payload(bad), _llm_payload(good * 6)])
+    fake = FakeLLM([_llm_payload(bad), _llm_payload(GOOD_STORY)])
     sg = ScriptGenerator(settings, llm=fake)
     script, rep = sg.generate("Why Do We Dream Llm?", "psychology", "short", research_pack, 75, source="llm")
     assert script.source == "llm" and rep["passed"]
     assert len(fake.calls) == 2 and "REJECTED" in fake.calls[1]
+
+
+def test_llm_script_rejected_for_weak_storytelling(settings, research_pack):
+    """A fact-correct but repetitive, hook-less script is sent back with the storytelling problems."""
+    flat = ["Dreams happen mostly in REM sleep, and we spend more than two hours dreaming."] * 12
+    fake = FakeLLM([_llm_payload(flat), _llm_payload(GOOD_STORY)])
+    sg = ScriptGenerator(settings, llm=fake)
+    script, rep = sg.generate("Why Do We Dream Llm?", "psychology", "short", research_pack, 75, source="llm")
+    assert rep["passed"] and len(fake.calls) == 2
+    assert "storytelling review failed" in fake.calls[1] and "no_repetition_or_filler" in fake.calls[1]
 
 
 def test_llm_schema_is_closed():

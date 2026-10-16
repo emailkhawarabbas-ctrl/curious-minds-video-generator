@@ -9,7 +9,9 @@ Supported subset (documented for asset authors in docs/BRAND_GUIDE.md):
   * gradients are approximated by their first stop colour (flat brand style)
   * anchors: any element with ``id="anchor-NAME"`` is not drawn; its centre is
     recorded as a named anchor point used for labels / arrows / IK targets.
-  * metadata: root ``data-title``, ``data-tags`` (comma separated), ``data-license``.
+  * metadata: root ``data-title``, ``data-tags`` (comma separated keywords), ``data-license``,
+    ``data-subcategory``, ``data-style`` and ``data-animations`` (comma separated supported
+    animation types, e.g. ``draw,pulse,beat,flow``).
 
 All transforms are baked into the geometry at load time, so drawing is a straight
 replay of pre-built ``cairo.Path`` objects (fast enough for per-frame rendering).
@@ -449,6 +451,9 @@ class SvgAsset:
     title: str = ""
     tags: Tuple[str, ...] = ()
     license: str = "Original Curious Minds artwork (owned, CC0 for project use)"
+    subcategory: str = ""
+    style: str = ""
+    animations: Tuple[str, ...] = ()
 
     @property
     def aspect(self) -> float:
@@ -676,6 +681,9 @@ def load_svg_string(text: str, asset_id: str = "inline", path: Optional[Path] = 
                      tags=tags)
     if root.attrib.get("data-license"):
         asset.license = root.attrib["data-license"]
+    asset.subcategory = root.attrib.get("data-subcategory", "").strip().lower()
+    asset.style = root.attrib.get("data-style", "").strip().lower()
+    asset.animations = tuple(a.strip().lower() for a in root.attrib.get("data-animations", "").split(",") if a.strip())
     if not shapes:
         raise SvgError(f"{asset_id}: no drawable shapes")
     return asset
