@@ -44,13 +44,25 @@ OFF_TOPIC_DESC = re.compile(
     r"disambiguation|surname|given name|politician|footballer|businessperson|preschool)\b", re.I)
 
 
+# Short acronyms would be dropped by the length filter (and match inside other words), so spell them out
+ACRONYMS = {"ai": "artificial intelligence", "ml": "machine learning", "llm": "large language model",
+            "llms": "large language models", "iq": "intelligence quotient", "uv": "ultraviolet",
+            "co2": "carbon dioxide", "adhd": "attention deficit hyperactivity disorder"}
+
+
+def _concept_words(topic: str) -> List[List[str]]:
+    """One word group per topic concept; an acronym's expansion stays together as one concept."""
+    groups = []
+    for w in re.findall(r"[A-Za-z][A-Za-z0-9\-']*", topic.lower()):
+        if w in ACRONYMS:
+            groups.append(ACRONYMS[w].split())
+        elif w not in STOPWORDS and len(w) >= 3:
+            groups.append([w])
+    return groups
+
+
 def keywords(topic: str) -> List[str]:
-    words = re.findall(r"[A-Za-z][A-Za-z\-']+", topic.lower())
-    out = []
-    for w in words:
-        if w in STOPWORDS or len(w) < 3:
-            continue
-        out.append(w)
+    out = [w for g in _concept_words(topic) for w in g]
     return out or [topic.lower()]
 
 
@@ -69,6 +81,10 @@ RELATED = {
     "habit": ["habit formation", "behavior"], "habits": ["habit formation", "behavior"],
     "emotion": ["emotion", "brain"], "emotions": ["emotion", "brain"], "yawn": ["yawning"],
     "hiccup": ["hiccups"], "hiccups": ["hiccups"], "goosebumps": ["goose bumps"],
+    "artificial": ["large language model", "artificial neural network", "artificial intelligence"],
+    "machine": ["machine learning", "artificial neural network"], "neural": ["artificial neural network"],
+    "chatbot": ["chatbot", "large language model"], "robot": ["robotics"],
+    "think": ["thought", "reasoning"], "thought": ["thought", "reasoning"],
 }
 
 
@@ -90,6 +106,25 @@ def relevance(text: str, topic: str) -> int:
     stems = [k[:5] for k in keywords(topic)]
     low = (text or "").lower()
     return sum(low.count(st) for st in stems)
+
+
+def concept_coverage(text: str, topic: str) -> int:
+    """How many of the topic's concepts the text mentions. A concept counts when its own words
+    (all of an acronym's words, e.g. "artificial intelligence") or one of its expansions appear."""
+    low = (text or "").lower()
+    hit = 0
+    for group in _concept_words(topic):
+        alts = [" ".join(group)] + [t for key, vals in RELATED.items() if group[0].startswith(key) for t in vals]
+        phrases = [re.sub(r"\s*\([^)]*\)", "", a).lower() for a in alts]
+        if any(all(w[:5] in low for w in p.split()) for p in phrases):
+            hit += 1
+    return hit
+
+
+def on_topic(text: str, topic: str) -> bool:
+    """A source must cover the topic, not just one word of it: two concepts when the topic has two or more
+    ("how does AI think" needs AI *and* thinking, so pages about human thought or nursing are dropped)."""
+    return concept_coverage(text, topic) >= min(2, len(_concept_words(topic)))
 
 
 def _strip_html(s: str) -> str:
@@ -130,14 +165,22 @@ class Researcher:
         return {}
 
     def _wikipedia(self, topic: str, sm: SourceManager) -> int:
-        """Search with the natural question, the keywords and concept expansions; drop media/organisation pages."""
+        """Search with the natural question, the keywords and concept expansions; drop media/organisation pages.
+        A page that fails the relevance gate frees its slot for the next question/keyword hit (not for broader
+        expansion hits, which drift: "rumination" finds "Ruminant"). The top page of each concept expansion is
+        always fetched too, so a vague question ("how does AI think") still gets the core article."""
         api = "https://en.wikipedia.org/w/api.php"
         titles: List[str] = []
         rejected: List[str] = []
-        queries = [topic.rstrip("?"), " ".join(keywords(topic))] + related_terms(topic)[:2]
+        concept_pages: List[str] = []   # top page per concept expansion, fetched even when the slots are full
+        direct: set = set()               # hits of the question/keyword searches, which may refill rejected slots
+        expansions = related_terms(topic)[:2]
+        queries = [topic.rstrip("?"), " ".join(keywords(topic))] + expansions
         for q in dict.fromkeys(queries):
             hits = self._get_json(api, {"action": "query", "list": "search", "srsearch": q, "srlimit": 4,
                                         "format": "json"}).get("query", {}).get("search", [])
+            if q in expansions and hits:
+                concept_pages.append(hits[0]["title"])
             names = [h["title"] for h in hits if h["title"] not in titles]
             if not names:
                 continue
@@ -150,18 +193,22 @@ class Researcher:
                     rejected.append(f"{name} ({d})")
                     continue
                 titles.append(name)
+                if q not in expansions:
+                    direct.add(name)
             time.sleep(0.2)
         if rejected:
             log.info("wikipedia: skipped off-topic pages: %s", "; ".join(rejected[:8]))
         added = 0
-        for title in titles[: self.n]:
+        for i, title in enumerate(titles):
+            if not (i < self.n or title in concept_pages or (title in direct and added < self.n)):
+                continue
             data = self._get_json(api, {"action": "query", "prop": "extracts|info|revisions", "explaintext": 1,
                                         "exsectionformat": "plain", "titles": title, "inprop": "url",
                                         "rvprop": "timestamp", "format": "json", "redirects": 1})
             time.sleep(0.3)
             for page in data.get("query", {}).get("pages", {}).values():
                 text = (page.get("extract") or "")[:15000]
-                if not text or relevance(text, expanded_topic(topic)) < 3:
+                if not text or relevance(text, expanded_topic(topic)) < 3 or not on_topic(text, topic):
                     continue
                 ts = (page.get("revisions") or [{}])[0].get("timestamp", "")[:10] or None
                 sm.add(title=f"{page.get('title')} — Wikipedia", url=page.get("fullurl"), provider="wikipedia",
@@ -183,7 +230,8 @@ class Researcher:
                     fields.setdefault(c.get("name", ""), _strip_html("".join(c.itertext())))
                 url = doc.get("url", "")
                 body = fields.get("FullSummary", "") or fields.get("snippet", "")
-                if not url or relevance(fields.get("title", "") + " " + body, topic) < 2:
+                head = fields.get("title", "") + " " + body
+                if not url or relevance(head, topic) < 2 or not on_topic(head, topic):
                     continue
                 sm.add(title=f"{fields.get('title', 'MedlinePlus')} — MedlinePlus", url=url, provider="medlineplus",
                        publisher="U.S. National Library of Medicine (MedlinePlus)",
@@ -220,7 +268,8 @@ class Researcher:
             y = art.findtext(".//JournalIssue/PubDate/Year") or art.findtext(".//JournalIssue/PubDate/MedlineDate") or ""
             m = art.findtext(".//JournalIssue/PubDate/Month") or ""
             published = f"{y} {m}".strip() or None
-            if not pmid or not abstract or relevance(title + " " + abstract, topic) < 2:
+            if not pmid or not abstract or relevance(title + " " + abstract, topic) < 2 \
+                    or not on_topic(title + " " + abstract, topic):
                 continue
             sm.add(title=title, url=f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/", provider="pubmed",
                    publisher=journal, published=published, text=abstract)

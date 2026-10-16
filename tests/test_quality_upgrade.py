@@ -253,3 +253,37 @@ def test_research_filters_off_topic_pages():
     assert not OFF_TOPIC_DESC.search("Light scattering by small particles")
     assert "work" not in keywords("How Does Your Heart Actually Work?")
     assert "Rayleigh scattering" in expanded_topic("Why Is the Sky Blue?")
+
+
+def test_research_keeps_short_acronyms_and_needs_the_whole_topic():
+    from src.research.researcher import keywords, on_topic, related_terms
+    assert keywords("How does AI actually think?") == ["artificial", "intelligence", "think"]
+    assert "large language model" in related_terms("How does AI actually think?")
+    topic = "how does ai actually think"
+    assert on_topic("Large language models are trained to predict text; reasoning models think step by step.", topic)
+    # one shared word is not enough: pages about human thought or nursing used to be accepted for an AI topic
+    assert not on_topic("Critical thinking among registered nurses in clinical practice.", topic)
+    assert not on_topic("Thought is cognition that occurs independent of direct sensory stimulation.", topic)
+    assert on_topic("A dream is a succession of images.", "Why Do We Dream?")          # single-concept topics unchanged
+
+
+def test_long_single_sentence_scenes_get_paced_visuals():
+    from src.animation.themes import resolve_theme
+    from src.content.storyboard_generator import StoryboardGenerator
+    from src.content.visual_selector import VisualSelector
+    # the shape that failed a real long render: one long sentence, one illustration, no gesture cues
+    narration = ("Aristotelianism interprets thinking as instantiating the universal essence of an object within "
+                 "the mind, derived from sense experience rather than a changeless realm.")
+    script = _script("science", "How Does Thinking Work?", ["Why do we think?", narration, "Stay curious!"])
+    script = script.model_copy(update={"format": "long"})
+    gen = StoryboardGenerator()
+    sel = VisualSelector(resolve_theme("science", script.topic), script.topic, "science", gen.am)
+    d = {"layout": "story_scene", "est_duration": 9.2, "objects": [{"asset": "brain", "role": "main"}], "items": [],
+         "text_overlays": [], "camera": {"move": "focus"}, "animation_notes": [],
+         "character": {"expression": "happy", "cues": []}}
+    assert gen._visual_events(d) * 6.5 < 13.6                       # static by the review's rule
+    gen._keep_busy(d, script.sections[0].beats[1], script, sel)
+    assert gen._visual_events(d) * 6.5 >= 9.2 * 1.5                 # busy enough at the measured length
+    spoken = narration.lower()
+    assert all(c["cue"].lower() in spoken for c in d["character"]["cues"])
+    assert all(gen.am.exists(o["asset"]) for o in d["objects"])

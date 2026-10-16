@@ -22,6 +22,7 @@ fallbacks and the repair is recorded.
 from __future__ import annotations
 
 import logging
+import math
 import re
 from collections import Counter
 from typing import Dict, List, Optional, Tuple
@@ -358,7 +359,60 @@ class StoryboardGenerator:
             d["number"] = v.number.model_dump()
         if v.chart is not None:
             d["chart"] = v.chart.model_dump()
+        self._keep_busy(d, beat, script, sel)
         return d
+
+    # ------------------------------------------------------------------ pacing
+    @staticmethod
+    def _visual_events(d: Dict) -> int:
+        """Same count as the retention review's static-scene check."""
+        return (len(d["objects"]) + len(d["items"]) + len(d["text_overlays"]) + (4 if d.get("demo") else 0)
+                + (3 if d.get("chart") else 0) + len(d["character"]["cues"])
+                + (1 if d["camera"]["move"] != "static" else 0))
+
+    def _keep_busy(self, d: Dict, beat: ScriptBeat, script: Script, sel: VisualSelector) -> None:
+        """Give long, sparse scenes something new on screen every few seconds: relevant supporting
+        illustrations that pop in on the words that name them, then Milo gesturing on mid-sentence words.
+        One long sentence otherwise gets no cues at all (cues are made at sentence starts)."""
+        per_event = 4.5 if script.format == "short" else 6.5
+        # spoken audio runs ~1.5x the planning estimate once lead-in, tail and the voice's real pace are added
+        need = math.ceil(d["est_duration"] * 1.5 / (per_event * 0.85))
+        if self._visual_events(d) >= need:
+            return
+        words = re.findall(r"[A-Za-z0-9']+", beat.narration)
+        if len(words) < 8:
+            return
+        used = {c.get("cue") for c in d["character"]["cues"]}
+        # distinctive words (spoken once, not tiny) so the cue resolves to the intended moment
+        counts = Counter(w.lower() for w in words)
+        slots = [(i, w) for i, w in enumerate(words) if len(w) >= 5 and counts[w.lower()] == 1 and w not in used]
+        if d["layout"] == "story_scene" and len(d["objects"]) < 4:
+            have = {o["asset"] for o in d["objects"]}
+            extra = [p.asset for p in sel.select_assets(beat.narration + " " + script.topic, 6, exclude=have)]
+            for asset in extra[:min(3, 4 - len(d["objects"]), need - self._visual_events(d))]:
+                o = {"asset": asset, "role": "item"}
+                hit = next((w for _, w in slots if w.lower()[:5] in asset.replace("_", " ")), None)
+                if hit:
+                    o["cue"] = hit
+                d["objects"].append(o)
+            sel.commit([o["asset"] for o in d["objects"][len(have):]])
+        missing = need - self._visual_events(d)
+        if missing <= 0 or not slots or d["character"].get("present") is False:
+            return
+        # at most one gesture per ~3 s, spread through the sentence, alternating explain / talk
+        n = min(missing, max(1, int(d["est_duration"] * 1.5 / 3)), len(slots))
+        taken = []
+        for k in range(n):
+            target = (k + 1) / (n + 1) * len(words)
+            i, w = min(slots, key=lambda s: abs(s[0] - target))
+            if w in taken:
+                continue
+            taken.append(w)
+            d["character"]["cues"].append({"at": round(min(0.9, i / len(words)), 2), "cue": w,
+                                           "action": "explain" if k % 2 == 0 else "talk",
+                                           "expression": d["character"]["expression"]})
+        d["character"]["cues"].sort(key=lambda c: c["at"])
+        d["animation_notes"] += [f"paced: on '{w}': gesture" for w in taken]
 
     def _validate_or_repair(self, d: Dict, notes: List[str]) -> Scene:
         try:
