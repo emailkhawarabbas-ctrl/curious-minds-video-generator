@@ -61,6 +61,7 @@ BACKGROUNDS = {
     "science_grid": "Explorer's graph-paper notebook with faint orbit, wave and atom sketches.",
     "atmosphere_view": "Earth's limb from high above: space, glowing atmosphere band, planet below.",
     "sunset_sky": "Low sun with purple-pink-orange sky and silhouetted hills (sunsets, light, evening).",
+    "underwater": "Under a lake or sea surface: light shafts, rising bubbles, sandy floor (water, ice, oceans, fish).",
     # Psychology identity
     "mind_maze": "Abstract mind: violet field with rotating thought rings and looping spirals.",
     "thought_room": "Quiet room late at night: desk, lamp glow, window, ticking wall clock (overthinking, worry).",

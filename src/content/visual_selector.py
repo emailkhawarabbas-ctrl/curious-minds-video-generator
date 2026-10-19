@@ -89,6 +89,15 @@ CONCEPTS: Tuple[Concept, ...] = (
     C("magnet", r"magnet", ("magnet",), None, "science"),
     C("atoms", r"\batoms?\b|nucleus|electrons?|protons?", ("atom", "molecule"), None, "science"),
     C("chemistry", r"chemi|reaction|experiment|\blab\b", ("flask", "molecule", "microscope"), None, "science"),
+    C("water_molecule", r"\bh2o\b|water molecules?|oxygen atom|hydrogen atoms?|\bangle\b|\bbent\b|boomerang", (
+        "water_molecule", "water_drop"), "water_molecule", "science"),
+    C("hydrogen_bond", r"hydrogen bonds?|polar|slightly (negative|positive)|cling|stick together", (
+        "water_molecule",), "hydrogen_bonds", "science"),
+    C("freezing", r"\bfreez|\bfrozen\b|\bice\b|crystal|expands?|\bshrinks?\b", ("ice_cube", "glass_of_water"),
+      "ice_lattice", "science"),
+    C("lake", r"\blakes?\b|\bponds?\b|\bfish\b|sinks? to the bottom|\bfloats?\b|winter", (
+        "frozen_lake", "fish", "glass_of_water"), "frozen_lake", "science"),
+    C("water", r"\bwater\b|liquids?|\bdrops?\b|droplet", ("water_drop", "glass_of_water"), None, "science"),
     C("weather", r"weather|\brain\b|clouds?|storm", ("weather_cloud_rain", "thermometer"), None, "science"),
     C("nature", r"\bplants?\b|\btrees?\b|flowers?|photosynth|ocean", ("tree", "flower"), None, "science"),
     C("observe", r"telescope|astronom|observ|scientists? (looked|measured)", ("telescope", "observer_kid"), None,

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Glass of Water with Ice" data-tags="glass,water,drink,ice,ice cube,float,floating,liquid,cup,cold" data-subcategory="chemistry" data-style="science_explorer" data-animations="pop,float,draw,wiggle">
+  <ellipse cx="200" cy="370" rx="116" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-glass">
+    <path d="M96 52 L304 52 L278 344 Q276 362 258 362 L142 362 Q124 362 122 344 Z" fill="#FFFFFF" fill-opacity="0.75" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+  <g id="part-water">
+    <path d="M110 150 C150 140 250 160 290 150 L276 342 Q274 352 262 352 L138 352 Q126 352 124 342 Z" fill="#8ECAE6"/>
+    <path d="M250 158 C264 157 278 154 290 150 L276 342 Q274 352 262 352 L238 352 Q262 290 250 158 Z" fill="#3A86FF" fill-opacity="0.45"/>
+    <path d="M110 150 C150 140 250 160 290 150" fill="none" stroke="#2B2D42" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="part-ice">
+    <path d="M150 112 L214 104 L224 168 L160 176 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M196 132 L250 120 L262 176 L208 186 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M164 126 L172 156" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="part-bubbles" fill="#D7F0FA" stroke="#2B2D42" stroke-width="4">
+    <circle cx="170" cy="290" r="9"/>
+    <circle cx="230" cy="250" r="7"/>
+    <circle cx="196" cy="320" r="6"/>
+  </g>
+  <path d="M120 80 L138 300" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="10" stroke-linecap="round"/>
+  <circle id="anchor-center" cx="200" cy="220" r="4"/>
+  <circle id="anchor-top" cx="200" cy="52" r="4"/>
+  <circle id="anchor-ice" cx="206" cy="144" r="4"/>
+  <circle id="anchor-water" cx="200" cy="280" r="4"/>
+  <circle id="anchor-glass" cx="290" cy="100" r="4"/>
+</svg>

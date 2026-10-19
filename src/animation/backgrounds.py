@@ -805,6 +805,53 @@ def _emotion_waves(ctx, w, h, seed):
     _scribbles(ctx, w, h * 0.5, seed, ("purple", "pink", "teal"), 0.14)
 
 
+def _underwater(ctx, w, h, seed):
+    """Under the surface of a lake or sea: bright waterline, slanted light shafts, deepening blue, sandy floor."""
+    u = min(w, h) / 1080
+    _vgrad(ctx, w, h, mix(PALETTE["sky"], PALETTE["sky_light"], 0.35), mix(PALETTE["blue"], PALETTE["night"], 0.35))
+    # rippled surface band at the top
+    ctx.move_to(0, h * 0.05)
+    for i in range(13):
+        x0, x1 = w * i / 12, w * (i + 1) / 12
+        ctx.curve_to(x0 + (x1 - x0) * 0.3, h * 0.05 - 14 * u, x0 + (x1 - x0) * 0.7, h * 0.05 + 14 * u, x1, h * 0.05)
+    ctx.line_to(w, 0)
+    ctx.line_to(0, 0)
+    ctx.close_path()
+    ctx.set_source_rgba(1, 1, 1, 0.55)
+    ctx.fill()
+    # light shafts
+    for k, x in enumerate((0.12, 0.38, 0.62, 0.86)):
+        ctx.move_to(w * x - 50 * u, h * 0.05)
+        ctx.line_to(w * x + 50 * u, h * 0.05)
+        ctx.line_to(w * (x + 0.12) + 120 * u, h * 0.8)
+        ctx.line_to(w * (x + 0.12) - 40 * u, h * 0.8)
+        ctx.close_path()
+        ctx.set_source_rgba(1, 1, 1, 0.07 + 0.03 * (k % 2))
+        ctx.fill()
+    # sandy floor with pebbles and weeds
+    ctx.move_to(0, h * 0.9)
+    for i in range(7):
+        x0, x1 = w * i / 6, w * (i + 1) / 6
+        ctx.curve_to(x0 + (x1 - x0) * 0.3, h * 0.88, x0 + (x1 - x0) * 0.7, h * 0.92, x1, h * 0.9)
+    ctx.line_to(w, h)
+    ctx.line_to(0, h)
+    ctx.close_path()
+    ctx.set_source_rgb(*mix(PALETTE["yellow_light"], PALETTE["orange"], 0.2))
+    ctx.fill_preserve()
+    ctx.set_source_rgb(*PALETTE["ink"])
+    ctx.set_line_width(5 * u)
+    ctx.stroke()
+    rnd = random.Random(seed)
+    for _ in range(5):
+        bx = w * rnd.random()
+        ctx.set_line_width(12 * u)
+        ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+        ctx.move_to(bx, h * 0.91)
+        ctx.curve_to(bx - 30 * u, h * 0.85, bx + 30 * u, h * 0.8, bx - 10 * u, h * (0.72 + 0.06 * rnd.random()))
+        ctx.set_source_rgba(*PALETTE["green"], 0.7)
+        ctx.stroke()
+
+
 STATIC: Dict[str, Callable] = {
     "paper": _paper, "bedroom_night": _bedroom_night, "night_sky": _night_sky, "dreamscape": _dreamscape,
     "lab": _lab, "chalkboard": _chalkboard, "brain_space": _brain_space, "sunny_outdoors": _sunny,
@@ -814,11 +861,11 @@ STATIC: Dict[str, Callable] = {
     "bloodstream": _bloodstream, "body_lab": _body_lab, "anatomy_blueprint": _anatomy_blueprint,
     "cell_world": _cell_world, "sky_day": _sky_day, "science_grid": _science_grid,
     "atmosphere_view": _atmosphere_view, "sunset_sky": _sunset_sky, "mind_maze": _mind_maze,
-    "thought_room": _thought_room, "emotion_waves": _emotion_waves,
+    "thought_room": _thought_room, "emotion_waves": _emotion_waves, "underwater": _underwater,
 }
 
 DARK_BACKGROUNDS = {"bedroom_night", "night_sky", "dreamscape", "brain_space", "space", "chalkboard", "burst_purple",
-                    "bloodstream", "anatomy_blueprint", "atmosphere_view", "mind_maze", "thought_room"}
+                    "bloodstream", "anatomy_blueprint", "atmosphere_view", "mind_maze", "thought_room", "underwater"}
 
 
 class Background:
@@ -891,6 +938,16 @@ class Background:
                 y = oy + h * (0.22 + 0.56 * rnd.random()) + math.sin(t * 1.3 + i) * 10 * u
                 x = ox + ((rnd.random() * w + t * speed) % (w + 300 * u)) - 150 * u
                 _blob_cell(ctx, x, y, (26 + 22 * rnd.random()) * u, PALETTE["red"], u, 0.55)
+        elif n == "underwater":
+            rnd = random.Random(self.seed + 41)
+            for i in range(12):                       # bubbles rising and wobbling
+                speed = (50 + 60 * rnd.random()) * u
+                x = ox + w * rnd.random() + math.sin(t * 1.5 + i) * 12 * u
+                y = oy + h - ((rnd.random() * h + t * speed) % h)
+                ctx.arc(x, y, (6 + 10 * rnd.random()) * u, 0, 2 * math.pi)
+                ctx.set_source_rgba(1, 1, 1, 0.45)
+                ctx.set_line_width(3 * u)
+                ctx.stroke()
         elif n == "cell_world":
             rnd = random.Random(self.seed + 31)
             for i in range(6):

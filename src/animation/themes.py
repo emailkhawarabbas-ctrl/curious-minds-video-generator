@@ -68,7 +68,7 @@ SCIENCE = NicheTheme(
         "hook": ("sky_day", "space"), "question": ("sky_day", "night_sky"), "relatable": ("sunny_outdoors", "sky_day"),
         "explain": ("science_grid", "lab", "sky_day"), "process": ("atmosphere_view", "science_grid", "space"),
         "comparison": ("science_grid", "lab"), "discovery": ("lab", "space"), "surprise": ("sunset_sky", "space"),
-        "environment": ("sky_day", "sunset_sky", "night_sky"), "ending": ("sunset_sky", "sky_day")},
+        "environment": ("sky_day", "sunset_sky", "night_sky", "underwater"), "ending": ("sunset_sky", "sky_day")},
     accents=("blue", "orange", "teal", "purple", "yellow"), label_color="blue",
     particles=("twinkle", "float_up"), doodles=("sparkles", "circle_main", "arrow_to_main"),
     transitions=("star_zoom", "slide", "circle_wipe", "doodle_swipe"), soft_transition="slide",
@@ -78,7 +78,8 @@ SCIENCE = NicheTheme(
     title_colors=("yellow", "white", "sky_light", "white"),
     keywords=("sky", "light", "sun", "star", "planet", "space", "moon", "earth", "atom", "molecule", "energy",
               "electric", "magnet", "gravity", "black hole", "galaxy", "wave", "sound", "color", "rainbow",
-              "weather", "rain", "cloud", "volcano", "ocean", "plant", "chemical", "physics", "universe"))
+              "weather", "rain", "cloud", "volcano", "ocean", "plant", "chemical", "physics", "universe", "water", "ice",
+              "freez", "liquid", "lake"))
 
 PSYCHOLOGY = NicheTheme(
     name="psychology", label="Psychology — mind & behaviour storytelling",

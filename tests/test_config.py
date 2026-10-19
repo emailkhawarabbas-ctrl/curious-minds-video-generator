@@ -13,7 +13,7 @@ def test_defaults_load(settings):
     v, h = settings.profile("vertical"), settings.profile("horizontal")
     assert (v.width, v.height, v.fps) == (1080, 1920, 30) and v.is_vertical
     assert (h.width, h.height, h.fps) == (1920, 1080, 30) and not h.is_vertical
-    assert settings.content.short_duration == (60, 90)
+    assert settings.content.short_duration == (25, 90)
     assert settings.content.long_duration == (360, 600)
 
 
@@ -46,3 +46,10 @@ def test_secret_redaction(monkeypatch, caplog):
     rec = logging.LogRecord("x", logging.INFO, __file__, 1, "key=%s and sk-ant-abcdefghijkl", ("supersecretvalue123",), None)
     f.filter(rec)
     assert "supersecretvalue123" not in rec.getMessage() and "sk-ant-abcdefghijkl" not in rec.getMessage()
+
+
+def test_acceptance_window_follows_the_target():
+    from src.pipeline import acceptance_window
+    assert acceptance_window(75, (25, 90)) == (60, 90)          # the long-standing 60-90 s Short window
+    assert acceptance_window(30, (25, 90)) == (25, 36)          # a 30 s request must not pass at 85 s
+    assert acceptance_window(480, (360, 600)) == (384, 576)

@@ -21,7 +21,7 @@ content:
   storyboard_source: "auto"      # auto = LLM-assisted when a key is set, else rule-based
   allow_unresearched: false      # refuse to write scripts when no research could be gathered
   block_on_review_fail: true     # a failed storytelling/visual review check (see review/) fails the video
-  short_duration: [60, 90]       # seconds, inclusive range
+  short_duration: [25, 90]       # seconds, allowed request range (each video is accepted within +/-20 % of its own target)
   long_duration: [360, 600]
 
 llm:

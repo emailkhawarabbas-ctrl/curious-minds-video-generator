@@ -35,6 +35,9 @@ your our us i me my it its this that these those of in on at to for from by with
 could should would will just really actually ever happen happens happening there their they them and or
 but if so as than then too very much many most more some any all every each make makes made get gets
 work works working everything anything something thing things kind happen""".split())
+# Hype words in a title ("the weirdest substance") say nothing about the subject; as concepts they pull in folklore
+STOPWORDS |= set("""weird weirder weirdest strange stranger strangest amazing amazingly crazy craziest bizarre
+incredible mysterious secret secrets surprising shocking unbelievable fascinating cool coolest wild""".split())
 
 # Wikipedia pages about media, organisations, people or colour names are never sources for a science explainer
 OFF_TOPIC_DESC = re.compile(
@@ -42,6 +45,11 @@ OFF_TOPIC_DESC = re.compile(
     r"sitcom|novel|book|video game|football|soccer|club|team|character|manga|anime|magazine|newspaper|"
     r"record label|musician|singer|rapper|actor|actress|episode|musical|play by|brand|colou?r|crayon|"
     r"disambiguation|surname|given name|politician|footballer|businessperson|preschool)\b", re.I)
+# Index pages collect loosely related entries ("List of discredited substances"); they explain nothing
+INDEX_TITLE = re.compile(r"^(lists? of|glossary of|index of|outline of|timeline of)\b", re.I)
+# Consumer-health and biomedical indexes only answer body and mind topics; for physics or chemistry they drift
+# to whatever disease page mentions a keyword ("water" -> "Lead Poisoning")
+HEALTH_PROVIDERS = {"medlineplus", "pubmed"}
 
 
 # Short acronyms would be dropped by the length filter (and match inside other words), so spell them out
@@ -74,6 +82,7 @@ RELATED = {
     "pulse": ["heart rate", "pulse"], "lung": ["respiratory system", "lung"], "breath": ["breathing"],
     "sky": ["diffuse sky radiation", "Rayleigh scattering"], "sunset": ["sunset", "Rayleigh scattering"],
     "rainbow": ["rainbow", "dispersion (optics)"], "light": ["light", "visible spectrum"],
+    "water": ["properties of water", "hydrogen bond"], "ice": ["ice", "properties of water"],
     "black": ["black hole"], "magnet": ["magnetism"], "volcano": ["volcano"], "thunder": ["thunder", "lightning"],
     "overthink": ["rumination (psychology)", "worry"], "worry": ["worry", "anxiety"], "anxiety": ["anxiety"],
     "decision": ["decision-making", "choice overload"], "procrastinat": ["procrastination"],
@@ -108,17 +117,26 @@ def relevance(text: str, topic: str) -> int:
     return sum(low.count(st) for st in stems)
 
 
+def _mentions(low: str, group: List[str]) -> bool:
+    """A concept is mentioned when its own words (all of an acronym's words, e.g. "artificial intelligence")
+    or one of its expansions appear."""
+    alts = [" ".join(group)] + [t for key, vals in RELATED.items() if group[0].startswith(key) for t in vals]
+    phrases = [re.sub(r"\s*\([^)]*\)", "", a).lower() for a in alts]
+    return any(all(w[:5] in low for w in p.split()) for p in phrases)
+
+
 def concept_coverage(text: str, topic: str) -> int:
-    """How many of the topic's concepts the text mentions. A concept counts when its own words
-    (all of an acronym's words, e.g. "artificial intelligence") or one of its expansions appear."""
+    """How many of the topic's concepts the text mentions."""
     low = (text or "").lower()
-    hit = 0
-    for group in _concept_words(topic):
-        alts = [" ".join(group)] + [t for key, vals in RELATED.items() if group[0].startswith(key) for t in vals]
-        phrases = [re.sub(r"\s*\([^)]*\)", "", a).lower() for a in alts]
-        if any(all(w[:5] in low for w in p.split()) for p in phrases):
-            hit += 1
-    return hit
+    return sum(1 for group in _concept_words(topic) if _mentions(low, group))
+
+
+def mentions_subject(text: str, topic: str) -> bool:
+    """Whether the text mentions the topic's subject (its first concept: "water" in "why water is the weirdest
+    substance on earth"). Applied to a page's lead, it drops pages that only share side words: "Star jelly"
+    is a substance found on Earth, but its lead never mentions water."""
+    groups = _concept_words(topic)
+    return not groups or _mentions((text or "").lower(), groups[0])
 
 
 def on_topic(text: str, topic: str) -> bool:
@@ -189,7 +207,8 @@ class Researcher:
             desc = {pg.get("title"): pg.get("description", "") for pg in pages.values()}
             for name in names:
                 d = desc.get(name, "")
-                if OFF_TOPIC_DESC.search(d) or "disambiguation" in name.lower() or "same term" in d.lower():
+                if OFF_TOPIC_DESC.search(d) or INDEX_TITLE.search(name) or "disambiguation" in name.lower() \
+                        or "same term" in d.lower():
                     rejected.append(f"{name} ({d})")
                     continue
                 titles.append(name)
@@ -209,6 +228,9 @@ class Researcher:
             for page in data.get("query", {}).get("pages", {}).values():
                 text = (page.get("extract") or "")[:15000]
                 if not text or relevance(text, expanded_topic(topic)) < 3 or not on_topic(text, topic):
+                    continue
+                if title not in concept_pages and not mentions_subject(text[:1000], topic):
+                    log.info("wikipedia: skipped %s (its lead never mentions the subject)", title)
                     continue
                 ts = (page.get("revisions") or [{}])[0].get("timestamp", "")[:10] or None
                 sm.add(title=f"{page.get('title')} — Wikipedia", url=page.get("fullurl"), provider="wikipedia",
@@ -303,6 +325,9 @@ class Researcher:
             if fn is None:
                 status[name] = "error: unknown provider"
                 continue
+            if name in HEALTH_PROVIDERS and niche == "science":
+                status[name] = "skipped: health index, not used for science topics"
+                continue
             try:
                 n = fn(topic, sm)
                 status[name] = f"ok ({n} sources)"
@@ -317,6 +342,8 @@ class Researcher:
         self.source_texts = dict(sm.texts)
         facts, uncertain = extract_facts(expanded_topic(topic), sources, sm.texts)
         ok_count = sum(1 for v in status.values() if v.startswith("ok") and not v.startswith("ok (0"))
+        if niche == "science":   # the health providers are deliberately skipped, so one good source tier is enough
+            ok_count += 1
         state = "unavailable" if not sources else ("ok" if ok_count >= 2 else "partial")
         notes = []
         if state == "unavailable":

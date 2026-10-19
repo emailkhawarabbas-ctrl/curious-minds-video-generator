@@ -13,6 +13,7 @@ Kinds (see ``DEMO_KINDS``):
   heart_pump, circulation_loop, ecg_heartbeat           — Human Body
   light_scattering, wavelength_compare, sunset_path      — Science
   thought_loop, decision_tree, neural_signal, alarm_response — Psychology
+  water_molecule, hydrogen_bonds, ice_lattice, frozen_lake — Science (water)
 Scientific simplifications are deliberate but never wrong (e.g. blue light is scattered
 more than red by air molecules; the right heart pumps oxygen-poor blood to the lungs).
 """
@@ -55,6 +56,16 @@ DEMO_KINDS = {
                      "Stages: neurons, first signal, repeated signals, strong path.",
     "alarm_response": "The brain's alarm (amygdala) fires: heart-rate trace speeds up and the body tenses, then "
                       "calms. Stages: brain, alarm, heart races, calm down.",
+    "water_molecule": "Zoom from a water drop into one H2O molecule: the oxygen appears, two hydrogens bond on, "
+                      "the 104.5 degree angle sweeps. Stages: drop, oxygen, hydrogens, angle.",
+    "hydrogen_bonds": "The bent molecule is polar: oxygen end slightly negative, hydrogen ends slightly positive; "
+                      "neighbours line up + to - and cling with flickering hydrogen bonds. Stages: molecule, "
+                      "negative end, positive ends, hydrogen bonds.",
+    "ice_lattice": "Liquid water molecules tumble, packed tight; on freezing they lock into an open hexagonal "
+                   "crystal and the container expands. Stages: liquid, freezing, expands, open crystal.",
+    "frozen_lake": "Lake cross-section in winter: an ice chunk floats mostly submerged, 4 C water sinks to the "
+                   "bottom, an ice sheet grows across the top while fish swim below. Stages: lake, ice floats, "
+                   "dense water sinks, ice forms on top.",
 }
 
 
@@ -913,15 +924,428 @@ class AlarmResponse(Demo):
                              "heart_rate": (self.bx(0.5), self.by(0.7))}
 
 
+# =========================================================================== WATER
+HOH_HALF = math.radians(104.5) / 2        # half the H-O-H angle of a water molecule
+OXYGEN, HYDROGEN = PALETTE["red"], (1.0, 1.0, 1.0)
+
+
+def _h_dirs(rot: float) -> Tuple[float, float]:
+    """Directions (screen angles) of the two O-H bonds; rot=0 puts both hydrogens below the oxygen."""
+    return rot + math.pi / 2 - HOH_HALF, rot + math.pi / 2 + HOH_HALF
+
+
+def _h_pos(x: float, y: float, r: float, rot: float) -> List[Point]:
+    return [(x + math.cos(a) * 1.35 * r, y + math.sin(a) * 1.35 * r) for a in _h_dirs(rot)]
+
+
+def _sign(ctx, x, y, r, plus: bool, u, alpha=1.0):
+    """A small charge badge (+ or -) drawn as strokes, so it never depends on font glyphs."""
+    ctx.arc(x, y, r, 0, 2 * math.pi)
+    ctx.set_source_rgba(*(PALETTE["yellow"] if plus else PALETTE["sky"]), alpha)
+    ctx.fill_preserve()
+    ctx.set_source_rgba(*INK, alpha)
+    ctx.set_line_width(max(1.0, 3 * u))
+    ctx.stroke()
+    ctx.set_line_width(max(1.0, r * 0.3))
+    ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+    ctx.move_to(x - r * 0.5, y)
+    ctx.line_to(x + r * 0.5, y)
+    if plus:
+        ctx.move_to(x, y - r * 0.5)
+        ctx.line_to(x, y + r * 0.5)
+    ctx.stroke()
+
+
+def _h2o(ctx, x, y, r, rot, u, alpha=1.0, h_in=1.0, o_in=1.0) -> List[Point]:
+    """One cartoon water molecule: red oxygen with two white hydrogens at 104.5 degrees.
+    ``h_in`` (0..1) grows the hydrogens and bonds, ``o_in`` the oxygen. Returns the hydrogen centres."""
+    hs = _h_pos(x, y, r, rot)
+    lw = max(1.0, r * 0.09)
+    if h_in > 0.01:
+        for hx, hy in hs:
+            ex, ey = x + (hx - x) * h_in, y + (hy - y) * h_in
+            for col, wd in ((INK, 0.42), ((1, 1, 1), 0.22)):
+                ctx.move_to(x, y)
+                ctx.line_to(ex, ey)
+                ctx.set_source_rgba(*col, alpha)
+                ctx.set_line_width(r * wd)
+                ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+                ctx.stroke()
+            ctx.arc(ex, ey, r * 0.6 * h_in, 0, 2 * math.pi)
+            ctx.set_source_rgba(*HYDROGEN, alpha)
+            ctx.fill_preserve()
+            ctx.set_source_rgba(*INK, alpha)
+            ctx.set_line_width(lw)
+            ctx.stroke()
+    if o_in > 0.01:
+        ctx.arc(x, y, r * o_in, 0, 2 * math.pi)
+        ctx.set_source_rgba(*OXYGEN, alpha)
+        ctx.fill_preserve()
+        ctx.set_source_rgba(*INK, alpha)
+        ctx.set_line_width(lw * 1.2)
+        ctx.stroke()
+        ctx.arc(x - r * 0.3 * o_in, y - r * 0.32 * o_in, r * 0.45 * o_in, math.pi * 1.05, math.pi * 1.6)
+        ctx.set_source_rgba(1, 1, 1, 0.7 * alpha)
+        ctx.set_line_width(r * 0.14)
+        ctx.stroke()
+    return hs
+
+
+def _dashed(ctx, a: Point, b: Point, color, width, alpha, dash, offset=0.0):
+    ctx.save()
+    ctx.set_dash([dash, dash * 0.8], offset)
+    ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+    ctx.move_to(*a)
+    ctx.line_to(*b)
+    ctx.set_source_rgba(*color, alpha)
+    ctx.set_line_width(width)
+    ctx.stroke()
+    ctx.restore()
+
+
+@dataclass
+class WaterMolecule(Demo):
+    """Zoom from a drop into one molecule: oxygen appears, two hydrogens bond on, the 104.5 degree angle sweeps."""
+
+    def __post_init__(self):
+        self.r = self.s * 0.17
+        self.o = (self.cx, self.by(0.46))
+        self.drop = (self.bx(0.17), self.by(0.13))
+        hs = _h_pos(self.o[0], self.o[1], self.r, 0.0)
+        self.label_points = {"oxygen": (self.o[0], self.o[1] - self.r * 0.6), "hydrogen": hs[1],
+                             "angle": (self.o[0], self.o[1] + self.r * 2.35)}
+
+    def focus(self, t):
+        return self.o if t >= self.st(1) else ((self.drop[0] + self.o[0]) / 2, (self.drop[1] + self.o[1]) / 2)
+
+    def content(self, ctx, t):
+        u, r = self.unit, self.r
+        p0 = ease_out_back(self.prog(t, 0, 0.6), 1.4)
+        if p0 <= 0.01:
+            return
+        # the drop we zoom into, with a dashed magnifier ring around the molecule
+        self.assets.get("water_drop").draw(ctx, self.drop[0], self.drop[1], self.s * 0.2 * p0)
+        ring = self.r * 2.6
+        ctx.save()
+        ctx.set_dash([16 * u, 12 * u], -t * 30 * u)
+        ctx.arc(self.o[0], self.o[1] + r * 0.3, ring * p0, 0, 2 * math.pi)
+        ctx.set_source_rgba(*PALETTE["blue"], 0.55)
+        ctx.set_line_width(6 * u)
+        ctx.stroke()
+        ctx.move_to(self.drop[0] + self.s * 0.06, self.drop[1] + self.s * 0.06)
+        ctx.line_to(self.o[0] - ring * 0.7 * p0, self.o[1] + r * 0.3 - ring * 0.7 * p0)
+        ctx.stroke()
+        ctx.restore()
+        o_in = ease_out_back(self.prog(t, 1, 0.6), 1.6)
+        h_in = ease_out_cubic(self.prog(t, 2, 0.9))
+        ang = self.prog(t, 3, 1.1)
+        wob = 0.1 * math.sin((t - self.st(3)) * 2.4) * ang                # boomerang-like rock once the angle shows
+        if o_in <= 0.01:
+            # before the oxygen arrives, tiny molecules jiggle inside the ring (a glimpse of the liquid)
+            rnd = random.Random(3)
+            for i in range(7):
+                a = rnd.random() * 2 * math.pi
+                d = ring * 0.65 * rnd.random()
+                _h2o(ctx, self.o[0] + math.cos(a) * d + math.sin(t * 3 + i) * 6 * u,
+                     self.o[1] + r * 0.3 + math.sin(a) * d, r * 0.22 * p0, t * 1.5 + i, u)
+            return
+        hs = _h2o(ctx, self.o[0], self.o[1], r, wob, u, h_in=h_in, o_in=o_in)
+        if ang > 0:
+            a1, a2 = _h_dirs(wob)
+            for hx, hy in hs:             # guide lines extend the two bonds past the hydrogens
+                _dashed(ctx, (hx, hy), (self.o[0] + (hx - self.o[0]) * 2.0, self.o[1] + (hy - self.o[1]) * 2.0),
+                        PALETTE["orange"], 6 * u, 0.9 * ang, 12 * u)
+            # the 104.5 degree arc sweeps between the bond lines, outside the hydrogen atoms
+            sweep = (a2 - a1) * ease_out_cubic(ang)
+            for col, wd in ((INK, 15 * u), (PALETTE["yellow"], 8 * u)):
+                ctx.arc(self.o[0], self.o[1], r * 2.25, a1, a1 + sweep)
+                ctx.set_source_rgb(*col)
+                ctx.set_line_width(wd)
+                ctx.stroke()
+
+
+@dataclass
+class HydrogenBonds(Demo):
+    """The bent molecule is polar (oxygen end slightly negative, hydrogen ends slightly positive), so neighbours
+    line up hydrogen-to-oxygen and cling with hydrogen bonds that keep breaking and re-forming."""
+
+    def __post_init__(self):
+        self.r = self.s * 0.09
+        self.c = (self.cx, self.by(0.48))
+        r, (cx, cy) = self.r, self.c
+        D = 4.4 * r
+        self.neigh: List[Tuple[Point, float, str]] = []       # (centre, rotation, kind: acceptor/donor)
+        for a in _h_dirs(0.0):                                 # below: their oxygen accepts our hydrogen
+            self.neigh.append(((cx + math.cos(a) * D, cy + math.sin(a) * D), a - math.pi / 2, "acceptor"))
+        for a in (-math.pi / 2 - 0.85, -math.pi / 2 + 0.85):  # above: one of their hydrogens points at our oxygen
+            self.neigh.append(((cx + math.cos(a) * D, cy + math.sin(a) * D), a + math.pi / 2 + HOH_HALF, "donor"))
+        hs = _h_pos(cx, cy, r, 0.0)
+        mid = ((hs[0][0] + self.neigh[0][0][0]) / 2, (hs[0][1] + self.neigh[0][0][1]) / 2)
+        self.label_points = {"negative": (cx, cy - r * 0.9), "positive": hs[1], "bond": mid}
+
+    def focus(self, t):
+        return self.c if t < self.st(3) else (self.cx, self.cy)
+
+    def content(self, ctx, t):
+        u, r, (cx, cy) = self.unit, self.r, self.c
+        p0 = ease_out_back(self.prog(t, 0, 0.6), 1.5)
+        if p0 <= 0.01:
+            return
+        neg, pos, link = self.prog(t, 1, 0.6), self.prog(t, 2, 0.6), self.prog(t, 3, 1.0)
+        if neg > 0:                                   # electron-rich glow around the oxygen end
+            ctx.arc(cx, cy, r * (1.55 + 0.08 * math.sin(t * 4)), 0, 2 * math.pi)
+            ctx.set_source_rgba(*PALETTE["sky"], 0.45 * neg)
+            ctx.fill()
+        jig = lambda i: (math.sin(t * 2.6 + i * 1.9) * 5 * u, math.cos(t * 2.1 + i) * 5 * u)   # noqa: E731
+        drawn = []
+        for i, ((nx, ny), rot, kind) in enumerate(self.neigh):
+            k = ease_out_cubic(clamp(link * 1.6 - i * 0.18))
+            if k <= 0:
+                continue
+            # neighbours glide in from further out
+            far = 1.0 + 0.9 * (1 - k)
+            px, py = cx + (nx - cx) * far + jig(i)[0], cy + (ny - cy) * far + jig(i)[1]
+            drawn.append((i, (px, py), rot, kind, k))
+        hs_c = _h_pos(cx, cy, r * p0, 0.0)
+        for i, (px, py), rot, kind, k in drawn:           # hydrogen bonds first (behind the atoms)
+            if k < 0.6:
+                continue
+            flick = 0.65 + 0.35 * math.sin(t * 5 + i * 2.3)      # bonds keep breaking and re-forming
+            if kind == "acceptor":
+                a, b = hs_c[i], (px, py)
+            else:
+                a, b = _h_pos(px, py, r, rot)[0], (cx, cy)
+            a2 = (a[0] + (b[0] - a[0]) * 0.18, a[1] + (b[1] - a[1]) * 0.18)
+            b2 = (b[0] + (a[0] - b[0]) * 0.3, b[1] + (a[1] - b[1]) * 0.3)
+            al = flick * (k - 0.6) / 0.4
+            _dashed(ctx, a2, b2, INK, 15 * u, al, 16 * u, -t * 40 * u)
+            _dashed(ctx, a2, b2, PALETTE["yellow"], 9 * u, al, 16 * u, -t * 40 * u)
+        for i, (px, py), rot, kind, k in drawn:
+            _h2o(ctx, px, py, r, rot, u, alpha=min(1.0, k * 1.3))
+        hs = _h2o(ctx, cx, cy, r * p0, 0.0, u)
+        if neg > 0:
+            _sign(ctx, cx, cy - r * 1.05, r * 0.42 * ease_out_back(neg, 1.6), False, u)
+        if pos > 0:
+            for hx, hy in hs:
+                _sign(ctx, hx + (hx - cx) * 0.6, hy + r * 0.25, r * 0.36 * ease_out_back(pos, 1.6), True, u)
+        if link > 0:
+            for i, (px, py), rot, kind, k in drawn:       # partner charges, so the + to - pairing is visible
+                if kind == "acceptor":
+                    _sign(ctx, px, py - r * 1.05, r * 0.3 * k, False, u, k)
+                else:
+                    h0 = _h_pos(px, py, r, rot)[0]
+                    _sign(ctx, h0[0] + (h0[0] - px) * 0.55, h0[1] + (h0[1] - py) * 0.55, r * 0.28 * k, True, u, k)
+
+
+@dataclass
+class IceLattice(Demo):
+    """Liquid water: molecules tumble, packed tight. Freezing: they lock into an open hexagonal crystal held by
+    hydrogen bonds, so the same molecules take up more room (water expands by about 9 % as it freezes)."""
+
+    def __post_init__(self):
+        self.a = self.s * 0.12
+        a = self.a
+        cx, cy = self.cx, self.by(0.47)
+        pts: List[Tuple[Point, int]] = []
+        w_lim, h_lim = self.box[2] * 0.36, self.box[3] * 0.3
+        for j in range(-4, 5):
+            for i in range(-5, 6):
+                x = (i + (j % 2) * 0.5) * math.sqrt(3) * a
+                y = j * 1.5 * a
+                for sub, (dx, dy) in enumerate(((0.0, -a / 2), (0.0, a / 2))):
+                    px, py = cx + x + dx, cy + y + dy
+                    if abs(px - cx) <= w_lim and abs(py - cy) <= h_lim:
+                        pts.append(((px, py), sub))
+        self.sites = pts
+        self.edges = [(i, j) for i in range(len(pts)) for j in range(i + 1, len(pts))
+                      if abs(math.dist(pts[i][0], pts[j][0]) - a) < a * 0.05]
+        rnd = random.Random(11)
+        self.jit = [(rnd.uniform(-1, 1) * a * 0.4, rnd.uniform(-1, 1) * a * 0.4, rnd.uniform(0, 6.28),
+                     rnd.uniform(1.5, 3.5)) for _ in pts]
+        self.c = (cx, cy)
+        self.half = (w_lim + a * 0.6, h_lim + a * 0.6)
+        self.squeeze = 0.8          # liquid occupies a smaller box (drawn exaggerated so the change reads on a phone)
+        self.label_points = {"freezing": (cx, cy - self.half[1] * 0.9),
+                             "expands": (cx + self.half[0], cy),
+                             "crystal": (cx - self.half[0] * 0.45, cy + self.half[1] * 0.55)}
+
+    def content(self, ctx, t):
+        u, a, (cx, cy) = self.unit, self.a, self.c
+        p0 = ease_out_back(self.prog(t, 0, 0.6), 1.4)
+        if p0 <= 0.01:
+            return
+        order = ease_in_out_sine(self.prog(t, 1, 1.6))       # molecules stop tumbling and line up
+        grow = ease_out_back(self.prog(t, 2, 1.0), 1.2)       # the container expands
+        lock = self.prog(t, 3, 0.9)                          # the open crystal and its bonds light up
+        scale = self.squeeze + (1 - self.squeeze) * grow
+        hw, hh = self.half[0] * scale * p0, self.half[1] * scale * p0
+        # container (liquid -> ice tint)
+        rounded_rect(ctx, cx - hw, cy - hh, 2 * hw, 2 * hh, 26 * u)
+        ctx.set_source_rgba(*mix(PALETTE["sky"], PALETTE["sky_light"], order), 0.55)
+        ctx.fill_preserve()
+        ctx.set_source_rgb(*INK)
+        ctx.set_line_width(6 * u)
+        ctx.stroke()
+        if grow > 0.02:                                      # outward arrows while it expands
+            k = clamp(grow) * (1 - 0.6 * lock)
+            for ang in (0, math.pi / 2, math.pi, -math.pi / 2):
+                ex = cx + math.cos(ang) * (hw + 30 * u)
+                ey = cy + math.sin(ang) * (hh + 30 * u)
+                sx, sy = ex - math.cos(ang) * 50 * u, ey - math.sin(ang) * 50 * u
+                stroke_doodle(ctx, [(sx, sy), (ex, ey)], PALETTE["orange"], 9 * u, k, INK, smooth=False)
+                _arrow_head(ctx, (ex, ey), ang, 20 * u, PALETTE["orange"], u, k)
+        pos = []
+        for idx, ((px, py), sub) in enumerate(self.sites):
+            jx, jy, ph, f = self.jit[idx]
+            wob = (1 - order)
+            x = cx + (px - cx) * scale + (jx + math.sin(t * f + ph) * a * 0.18) * wob
+            y = cy + (py - cy) * scale + (jy + math.cos(t * f * 0.8 + ph) * a * 0.18) * wob
+            pos.append((x, y))
+        if lock > 0:
+            for i, j in self.edges:
+                _dashed(ctx, pos[i], pos[j], PALETTE["yellow"], 7 * u, 0.9 * lock, 9 * u, -t * 30 * u)
+        for idx, ((px, py), sub) in enumerate(self.sites):
+            ph, f = self.jit[idx][2], self.jit[idx][3]
+            rot_l = ph + t * f * 0.9                         # tumbling in the liquid
+            rot_s = 0.0 if sub == 1 else math.pi             # fixed orientation in the crystal
+            d = (rot_s - rot_l + math.pi) % (2 * math.pi) - math.pi
+            _h2o(ctx, pos[idx][0], pos[idx][1], a * 0.26 * p0, rot_l + d * order, u)
+
+
+@dataclass
+class FrozenLake(Demo):
+    """Lake cross-section: an ice chunk floats (about 9/10 of it below the waterline); 4 C water, the densest,
+    sinks to the bottom; an ice sheet then grows across the top and the fish keep swimming beneath it."""
+
+    def __post_init__(self):
+        x, y, w, h = self.box
+        self.surface = self.by(0.3)
+        self.bottom = self.by(0.93)
+        self.left = [(x, self.by(0.24)), (self.bx(0.12), self.by(0.26)), (self.bx(0.22), self.bottom)]
+        self.right = [(x + w, self.by(0.24)), (self.bx(0.88), self.by(0.26)), (self.bx(0.78), self.bottom)]
+        self.chunk = (self.bx(0.62), self.surface)
+        self.label_points = {"floats": (self.chunk[0], self.surface - self.s * 0.05),
+                             "sinks": (self.bx(0.42), self.by(0.82)),
+                             "ice": (self.bx(0.3), self.surface)}
+
+    def _water_poly(self, top: float) -> List[Point]:
+        def edge_x(side, yy):
+            (x1, y1), (x2, y2) = side[1], side[2]
+            return x1 + (x2 - x1) * (yy - y1) / (y2 - y1)
+        return [(edge_x(self.left, top), top), (edge_x(self.right, top), top),
+                (edge_x(self.right, self.bottom), self.bottom), (edge_x(self.left, self.bottom), self.bottom)]
+
+    def focus(self, t):
+        if t < self.st(2):
+            return self.chunk
+        if t < self.st(3):
+            return (self.cx, self.by(0.7))
+        return self.cx, self.by(0.45)
+
+    def content(self, ctx, t):
+        u = self.unit
+        x, y, w, h = self.box
+        p0 = self.prog(t, 0, 0.6)
+        if p0 <= 0.01:
+            return
+        floats, sinks, sheet = self.prog(t, 1, 1.0), self.prog(t, 2, 1.6), self.prog(t, 3, 1.4)
+        # winter sky
+        ctx.rectangle(x, y, w, self.surface - y)
+        ctx.set_source_rgb(*mix(PALETTE["sky_light"], (1, 1, 1), 0.3))
+        ctx.fill()
+        rnd = random.Random(4)
+        for i in range(18):
+            sx = x + w * rnd.random() + math.sin(t * 1.2 + i) * 10 * u
+            sy = y + ((rnd.random() * (self.surface - y) + t * 40 * u) % (self.surface - y))
+            ctx.arc(sx, sy, (3 + 3 * rnd.random()) * u, 0, 2 * math.pi)
+            ctx.set_source_rgba(1, 1, 1, 0.95)
+            ctx.fill_preserve()
+            ctx.set_source_rgba(*INK, 0.5)
+            ctx.set_line_width(1.5 * u)
+            ctx.stroke()
+        # water, with the dense 4 C layer collecting at the bottom
+        fill_poly(ctx, self._water_poly(self.surface), PALETTE["sky"], p0, INK, 6 * u)
+        deep = self.bottom - (self.bottom - self.surface) * 0.32 * ease_out_cubic(sinks)
+        if sinks > 0:
+            fill_poly(ctx, self._water_poly(deep), PALETTE["blue"], 0.85, None)
+            for i in range(5):                               # parcels of 4 C water sinking
+                f = ((t - self.st(2)) * 0.45 + i / 5) % 1.0
+                px = self.bx(0.3 + 0.1 * i)
+                py = self.surface + 30 * u + (deep - self.surface - 40 * u) * f
+                a = (1 - abs(f - 0.5) * 2) * (1 - 0.5 * sheet)
+                stroke_doodle(ctx, [(px, py - 80 * u), (px, py - 20 * u)], PALETTE["blue"], 12 * u, a, INK,
+                              smooth=False)
+                _arrow_head(ctx, (px, py), math.pi / 2, 28 * u, PALETTE["blue"], u, a)
+        # lake bed and banks (snow-capped rock)
+        ctx.rectangle(x, self.bottom, w, y + h - self.bottom)
+        ctx.set_source_rgba(*PALETTE["grey"], p0)
+        ctx.fill()
+        ctx.move_to(x, self.bottom)
+        ctx.line_to(x + w, self.bottom)
+        ctx.set_source_rgba(*INK, p0)
+        ctx.set_line_width(6 * u)
+        ctx.stroke()
+        for side in (self.left, self.right):
+            edge = side[0][0]
+            poly = [side[0], side[1], side[2], (side[2][0], y + h), (edge, y + h)]
+            fill_poly(ctx, poly, PALETTE["grey"], p0, INK, 7 * u)
+            fill_poly(ctx, [side[0], side[1], (side[1][0], side[1][1] + 16 * u), (edge, side[0][1] + 16 * u)],
+                      (1, 1, 1), p0, None)
+        # fish keep swimming (below the ice, in the liquid layer)
+        fish = self.assets.get("fish")
+        for i, (depth, speed, size) in enumerate(((0.62, 0.11, 0.11), (0.8, 0.08, 0.09))):
+            ph = ((t * speed + i * 0.45) % 1.0)
+            going_right = ph < 0.5
+            f = ph * 2 if going_right else 2 - ph * 2
+            fx = self.bx(0.3) + (self.bx(0.7) - self.bx(0.3)) * ease_in_out_sine(f)
+            fy = self.by(depth) + math.sin(t * 2 + i) * 6 * u
+            fish.draw(ctx, fx, fy, self.s * size * p0, flip=going_right)
+        # the floating chunk: ice is less dense, so roughly a tenth rides above the waterline
+        if floats > 0:
+            cw, chh = self.s * 0.2, self.s * 0.14
+            drop = (1 - ease_out_back(floats, 1.8)) * (self.surface - y)
+            bob = math.sin((t - self.st(1)) * 2.2) * 4 * u * floats
+            top = self.surface - chh * 0.1 - drop + bob
+            rounded_rect(ctx, self.chunk[0] - cw / 2, top, cw, chh, 12 * u)
+            ctx.set_source_rgba(*mix(PALETTE["sky_light"], (1, 1, 1), 0.4), 0.92)
+            ctx.fill_preserve()
+            ctx.set_source_rgb(*INK)
+            ctx.set_line_width(5 * u)
+            ctx.stroke()
+            stroke_doodle(ctx, [(self.chunk[0] - cw * 0.3, top + chh * 0.2), (self.chunk[0] - cw * 0.3, top + chh * 0.6)],
+                          (1, 1, 1), 7 * u, 0.9, None, smooth=False)
+        # the ice sheet grows across the surface from both banks
+        if sheet > 0:
+            poly = self._water_poly(self.surface)
+            lx, rx = poly[0][0], poly[1][0]
+            reach = (rx - lx) / 2 * ease_out_cubic(sheet)
+            thick = 44 * u
+            for x0, x1 in ((lx - 4 * u, lx + reach), (rx - reach, rx + 4 * u)):
+                rounded_rect(ctx, x0, self.surface - thick * 0.25, x1 - x0, thick, 8 * u)
+                ctx.set_source_rgb(1, 1, 1)
+                ctx.fill_preserve()
+                ctx.set_source_rgb(*INK)
+                ctx.set_line_width(5 * u)
+                ctx.stroke()
+        # waterline over the chunk so the submerged part reads as underwater
+        ctx.move_to(self._water_poly(self.surface)[0][0], self.surface)
+        ctx.line_to(self._water_poly(self.surface)[1][0], self.surface)
+        ctx.set_source_rgba(*INK, 0.6 * p0)
+        ctx.set_line_width(4 * u)
+        ctx.stroke()
+
+
 DEMO_CLASSES = {
     "heart_pump": HeartPump, "circulation_loop": CirculationLoop, "ecg_heartbeat": EcgHeartbeat,
     "light_scattering": LightScattering, "wavelength_compare": WavelengthCompare, "sunset_path": SunsetPath,
     "thought_loop": ThoughtLoop, "decision_tree": DecisionTree, "neural_signal": NeuralSignal,
-    "alarm_response": AlarmResponse,
+    "alarm_response": AlarmResponse, "water_molecule": WaterMolecule, "hydrogen_bonds": HydrogenBonds,
+    "ice_lattice": IceLattice, "frozen_lake": FrozenLake,
 }
 STAGE_COUNT = {"heart_pump": 4, "circulation_loop": 4, "ecg_heartbeat": 3, "light_scattering": 4,
                "wavelength_compare": 3, "sunset_path": 3, "thought_loop": 4, "decision_tree": 4,
-               "neural_signal": 4, "alarm_response": 4}
+               "neural_signal": 4, "alarm_response": 4, "water_molecule": 4, "hydrogen_bonds": 4,
+               "ice_lattice": 4, "frozen_lake": 4}
 
 
 def make_demo(kind: str, box, stages: Sequence[float], assets, unit: float, seed: int = 0) -> Demo:

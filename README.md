@@ -52,6 +52,8 @@ python -m src.main generate --topic "Why Do We Get Goosebumps?" --niche human_bo
 
 # only a Short, 60 s
 python -m src.main generate --topic "Why Is the Sky Blue?" --niche science --no-long --short-duration 60
+# the Phase 1 acceptance Short (curated pack, ~1 minute)
+python -m src.main generate --topic "Why Water Is the Weirdest Substance on Earth" --niche science --no-long --short-duration 55
 
 # only a long video, 10 minutes, calm documentary voice, no burned-in captions
 python -m src.main generate --topic "How Does Your Brain Create Memories?" --niche psychology \
@@ -91,7 +93,7 @@ Workflow: `.github/workflows/generate-video.yml` → **Actions → Generate Curi
 | `topic` | required, free text (3–120 chars) |
 | `niche` | science / psychology / human_body / mixed |
 | `generate_shorts`, `generate_long_video` | true / false |
-| `short_duration` | 60–90 s |
+| `short_duration` | 25–90 s (accepted within ±20 % of the requested target) |
 | `long_duration` | 6–10 min |
 | `voice` | US English Friendly Male (default) / Energetic / Calm / Narrator |
 | `generate_subtitles`, `generate_thumbnail` | true / false |

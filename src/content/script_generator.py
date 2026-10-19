@@ -193,7 +193,7 @@ class ScriptGenerator:
         from src.animation.themes import resolve_theme
         theme = resolve_theme(niche, topic)
         user = load_prompt(
-            "script_user", format_label="60-90 second vertical short" if fmt == "short" else "6-10 minute long-form",
+            "script_user", format_label=f"{int(duration_s)}-second vertical short" if fmt == "short" else "6-10 minute long-form",
             topic=topic, niche=niche, theme=theme.label, target_words=str(words),
             demos="\n".join(f"- {k}: {v}" for k, v in R.DEMOS.items()),
             duration_label=f"~{int(duration_s)} seconds of narration", structure=structure,

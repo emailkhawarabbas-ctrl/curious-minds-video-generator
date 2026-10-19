@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Water Drop" data-tags="water,drop,droplet,liquid,h2o,rain,wet,splash,ocean" data-subcategory="chemistry" data-style="science_explorer" data-animations="pop,float,bounce,pulse">
+  <ellipse cx="200" cy="364" rx="104" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-drop">
+    <path d="M200 30 C236 96 316 170 316 246 C316 312 264 352 200 352 C136 352 84 312 84 246 C84 170 164 96 200 30 Z" fill="#3A86FF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M296 252 C296 310 252 338 200 338 C244 326 280 296 284 246 C288 210 270 176 252 150 C280 184 296 216 296 252 Z" fill="#2563C9"/>
+    <path d="M140 220 C142 182 166 140 190 108" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="136" cy="262" r="12" fill="#FFFFFF" fill-opacity="0.7"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="246" r="4"/>
+  <circle id="anchor-top" cx="200" cy="30" r="4"/>
+  <circle id="anchor-tip" cx="200" cy="48" r="4"/>
+  <circle id="anchor-drop" cx="250" cy="280" r="4"/>
+</svg>

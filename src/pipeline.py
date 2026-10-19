@@ -74,6 +74,12 @@ class GenerationRequest:
             raise ValueError(f"long_duration must be within {lo}-{hi} s")
 
 
+def acceptance_window(target: float, allowed: Tuple[float, float]) -> Tuple[float, float]:
+    """Duration range a video must land in: within 20 % of its own target, never outside the allowed range.
+    A 75 s Short is accepted at 60-90 s; a 30 s Short at 25-36 s (a 30 s request must not pass at 85 s)."""
+    return max(allowed[0], round(target * 0.8, 1)), min(allowed[1], round(target * 1.2, 1))
+
+
 @dataclass
 class Stage:
     name: str
@@ -195,7 +201,8 @@ class Pipeline:
                                 LONG_NAME))
             all_ok = True
             used_assets: set = set()
-            for fmt, renderer, target, rng, out_name in formats:
+            for fmt, renderer, target, allowed, out_name in formats:
+                rng = acceptance_window(target, allowed)
                 try:
                     ok = self._produce(fmt, renderer, target, rng, out_name, req, research, tts, dirs, root,
                                        manifest, used_assets)
@@ -292,6 +299,7 @@ class Pipeline:
             write_metadata(meta, dirs["metadata"], f"metadata_{fmt}")
         if req.thumbnail:
             concepts = self._concepts(meta, sb, req.topic)
+            shutil.rmtree(dirs["thumbnails"] / fmt, ignore_errors=True)   # no stale thumbnails from an earlier run
             paths = self._run(f"thumbnail_{tag}", render_thumbnails, concepts, dirs["thumbnails"] / fmt,
                               sb.character, critical=False) or []
             thumbs = [str(p.relative_to(root)) for p in paths]

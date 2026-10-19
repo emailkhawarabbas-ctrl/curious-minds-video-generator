@@ -116,7 +116,13 @@ def render_thumbnails(concepts: List[ThumbnailConcept], out_dir: Path, char_id: 
 def default_concepts(topic: str, main_asset: str, alt_asset: Optional[str] = None,
                      short_text: Optional[str] = None) -> List[ThumbnailConcept]:
     words = [w for w in topic.replace("?", "").split() if w]
-    text = short_text or " ".join(words[-3:]) + "?"
+    if not short_text and len(words) > 4:
+        # start at the subject: the tail is often filler ("...Substance on Earth?" for a topic about water)
+        from src.research.researcher import keywords
+        subject = keywords(topic)[0]
+        i = next((k for k, w in enumerate(words) if w.lower().startswith(subject[:5])), len(words) - 3)
+        short_text = " ".join(words[i:i + 4]) + "?"
+    text = short_text or " ".join(words) + "?"
     return [
         ThumbnailConcept("question", text if len(text.split()) <= 4 else " ".join(text.split()[:4]), main_asset,
                          "surprised", "surprised", "burst_purple", "yellow",

@@ -69,9 +69,9 @@ transitions, camera temperament and music:
 | | Human Body | Science | Psychology |
 |---|---|---|---|
 | Look | Professional medical cartoon | Exploration & discovery | Mind & behaviour storytelling |
-| Environments | `bloodstream`, `body_lab` (live ECG), `anatomy_blueprint`, `cell_world` | `sky_day`, `science_grid`, `atmosphere_view`, `sunset_sky`, `space`, `lab` | `mind_maze`, `thought_room`, `emotion_waves`, `brain_space`, `city` |
+| Environments | `bloodstream`, `body_lab` (live ECG), `anatomy_blueprint`, `cell_world` | `sky_day`, `science_grid`, `atmosphere_view`, `sunset_sky`, `underwater`, `space`, `lab` | `mind_maze`, `thought_room`, `emotion_waves`, `brain_space`, `city` |
 | Illustrations | Organs, cutaways, blood cells, vessels, medical tools | Light, atmosphere, molecules, planets, instruments | Heads & people, thought loops, emotions, decisions, conversations |
-| Demonstrations | heart pump, circulation loop, ECG heartbeat | light scattering, wavelengths, sunset path | thought loop, decision tree, stress alarm, neural signal |
+| Demonstrations | heart pump, circulation loop, ECG heartbeat | light scattering, wavelengths, sunset path, water molecule, hydrogen bonds, ice lattice, frozen lake | thought loop, decision tree, stress alarm, neural signal |
 | Accents | coral · teal · blue · pink | blue · orange · teal · purple | purple · pink · teal · orange |
 | Foreground depth | soft out-of-focus blood cells | floating light motes | slow thought rings |
 | Transitions | circle wipe, blinds, slide, dots | star zoom, slide, circle wipe, doodle swipe | doodle swipe, dots, circle wipe, blinds |

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Water Molecule (H2O)" data-tags="water,h2o,molecule,oxygen,hydrogen,bent,polar,chemistry,atom,bond" data-subcategory="chemistry" data-style="science_explorer" data-animations="pop,float,spin,wiggle">
+  <ellipse cx="200" cy="360" rx="120" ry="12" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-bonds">
+    <path d="M200 170 L100 268" fill="none" stroke="#2B2D42" stroke-width="30" stroke-linecap="round"/>
+    <path d="M200 170 L300 268" fill="none" stroke="#2B2D42" stroke-width="30" stroke-linecap="round"/>
+    <path d="M200 170 L100 268" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
+    <path d="M200 170 L300 268" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <g id="part-hydrogen_left">
+    <circle cx="96" cy="272" r="56" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M136 300 C118 326 78 330 54 306 C80 318 112 318 136 300 Z" fill="#B8BCC8"/>
+    <path d="M66 254 C72 238 86 228 102 226" fill="none" stroke="#D7F0FA" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-hydrogen_right">
+    <circle cx="304" cy="272" r="56" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M344 300 C326 326 286 330 262 306 C288 318 320 318 344 300 Z" fill="#B8BCC8"/>
+    <path d="M274 254 C280 238 294 228 310 226" fill="none" stroke="#D7F0FA" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g id="part-oxygen">
+    <circle cx="200" cy="164" r="92" fill="#EF476F" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M268 216 C238 262 160 268 122 222 C164 248 226 246 268 216 Z" fill="#C42F57"/>
+    <path d="M142 130 C152 104 176 88 204 86" fill="none" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="72" r="4"/>
+  <circle id="anchor-oxygen" cx="200" cy="140" r="4"/>
+  <circle id="anchor-hydrogen_left" cx="96" cy="272" r="4"/>
+  <circle id="anchor-hydrogen_right" cx="304" cy="272" r="4"/>
+  <circle id="anchor-angle" cx="200" cy="292" r="4"/>
+</svg>

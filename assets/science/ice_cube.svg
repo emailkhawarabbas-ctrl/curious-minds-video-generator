@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Ice Cube" data-tags="ice,ice cube,frozen,freeze,cold,solid,water,crystal,winter" data-subcategory="chemistry" data-style="science_explorer" data-animations="pop,float,bounce,wiggle">
+  <ellipse cx="200" cy="356" rx="130" ry="13" fill="#2B2D42" fill-opacity="0.12"/>
+  <g id="part-cube">
+    <path d="M200 60 L336 128 L336 268 L200 336 L64 268 L64 128 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M200 196 L336 128 L336 268 L200 336 Z" fill="#8ECAE6"/>
+    <path d="M64 128 L200 196 L200 336 L64 268 Z" fill="#B9E2F2"/>
+    <path d="M64 128 L200 196 L336 128" fill="none" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M200 196 L200 336" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M200 60 L336 128 L336 268 L200 336 L64 268 L64 128 Z" fill="none" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+  <g id="part-shine">
+    <path d="M100 160 L100 236" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="12" stroke-linecap="round"/>
+    <path d="M150 104 L208 76" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="12" stroke-linecap="round"/>
+    <path d="M262 214 L296 196" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <circle id="anchor-center" cx="200" cy="200" r="4"/>
+  <circle id="anchor-top" cx="200" cy="60" r="4"/>
+  <circle id="anchor-cube" cx="268" cy="232" r="4"/>
+  <circle id="anchor-shine" cx="100" cy="196" r="4"/>
+</svg>
