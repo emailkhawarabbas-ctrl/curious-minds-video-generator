@@ -133,7 +133,7 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--long", type=_bool, default=True, help="generate the 16:9 long-form video (true/false)")
     g.add_argument("--no-short", dest="short", action="store_false")
     g.add_argument("--no-long", dest="long", action="store_false")
-    g.add_argument("--short-duration", type=float, default=75, help="seconds (60-90)")
+    g.add_argument("--short-duration", type=float, default=75, help="seconds (25-90; TikTok/Shorts sweet spot 30-60)")
     g.add_argument("--long-duration", type=float, default=8, help="minutes (6-10) or seconds (360-600)")
     g.add_argument("--voice", default=None,
                    help="voice profile label/key (e.g. 'US English Friendly Male', energetic), a Kokoro voice "

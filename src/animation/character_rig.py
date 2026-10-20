@@ -272,7 +272,7 @@ def compute_skeleton(style: CharacterStyle, pose: Dict) -> Skeleton:
         an = (kn[0] + d2[0] * r["shin"], kn[1] + d2[1] * r["shin"])
         hips[side], knees[side], ankles[side] = hp, kn, an
     hc = _rot((0, -120), head_angle)
-    ht = _rot((0, -255), head_angle)
+    ht = _rot((0, r.get("head_top_local", -255)), head_angle)
     mo = _rot(tuple(r["mouth"]), head_angle)
     return Skeleton(torso_origin, neck, head_angle, shoulders, elbows, wrists, fore, hips, knees,
                     ankles, (neck[0] + hc[0], neck[1] + hc[1]), (neck[0] + ht[0], neck[1] + ht[1]),
@@ -370,7 +370,7 @@ def draw_character(ctx: cairo.Context, style: CharacterStyle, pose: Dict, face: 
     ctx.translate(*sk.neck)
     ctx.rotate(math.radians(sk.head_angle))
     ctx.rectangle(-r["neck_width"] / 2, -r["neck_length"] - 20, r["neck_width"], r["neck_length"] + 26)
-    ctx.set_source_rgb(*hex_to_rgb(c["skin_shadow"]))
+    ctx.set_source_rgb(*hex_to_rgb(c.get("neck", c["skin_shadow"])))
     ctx.fill()
     style.head.draw_native(ctx, only_groups=("back",))
     style.face.draw(ctx, face)

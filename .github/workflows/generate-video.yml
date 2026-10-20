@@ -24,10 +24,10 @@ on:
         type: boolean
         default: true
       short_duration:
-        description: "Short target duration in seconds (60-90)"
+        description: "Short target duration in seconds (accepted within +/-20 %)"
         type: choice
         default: "75"
-        options: ["60", "65", "70", "75", "80", "85", "90"]
+        options: ["30", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90"]
       long_duration:
         description: "Long-form target duration in minutes (6-10)"
         type: choice
@@ -103,8 +103,8 @@ jobs:
               errors.append("topic contains forbidden characters")
           if os.environ["GEN_SHORT"] != "true" and os.environ["GEN_LONG"] != "true":
               errors.append("enable at least one of generate_shorts / generate_long_video")
-          if not 60 <= int(os.environ["SHORT_DURATION"]) <= 90:
-              errors.append("short_duration must be 60-90")
+          if not 25 <= int(os.environ["SHORT_DURATION"]) <= 90:
+              errors.append("short_duration must be 25-90")
           if not 6 <= int(os.environ["LONG_DURATION"]) <= 10:
               errors.append("long_duration must be 6-10")
           if os.environ["SCRIPT_SOURCE"] == "llm" and not os.environ.get("LLM_API_KEY"):

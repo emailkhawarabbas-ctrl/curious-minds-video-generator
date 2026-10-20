@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" data-title="Frozen Lake Cross-Section" data-tags="lake,frozen,ice,winter,fish,pond,water,freeze,cold,insulate,underwater" data-subcategory="nature" data-style="science_explorer" data-animations="draw,pan,float">
+  <g id="part-sky">
+    <rect x="0" y="0" width="600" height="120" fill="#D7F0FA"/>
+    <circle cx="90" cy="40" r="7" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="250" cy="70" r="6" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="420" cy="34" r="8" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="530" cy="80" r="6" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
+  </g>
+  <g id="part-banks">
+    <path d="M0 110 L70 110 Q110 112 130 150 L190 390 L0 390 Z" fill="#B8BCC8" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M600 110 L530 110 Q490 112 470 150 L410 390 L600 390 Z" fill="#B8BCC8" stroke="#2B2D42" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M0 110 L70 110 Q100 110 116 130 L0 130 Z" fill="#FFFFFF"/>
+    <path d="M600 110 L530 110 Q500 110 484 130 L600 130 Z" fill="#FFFFFF"/>
+  </g>
+  <g id="part-water">
+    <path d="M118 144 L482 144 L414 376 L186 376 Z" fill="#8ECAE6" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M160 300 L440 300 L414 376 L186 376 Z" fill="#3A86FF"/>
+    <path d="M186 376 L414 376" fill="none" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-ice">
+    <path d="M110 118 L490 118 L482 148 L118 148 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M200 120 L214 146 M330 120 L320 146 M420 120 L432 146" fill="none" stroke="#8ECAE6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g id="part-fish">
+    <path d="M250 330 C262 312 296 310 312 330 C296 350 262 348 250 330 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M312 330 L332 316 L330 344 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="264" cy="327" r="3.5" fill="#2B2D42"/>
+    <path d="M330 250 C340 236 366 234 378 250 C366 266 340 264 330 250 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M378 250 L394 238 L392 262 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="342" cy="248" r="3" fill="#2B2D42"/>
+  </g>
+  <g id="part-bubbles" fill="#D7F0FA" stroke="#2B2D42" stroke-width="3">
+    <circle cx="230" cy="290" r="6"/>
+    <circle cx="222" cy="262" r="4"/>
+    <circle cx="236" cy="236" r="5"/>
+  </g>
+  <circle id="anchor-center" cx="300" cy="230" r="4"/>
+  <circle id="anchor-top" cx="300" cy="118" r="4"/>
+  <circle id="anchor-ice" cx="300" cy="132" r="4"/>
+  <circle id="anchor-water" cx="380" cy="190" r="4"/>
+  <circle id="anchor-fish" cx="282" cy="330" r="4"/>
+  <circle id="anchor-bottom" cx="300" cy="350" r="4"/>
+</svg>

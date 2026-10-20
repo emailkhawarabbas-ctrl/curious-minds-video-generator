@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -300 300 310" data-title="Human body guide head" data-tags="human_body,character,head">
+  <!-- Rig-local: neck joint at (0,0); head centre (0,-120). Face features are drawn by the expression engine. -->
+  <g id="part-back">
+    <path d="M-112 -118 C-128 -190 -80 -246 0 -248 C80 -246 128 -190 112 -118 C100 -150 -100 -150 -112 -118 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="8"/>
+    <circle cx="-104" cy="-108" r="22" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M-110 -116 C-100 -112 -100 -102 -108 -98" fill="none" stroke="#E9A97F" stroke-width="5"/>
+    <circle cx="104" cy="-108" r="22" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M110 -116 C100 -112 100 -102 108 -98" fill="none" stroke="#E9A97F" stroke-width="5"/>
+    <path d="M-102 -124 C-104 -194 -60 -228 0 -228 C60 -228 104 -194 102 -124 C102 -52 60 -10 0 -10 C-60 -10 -102 -52 -102 -124 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M60 -40 C78 -60 90 -90 92 -120" fill="none" stroke="#E9A97F" stroke-width="10" stroke-opacity="0.7"/>
+  </g>
+  <g id="part-front">
+    <!-- messy fringe with tufts -->
+    <path d="M-108 -128 C-118 -200 -70 -248 0 -250 C70 -248 116 -204 108 -136 C98 -160 80 -170 60 -166 C70 -186 56 -202 36 -194 C30 -212 4 -214 -6 -196 C-22 -210 -48 -202 -50 -182 C-72 -186 -96 -168 -108 -128 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M-56 -234 C-62 -250 -66 -262 -70 -274 C-52 -268 -40 -264 -28 -256 C-28 -272 -22 -286 -12 -296 C-2 -282 6 -270 10 -258 C22 -270 36 -280 52 -284 C50 -270 46 -260 42 -250 C54 -254 66 -256 78 -254 C72 -242 64 -232 56 -226 C30 -250 -20 -252 -56 -234 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M-62 -222 C-40 -236 -10 -238 14 -232 M30 -226 C48 -222 64 -212 74 -198" fill="none" stroke="#8A5A3B" stroke-width="8"/>
+  </g>
+  <circle id="anchor-center" cx="0" cy="-120" r="4"/>
+  <circle id="anchor-top" cx="0" cy="-286" r="4"/>
+  <circle id="anchor-chin" cx="0" cy="-14" r="4"/>
+</svg>

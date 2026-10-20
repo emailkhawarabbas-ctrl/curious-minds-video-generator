@@ -1,0 +1,173 @@
+{
+  "topic": "Why Water Is the Weirdest Substance on Earth",
+  "niche": "science",
+  "format": "short",
+  "source": "curated",
+  "title": "Why Water Is the Weirdest Substance on Earth",
+  "hook": "Water looks boring. But it's the only common substance on Earth that's naturally a solid, liquid, and gas.",
+  "cta": "Follow for more!",
+  "notes": [
+    "Phase 1 acceptance sample (science). Claims follow the research pack (Wikipedia: Water, Properties of water, Hydrogen bond). Numbers: the 104.5 degree H-O-H angle, about 9 percent expansion on freezing, and 4 degrees Celsius as the temperature at which lake water sinks (densest) are all stated in those sources.",
+    "'Most liquids shrink when they freeze' restates the source line 'In most substances, the volume increases when melting occurs'. The ice-blanket line restates 'This ice insulates the water below, preventing it from freezing solid'."
+  ],
+  "sections": [
+    {
+      "title": "The weird one",
+      "beats": [
+        {
+          "id": "s1",
+          "role": "hook",
+          "narration": "Water looks boring. But it's the only common substance on Earth that's naturally a solid, liquid, and gas.",
+          "visual": {
+            "layout": "hook_title",
+            "title": "Water is weird!",
+            "assets": [
+              "water_drop"
+            ],
+            "action": "surprised",
+            "expression": "surprised",
+            "background": "underwater"
+          }
+        },
+        {
+          "id": "s2",
+          "role": "curiosity_gap",
+          "narration": "And it breaks a rule most liquids follow. How does that keep fish alive in winter?",
+          "visual": {
+            "layout": "comparison",
+            "assets": [
+              "flask",
+              "glass_of_water"
+            ],
+            "labels": [
+              "Most liquids",
+              "Water"
+            ],
+            "background": "lab"
+          }
+        }
+      ]
+    },
+    {
+      "title": "A bent little molecule",
+      "beats": [
+        {
+          "id": "s3",
+          "role": "explanation",
+          "narration": "Zoom in. One oxygen atom holds two hydrogens at a 104.5 degree angle.",
+          "visual": {
+            "layout": "object_focus",
+            "assets": [
+              "water_molecule"
+            ],
+            "labels": [
+              "Oxygen",
+              "Hydrogen",
+              "104.5° angle"
+            ],
+            "background": "science_grid"
+          }
+        },
+        {
+          "id": "s4",
+          "role": "discovery",
+          "narration": "That bend makes the oxygen end slightly negative, and the hydrogen ends slightly positive. So molecules cling together with hydrogen bonds.",
+          "visual": {
+            "layout": "demonstration",
+            "demo": {
+              "kind": "hydrogen_bonds",
+              "labels": [
+                "Slightly negative",
+                "Slightly positive",
+                "Hydrogen bond"
+              ],
+              "stage_cues": [
+                "negative",
+                "positive",
+                "cling"
+              ]
+            },
+            "background": "lab"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Breaking the rule",
+      "beats": [
+        {
+          "id": "s5",
+          "role": "surprise",
+          "narration": "Here's the twist. Most liquids shrink when they freeze. Water expands about 9 percent, into an open crystal.",
+          "visual": {
+            "layout": "demonstration",
+            "demo": {
+              "kind": "ice_lattice",
+              "labels": [
+                "Freezing",
+                "About 9% bigger",
+                "Open crystal"
+              ],
+              "stage_cues": [
+                "freeze",
+                "expands",
+                "crystal"
+              ]
+            },
+            "background": "chalkboard"
+          }
+        },
+        {
+          "id": "s6",
+          "role": "explanation",
+          "narration": "So ice is lighter than liquid water, and it floats.",
+          "visual": {
+            "layout": "character_explains",
+            "assets": [
+              "glass_of_water"
+            ],
+            "labels": [
+              "Ice floats!"
+            ],
+            "action": "explain",
+            "expression": "excited",
+            "background": "sunny_outdoors"
+          }
+        },
+        {
+          "id": "s7",
+          "role": "insight",
+          "narration": "In a lake, water at 4 degrees Celsius sinks, while ice forms a blanket on top, keeping fish safe all winter.",
+          "visual": {
+            "layout": "demonstration",
+            "demo": {
+              "kind": "frozen_lake",
+              "labels": [
+                "Ice floats",
+                "4 °C water sinks",
+                "Ice blanket on top"
+              ],
+              "stage_cues": [
+                "lake",
+                "sinks",
+                "blanket"
+              ]
+            },
+            "background": "sky_day"
+          }
+        },
+        {
+          "id": "s8",
+          "role": "ending",
+          "narration": "Next time ice floats in your drink, that's a bent molecule breaking the rules. Stay curious!",
+          "visual": {
+            "layout": "outro",
+            "action": "wave",
+            "expression": "happy",
+            "background": "underwater"
+          }
+        }
+      ]
+    }
+  ]
+}

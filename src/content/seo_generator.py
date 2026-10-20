@@ -69,6 +69,26 @@ def _hashtags(topic: str, niche: str, short: bool) -> List[str]:
     return out[:8]
 
 
+QUESTION_WORDS = ("why", "how", "what", "when", "where", "who", "which", "can", "do", "does", "is", "are")
+
+
+def _as_question(topic: str) -> str:
+    """'Why Water Is the Weirdest Substance on Earth' -> '...on Earth?'; statements stay statements."""
+    t = topic.strip().rstrip("?").strip()
+    return t + "?" if t.split()[0].lower() in QUESTION_WORDS else t + ":"
+
+
+def tiktok_metadata(script: Script, meta: Dict) -> Dict:
+    """TikTok wants a searchable caption (the question people type), a few relevant tags, no #Shorts."""
+    tags = [h for h in meta["hashtags"] if h.lower() != "#shorts"][:5]
+    caption = f"{_as_question(script.topic)} {script.hook.strip()}"
+    if len(caption) > 150:
+        caption = caption[:147].rsplit(" ", 1)[0] + "..."
+    return {"title": _as_question(script.topic).rstrip(":"), "caption": caption, "hashtags": tags,
+            "caption_full": f"{caption} {' '.join(tags)}", "search_keywords": meta["keywords"][:6],
+            "opening_hook": script.hook, "cta": script.cta}
+
+
 def source_lines(research: ResearchPack, limit: int = 8) -> List[str]:
     order = {"authoritative": 0, "peer_reviewed": 1, "reference": 2, "general": 3}
     srcs = sorted(research.sources, key=lambda s: order[s.tier])[:limit]
@@ -112,16 +132,19 @@ class SEOGenerator:
         desc += "\n\n" + " ".join(meta["hashtags"])
         meta["description_full"] = desc
         meta["format"] = script.format
+        if short:
+            meta["tiktok"] = tiktok_metadata(script, meta)
         return meta
 
     def _template(self, script: Script) -> Dict:
         topic = script.topic.rstrip("?")
-        kw = " ".join(w.capitalize() for w in topic_keywords(script.topic)[:2])
+        q = _as_question(script.topic)
+        subject = topic_keywords(script.topic)[0].capitalize()
         if script.format == "short":
-            titles = [f"{topic}? 🤔", f"{topic}? The Science in 60 Seconds", f"The Real Reason {kw} Happens"]
+            titles = [f"{q} 🤔", f"{q} Explained Simply", f"The Surprising Science of {subject}"]
         else:
-            titles = [f"{topic}? The Fascinating Science Explained", f"{topic}? What Scientists Really Know",
-                      f"The Science of {kw}: A Fun, Curious Deep Dive"]
+            titles = [f"{q} The Fascinating Science Explained", f"{q} What Scientists Really Know",
+                      f"The Science of {subject}: A Fun, Curious Deep Dive"]
         hook = script.hook.strip()
         secs = ", ".join(s.title.lower() for s in script.sections[1:5])
         desc = f"{hook}\n\nIn this Curious Minds episode, Milo explores {topic.lower()}" + (f": {secs}." if secs else ".")
@@ -173,5 +196,10 @@ def write_metadata(meta: Dict, out_dir: Path, name: str) -> Sequence[Path]:
     t = out_dir / f"{name}.txt"
     lines = ["TITLE OPTIONS:"] + [f"  {i}. {x}" for i, x in enumerate(meta["titles"], 1)]
     lines += ["", "DESCRIPTION:", meta["description_full"], "", "KEYWORDS:", ", ".join(meta["keywords"])]
+    if meta.get("tiktok"):
+        tk = meta["tiktok"]
+        lines += ["", "TIKTOK:", f"  Title: {tk['title']}", f"  Caption: {tk['caption_full']}",
+                  f"  Search keywords: {', '.join(tk['search_keywords'])}", f"  Opening hook: {tk['opening_hook']}",
+                  f"  CTA: {tk['cta']}"]
     t.write_text("\n".join(lines), encoding="utf-8")
     return [j, t]

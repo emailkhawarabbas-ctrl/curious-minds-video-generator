@@ -1,0 +1,27 @@
+{
+  "id": "human_body",
+  "name": "Body Explorer",
+  "role": "Human Body host: a kid in a see-through anatomy suit showing lungs, heart, stomach and intestines",
+  "base": "milo",
+  "niche": "human_body",
+  "source_art": "characters/human_body.png",
+  "personality": ["curious", "cheerful", "energetic", "friendly"],
+  "locked_design": {
+    "head": "brown messy hair with tufts, no goggles",
+    "outfit": "translucent sky-blue body with visible organs and red/blue blood vessels, blue sneakers",
+    "do_not_change": ["visible organs", "translucent blue limbs", "hair shape"]
+  },
+  "colors": {
+    "skin": "#8ECAE6",
+    "neck": "#E9A97F",
+    "sleeve": "#8ECAE6",
+    "sleeve_cuff": "#D7F0FA",
+    "pants": "#8ECAE6",
+    "pants_cuff": "#D7F0FA"
+  },
+  "parts": {"head": "head.svg", "torso": "torso.svg"},
+  "rig": {"head_top": -512, "head_top_local": -290},
+  "recolor": {"#F8C9A0": "#D7F0FA", "#E9A97F": "#8ECAE6", "#EF476F": "#3A86FF"},
+  "hide_parts": ["backpack"],
+  "thumbnail": {"image": "characters/human_body.png", "mode": "card", "crop": [288, 24, 626, 680]}
+}

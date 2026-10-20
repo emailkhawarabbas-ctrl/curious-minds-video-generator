@@ -25,7 +25,7 @@ DEFAULT_CONFIG = PROJECT_ROOT / "config" / "default.yaml"
 class BrandSettings(BaseModel):
     name: str
     tagline: str
-    mascot: str = "milo"
+    mascot: str = "auto"          # "auto" = per-niche host (themes.resolve_mascot) or a character id
 
 
 class PathSettings(BaseModel):
@@ -50,7 +50,7 @@ class ContentSettings(BaseModel):
     storyboard_source: Literal["auto", "llm", "rules"] = "auto"
     allow_unresearched: bool = False
     block_on_review_fail: bool = True          # a failed storytelling / visual review check fails the video
-    short_duration: Tuple[float, float] = (60, 90)
+    short_duration: Tuple[float, float] = (25, 90)
     long_duration: Tuple[float, float] = (360, 600)
 
     @field_validator("short_duration", "long_duration")

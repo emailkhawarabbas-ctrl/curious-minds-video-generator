@@ -1,0 +1,27 @@
+{
+  "id": "psychology",
+  "name": "Brainy",
+  "role": "Psychology host: a walking brain in a lab coat (one half wired 'thinking', one half pink 'feeling')",
+  "base": "milo",
+  "niche": "psychology",
+  "source_art": "characters/psychology.jpg",
+  "personality": ["curious", "warm", "thoughtful", "playful"],
+  "locked_design": {
+    "head": "two-tone brain: screen-left half purple with teal circuit traces, screen-right half pink with folds",
+    "outfit": "open sky-blue lab coat with emotion pins and a green ribbon, pink brain-wave shirt, navy trousers, dark boots",
+    "do_not_change": ["two-tone brain", "lab coat colour", "emotion pins"]
+  },
+  "colors": {
+    "skin_shadow": "#FF5D73",
+    "neck": "#5B4BC4",
+    "sleeve": "#8ECAE6",
+    "sleeve_cuff": "#D7F0FA",
+    "pants": "#3D405B",
+    "pants_cuff": "#2B2D42",
+    "brow": "#2B2D42"
+  },
+  "parts": {"head": "head.svg", "torso": "torso.svg", "shoe": "shoe.svg"},
+  "rig": {"head_top": -506, "head_top_local": -280},
+  "hide_parts": ["backpack"],
+  "thumbnail": {"image": "characters/psychology.jpg", "mode": "cutout"}
+}

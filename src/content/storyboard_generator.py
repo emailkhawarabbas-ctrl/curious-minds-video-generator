@@ -32,7 +32,7 @@ from pydantic import ValidationError
 from src.animation import registry as R
 from src.animation.asset_manager import AssetManager, get_asset_manager
 from src.animation.demos import STAGE_COUNT
-from src.animation.themes import NicheTheme, resolve_theme
+from src.animation.themes import NicheTheme, resolve_mascot, resolve_theme
 from src.audio.narration_director import classify
 from src.config.settings import RenderProfile
 from src.content.models import Scene, Script, ScriptBeat, Storyboard, VisualHint
@@ -441,14 +441,17 @@ class StoryboardGenerator:
         return Scene.model_validate(d3)
 
     # ------------------------------------------------------------------ public
-    def build(self, script: Script, profile: RenderProfile, music_mood: Optional[str] = None) -> Storyboard:
+    def build(self, script: Script, profile: RenderProfile, music_mood: Optional[str] = None,
+              character: Optional[str] = None) -> Storyboard:
+        """`character` forces a host; by default it follows the niche (see themes.resolve_mascot)."""
         beats: List[Tuple[str, int, ScriptBeat]] = [(sec.title, si, b) for si, sec in enumerate(script.sections)
                                                     for b in sec.beats]
         total = len(beats)
         theme = resolve_theme(script.niche, script.topic, script.hook)
         sel = VisualSelector(theme, script.topic, script.niche, self.am)
         roles = assign_roles(script)
-        notes: List[str] = [f"theme: {theme.label}"]
+        mascot = character or resolve_mascot(script.niche, script.topic, script.hook)
+        notes: List[str] = [f"theme: {theme.label}", f"character: {mascot}"]
         scenes: List[Scene] = []
         history: List[str] = []
         state = {"demo_count": Counter(), "since_demo": 9, "bg_turn": Counter(), "prev_bg": None,
@@ -457,6 +460,7 @@ class StoryboardGenerator:
         for idx, (sec_title, si, beat) in enumerate(beats):
             d = self._scene_dict(beat, sec_title, idx, total, script, profile, theme, sel, roles[beat.id], history,
                                  state, section_start=sec_title != prev_section)
+            d["character"]["character"] = mascot
             sc = self._validate_or_repair(d, notes)
             scenes.append(sc)
             history.append(sc.layout)
@@ -485,4 +489,4 @@ class StoryboardGenerator:
         return Storyboard(topic=script.topic, title=script.title, format=script.format, theme=theme.name,
                           orientation="vertical" if profile.is_vertical else "horizontal",
                           width=profile.width, height=profile.height, fps=profile.fps, music_mood=mood,
-                          scenes=scenes, generator=f"rules+{script.source}-hints", notes=notes)
+                          character=mascot, scenes=scenes, generator=f"rules+{script.source}-hints", notes=notes)

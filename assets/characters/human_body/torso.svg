@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-130 -250 260 290" data-title="Human body guide torso" data-tags="human_body,character,torso,anatomy,organs">
+  <!-- Rig-local: hip centre (0,0), neck (0,-226), shoulders (+-84,-200). See-through anatomy body showing the organs. -->
+  <g id="part-body">
+    <path d="M-60 -228 C-96 -226 -108 -206 -104 -182 C-100 -140 -84 -100 -78 -60 C-74 -30 -84 -10 -80 8 C-78 18 -66 22 -52 22 L52 22 C66 22 78 18 80 8 C84 -10 74 -30 78 -60 C84 -100 100 -140 104 -182 C108 -206 96 -226 60 -228 Z" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M-54 -216 C-84 -214 -94 -198 -92 -180 C-88 -140 -72 -100 -66 -60 C-62 -30 -72 -10 -68 4" fill="none" stroke="#8ECAE6" stroke-width="7"/>
+    <path d="M54 -216 C84 -214 94 -198 92 -180 C88 -140 72 -100 66 -60 C62 -30 72 -10 68 4" fill="none" stroke="#8ECAE6" stroke-width="7"/>
+  </g>
+  <g id="part-vessels">
+    <path d="M10 -226 L10 -170 M10 -130 C12 -100 -2 -60 -12 18" fill="none" stroke="#EF476F" stroke-width="4.5"/>
+    <path d="M-4 -226 L-4 -170 M-2 -128 C2 -100 8 -60 16 18" fill="none" stroke="#3A86FF" stroke-width="4.5"/>
+  </g>
+  <g id="part-lungs">
+    <path d="M-16 -196 C-40 -206 -68 -186 -72 -150 C-76 -122 -64 -106 -44 -108 C-26 -110 -16 -122 -16 -150 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M16 -196 C40 -206 68 -186 72 -150 C76 -122 64 -106 44 -108 C26 -110 16 -122 16 -150 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-24 -170 L-44 -150 M-30 -150 L-50 -132 M24 -170 L44 -150 M30 -150 L50 -132" stroke="#FF5D73" stroke-width="4"/>
+    <path d="M-60 -170 C-56 -182 -46 -190 -34 -192" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity="0.6"/>
+  </g>
+  <g id="part-heart">
+    <path d="M6 -120 C-14 -134 -26 -150 -20 -164 C-14 -178 2 -176 6 -164 C10 -176 26 -178 32 -164 C38 -150 26 -134 6 -120 Z" fill="#EF476F" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-10 -160 C-8 -166 -4 -168 0 -166" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity="0.75"/>
+  </g>
+  <g id="part-stomach">
+    <path d="M-60 -100 C-40 -108 -8 -106 0 -96 C-12 -84 -40 -80 -58 -86 Z" fill="#FF5D73" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M14 -104 C34 -112 56 -104 56 -88 C56 -70 36 -66 26 -76 C18 -84 8 -82 4 -90 C4 -98 8 -102 14 -104 Z" fill="#FF9F1C" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-intestines">
+    <path d="M-50 -70 C-52 -30 -40 -4 0 -4 C40 -4 52 -30 50 -70 C30 -78 -30 -78 -50 -70 Z" fill="#FFD6E0" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-36 -58 C-26 -66 -16 -50 -6 -58 C4 -66 14 -50 24 -58 C30 -62 34 -58 36 -54 M-36 -38 C-26 -46 -16 -30 -6 -38 C4 -46 14 -30 24 -38 C30 -42 34 -38 36 -34 M-26 -20 C-16 -28 -6 -12 4 -20 C10 -24 16 -20 20 -16" fill="none" stroke="#FF8FAB" stroke-width="5"/>
+  </g>
+  <circle id="anchor-neck" cx="0" cy="-226" r="3"/>
+  <circle id="anchor-shoulder_l" cx="-84" cy="-200" r="3"/>
+  <circle id="anchor-shoulder_r" cx="84" cy="-200" r="3"/>
+  <circle id="anchor-center" cx="0" cy="-110" r="3"/>
+  <circle id="anchor-top" cx="0" cy="-228" r="3"/>
+  <circle id="anchor-heart" cx="6" cy="-148" r="3"/>
+  <circle id="anchor-lungs" cx="-44" cy="-150" r="3"/>
+  <circle id="anchor-stomach" cx="32" cy="-90" r="3"/>
+</svg>

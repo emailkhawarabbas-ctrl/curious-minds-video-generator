@@ -44,7 +44,21 @@ Visual identity: colorful 2D cartoon + modern doodle animation, friendly, clean,
 * `data-tags`: 6–12 lowercase keywords used by the automatic visual planner (synonyms, topic words).
 * Keep files small (< 12 KB) and hand-readable.
 
-## 4. Mascot — Milo
+## 4. Hosts — one character per niche, Milo as the fallback
+Each niche has its own host, drawn from the source art in `characters/` and rebuilt as a vector
+rig on Milo's skeleton (same proportions, poses, hands, lip sync and expressions):
+
+| Niche | Host (`assets/characters/<id>`) | Look | Source art |
+|---|---|---|---|
+| Human Body | `human_body` — Body Explorer | kid in a see-through sky-blue anatomy suit (lungs, heart, stomach, intestines, vessels) | `characters/human_body.png` |
+| Science | `science` — Professor Flask | corked round-bottom flask head with bubbling teal liquid and red / green coils, white lab coat, metal limbs | `characters/science.jpg` |
+| Psychology | `psychology` — Brainy | two-tone brain head (wired purple half, pink folded half), sky-blue lab coat with emotion pins | `characters/psychology.jpg` |
+
+The host is chosen by `themes.resolve_mascot` (niche → host; `mixed` → best-matching niche;
+no match → Milo). `brand.mascot` in the config forces one host (`auto` = per niche). Thumbnails
+show the original raster art (`character.json` → `thumbnail`), since nothing moves there.
+
+### Milo (fallback host)
 See `assets/characters/milo/character.json` for the locked specification (proportions,
 colours, outfit). Milo always wears: teal explorer jacket with rolled sleeves, yellow
 shirt with the "?" badge, navy cargo trousers, red sneakers, orange backpack, and amber
@@ -62,16 +76,16 @@ goggles on his forehead over brown swoosh hair. Big expressive eyes, thick brows
 * Transitions are colourful cover/reveal wipes in brand colours (0.35–0.5 s).
 
 ## 7. Niche visual identities (`src/animation/themes.py`)
-Milo, the palette, line language and typography never change. What changes per niche is the
-*world around him* — environments, illustration subjects, diagram language, accents, particles,
+The palette, line language and typography never change. What changes per niche is the host
+(section 4) and the *world around it* — environments, illustration subjects, diagram language, accents, particles,
 transitions, camera temperament and music:
 
 | | Human Body | Science | Psychology |
 |---|---|---|---|
 | Look | Professional medical cartoon | Exploration & discovery | Mind & behaviour storytelling |
-| Environments | `bloodstream`, `body_lab` (live ECG), `anatomy_blueprint`, `cell_world` | `sky_day`, `science_grid`, `atmosphere_view`, `sunset_sky`, `space`, `lab` | `mind_maze`, `thought_room`, `emotion_waves`, `brain_space`, `city` |
+| Environments | `bloodstream`, `body_lab` (live ECG), `anatomy_blueprint`, `cell_world` | `sky_day`, `science_grid`, `atmosphere_view`, `sunset_sky`, `underwater`, `space`, `lab` | `mind_maze`, `thought_room`, `emotion_waves`, `brain_space`, `city` |
 | Illustrations | Organs, cutaways, blood cells, vessels, medical tools | Light, atmosphere, molecules, planets, instruments | Heads & people, thought loops, emotions, decisions, conversations |
-| Demonstrations | heart pump, circulation loop, ECG heartbeat | light scattering, wavelengths, sunset path | thought loop, decision tree, stress alarm, neural signal |
+| Demonstrations | heart pump, circulation loop, ECG heartbeat | light scattering, wavelengths, sunset path, water molecule, hydrogen bonds, ice lattice, frozen lake | thought loop, decision tree, stress alarm, neural signal |
 | Accents | coral · teal · blue · pink | blue · orange · teal · purple | purple · pink · teal · orange |
 | Foreground depth | soft out-of-focus blood cells | floating light motes | slow thought rings |
 | Transitions | circle wipe, blinds, slide, dots | star zoom, slide, circle wipe, doodle swipe | doodle swipe, dots, circle wipe, blinds |

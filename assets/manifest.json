@@ -1309,6 +1309,39 @@
     ],
     "license": "Original Curious Minds artwork (owned, CC0 for project use)"
   },
+  "fish": {
+    "name": "Fish",
+    "category": "science",
+    "subcategory": "nature",
+    "file": "science\\fish.svg",
+    "keywords": [
+      "fish",
+      "swim",
+      "lake",
+      "ocean",
+      "sea",
+      "underwater",
+      "animal",
+      "pond",
+      "aquatic",
+      "life"
+    ],
+    "style": "science_explorer",
+    "animations": [
+      "pop",
+      "float",
+      "wiggle",
+      "slide_up"
+    ],
+    "anchors": [
+      "body",
+      "center",
+      "eye",
+      "tail",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
   "flask": {
     "name": "Lab Flask",
     "category": "science",
@@ -1375,6 +1408,40 @@
     ],
     "license": "Original Curious Minds artwork (owned, CC0 for project use)"
   },
+  "frozen_lake": {
+    "name": "Frozen Lake Cross-Section",
+    "category": "science",
+    "subcategory": "nature",
+    "file": "science\\frozen_lake.svg",
+    "keywords": [
+      "lake",
+      "frozen",
+      "ice",
+      "winter",
+      "fish",
+      "pond",
+      "water",
+      "freeze",
+      "cold",
+      "insulate",
+      "underwater"
+    ],
+    "style": "science_explorer",
+    "animations": [
+      "draw",
+      "pan",
+      "float"
+    ],
+    "anchors": [
+      "bottom",
+      "center",
+      "fish",
+      "ice",
+      "top",
+      "water"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
   "galaxy": {
     "name": "Spiral Galaxy",
     "category": "science",
@@ -1434,6 +1501,39 @@
       "center",
       "lid",
       "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "glass_of_water": {
+    "name": "Glass of Water with Ice",
+    "category": "science",
+    "subcategory": "chemistry",
+    "file": "science\\glass_of_water.svg",
+    "keywords": [
+      "glass",
+      "water",
+      "drink",
+      "ice",
+      "ice cube",
+      "float",
+      "floating",
+      "liquid",
+      "cup",
+      "cold"
+    ],
+    "style": "science_explorer",
+    "animations": [
+      "pop",
+      "float",
+      "draw",
+      "wiggle"
+    ],
+    "anchors": [
+      "center",
+      "glass",
+      "ice",
+      "top",
+      "water"
     ],
     "license": "Original Curious Minds artwork (owned, CC0 for project use)"
   },
@@ -1576,6 +1676,37 @@
       "roof",
       "top",
       "window"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "ice_cube": {
+    "name": "Ice Cube",
+    "category": "science",
+    "subcategory": "chemistry",
+    "file": "science\\ice_cube.svg",
+    "keywords": [
+      "ice",
+      "ice cube",
+      "frozen",
+      "freeze",
+      "cold",
+      "solid",
+      "water",
+      "crystal",
+      "winter"
+    ],
+    "style": "science_explorer",
+    "animations": [
+      "pop",
+      "float",
+      "bounce",
+      "wiggle"
+    ],
+    "anchors": [
+      "center",
+      "cube",
+      "shine",
+      "top"
     ],
     "license": "Original Curious Minds artwork (owned, CC0 for project use)"
   },
@@ -2969,6 +3100,71 @@
       "center",
       "cup",
       "handle",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "water_drop": {
+    "name": "Water Drop",
+    "category": "science",
+    "subcategory": "chemistry",
+    "file": "science\\water_drop.svg",
+    "keywords": [
+      "water",
+      "drop",
+      "droplet",
+      "liquid",
+      "h2o",
+      "rain",
+      "wet",
+      "splash",
+      "ocean"
+    ],
+    "style": "science_explorer",
+    "animations": [
+      "pop",
+      "float",
+      "bounce",
+      "pulse"
+    ],
+    "anchors": [
+      "center",
+      "drop",
+      "tip",
+      "top"
+    ],
+    "license": "Original Curious Minds artwork (owned, CC0 for project use)"
+  },
+  "water_molecule": {
+    "name": "Water Molecule (H2O)",
+    "category": "science",
+    "subcategory": "chemistry",
+    "file": "science\\water_molecule.svg",
+    "keywords": [
+      "water",
+      "h2o",
+      "molecule",
+      "oxygen",
+      "hydrogen",
+      "bent",
+      "polar",
+      "chemistry",
+      "atom",
+      "bond"
+    ],
+    "style": "science_explorer",
+    "animations": [
+      "pop",
+      "float",
+      "spin",
+      "wiggle"
+    ],
+    "anchors": [
+      "angle",
+      "center",
+      "hydrogen_left",
+      "hydrogen_right",
+      "oxygen",
       "top"
     ],
     "license": "Original Curious Minds artwork (owned, CC0 for project use)"

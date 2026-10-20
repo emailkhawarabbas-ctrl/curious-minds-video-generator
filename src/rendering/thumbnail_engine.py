@@ -1,7 +1,8 @@
 """Thumbnail renderer: colourful, high-contrast, mascot + one main visual + <= 4 words.
 
 Renders each thumbnail concept at 1280x720 (YouTube) and a 1080x1920 cover frame for
-Shorts/TikTok, using the same vector assets and rig as the videos (brand consistency).
+Shorts/TikTok, using the same vector assets as the videos. The host is the character's original
+illustration when it has one (src/animation/character_art.py), otherwise its vector rig.
 """
 from __future__ import annotations
 
@@ -15,6 +16,7 @@ from PIL import Image
 
 from src.animation.asset_manager import get_asset_manager
 from src.animation.backgrounds import Background
+from src.animation.character_art import draw_character_art, load_character_art
 from src.animation.character_rig import Placement, draw_character, load_character, make_pose
 from src.animation.doodle_engine import Burst, Sparkle, StarDoodle, fill_poly, rounded_rect, star_points
 from src.animation.expression_engine import expression_state, with_overrides
@@ -60,14 +62,26 @@ def _render(concept: ThumbnailConcept, W: int, H: int, char_id: str = "milo") ->
     a.draw(ctx, cx, cy, min(h, W * 0.5 / a.aspect), rotation=-6)
     for i, (dx, dy, r) in enumerate(((-0.5, -0.45, 40), (0.48, -0.38, 28), (0.42, 0.42, 34))):
         Sparkle(center=(cx + dx * h, cy + dy * h), radius=r, start=0, duration=0.1, unit=u).draw(ctx, 0.7)
-    # mascot
-    style = load_character(char_id)
-    pose = make_pose(concept.pose)
-    face = with_overrides(expression_state(concept.expression), look_x=0.6, look_y=-0.2, head_turn=0.25)
-    if vertical:
-        draw_character(ctx, style, pose, face, Placement(W * 0.3, H * 0.8, H * 0.42, 1))
+    # mascot: the character's original illustration when it has one, else the vector rig
+    art = load_character_art(char_id)
+    if art is not None and art.mode == "card":
+        if vertical:
+            draw_character_art(ctx, art, W * 0.3, H * 0.81, H * 0.36, u)
+        else:
+            draw_character_art(ctx, art, W * 0.2, H * 0.93, H * 0.8, u)
+    elif art is not None:
+        if vertical:
+            draw_character_art(ctx, art, W * 0.3, H * 0.82, H * 0.44, u)
+        else:
+            draw_character_art(ctx, art, W * 0.22, H * 1.1, H * 1.08, u)
     else:
-        draw_character(ctx, style, pose, face, Placement(W * 0.24, H * 1.13, H * 1.12, 1))
+        style = load_character(char_id)
+        pose = make_pose(concept.pose)
+        face = with_overrides(expression_state(concept.expression), look_x=0.6, look_y=-0.2, head_turn=0.25)
+        if vertical:
+            draw_character(ctx, style, pose, face, Placement(W * 0.3, H * 0.8, H * 0.42, 1))
+        else:
+            draw_character(ctx, style, pose, face, Placement(W * 0.24, H * 1.13, H * 1.12, 1))
     # text
     st = TextStyle(font=TITLE_FONT, size=(120 if not vertical else 130) * u, color=PALETTE["yellow"],
                    outline=PALETTE["ink"], shadow=True)
@@ -116,7 +130,13 @@ def render_thumbnails(concepts: List[ThumbnailConcept], out_dir: Path, char_id: 
 def default_concepts(topic: str, main_asset: str, alt_asset: Optional[str] = None,
                      short_text: Optional[str] = None) -> List[ThumbnailConcept]:
     words = [w for w in topic.replace("?", "").split() if w]
-    text = short_text or " ".join(words[-3:]) + "?"
+    if not short_text and len(words) > 4:
+        # start at the subject: the tail is often filler ("...Substance on Earth?" for a topic about water)
+        from src.research.researcher import keywords
+        subject = keywords(topic)[0]
+        i = next((k for k, w in enumerate(words) if w.lower().startswith(subject[:5])), len(words) - 3)
+        short_text = " ".join(words[i:i + 4]) + "?"
+    text = short_text or " ".join(words) + "?"
     return [
         ThumbnailConcept("question", text if len(text.split()) <= 4 else " ".join(text.split()[:4]), main_asset,
                          "surprised", "surprised", "burst_purple", "yellow",

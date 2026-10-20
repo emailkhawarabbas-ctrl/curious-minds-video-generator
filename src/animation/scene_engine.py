@@ -1118,7 +1118,8 @@ class _Note(Doodle):
 
 # --------------------------------------------------------------------------- entry point
 def compose_scene(scene: Scene, L: LayoutContext, envelope: Optional[Sequence[float]] = None,
-                  fps: int = 30, char_id: str = "milo") -> SceneComposition:
+                  fps: int = 30, char_id: Optional[str] = None) -> SceneComposition:
+    """`char_id` overrides the host character; by default the scene's own (`scene.character.character`)."""
     if L.speech_end <= 0:
         L.speech_end = max(L.speech_start + 0.5, L.duration - 0.4)
     b = Builder(L, scene)
@@ -1221,7 +1222,7 @@ def compose_scene(scene: Scene, L: LayoutContext, envelope: Optional[Sequence[fl
 
             def held(ctx: cairo.Context, sk: Skeleton, t: float, _p=prop) -> None:
                 _p.draw(ctx, 0, -112 + 4 * math.sin(t * 2), 150, rotation=3 * math.sin(t * 1.5))
-        character = CharacterAnimator(place=char_place, cues=cues, char_id=char_id, envelope=envelope, fps=fps,
+        character = CharacterAnimator(place=char_place, cues=cues, char_id=char_id or cd.character, envelope=envelope, fps=fps,
                                       seed=L.seed + 3, entrance=cd.entrance,
                                       entrance_from="left" if cx < L.W / 2 else "right", held=held)
 

@@ -1,7 +1,8 @@
 """Niche visual identities: Human Body, Science, Psychology.
 
-Milo stays the same in every niche; everything around him changes: environments chosen per
-scene *purpose*, accent palettes for labels and diagrams, particle / doodle vocabulary,
+Each niche has its own host character (``mascot``: ``human_body`` / ``science`` / ``psychology``,
+designed from the art in ``characters/``) plus its own world: environments chosen per scene
+*purpose*, accent palettes for labels and diagrams, particle / doodle vocabulary,
 transition families, camera temperament, music mood, foreground depth props and the
 asset categories the visual selector prefers.
 
@@ -13,6 +14,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple
+
+DEFAULT_MASCOT = "milo"                       # host for topics that match no niche
 
 # Scene purposes the storyboard assigns (see src/content/story_engine.py)
 PURPOSES = ("hook", "question", "relatable", "explain", "process", "comparison", "discovery", "surprise",
@@ -36,6 +39,7 @@ class NicheTheme:
     asset_categories: Tuple[str, ...]         # preferred asset folders, best first
     foreground: str                           # foreground depth-prop set (drawn by scene_engine)
     title_colors: Tuple[str, ...] = ("yellow", "white", "white", "teal_light")
+    mascot: str = DEFAULT_MASCOT              # character id under assets/characters/
     keywords: Tuple[str, ...] = field(default_factory=tuple)
 
     def background_for(self, purpose: str, k: int = 0) -> str:
@@ -56,7 +60,7 @@ HUMAN_BODY = NicheTheme(
     transitions=("circle_wipe", "blinds", "slide", "dots"), soft_transition="dip_cream",
     camera={"hook": "punch_in", "process": "focus", "explain": "focus", "comparison": "static",
             "discovery": "zoom_in", "surprise": "punch_in", "environment": "pan_right", "ending": "zoom_out"},
-    music_mood="curious", asset_categories=("human_body", "objects", "science"), foreground="medical",
+    music_mood="curious", asset_categories=("human_body", "objects", "science"), foreground="medical", mascot="human_body",
     title_colors=("white", "yellow", "white", "pink_light"),
     keywords=("heart", "blood", "body", "lung", "breath", "cell", "organ", "muscle", "bone", "brain", "nerve",
               "stomach", "digest", "immune", "germ", "skin", "eye", "ear", "dna", "gene", "pulse", "vein",
@@ -68,17 +72,18 @@ SCIENCE = NicheTheme(
         "hook": ("sky_day", "space"), "question": ("sky_day", "night_sky"), "relatable": ("sunny_outdoors", "sky_day"),
         "explain": ("science_grid", "lab", "sky_day"), "process": ("atmosphere_view", "science_grid", "space"),
         "comparison": ("science_grid", "lab"), "discovery": ("lab", "space"), "surprise": ("sunset_sky", "space"),
-        "environment": ("sky_day", "sunset_sky", "night_sky"), "ending": ("sunset_sky", "sky_day")},
+        "environment": ("sky_day", "sunset_sky", "night_sky", "underwater"), "ending": ("sunset_sky", "sky_day")},
     accents=("blue", "orange", "teal", "purple", "yellow"), label_color="blue",
     particles=("twinkle", "float_up"), doodles=("sparkles", "circle_main", "arrow_to_main"),
     transitions=("star_zoom", "slide", "circle_wipe", "doodle_swipe"), soft_transition="slide",
     camera={"hook": "punch_in", "process": "follow", "explain": "focus", "comparison": "static",
             "discovery": "zoom_in", "surprise": "shake", "environment": "pan_left", "ending": "zoom_out"},
-    music_mood="upbeat", asset_categories=("science", "objects", "human_body"), foreground="science",
+    music_mood="upbeat", asset_categories=("science", "objects", "human_body"), foreground="science", mascot="science",
     title_colors=("yellow", "white", "sky_light", "white"),
     keywords=("sky", "light", "sun", "star", "planet", "space", "moon", "earth", "atom", "molecule", "energy",
               "electric", "magnet", "gravity", "black hole", "galaxy", "wave", "sound", "color", "rainbow",
-              "weather", "rain", "cloud", "volcano", "ocean", "plant", "chemical", "physics", "universe"))
+              "weather", "rain", "cloud", "volcano", "ocean", "plant", "chemical", "physics", "universe", "water", "ice",
+              "freez", "liquid", "lake"))
 
 PSYCHOLOGY = NicheTheme(
     name="psychology", label="Psychology — mind & behaviour storytelling",
@@ -93,7 +98,7 @@ PSYCHOLOGY = NicheTheme(
     transitions=("doodle_swipe", "dots", "circle_wipe", "blinds"), soft_transition="dip_cream",
     camera={"hook": "punch_in", "process": "focus", "explain": "drift", "comparison": "static",
             "discovery": "zoom_in", "surprise": "punch_in", "environment": "pan_right", "ending": "zoom_out"},
-    music_mood="calm", asset_categories=("psychology", "objects", "human_body"), foreground="mind",
+    music_mood="calm", asset_categories=("psychology", "objects", "human_body"), foreground="mind", mascot="psychology",
     title_colors=("white", "pink_light", "yellow", "white"),
     keywords=("think", "thought", "mind", "emotion", "feel", "fear", "anxiety", "worry", "memory", "remember",
               "dream", "habit", "decision", "choice", "attention", "focus", "motivation", "happy", "sad",
@@ -115,6 +120,20 @@ def resolve_theme(niche: str, topic: str = "", extra_text: str = "") -> NicheThe
     scores = theme_scores(f"{topic} {topic} {extra_text}")
     best = max(scores.items(), key=lambda kv: (kv[1], kv[0] == "science"))
     return THEMES[best[0]] if best[1] > 0 else SCIENCE
+
+
+def resolve_mascot(niche: str, topic: str = "", extra_text: str = "") -> str:
+    """The host character for a video: the niche's own mascot.
+
+    ``mixed`` uses the mascot of the best-matching theme; a topic that matches no niche
+    vocabulary (and any unknown niche) keeps the default mascot, Milo.
+    """
+    if niche in THEMES:
+        return THEMES[niche].mascot
+    scores = theme_scores(f"{topic} {extra_text}")
+    if not any(scores.values()):
+        return DEFAULT_MASCOT
+    return resolve_theme(niche, topic, extra_text).mascot
 
 
 def all_theme_backgrounds() -> List[str]:

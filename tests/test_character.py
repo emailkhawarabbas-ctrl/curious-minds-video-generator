@@ -87,3 +87,70 @@ def test_animator_moves_over_time():
 def test_unknown_action_rejected():
     with pytest.raises(ValueError):
         CharacterCue("moonwalk", "happy")
+
+
+# --------------------------------------------------------------------------- per-niche hosts
+NICHE_HOSTS = ("human_body", "science", "psychology")
+
+
+@pytest.mark.parametrize("char_id", NICHE_HOSTS)
+def test_niche_hosts_rig_like_milo_and_draw_every_pose(char_id):
+    st, milo = load_character(char_id), load_character("milo")
+    for k in ("shoulder_l", "shoulder_r", "upper_arm", "forearm", "thigh", "shin", "eye_l", "eye_r", "mouth"):
+        assert st.rig[k] == milo.rig[k], k                   # same skeleton -> every pose / lip sync works
+    assert st.backpack is None and st.spec["niche"] == char_id
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 200, 260)
+    ctx = cairo.Context(surf)
+    for p in pose_names():
+        ctx.set_operator(cairo.OPERATOR_CLEAR)
+        ctx.paint()
+        ctx.set_operator(cairo.OPERATOR_OVER)
+        draw_character(ctx, st, make_pose(p), expression_state("happy"), Placement(100, 250, 230))
+        surf.flush()
+        alpha = np.frombuffer(surf.get_data(), np.uint8)[3::4]
+        assert (alpha > 0).mean() > 0.08, p
+
+
+def test_host_follows_niche():
+    from src.animation.themes import DEFAULT_MASCOT, resolve_mascot
+    for niche in NICHE_HOSTS:
+        assert resolve_mascot(niche, "anything at all") == niche
+    assert resolve_mascot("mixed", "Why Does Your Heart Beat Faster?") == "human_body"
+    assert resolve_mascot("mixed", "Why Do We Overthink Everything?") == "psychology"
+    assert resolve_mascot("mixed", "Why Is the Sky Blue?") == "science"
+    assert resolve_mascot("mixed", "Who Invented the Paperclip?") == DEFAULT_MASCOT == "milo"
+
+
+def test_storyboard_uses_niche_host_unless_forced(settings):
+    from src.content.models import Script
+    from src.content.storyboard_generator import StoryboardGenerator
+    script = Script.model_validate({"topic": "Why Is the Sky Blue?", "niche": "science", "format": "short",
+                                    "title": "Why Is the Sky Blue?", "hook": "Why is the sky blue?",
+                                    "sections": [{"title": "A", "beats": [
+                                        {"id": "b0", "narration": "Why is the sky blue and not purple?"},
+                                        {"id": "b1", "narration": "Sunlight hits tiny air molecules."},
+                                        {"id": "b2", "narration": "Stay curious!"}]}]})
+    prof = settings.profile("vertical")
+    sb = StoryboardGenerator().build(script, prof)
+    assert sb.character == "science" and all(s.character.character == "science" for s in sb.scenes)
+    forced = StoryboardGenerator().build(script, prof, character="milo")
+    assert forced.character == "milo" and all(s.character.character == "milo" for s in forced.scenes)
+
+
+def test_thumbnail_art_cutout_and_fallback(monkeypatch):
+    from src.animation import character_art
+    from PIL import Image
+    img = Image.new("RGB", (60, 100), (255, 255, 255))
+    for x in range(20, 40):                                   # an ink-outlined white "coat" inside a coloured body
+        for y in range(20, 90):
+            img.putpixel((x, y), (43, 45, 66) if x in (20, 39) or y in (20, 89) else
+                         ((255, 255, 255) if 30 <= y <= 60 else (46, 196, 182)))
+    out = character_art._cutout(img)
+    assert out.size == (20, 70)                               # cropped to the character
+    a = np.asarray(out.getchannel("A"))
+    assert a.min() == 255                                     # interior white survives, background is gone
+    character_art.load_character_art.cache_clear()
+    monkeypatch.setattr(character_art, "PROJECT_ROOT", character_art.PROJECT_ROOT / "does-not-exist")
+    assert character_art.load_character_art("science") is None   # missing art -> vector rig is used
+    assert character_art.load_character_art("milo") is None      # no art configured
+    character_art.load_character_art.cache_clear()

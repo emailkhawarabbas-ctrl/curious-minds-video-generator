@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -24 110 64" data-title="Psychology guide boot" data-tags="psychology,shoe,boot">
+  <!-- Rig-local: ankle at (0,0); toes point +x. -->
+  <path d="M-26 -16 L10 -16 C12 -10 14 -8 18 -8 C42 -6 58 6 58 20 L58 26 L-28 26 L-28 -6 C-28 -12 -27 -16 -26 -16 Z" fill="#3D405B" stroke="#2B2D42" stroke-width="7"/>
+  <path d="M-28 18 L58 18 L58 28 C58 32 55 34 51 34 L-22 34 C-26 34 -28 32 -28 28 Z" fill="#4A4E69" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M8 -6 L20 2 M16 -10 L28 -2" stroke="#B8BCC8" stroke-width="4"/>
+  <path d="M-18 -8 C-14 -12 -8 -12 -4 -12 M30 2 C38 4 44 8 48 12" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="4"/>
+  <circle id="anchor-center" cx="12" cy="12" r="2"/>
+  <circle id="anchor-top" cx="0" cy="-16" r="2"/>
+</svg>

@@ -223,6 +223,7 @@ def test_hook_strength_and_review_flags_weak_openings():
 
 @pytest.mark.parametrize("niche,topic", [("human_body", "How Does Your Heart Actually Work?"),
                                          ("science", "Why Is the Sky Blue?"),
+                                         ("science", "Why Water Is the Weirdest Substance on Earth"),
                                          ("psychology", "Why Do We Overthink Everything?")])
 def test_curated_samples_get_distinct_identities(settings, niche, topic):
     from pathlib import Path
@@ -236,12 +237,13 @@ def test_curated_samples_get_distinct_identities(settings, niche, topic):
     sb = StoryboardGenerator().build(script, settings.profile("vertical"))
     theme = THEMES[niche]
     assert sb.theme == niche
+    assert sb.character == niche and {s.character.character for s in sb.scenes} == {niche}   # the niche's own host
     own = {b for opts in theme.backgrounds.values() for b in opts}
     assert sum(s.background in own for s in sb.scenes) / len(sb.scenes) >= 0.75
     assert any(s.demo for s in sb.scenes)
     layouts = [s.layout for s in sb.scenes]
     assert len(set(layouts)) >= 6 and not any(a == b == c for a, b, c in zip(layouts, layouts[1:], layouts[2:]))
-    assert any(c.cue for s in sb.scenes for c in s.character.cues)          # Milo reacts on spoken words
+    assert any(c.cue for s in sb.scenes for c in s.character.cues)          # the host reacts on spoken words
     rev = review(script, sb)
     assert rev["passed"], [c for c in rev["checks"] if c["level"] == "fail"]
 
@@ -287,3 +289,31 @@ def test_long_single_sentence_scenes_get_paced_visuals():
     spoken = narration.lower()
     assert all(c["cue"].lower() in spoken for c in d["character"]["cues"])
     assert all(gen.am.exists(o["asset"]) for o in d["objects"])
+
+
+def test_research_ignores_hype_words_and_needs_the_subject_in_the_lead():
+    from src.research.researcher import INDEX_TITLE, keywords, mentions_subject, related_terms
+    topic = "Why Water Is the Weirdest Substance on Earth"
+    assert keywords(topic) == ["water", "substance", "earth"]
+    assert "properties of water" in related_terms(topic)
+    # "Star jelly" shares "substance" and "Earth" but is not about water
+    assert not mentions_subject("Star jelly is a gelatinous substance sometimes found on the ground.", topic)
+    assert mentions_subject("Water is an inorganic compound with the chemical formula H2O.", topic)
+    assert INDEX_TITLE.search("List of discredited substances") and not INDEX_TITLE.search("Properties of water")
+
+
+def test_template_seo_titles_and_tiktok_block(settings, research_pack):
+    from pathlib import Path
+    from src.content.models import Script
+    from src.content.seo_generator import SEOGenerator
+    from src.content.storyboard_generator import StoryboardGenerator
+    path = Path(__file__).resolve().parents[1] / "content_packs" / "why_water_is_the_weirdest_substance_on_earth"
+    script = Script.model_validate_json((path / "script_short.json").read_text(encoding="utf-8"))
+    sb = StoryboardGenerator().build(script, settings.profile("vertical"))
+    meta = SEOGenerator(settings).generate(script, sb, research_pack, None)
+    assert meta["titles"][0].startswith("Why Water Is the Weirdest Substance on Earth?")
+    assert "The Surprising Science of Water" in meta["titles"]
+    tk = meta["tiktok"]
+    assert "#Shorts" not in tk["hashtags"] and "#CuriousMinds" in tk["hashtags"]
+    assert tk["caption"].startswith("Why Water Is") and len(tk["caption"]) <= 150
+    assert tk["cta"] == script.cta and tk["opening_hook"] == script.hook
