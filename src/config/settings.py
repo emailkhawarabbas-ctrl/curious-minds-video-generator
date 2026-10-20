@@ -25,7 +25,7 @@ DEFAULT_CONFIG = PROJECT_ROOT / "config" / "default.yaml"
 class BrandSettings(BaseModel):
     name: str
     tagline: str
-    mascot: str = "milo"
+    mascot: str = "auto"          # "auto" = per-niche host (themes.resolve_mascot) or a character id
 
 
 class PathSettings(BaseModel):

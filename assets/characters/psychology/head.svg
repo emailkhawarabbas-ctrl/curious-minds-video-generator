@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-180 -300 360 310" data-title="Psychology guide head" data-tags="psychology,character,head,brain">
+  <!-- Rig-local: neck joint at (0,0); head centre (0,-120). Two-tone brain: wired "thinking" half + pink "feeling" half.
+       Face features are drawn by the expression engine, so details keep clear of the eye/mouth area. -->
+  <g id="part-back">
+    <path d="M-0 -266 C-11 -287 -61 -277 -61 -254 C-81 -268 -121 -239 -109 -219 C-135 -224 -157 -182 -136 -168 C-162 -163 -162 -117 -136 -112 C-157 -98 -135 -56 -109 -61 C-121 -41 -81 -12 -61 -26 C-61 -3 -11 7 -0 -14 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M0 -266 C11 -287 61 -277 61 -254 C81 -268 121 -239 109 -219 C135 -224 157 -182 136 -168 C162 -163 162 -117 136 -112 C157 -98 135 -56 109 -61 C121 -41 81 -12 61 -26 C61 -3 11 7 0 -14 Z" fill="#FF8FAB" stroke="#2B2D42" stroke-width="8"/>
+    <!-- shading: one darker shape low on each half -->
+    <path d="M-128 -96 C-118 -56 -84 -26 -40 -18 C-80 -40 -104 -66 -112 -100 Z" fill="#5B4BC4" fill-opacity="0.6"/>
+    <path d="M128 -96 C118 -56 84 -26 40 -18 C80 -40 104 -66 112 -100 Z" fill="#FF5D73" fill-opacity="0.45"/>
+    <!-- circuit traces on the thinking half -->
+    <path d="M-122 -150 L-96 -150 L-84 -170 M-118 -112 L-92 -112 L-80 -96 M-104 -214 L-80 -214 L-64 -236 M-50 -250 L-50 -214 L-28 -196 M-128 -184 L-104 -184" fill="none" stroke="#9BE7DF" stroke-width="5"/>
+    <circle cx="-84" cy="-170" r="6" fill="#FFD23F" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="-80" cy="-96" r="6" fill="#FF8FAB" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="-64" cy="-236" r="6" fill="#9BE7DF" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="-28" cy="-196" r="6" fill="#FFD23F" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="-104" cy="-184" r="5" fill="#FFFFFF" stroke="#2B2D42" stroke-width="3"/>
+    <!-- folds on the feeling half -->
+    <path d="M96 -214 C78 -230 54 -226 50 -206 C70 -204 76 -190 66 -176 M118 -160 C100 -170 86 -160 90 -144 M126 -112 C108 -118 94 -104 100 -88 M30 -250 C40 -232 24 -218 10 -222 M100 -60 C86 -68 70 -58 74 -44" fill="none" stroke="#FF5D73" stroke-width="5"/>
+    <!-- centre fissure above the brows -->
+    <path d="M0 -266 L0 -176" fill="none" stroke="#2B2D42" stroke-width="6"/>
+  </g>
+  <g id="part-front">
+    <path d="M-104 -222 C-90 -244 -66 -258 -40 -262" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-opacity="0.6"/>
+    <path d="M40 -262 C66 -258 90 -244 104 -222" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-opacity="0.6"/>
+  </g>
+  <circle id="anchor-center" cx="0" cy="-120" r="4"/>
+  <circle id="anchor-top" cx="0" cy="-272" r="4"/>
+  <circle id="anchor-chin" cx="0" cy="-14" r="4"/>
+</svg>

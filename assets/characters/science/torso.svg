@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-130 -250 260 340" data-title="Science guide torso" data-tags="science,character,torso,labcoat">
+  <!-- Rig-local: hip centre (0,0), neck (0,-226), shoulders (+-84,-200). White lab coat reaching mid-thigh. -->
+  <g id="part-coat">
+    <path d="M-66 -228 C-94 -226 -104 -210 -102 -188 L-100 64 C-100 74 -92 80 -82 80 L82 80 C92 80 100 74 100 64 L102 -188 C104 -210 94 -226 66 -228 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M88 -190 L86 60 C86 68 80 72 72 72 L72 -20 C78 -24 80 -32 80 -40 L80 -186 Z" fill="#D7F0FA"/>
+    <path d="M0 -20 L0 78" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-shirt">
+    <path d="M-34 -226 L34 -226 L30 -20 L-30 -20 Z" fill="#9BE7DF"/>
+    <path d="M-20 -226 C-10 -200 10 -200 20 -226 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M-36 -228 C-30 -150 -31 -80 -29 -18" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M36 -228 C30 -150 31 -80 29 -18" fill="none" stroke="#2B2D42" stroke-width="6"/>
+    <path d="M-30 -20 L30 -20" stroke="#2B2D42" stroke-width="5"/>
+    <circle cx="20" cy="-150" r="6" fill="#B8BCC8" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="20" cy="-100" r="6" fill="#B8BCC8" stroke="#2B2D42" stroke-width="3"/>
+    <circle cx="20" cy="-50" r="6" fill="#B8BCC8" stroke="#2B2D42" stroke-width="3"/>
+  </g>
+  <g id="part-lapels">
+    <path d="M-36 -228 L-62 -224 L-40 -170 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <path d="M36 -228 L62 -224 L40 -170 Z" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <g id="part-badges">
+    <!-- atom badge and DNA doodle -->
+    <ellipse cx="-64" cy="-150" rx="18" ry="7" fill="none" stroke="#3A86FF" stroke-width="3.5"/>
+    <ellipse cx="-64" cy="-150" rx="18" ry="7" fill="none" stroke="#3A86FF" stroke-width="3.5" transform="rotate(60 -64 -150)"/>
+    <ellipse cx="-64" cy="-150" rx="18" ry="7" fill="none" stroke="#3A86FF" stroke-width="3.5" transform="rotate(-60 -64 -150)"/>
+    <circle cx="-64" cy="-150" r="4.5" fill="#FF5D73"/>
+    <path d="M-78 -120 C-62 -112 -62 -96 -78 -86 M-60 -120 C-76 -112 -76 -96 -60 -86" fill="none" stroke="#EF476F" stroke-width="4"/>
+    <path d="M-74 -112 L-64 -112 M-75 -103 L-63 -103 M-74 -94 L-64 -94" stroke="#3A86FF" stroke-width="3"/>
+  </g>
+  <g id="part-pockets">
+    <path d="M58 -170 L58 -146 M66 -174 L66 -146 M74 -168 L74 -146" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M58 -170 L58 -146" stroke="#3A86FF" stroke-width="4"/>
+    <path d="M66 -174 L66 -146" stroke="#FFD23F" stroke-width="4"/>
+    <path d="M74 -168 L74 -146" stroke="#FF5D73" stroke-width="4"/>
+    <rect x="48" y="-152" width="38" height="34" rx="6" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <rect x="-90" y="14" width="46" height="42" rx="7" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <rect x="44" y="14" width="46" height="42" rx="7" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+  </g>
+  <circle id="anchor-neck" cx="0" cy="-226" r="3"/>
+  <circle id="anchor-shoulder_l" cx="-84" cy="-200" r="3"/>
+  <circle id="anchor-shoulder_r" cx="84" cy="-200" r="3"/>
+  <circle id="anchor-center" cx="0" cy="-110" r="3"/>
+  <circle id="anchor-top" cx="0" cy="-228" r="3"/>
+</svg>

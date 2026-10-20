@@ -237,12 +237,13 @@ def test_curated_samples_get_distinct_identities(settings, niche, topic):
     sb = StoryboardGenerator().build(script, settings.profile("vertical"))
     theme = THEMES[niche]
     assert sb.theme == niche
+    assert sb.character == niche and {s.character.character for s in sb.scenes} == {niche}   # the niche's own host
     own = {b for opts in theme.backgrounds.values() for b in opts}
     assert sum(s.background in own for s in sb.scenes) / len(sb.scenes) >= 0.75
     assert any(s.demo for s in sb.scenes)
     layouts = [s.layout for s in sb.scenes]
     assert len(set(layouts)) >= 6 and not any(a == b == c for a, b, c in zip(layouts, layouts[1:], layouts[2:]))
-    assert any(c.cue for s in sb.scenes for c in s.character.cues)          # Milo reacts on spoken words
+    assert any(c.cue for s in sb.scenes for c in s.character.cues)          # the host reacts on spoken words
     rev = review(script, sb)
     assert rev["passed"], [c for c in rev["checks"] if c["level"] == "fail"]
 

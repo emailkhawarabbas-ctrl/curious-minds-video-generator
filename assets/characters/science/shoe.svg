@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -20 110 60" data-title="Science guide shoe" data-tags="science,shoe">
+  <!-- Rig-local: ankle at (0,0); toes point +x. -->
+  <path d="M-26 -10 L12 -10 C40 -10 58 4 58 20 L58 26 L-28 26 L-28 0 C-28 -6 -27 -10 -26 -10 Z" fill="#8E7DFF" stroke="#2B2D42" stroke-width="7"/>
+  <path d="M-28 18 L58 18 L58 28 C58 32 55 34 51 34 L-22 34 C-26 34 -28 32 -28 28 Z" fill="#5B4BC4" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M8 -6 L20 2 M16 -8 L28 0" stroke="#CFC6FF" stroke-width="4"/>
+  <path d="M-18 -4 C-14 -8 -8 -8 -4 -8 M32 0 C40 2 46 6 50 10" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="4"/>
+  <circle id="anchor-center" cx="12" cy="12" r="2"/>
+  <circle id="anchor-top" cx="0" cy="-10" r="2"/>
+</svg>

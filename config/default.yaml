@@ -5,7 +5,7 @@
 brand:
   name: "CURIOUS MINDS"
   tagline: "Understand the world in a fun way."
-  mascot: "milo"
+  mascot: "auto"      # auto = per-niche host (human_body / science / psychology; Milo for unmatched topics), or force a character id
 
 paths:
   assets: "assets"

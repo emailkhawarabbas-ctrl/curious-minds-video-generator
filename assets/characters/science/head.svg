@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -400 400 410" data-title="Science guide head" data-tags="science,character,head,flask">
+  <!-- Rig-local: neck joint at (0,0); head centre (0,-120). Round-bottom flask with a corked neck, half full of
+       bubbling liquid, coiled condenser tubes on both sides. Face features are drawn by the expression engine. -->
+  <g id="part-back">
+    <!-- condenser tubes (behind the glass) -->
+    <path d="M-108 -190 C-130 -200 -150 -226 -170 -244 M-170 -100 C-160 -78 -132 -70 -110 -78" fill="none" stroke="#2B2D42" stroke-width="18"/>
+    <path d="M-108 -190 C-130 -200 -150 -226 -170 -244 M-170 -100 C-160 -78 -132 -70 -110 -78" fill="none" stroke="#B8BCC8" stroke-width="9"/>
+    <path d="M108 -190 C130 -200 150 -226 170 -244 M170 -100 C160 -78 132 -70 110 -78" fill="none" stroke="#2B2D42" stroke-width="18"/>
+    <path d="M108 -190 C130 -200 150 -226 170 -244 M170 -100 C160 -78 132 -70 110 -78" fill="none" stroke="#B8BCC8" stroke-width="9"/>
+    <g id="part-coil_l">
+      <ellipse cx="-170" cy="-232" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="-170" cy="-232" rx="22" ry="9" fill="none" stroke="#EF476F" stroke-width="7"/>
+      <ellipse cx="-170" cy="-206" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="-170" cy="-206" rx="22" ry="9" fill="none" stroke="#EF476F" stroke-width="7"/>
+      <ellipse cx="-170" cy="-180" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="-170" cy="-180" rx="22" ry="9" fill="none" stroke="#EF476F" stroke-width="7"/>
+      <ellipse cx="-170" cy="-154" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="-170" cy="-154" rx="22" ry="9" fill="none" stroke="#EF476F" stroke-width="7"/>
+      <ellipse cx="-170" cy="-128" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="-170" cy="-128" rx="22" ry="9" fill="none" stroke="#EF476F" stroke-width="7"/>
+      <ellipse cx="-170" cy="-104" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="-170" cy="-104" rx="22" ry="9" fill="none" stroke="#EF476F" stroke-width="7"/>
+    </g>
+    <g id="part-coil_r">
+      <ellipse cx="170" cy="-232" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="170" cy="-232" rx="22" ry="9" fill="none" stroke="#06D6A0" stroke-width="7"/>
+      <ellipse cx="170" cy="-206" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="170" cy="-206" rx="22" ry="9" fill="none" stroke="#06D6A0" stroke-width="7"/>
+      <ellipse cx="170" cy="-180" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="170" cy="-180" rx="22" ry="9" fill="none" stroke="#06D6A0" stroke-width="7"/>
+      <ellipse cx="170" cy="-154" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="170" cy="-154" rx="22" ry="9" fill="none" stroke="#06D6A0" stroke-width="7"/>
+      <ellipse cx="170" cy="-128" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="170" cy="-128" rx="22" ry="9" fill="none" stroke="#06D6A0" stroke-width="7"/>
+      <ellipse cx="170" cy="-104" rx="22" ry="9" fill="none" stroke="#2B2D42" stroke-width="15"/>
+      <ellipse cx="170" cy="-104" rx="22" ry="9" fill="none" stroke="#06D6A0" stroke-width="7"/>
+    </g>
+    <!-- glass bulb, liquid, neck -->
+    <circle cx="0" cy="-125" r="118" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M-105.4 -178 C-70 -196 -40 -160 0 -176 C40 -192 70 -160 105.4 -178 A118 118 0 1 1 -105.4 -178 Z" fill="#9BE7DF"/>
+    <path d="M92 -62 C74 -32 44 -14 8 -10 C44 -2 84 -24 104 -60 Z" fill="#2EC4B6" fill-opacity="0.7"/>
+    <path d="M-105.4 -178 C-70 -196 -40 -160 0 -176 C40 -192 70 -160 105.4 -178" fill="none" stroke="#1A9E92" stroke-width="5"/>
+    <circle cx="0" cy="-125" r="118" fill="none" stroke="#2B2D42" stroke-width="8"/>
+    <path d="M-30 -232 L-30 -330 L30 -330 L30 -232" fill="#D7F0FA" stroke="#2B2D42" stroke-width="8"/>
+    <rect x="-40" y="-340" width="80" height="18" rx="8" fill="#D7F0FA" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M-34 -386 C-34 -392 34 -392 34 -386 L28 -332 L-28 -332 Z" fill="#5B3A29" stroke="#2B2D42" stroke-width="7"/>
+    <path d="M-20 -376 L-16 -344 M2 -380 L4 -346" stroke="#8A5A3B" stroke-width="5"/>
+    <!-- bubbles (kept clear of the eyes and mouth) -->
+    <circle cx="-84" cy="-150" r="9" fill="#FFFFFF" fill-opacity="0.8" stroke="#1A9E92" stroke-width="3"/>
+    <circle cx="-94" cy="-84" r="6" fill="#FFFFFF" fill-opacity="0.8" stroke="#1A9E92" stroke-width="3"/>
+    <circle cx="90" cy="-120" r="7" fill="#FFFFFF" fill-opacity="0.8" stroke="#1A9E92" stroke-width="3"/>
+    <circle cx="-24" cy="-204" r="8" fill="#FFFFFF" fill-opacity="0.8" stroke="#1A9E92" stroke-width="3"/>
+    <circle cx="14" cy="-262" r="7" fill="#FFFFFF" fill-opacity="0.8" stroke="#1A9E92" stroke-width="3"/>
+    <circle cx="-6" cy="-300" r="5" fill="#FFFFFF" fill-opacity="0.8" stroke="#1A9E92" stroke-width="3"/>
+  </g>
+  <g id="part-front">
+    <path d="M-88 -186 C-74 -210 -50 -228 -22 -236" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-opacity="0.75"/>
+    <path d="M-18 -322 L-18 -252" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-opacity="0.6"/>
+  </g>
+  <circle id="anchor-center" cx="0" cy="-125" r="4"/>
+  <circle id="anchor-top" cx="0" cy="-390" r="4"/>
+  <circle id="anchor-chin" cx="0" cy="-10" r="4"/>
+</svg>

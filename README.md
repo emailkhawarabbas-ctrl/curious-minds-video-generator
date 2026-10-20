@@ -4,7 +4,8 @@
 
 Give it one topic. It researches the topic from real sources, writes original narration with
 a retention-focused story arc, builds format-specific storyboards in one of **three niche
-visual identities** (Human Body · Science · Psychology), animates the mascot **Milo** acting
+visual identities** (Human Body · Science · Psychology), animates a **per-niche host character** (a see-through anatomy kid, a flask scientist or a
+two-tone brain; Milo for topics outside the three niches) acting
 alongside topic-specific illustrations and **animated scientific demonstrations**, narrates
 with a directed, natural **neural US-English male voice** (Kokoro, local and free), mixes music and sound
 effects, renders a **9:16 TikTok/Shorts video** and a **16:9 YouTube long-form video**,
@@ -184,7 +185,7 @@ tests/                    unit + integration tests
   anatomy blueprint, microscope cell world), Science (exploration: open sky, notebook grid, Earth's
   limb, sunset), Psychology (mind & behaviour: mind maze, late-night thought room, emotion waves).
   Each theme picks environments per scene purpose, accent colours, particles, transitions, camera
-  temperament, music mood and foreground depth props; Milo stays the same everywhere.
+  temperament, music mood, foreground depth props and the host character (`themes.resolve_mascot`).
 * **Animated demonstrations** (`demos.py`) — staged scientific diagrams on a "diagram card", synced to
   narration cue words: heart pump, two-loop circulation, ECG heartbeat, light scattering, wavelength
   comparison, sunset path, thought loop, what-if decision tree, neural signal, stress alarm response.

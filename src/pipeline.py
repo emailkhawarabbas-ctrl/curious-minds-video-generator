@@ -259,7 +259,8 @@ class Pipeline:
             log.error("fact-check failed for %s script: %s", fmt, fc["issues"])
             manifest["outputs"][fmt] = {"status": "failed", "error": "fact-check failed", "issues": fc["issues"]}
             return False
-        sb: Storyboard = self._run(f"storyboard_{tag}", StoryboardGenerator().build, script, renderer.profile)
+        sb: Storyboard = self._run(f"storyboard_{tag}", StoryboardGenerator().build, script, renderer.profile,
+                                    character=None if self.s.brand.mascot == "auto" else self.s.brand.mascot)
         audios, ls, hist = self._run(f"narration_{tag}", self.narrate, tts, sb, dirs["audio"] / fmt, target, rng)
         lead, tail = self.s.tts.scene_lead_in_s, self.s.tts.scene_tail_s
         timings = plan_timeline(sb, audios, sb.fps, lead, tail)

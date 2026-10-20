@@ -1,0 +1,29 @@
+{
+  "id": "science",
+  "name": "Professor Flask",
+  "role": "Science host: a bubbling round-bottom flask in a white lab coat",
+  "base": "milo",
+  "niche": "science",
+  "source_art": "characters/science.jpg",
+  "personality": ["curious", "excitable", "inventive", "funny"],
+  "locked_design": {
+    "head": "corked round-bottom flask, teal liquid with bubbles, red coil on the screen-left side and green coil on the screen-right side",
+    "outfit": "white lab coat with atom badge, DNA doodle and pens, grey metal limbs and gloves, purple shoes",
+    "do_not_change": ["flask head", "coloured coils", "white lab coat", "purple shoes"]
+  },
+  "colors": {
+    "skin": "#B8BCC8",
+    "skin_shadow": "#1A9E92",
+    "neck": "#9BE7DF",
+    "sleeve": "#FFFFFF",
+    "sleeve_cuff": "#D7F0FA",
+    "pants": "#B8BCC8",
+    "pants_cuff": "#3D405B",
+    "brow": "#2B2D42"
+  },
+  "parts": {"head": "head.svg", "torso": "torso.svg", "shoe": "shoe.svg"},
+  "rig": {"head_top": -616, "head_top_local": -392, "leg_width": 26},
+  "recolor": {"#F8C9A0": "#B8BCC8", "#E9A97F": "#4A4E69"},
+  "hide_parts": ["backpack"],
+  "thumbnail": {"image": "characters/science.jpg", "mode": "cutout", "clear_points": [[352, 1208], [1160, 1080]]}
+}
