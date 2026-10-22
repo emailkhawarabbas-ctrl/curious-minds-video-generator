@@ -94,6 +94,7 @@ RELATED = {
     "machine": ["machine learning", "artificial neural network"], "neural": ["artificial neural network"],
     "chatbot": ["chatbot", "large language model"], "robot": ["robotics"],
     "think": ["thought", "reasoning"], "thought": ["thought", "reasoning"],
+    "song": ["earworm", "music psychology"], "earworm": ["earworm"], "music": ["music psychology"],
 }
 
 
@@ -111,8 +112,15 @@ def expanded_topic(topic: str) -> str:
     return " ".join([topic] + [re.sub(r"\s*\([^)]*\)", "", t) for t in related_terms(topic)])
 
 
+def _stem(word: str) -> str:
+    """Five-letter prefix of the singular, so "songs" also matches a page that only says "song"."""
+    if len(word) > 3 and word.endswith("s") and not word.endswith("ss"):
+        word = word[:-1]
+    return word[:5]
+
+
 def relevance(text: str, topic: str) -> int:
-    stems = [k[:5] for k in keywords(topic)]
+    stems = [_stem(k) for k in keywords(topic)]
     low = (text or "").lower()
     return sum(low.count(st) for st in stems)
 
@@ -122,7 +130,7 @@ def _mentions(low: str, group: List[str]) -> bool:
     or one of its expansions appear."""
     alts = [" ".join(group)] + [t for key, vals in RELATED.items() if group[0].startswith(key) for t in vals]
     phrases = [re.sub(r"\s*\([^)]*\)", "", a).lower() for a in alts]
-    return any(all(w[:5] in low for w in p.split()) for p in phrases)
+    return any(all(_stem(w) in low for w in p.split()) for p in phrases)
 
 
 def concept_coverage(text: str, topic: str) -> int:

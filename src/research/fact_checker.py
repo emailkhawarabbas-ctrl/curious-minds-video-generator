@@ -51,8 +51,8 @@ def _norm_tokens(s: str) -> set:
 
 def extract_facts(topic: str, sources: List[Source], texts: Dict[str, str],
                   max_facts: int = 60) -> Tuple[List[Fact], List[str]]:
-    from src.research.researcher import keywords  # local import to avoid a cycle
-    kws = [k[:5] for k in keywords(topic)]
+    from src.research.researcher import _stem, keywords  # local import to avoid a cycle
+    kws = [_stem(k) for k in keywords(topic)]
     cands: List[Tuple[float, str, Source]] = []
     for src in sources:
         for sent in _sentences(texts.get(src.id, "")):
@@ -63,6 +63,8 @@ def extract_facts(topic: str, sources: List[Source], texts: Dict[str, str],
             if not any(k in low for k in kws):
                 continue
             if re.search(r"(==|\bsee also\b|\bisbn\b|\bdoi\b|http)", low):
+                continue
+            if MEDICAL_ADVICE.search(sent):   # a script quoting it would fail the fact-check
                 continue
             if re.match(r"^(here,? we|in this (review|study|paper|article)|this (review|study|paper)|we (review|discuss|summari[sz]e)|finally,? we)", low):
                 continue
