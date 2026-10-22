@@ -15,7 +15,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple
 
-DEFAULT_MASCOT = "milo"                       # host for topics that match no niche
+DEFAULT_MASCOT = "milo"                       # base rig; each niche theme sets its own host
 
 # Scene purposes the storyboard assigns (see src/content/story_engine.py)
 PURPOSES = ("hook", "question", "relatable", "explain", "process", "comparison", "discovery", "surprise",
@@ -123,16 +123,11 @@ def resolve_theme(niche: str, topic: str = "", extra_text: str = "") -> NicheThe
 
 
 def resolve_mascot(niche: str, topic: str = "", extra_text: str = "") -> str:
-    """The host character for a video: the niche's own mascot.
+    """The host character for a video: the mascot of the video's theme.
 
     ``mixed`` uses the mascot of the best-matching theme; a topic that matches no niche
-    vocabulary (and any unknown niche) keeps the default mascot, Milo.
+    vocabulary (and any unknown niche) gets the science host, like its theme.
     """
-    if niche in THEMES:
-        return THEMES[niche].mascot
-    scores = theme_scores(f"{topic} {extra_text}")
-    if not any(scores.values()):
-        return DEFAULT_MASCOT
     return resolve_theme(niche, topic, extra_text).mascot
 
 

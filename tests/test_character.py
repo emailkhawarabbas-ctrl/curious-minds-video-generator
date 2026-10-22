@@ -112,13 +112,13 @@ def test_niche_hosts_rig_like_milo_and_draw_every_pose(char_id):
 
 
 def test_host_follows_niche():
-    from src.animation.themes import DEFAULT_MASCOT, resolve_mascot
+    from src.animation.themes import resolve_mascot
     for niche in NICHE_HOSTS:
         assert resolve_mascot(niche, "anything at all") == niche
     assert resolve_mascot("mixed", "Why Does Your Heart Beat Faster?") == "human_body"
     assert resolve_mascot("mixed", "Why Do We Overthink Everything?") == "psychology"
     assert resolve_mascot("mixed", "Why Is the Sky Blue?") == "science"
-    assert resolve_mascot("mixed", "Who Invented the Paperclip?") == DEFAULT_MASCOT == "milo"
+    assert resolve_mascot("mixed", "Who Invented the Paperclip?") == "science"   # unmatched -> new host, never Milo
 
 
 def test_storyboard_uses_niche_host_unless_forced(settings):
