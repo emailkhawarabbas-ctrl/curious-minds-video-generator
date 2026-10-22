@@ -39,6 +39,18 @@ def target_words(fmt: Format, seconds: float, wps: float = WORDS_PER_SECOND) -> 
     return int(seconds * wps * (0.93 if fmt == "short" else 0.95))
 
 
+def spoken_words(text: str) -> float:
+    """Words as narrated, not as written: "30–50%" is "thirty to fifty percent" and "over-estimation" takes
+    as long as two short words. Research sentences are dense, so counting tokens under-budgets them."""
+    n = 0.0
+    for tok in re.split(r"[\s\-–—/]+", text):
+        letters = re.sub(r"[^A-Za-z]", "", tok)
+        n += sum(min(3, len(d)) for d in re.findall(r"\d+(?:[.,]\d+)?", tok)) + tok.count("%")
+        if letters:
+            n += max(1.0, len(letters) / 6)
+    return n
+
+
 # --------------------------------------------------------------------------- JSON schema for the LLM
 def _nullable(schema: Dict) -> Dict:
     return {"anyOf": [schema, {"type": "null"}]}
@@ -263,7 +275,7 @@ class ScriptGenerator:
         outro_text = f"So, {q[0].lower() + q[1:]}? Now you know what's going on behind the scenes. Stay curious!"
         # Budget the whole script (intro, transitions, theories and outro included) so the narration can be
         # fitted to the target duration; research sentences can be long, so check before adding each one.
-        budget = words_target - sum(len(b["narration"].split()) for b in beats_intro) - len(outro_text.split())
+        budget = words_target - sum(spoken_words(b["narration"]) for b in beats_intro) - spoken_words(outro_text)
         body_budget = budget * (0.75 if hyp else 1.0)
         pool_c = ConnectorPool(seed=len(topic))
         body: List[Dict] = []
@@ -273,7 +285,7 @@ class ScriptGenerator:
             if fmt == "short" and len(body) >= 6:
                 break
             sent = _spoken(f.text)
-            if body and used + len(sent.split()) > body_budget:
+            if body and used + spoken_words(sent) > body_budget:
                 continue
             role = "explanation"
             if f.numbers and k > 0:
@@ -283,24 +295,24 @@ class ScriptGenerator:
             elif k == 1:
                 role = "discovery"
             body.append(beat(i, sent, [f.id], None, role))
-            used += len(sent.split())
+            used += spoken_words(sent)
             i += 1
             if k in (2, 6) and len(pool) > k + 1:
                 t = pool_c.take("deeper")
-                if t and used + len(t.split()) <= body_budget:
+                if t and used + spoken_words(t) <= body_budget:
                     body.append(beat(i, t, [], None, "transition"))
-                    used += len(t.split())
+                    used += spoken_words(t)
                     i += 1
         if fmt == "short":
             body = body[:6]
-            used = sum(len(b["narration"].split()) for b in body)
+            used = sum(spoken_words(b["narration"]) for b in body)
         theories: List[Dict] = []
         for f in hyp[: (2 if fmt == "short" else 6)]:
             text = "One idea scientists are still testing: " + _spoken(f.text)
-            if used + len(text.split()) > budget:
+            if used + spoken_words(text) > budget:
                 continue
             theories.append(beat(i, text, [f.id], None, "insight", action="think", expression="thinking"))
-            used += len(text.split())
+            used += spoken_words(text)
             i += 1
         outro = [beat(i, outro_text, [], "outro", "ending")]
         if fmt == "short":

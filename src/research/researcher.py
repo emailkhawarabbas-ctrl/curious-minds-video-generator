@@ -56,12 +56,29 @@ HEALTH_PROVIDERS = {"medlineplus", "pubmed"}
 ACRONYMS = {"ai": "artificial intelligence", "ml": "machine learning", "llm": "large language model",
             "llms": "large language models", "iq": "intelligence quotient", "uv": "ultraviolet",
             "co2": "carbon dioxide", "adhd": "attention deficit hyperactivity disorder"}
+# Everyday phrasings of one concept: "time feels faster" is about time perception, not about "time" and "feel"
+# (as separate words they match any page that says "older" and "faster": exercise, ageing, sexuality)
+# concept -> (how a topic asks about it, how a source names it). A source must name the concept itself:
+# its words' stems alone are too loose ("perce" is in "percent").
+PHRASE_CONCEPTS = {
+    "time perception": (
+        re.compile(r"\btime (feels?|seems?|flies|fly|goes|passes|speeds? up|slows? down|drags?)\b|"
+                   r"\b(sense|perception) of time\b|\btime perception\b"),
+        re.compile(r"\b(time perception|perception of time|sense of time|subjective time|perceived time|"
+                   r"perceived duration|time (is perceived|seems to (pass|speed|go)|passes by))")),
+}
 
 
 def _concept_words(topic: str) -> List[List[str]]:
-    """One word group per topic concept; an acronym's expansion stays together as one concept."""
+    """One word group per topic concept; an acronym's or a phrase's concept stays together as one group
+    (a phrase concept comes first, as the subject)."""
     groups = []
-    for w in re.findall(r"[A-Za-z][A-Za-z0-9\-']*", topic.lower()):
+    low = topic.lower()
+    for concept, (asked, _) in PHRASE_CONCEPTS.items():
+        if asked.search(low):
+            groups.append(concept.split())
+            low = asked.sub(" ", low)
+    for w in re.findall(r"[A-Za-z][A-Za-z0-9\-']*", low):
         if w in ACRONYMS:
             groups.append(ACRONYMS[w].split())
         elif w not in STOPWORDS and len(w) >= 3:
@@ -99,7 +116,7 @@ RELATED = {
 
 
 def related_terms(topic: str) -> List[str]:
-    out: List[str] = []
+    out: List[str] = [c for c, (asked, _) in PHRASE_CONCEPTS.items() if asked.search(topic.lower())]
     for k in keywords(topic):
         for key, vals in RELATED.items():
             if k.startswith(key):
@@ -127,7 +144,9 @@ def relevance(text: str, topic: str) -> int:
 
 def _mentions(low: str, group: List[str]) -> bool:
     """A concept is mentioned when its own words (all of an acronym's words, e.g. "artificial intelligence")
-    or one of its expansions appear."""
+    or one of its expansions appear. A phrase concept needs the phrase itself."""
+    if " ".join(group) in PHRASE_CONCEPTS:
+        return bool(PHRASE_CONCEPTS[" ".join(group)][1].search(low))
     alts = [" ".join(group)] + [t for key, vals in RELATED.items() if group[0].startswith(key) for t in vals]
     phrases = [re.sub(r"\s*\([^)]*\)", "", a).lower() for a in alts]
     return any(all(_stem(w) in low for w in p.split()) for p in phrases)
@@ -149,8 +168,13 @@ def mentions_subject(text: str, topic: str) -> bool:
 
 def on_topic(text: str, topic: str) -> bool:
     """A source must cover the topic, not just one word of it: two concepts when the topic has two or more
-    ("how does AI think" needs AI *and* thinking, so pages about human thought or nursing are dropped)."""
-    return concept_coverage(text, topic) >= min(2, len(_concept_words(topic)))
+    ("how does AI think" needs AI *and* thinking, so pages about human thought or nursing are dropped).
+    A phrase-concept subject is required: "time feel faster as you get older" is not covered by "older" and
+    "faster" alone (pages on exercise or ageing)."""
+    groups = _concept_words(topic)
+    if groups and " ".join(groups[0]) in PHRASE_CONCEPTS and not mentions_subject(text, topic):
+        return False
+    return concept_coverage(text, topic) >= min(2, len(groups))
 
 
 def _strip_html(s: str) -> str:
@@ -234,7 +258,8 @@ class Researcher:
                                         "rvprop": "timestamp", "format": "json", "redirects": 1})
             time.sleep(0.3)
             for page in data.get("query", {}).get("pages", {}).values():
-                text = (page.get("extract") or "")[:15000]
+                # the core concept article explains the "why" in later sections, so keep more of it
+                text = (page.get("extract") or "")[:45000 if title in concept_pages else 15000]
                 if not text or relevance(text, expanded_topic(topic)) < 3 or not on_topic(text, topic):
                     continue
                 if title not in concept_pages and not mentions_subject(text[:1000], topic):

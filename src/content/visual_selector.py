@@ -93,7 +93,7 @@ CONCEPTS: Tuple[Concept, ...] = (
         "water_molecule", "water_drop"), "water_molecule", "science"),
     C("hydrogen_bond", r"hydrogen bonds?|polar|slightly (negative|positive)|cling|stick together", (
         "water_molecule",), "hydrogen_bonds", "science"),
-    C("freezing", r"\bfreez|\bfrozen\b|\bice\b|crystal|expands?|\bshrinks?\b", ("ice_cube", "glass_of_water"),
+    C("freezing", r"\bfreez|\bfrozen\b|\bice\b|crystal|\bexpands?\b|\bshrinks?\b", ("ice_cube", "glass_of_water"),
       "ice_lattice", "science"),
     C("lake", r"\blakes?\b|\bponds?\b|\bfish\b|sinks? to the bottom|\bfloats?\b|winter", (
         "frozen_lake", "fish", "glass_of_water"), "frozen_lake", "science"),
@@ -248,11 +248,16 @@ class VisualSelector:
         self.prev_scene = cur
 
     def demo_for(self, text: str) -> Optional[str]:
+        """A demo from another niche needs the topic to be about its concept: one passing word ("heart and
+        lungs", "expanded") must not put a heart pump or an ice lattice into a video about time perception."""
         best: Optional[Tuple[int, str]] = None
+        topic_names = {c.name for c, _ in self.topic_concepts}
         for c, h in self.concepts_in(text):
             if not c.demo:
                 continue
             home = c.niche in ("any", self.theme.name)
+            if not home and c.name not in topic_names:
+                continue
             score = h * (2 if home else 1)
             if best is None or score > best[0]:
                 best = (score, c.demo)

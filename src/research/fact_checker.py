@@ -31,6 +31,11 @@ NUMBER_WORDS = {"two": "2", "three": "3", "four": "4", "five": "5", "six": "6", 
 MEDICAL_ADVICE = re.compile(r"\b(you should (take|stop|start)|take \d+ ?mg|dosage|prescri\w+ yourself|"
                             r"cures?|guaranteed to|diagnos(e|is) yourself|instead of (seeing|asking) (a|your) doctor)\b",
                             re.I)
+# Health-page instructions to the reader ("stop exercising and seek help right away") are not facts to narrate;
+# fact extraction skips them (scripts may still add a "talk to a doctor" disclaimer)
+HEALTH_INSTRUCTION = re.compile(r"\b(seek (medical |professional |emergency )?(help|care|attention|treatment)|"
+                                r"(see|call|talk to|talk with|consult|ask) (a|your) (doctor|health ?care provider)|"
+                                r"stop (exercising|taking)|call 911)\b", re.I)
 SENT_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z])")
 
 
@@ -65,6 +70,8 @@ def extract_facts(topic: str, sources: List[Source], texts: Dict[str, str],
             if re.search(r"(==|\bsee also\b|\bisbn\b|\bdoi\b|http)", low):
                 continue
             if MEDICAL_ADVICE.search(sent):   # a script quoting it would fail the fact-check
+                continue
+            if HEALTH_INSTRUCTION.search(sent):
                 continue
             if re.match(r"^(here,? we|in this (review|study|paper|article)|this (review|study|paper)|we (review|discuss|summari[sz]e)|finally,? we)", low):
                 continue

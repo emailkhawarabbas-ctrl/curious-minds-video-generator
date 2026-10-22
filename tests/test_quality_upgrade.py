@@ -141,6 +141,25 @@ def test_selector_picks_topic_assets(niche, topic, text, want, forbid):
     assert not set(picks) & forbid, picks
 
 
+def test_off_niche_demo_needs_the_topic():
+    from src.animation.themes import resolve_theme
+    from src.content.visual_selector import VisualSelector
+    topic = "Why does time feel faster as you get older?"
+    sel = VisualSelector(resolve_theme("mixed", topic), topic, "mixed")
+    # a passing word used to pull a heart pump / ice lattice into a psychology video
+    assert sel.demo_for("Exercise helps your heart and lungs work better.") is None
+    assert sel.demo_for("Oddball stimuli expanded the perceived duration by 30-50%.") is None
+    heart = "Why Does Your Heart Beat Faster?"
+    assert VisualSelector(resolve_theme("mixed", heart), heart, "mixed").demo_for(
+        "Your heart pumps blood through every chamber.") is not None
+
+
+def test_offline_budget_counts_spoken_words():
+    from src.content.script_generator import spoken_words
+    assert spoken_words("The cat sat on the mat.") == 6
+    assert spoken_words("Studies report over-estimation in 30–50% of cases.") > 9
+
+
 def test_selector_demos_and_novelty():
     from src.animation.themes import resolve_theme
     from src.content.visual_selector import VisualSelector
@@ -267,6 +286,28 @@ def test_research_keeps_short_acronyms_and_needs_the_whole_topic():
     assert not on_topic("Critical thinking among registered nurses in clinical practice.", topic)
     assert not on_topic("Thought is cognition that occurs independent of direct sensory stimulation.", topic)
     assert on_topic("A dream is a succession of images.", "Why Do We Dream?")          # single-concept topics unchanged
+
+
+def test_research_reads_time_feels_faster_as_time_perception():
+    from src.research.researcher import keywords, on_topic, related_terms
+    topic = "Why does time feel faster as you get older?"
+    assert keywords(topic)[:2] == ["time", "perception"] and "feel" not in keywords(topic)
+    assert related_terms(topic)[0] == "time perception"
+    assert on_topic("The subjective perception is often that time passes by at a faster rate with age, "
+                    "and older adults underestimate intervals.", topic)
+    # pages that only share "older" and "faster" (exercise, sexuality in older age) used to be accepted
+    assert not on_topic("Exercise makes older adults faster and stronger; about 15 percent of the time.", topic)
+
+
+def test_fact_extraction_skips_health_instructions():
+    from src.content.models import Source
+    from src.research.fact_checker import extract_facts
+    src = Source(id="s1", title="Exercise", url="https://medlineplus.gov/x.html", provider="medlineplus",
+                 publisher="MedlinePlus", tier="authoritative")
+    text = ("If you have any pain or dizziness, stop exercising and seek help right away. "
+            "Regular exercise helps your heart and lungs work better over a long time.")
+    facts, _ = extract_facts("exercise", [src], {"s1": text})
+    assert [f.text for f in facts] == ["Regular exercise helps your heart and lungs work better over a long time."]
 
 
 def test_long_single_sentence_scenes_get_paced_visuals():
