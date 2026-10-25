@@ -1,0 +1,68 @@
+{
+  "short": {
+    "titles": [
+      "Why Do Embarrassing Memories Come Back Years Later? 😳",
+      "Your Brain Saved That Cringe Moment on Purpose",
+      "Why Cringe Memories Pop Up Out of Nowhere"
+    ],
+    "description": "You're brushing your teeth and suddenly remember something embarrassing from years ago. Here's why: involuntary memories are triggered by everyday cues, and your amygdala tags emotional moments so your hippocampus stores them more strongly. The good news: happy memories pop up twice as often.",
+    "hashtags": [
+      "#CuriousMinds",
+      "#Memory",
+      "#Cringe",
+      "#Psychology",
+      "#Brain",
+      "#ScienceFacts",
+      "#Shorts"
+    ],
+    "thumbnail_concepts": [
+      {
+        "name": "question",
+        "text": "WHY DOES CRINGE COME BACK?",
+        "asset": "worried_face",
+        "expression": "worried",
+        "rationale": "The relatable cringe moment as a direct question."
+      },
+      {
+        "name": "brain_saved_it",
+        "text": "YOUR BRAIN SAVED IT",
+        "asset": "memory_photos",
+        "expression": "surprised",
+        "rationale": "The answer as a teaser: the brain keeps emotional moments on purpose."
+      }
+    ]
+  },
+  "long": {
+    "titles": [
+      "Why Do Embarrassing Memories Come Back Years Later? The Science of Cringe",
+      "Why Your Brain Won't Let You Forget That Embarrassing Moment",
+      "Cringe Memories Explained: Involuntary Memory, Emotion and the Brain"
+    ],
+    "description": "Why do embarrassing memories come back years later? In this Curious Minds episode we explore involuntary memories (from Proust's madeleine to Ebbinghaus), how cues and memory chains trigger them, how the amygdala and hippocampus tag emotional moments, why sleep locks them in, why you replay them from the outside, the reminiscence bump, and why sharing an embarrassing story can take away its sting.",
+    "hashtags": [
+      "#CuriousMinds",
+      "#Memory",
+      "#Cringe",
+      "#Psychology",
+      "#Neuroscience",
+      "#Brain",
+      "#Science"
+    ],
+    "thumbnail_concepts": [
+      {
+        "name": "question",
+        "text": "WHY DOES CRINGE COME BACK?",
+        "asset": "worried_face",
+        "expression": "worried",
+        "rationale": "Clear topic question with a relatable worried face; high contrast."
+      },
+      {
+        "name": "midnight",
+        "text": "3 A.M. CRINGE",
+        "asset": "memory_photos",
+        "expression": "surprised",
+        "rationale": "The lying-awake replay that opens the episode."
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "short": {
+    "titles": [
+      "Why Can't You Tickle Yourself? 🤔 The Brain Trick in 60 Seconds",
+      "Your Brain Cancels Your Own Tickles. Here's How",
+      "Why Tickling Yourself Never Works"
+    ],
+    "description": "Try to tickle your own ribs: nothing happens. Your brain keeps a copy of every movement command and predicts exactly what your own touch will feel like, then turns that feeling down. A tickling-robot experiment shows what happens when the prediction is wrong.",
+    "hashtags": [
+      "#CuriousMinds",
+      "#Tickle",
+      "#Brain",
+      "#Psychology",
+      "#Neuroscience",
+      "#ScienceFacts",
+      "#Shorts"
+    ],
+    "thumbnail_concepts": [
+      {
+        "name": "question",
+        "text": "WHY CAN'T YOU TICKLE YOURSELF?",
+        "asset": "emotion_happy",
+        "expression": "laughing",
+        "rationale": "The topic as a direct question; a laughing face promises the tickle payoff."
+      },
+      {
+        "name": "brain_trick",
+        "text": "YOUR BRAIN SEES IT COMING",
+        "asset": "brain_activity",
+        "expression": "surprised",
+        "rationale": "The answer as a teaser: the brain's prediction is the hidden culprit."
+      }
+    ]
+  },
+  "long": {
+    "titles": [
+      "Why Can't You Tickle Yourself? The Surprising Science of Tickling",
+      "The Brain Trick That Stops You Tickling Yourself",
+      "Tickling Explained: Efference Copies, Tickle Robots and Why We're Ticklish"
+    ],
+    "description": "Why can't you tickle yourself? In this Curious Minds episode we explore the two kinds of tickle (knismesis and gargalesis), what Aristotle, Galileo and Darwin thought, the efference copy your brain keeps of every movement, the 1998 tickling-robot experiment, why a delay makes your own touch tickly again, and the leading ideas about why tickling exists at all.",
+    "hashtags": [
+      "#CuriousMinds",
+      "#Tickle",
+      "#Brain",
+      "#Psychology",
+      "#Neuroscience",
+      "#EfferenceCopy",
+      "#Science"
+    ],
+    "thumbnail_concepts": [
+      {
+        "name": "question",
+        "text": "WHY CAN'T YOU TICKLE YOURSELF?",
+        "asset": "emotion_happy",
+        "expression": "laughing",
+        "rationale": "Clear topic question with a laughing face; high contrast."
+      },
+      {
+        "name": "robot",
+        "text": "THE TICKLE ROBOT",
+        "asset": "computer",
+        "expression": "excited",
+        "rationale": "The tickling-robot experiment as the curiosity hook."
+      }
+    ]
+  }
+}

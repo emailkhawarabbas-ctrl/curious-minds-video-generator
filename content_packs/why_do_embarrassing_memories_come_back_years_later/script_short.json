@@ -1,0 +1,129 @@
+{
+ "topic": "Why do embarrassing memories come back years later?",
+ "niche": "psychology",
+ "format": "short",
+ "source": "curated",
+ "title": "Why do embarrassing memories come back years later?",
+ "hook": "You're brushing your teeth, and suddenly you remember something embarrassing you said years ago. Your face burns. But why does your brain bring it back now?",
+ "cta": "Follow for more!",
+ "notes": [
+  "Claims follow the research pack: Wikipedia 'Involuntary memory' (cues evoke recollections without conscious effort; association; chaining; happy involuntary memories occur twice as often as unhappy or neutral ones) and Wikipedia 'Emotion and memory' (the amygdala signals the hippocampus to strengthen encoding and consolidation; neutral memories decrease while arousing ones remain the same or improve; emotional memories are consolidated more during sleep; mood congruence; collaborative recall causes strong emotions to fade).",
+  "No statistics are used; 'twice as often' is stated in the Involuntary memory article."
+ ],
+ "sections": [
+  {
+   "title": "The 3 a.m. cringe",
+   "beats": [
+    {
+     "id": "s1",
+     "role": "hook",
+     "narration": "You're brushing your teeth, and suddenly you remember something embarrassing you said years ago. Your face burns. But why does your brain bring it back now?",
+     "visual": {
+      "layout": "hook_title",
+      "title": "Why do cringe memories come back?",
+      "assets": ["worried_face"],
+      "action": "surprised",
+      "expression": "worried",
+      "background": "mind_maze"
+     }
+    },
+    {
+     "id": "s2",
+     "role": "curiosity_gap",
+     "narration": "You didn't try to remember it. Psychologists call this an involuntary memory: a recollection that pops up without conscious effort.",
+     "visual": {
+      "layout": "thought_bubble",
+      "assets": ["memory_photos", "worried_face", "question_mark"],
+      "action": "think",
+      "expression": "confused",
+      "background": "thought_room"
+     }
+    },
+    {
+     "id": "s3",
+     "role": "explanation",
+     "narration": "Everyday cues, like a smell or a place, trigger it through association. And one memory can set off a whole chain.",
+     "visual": {
+      "layout": "diagram_flow",
+      "assets": ["eye", "memory_photos", "thought_spiral"],
+      "labels": ["A cue", "A memory", "A whole chain"],
+      "background": "brain_space"
+     }
+    }
+   ]
+  },
+  {
+   "title": "Saved as important",
+   "beats": [
+    {
+     "id": "s4",
+     "role": "discovery",
+     "narration": "Here's the catch. When you feel embarrassed, your amygdala becomes highly active and signals the hippocampus to strengthen that memory.",
+     "visual": {
+      "layout": "demonstration",
+      "demo": {
+       "kind": "alarm_response",
+       "labels": ["Embarrassed!", "Amygdala fires", "Memory strengthened"],
+       "stage_cues": ["embarrassed", "amygdala", "strengthen"]
+      },
+      "background": "brain_space"
+     }
+    },
+    {
+     "id": "s5",
+     "role": "surprise",
+     "narration": "Over time, neutral memories fade, but emotional ones stay strong, or even improve. And sleep helps lock them in.",
+     "visual": {
+      "layout": "demonstration",
+      "demo": {
+       "kind": "neural_signal",
+       "labels": ["Neutral: fades", "Emotional: stays", "Sleep locks it in"],
+       "stage_cues": ["neutral", "emotional", "sleep"]
+      },
+      "background": "emotion_waves"
+     }
+    },
+    {
+     "id": "s6",
+     "role": "insight",
+     "narration": "In a low mood, your brain also retrieves negative memories more easily, so one cringe pulls up the next.",
+     "visual": {
+      "layout": "comparison",
+      "assets": ["emotion_happy", "emotion_sad"],
+      "labels": ["Good mood: good memories", "Low mood: cringe"],
+      "background": "emotion_waves"
+     }
+    }
+   ]
+  },
+  {
+   "title": "The good news",
+   "beats": [
+    {
+     "id": "s7",
+     "role": "relatable",
+     "narration": "The good news? Happy involuntary memories pop up twice as often as unhappy ones. And retelling the story with friends can make the emotion fade.",
+     "visual": {
+      "layout": "fact_card",
+      "number": {"value": 2, "suffix": "X", "label": "more happy memories pop up"},
+      "assets": ["emotion_happy"],
+      "action": "excited",
+      "expression": "happy",
+      "background": "mind_maze"
+     }
+    },
+    {
+     "id": "s8",
+     "role": "ending",
+     "narration": "So embarrassing memories come back because your brain tagged them as important. Stay curious!",
+     "visual": {
+      "layout": "outro",
+      "action": "wave",
+      "expression": "happy",
+      "background": "emotion_waves"
+     }
+    }
+   ]
+  }
+ ]
+}

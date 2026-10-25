@@ -1,0 +1,123 @@
+{
+ "topic": "Why can't you tickle yourself?",
+ "niche": "psychology",
+ "format": "short",
+ "source": "curated",
+ "title": "Why can't you tickle yourself?",
+ "hook": "Try it right now: tickle your own ribs. Nothing, right? But when someone else does it, you can't stop laughing. Why can't you tickle yourself?",
+ "cta": "Follow for more!",
+ "notes": [
+  "Claims follow the research pack: Wikipedia 'Tickling' (Self-tickling section: surprise, Blakemore and colleagues 1998, joystick-controlled tickling robot, cerebellum informs the somatosensory cortex, an unknown cortical mechanism decreases the sensation) and Wikipedia 'Efference copy' (efference copy of motor commands; a delay between the self-produced command and the robot's touch increases perceived tickliness; matching predicted and actual feedback is attenuated).",
+  "The only number is 1998, stated in the Tickling article."
+ ],
+ "sections": [
+  {
+   "title": "The tickle test",
+   "beats": [
+    {
+     "id": "s1",
+     "role": "hook",
+     "narration": "Try it right now: tickle your own ribs. Nothing, right? But when someone else does it, you can't stop laughing. Why can't you tickle yourself?",
+     "visual": {
+      "layout": "hook_title",
+      "title": "Why can't you tickle yourself?",
+      "assets": ["emotion_happy"],
+      "action": "surprised",
+      "expression": "laughing",
+      "background": "mind_maze"
+     }
+    },
+    {
+     "id": "s2",
+     "role": "curiosity_gap",
+     "narration": "Same hand movement, same skin. The difference isn't in your skin at all. It's a prediction your brain makes before you even move.",
+     "visual": {
+      "layout": "comparison",
+      "assets": ["emotion_happy", "brain"],
+      "labels": ["Someone else: laughter", "You: nothing"],
+      "background": "emotion_waves"
+     }
+    }
+   ]
+  },
+  {
+   "title": "The brain's copy",
+   "beats": [
+    {
+     "id": "s3",
+     "role": "explanation",
+     "narration": "Every time you move, your brain sends a command to your muscles. And it keeps a copy of that command, called an efference copy.",
+     "visual": {
+      "layout": "diagram_flow",
+      "assets": ["brain", "nervous_system", "muscle"],
+      "labels": ["Brain", "Command", "Muscles"],
+      "background": "brain_space"
+     }
+    },
+    {
+     "id": "s4",
+     "role": "discovery",
+     "narration": "Your cerebellum uses that copy to predict exactly what you'll feel, and where. When the touch arrives right on schedule, your brain turns the feeling down.",
+     "visual": {
+      "layout": "object_focus",
+      "assets": ["brain_activity"],
+      "labels": ["Cerebellum predicts", "Feeling turned down"],
+      "background": "brain_space"
+     }
+    },
+    {
+     "id": "s5",
+     "role": "surprise",
+     "narration": "Here's the twist. In 1998, scientists had people tickle themselves through a robot they steered with a joystick. They still couldn't make themselves laugh.",
+     "visual": {
+      "layout": "character_explains",
+      "assets": ["computer"],
+      "labels": ["A tickling robot"],
+      "action": "explain",
+      "expression": "surprised",
+      "background": "mind_maze"
+     }
+    },
+    {
+     "id": "s6",
+     "role": "discovery",
+     "narration": "But when the robot's touch came with a delay, the prediction stopped matching, and the touch felt far more tickly.",
+     "visual": {
+      "layout": "comparison",
+      "assets": ["computer", "emotion_surprised"],
+      "labels": ["No delay: barely tickly", "Delay: tickly!"],
+      "background": "emotion_waves"
+     }
+    }
+   ]
+  },
+  {
+   "title": "No surprise, no tickle",
+   "beats": [
+    {
+     "id": "s7",
+     "role": "insight",
+     "narration": "Tickling needs surprise. And your brain can't surprise itself, so it cancels the tickle before it lands.",
+     "visual": {
+      "layout": "thought_bubble",
+      "assets": ["brain", "emotion_surprised", "question_mark"],
+      "action": "think",
+      "expression": "thinking",
+      "background": "dreamscape"
+     }
+    },
+    {
+     "id": "s8",
+     "role": "ending",
+     "narration": "So why can't you tickle yourself? Because your brain always sees it coming. Stay curious!",
+     "visual": {
+      "layout": "outro",
+      "action": "wave",
+      "expression": "happy",
+      "background": "emotion_waves"
+     }
+    }
+   ]
+  }
+ ]
+}
