@@ -34,7 +34,8 @@ STOPWORDS = set("""a an the do does did why how what when where who which is are
 your our us i me my it its this that these those of in on at to for from by with about into over under can
 could should would will just really actually ever happen happens happening there their they them and or
 but if so as than then too very much many most more some any all every each make makes made get gets
-work works working everything anything something thing things kind happen""".split())
+work works working everything anything something thing things kind happen
+yourself yourselves myself ourselves themselves himself herself itself oneself""".split())
 # Hype words in a title ("the weirdest substance") say nothing about the subject; as concepts they pull in folklore
 STOPWORDS |= set("""weird weirder weirdest strange stranger strangest amazing amazingly crazy craziest bizarre
 incredible mysterious secret secrets surprising shocking unbelievable fascinating cool coolest wild""".split())
@@ -44,8 +45,13 @@ OFF_TOPIC_DESC = re.compile(
     r"\b(album|song|single|soundtrack|film|movie|band|studio|company|corporation|television|tv series|series|"
     r"sitcom|novel|book|video game|football|soccer|club|team|character|manga|anime|magazine|newspaper|"
     r"record label|musician|singer|rapper|actor|actress|episode|musical|play by|brand|colou?r|crayon|"
-    r"disambiguation|surname|given name|politician|footballer|businessperson|preschool)\b", re.I)
+    r"disambiguation|surname|given name|politician|footballer|businessperson|preschool|"
+    r"(web|video|news|educational) ?site|website)\b", re.I)
 # Index pages collect loosely related entries ("List of discredited substances"); they explain nothing
+# Places named after a word ("Gull Tickle": a strait in Newfoundland) say nothing about the concept
+PLACE_DESC = re.compile(
+    r"\b(strait|inlet|bay|cove|harbou?r|village|hamlet|town|city|river|lake|island|mountain|municipality|"
+    r"county|province|neighbou?rhood|community|settlement|census-designated place) in\b", re.I)
 INDEX_TITLE = re.compile(r"^(lists? of|glossary of|index of|outline of|timeline of)\b", re.I)
 # Consumer-health and biomedical indexes only answer body and mind topics; for physics or chemistry they drift
 # to whatever disease page mentions a keyword ("water" -> "Lead Poisoning")
@@ -66,6 +72,27 @@ PHRASE_CONCEPTS = {
                    r"\b(sense|perception) of time\b|\btime perception\b"),
         re.compile(r"\b(time perception|perception of time|sense of time|subjective time|perceived time|"
                    r"perceived duration|time (is perceived|seems to (pass|speed|go)|passes by))")),
+    # "walk into a room and forget why": as words, "walk" and "room" match hotel pages ("walk-in closet")
+    "doorway effect": (
+        re.compile(r"\b(walk|walks|walked|walking|go|goes|going|step|steps|stepping)\b.{0,30}"
+                   r"\b(room|doorway|door)\b.{0,40}\bforget\w*|\bdoorway effect\b"),
+        re.compile(r"\b(doorway effect|walk(s|ed|ing)? through (a )?doorways?|event boundar(y|ies)|"
+                   r"event segmentation|event models?|working memory|prospective memory)\b")),
+    # "check your phone": as words, "check" and "phone" match fitness tips and the "Brain" computer virus
+    "smartphone use": (
+        re.compile(r"\b(check|checks|checking|look at|looking at|use|using|scroll|scrolling|pick up|picking up)\b"
+                   r".{0,15}\b(smart)?phones?\b|\b(smart)?phone (use|usage|addiction|checking|overuse)\b|"
+                   r"\bscreen time\b"),
+        re.compile(r"\b(smartphones?|mobile phones?|cell ?phones?|screen time|nomophobia|digital media use|"
+                   r"phone (use|usage|checking|overuse))\b")),
+    # "memories come back years later": as words, "come", "back" and "years" match any memory or ageing page
+    "involuntary memory": (
+        re.compile(r"\bmemor(y|ies)\b.{0,20}\b(come|comes|coming|came|pop|pops|popping|flood|floods) (back|up)\b|"
+                   r"\bmemor(y|ies)\b.{0,20}\b(resurfac\w*|return\w*|haunt\w*)|\bout of nowhere\b|"
+                   r"\binvoluntary memor(y|ies)\b"),
+        re.compile(r"\b(involuntary (autobiographical )?memor(y|ies)|intrusive (memor(y|ies)|thoughts?)|"
+                   r"spontaneous(ly)? (recall|retriev\w*|memor(y|ies))|unbidden|flashbacks?|"
+                   r"autobiographical memor(y|ies)|emotional memor(y|ies)|memory for emotional)")),
 }
 
 
@@ -81,7 +108,8 @@ def _concept_words(topic: str) -> List[List[str]]:
     for w in re.findall(r"[A-Za-z][A-Za-z0-9\-']*", low):
         if w in ACRONYMS:
             groups.append(ACRONYMS[w].split())
-        elif w not in STOPWORDS and len(w) >= 3:
+        # contractions ("can't", "don't") are grammar, not concepts
+        elif w not in STOPWORDS and len(w) >= 3 and not re.search(r"(n't|'re|'ve|'ll|'d|'m)$", w):
             groups.append([w])
     return groups
 
@@ -107,17 +135,23 @@ RELATED = {
     "habit": ["habit formation", "behavior"], "habits": ["habit formation", "behavior"],
     "emotion": ["emotion", "brain"], "emotions": ["emotion", "brain"], "yawn": ["yawning"],
     "hiccup": ["hiccups"], "hiccups": ["hiccups"], "goosebumps": ["goose bumps"],
+    "tickl": ["tickling", "efference copy"],
+    "embarrass": ["embarrassment", "emotion and memory", "spotlight effect"],
     "artificial": ["large language model", "artificial neural network", "artificial intelligence"],
     "machine": ["machine learning", "artificial neural network"], "neural": ["artificial neural network"],
     "chatbot": ["chatbot", "large language model"], "robot": ["robotics"],
     "think": ["thought", "reasoning"], "thought": ["thought", "reasoning"],
+    "doorway": ["event perception", "working memory", "prospective memory"],
+    "smartphone": ["problematic smartphone use", "digital media use and mental health", "nomophobia"],
     "song": ["earworm", "music psychology"], "earworm": ["earworm"], "music": ["music psychology"],
 }
 
 
 def related_terms(topic: str) -> List[str]:
     out: List[str] = [c for c, (asked, _) in PHRASE_CONCEPTS.items() if asked.search(topic.lower())]
-    for k in keywords(topic):
+    # a phrase concept is its own expansion: "involuntary memory" must not also expand "memory" into "brain"
+    words = [w for g in _concept_words(topic) if " ".join(g) not in PHRASE_CONCEPTS for w in g]
+    for k in words:
         for key, vals in RELATED.items():
             if k.startswith(key):
                 out += [v for v in vals if v not in out]
@@ -224,7 +258,9 @@ class Researcher:
         rejected: List[str] = []
         concept_pages: List[str] = []   # top page per concept expansion, fetched even when the slots are full
         direct: set = set()               # hits of the question/keyword searches, which may refill rejected slots
-        expansions = related_terms(topic)[:2]
+        # a phrase concept takes the first expansion slot; keep two for the topic's other concepts
+        phrase = any(asked.search(topic.lower()) for asked, _ in PHRASE_CONCEPTS.values())
+        expansions = related_terms(topic)[:3 if phrase else 2]
         queries = [topic.rstrip("?"), " ".join(keywords(topic))] + expansions
         for q in dict.fromkeys(queries):
             hits = self._get_json(api, {"action": "query", "list": "search", "srsearch": q, "srlimit": 4,
@@ -239,7 +275,7 @@ class Researcher:
             desc = {pg.get("title"): pg.get("description", "") for pg in pages.values()}
             for name in names:
                 d = desc.get(name, "")
-                if OFF_TOPIC_DESC.search(d) or INDEX_TITLE.search(name) or "disambiguation" in name.lower() \
+                if OFF_TOPIC_DESC.search(d) or PLACE_DESC.search(d) or INDEX_TITLE.search(name) or "disambiguation" in name.lower() \
                         or "same term" in d.lower():
                     rejected.append(f"{name} ({d})")
                     continue

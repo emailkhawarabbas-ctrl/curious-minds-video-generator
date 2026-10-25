@@ -138,6 +138,16 @@ CONCEPTS: Tuple[Concept, ...] = (
     C("night", r"\bnight|\b(2|3) ?a\.?m\.?|midnight|late", ("moon_sleepy", "clock"), None, "psychology"),
     C("time", r"\bminutes?\b|\bhours?\b|\bclock\b", ("clock", "alarm_clock"), None, "any"),
     C("phone", r"\bphones?\b|scroll|notification|screen", ("phone",), None, "any"),
+    C("tickle", r"\btickl|giggl|\blaugh", ("emotion_happy", "emotion_surprised"), None, "psychology"),
+    C("prediction", r"predict|forecast|efference|corollary discharge|forward model", ("brain_activity", "brain"),
+      None, "psychology"),
+    C("reflex", r"reflex|twitch|\bitch(y|es)?\b", ("nervous_system", "muscle"), None, "any"),
+    C("robot", r"\brobot|joystick|tickle machine", ("computer",), None, "any"),
+    C("philosophers", r"philosoph|aristotle|socrates|descartes", ("book", "books_stack"), None, "any"),
+    C("survey", r"\bsurvey|\bpercent\b|respondents", ("chart_bars",), None, "any"),
+    C("embarrassment", r"embarrass|cringe|awkward|blush", ("worried_face", "emotion_surprised"), None, "psychology"),
+    C("involuntary_memory", r"pops? up|involuntary memor|flood(s|ing)? back|out of nowhere", (
+        "memory_photos", "thought_cloud"), None, "psychology"),
     C("question", r"\bwhy\b|\bhow come\b|mystery|\bpuzzle", ("question_mark",), None, "any"),
 )
 

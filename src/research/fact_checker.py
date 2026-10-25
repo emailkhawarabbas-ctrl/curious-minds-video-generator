@@ -36,6 +36,9 @@ MEDICAL_ADVICE = re.compile(r"\b(you should (take|stop|start)|take \d+ ?mg|dosag
 HEALTH_INSTRUCTION = re.compile(r"\b(seek (medical |professional |emergency )?(help|care|attention|treatment)|"
                                 r"(see|call|talk to|talk with|consult|ask) (a|your) (doctor|health ?care provider)|"
                                 r"stop (exercising|taking)|call 911)\b", re.I)
+# Sexual, abusive or violent material is not family-friendly explainer content ("tickle torture", "paraphilia")
+MATURE = re.compile(r"\b(sex\w*|erotic\w*|fetish\w*|paraphili\w*|porn\w*|tortur\w*|abus\w*|rap(e|ed|ist)|"
+                    r"suicid\w*|domination|victims?)\b", re.I)
 SENT_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z])")
 
 
@@ -69,9 +72,13 @@ def extract_facts(topic: str, sources: List[Source], texts: Dict[str, str],
                 continue
             if re.search(r"(==|\bsee also\b|\bisbn\b|\bdoi\b|http)", low):
                 continue
+            # reference-list entries: 'Robson, David (9 January 2015). "Why ..."' or 'Carlsson K, Petrovic P, ...'
+            if re.search(r"\((\d{1,2} )?([A-Z][a-z]+ )?\d{4}[a-z]?\)\.\s*[\"“]", sent) or \
+                    re.match(r"^[A-Z][\w'\-]+ [A-Z]{1,3}, [A-Z][\w'\-]+ [A-Z]{1,3}\b", sent):
+                continue
             if MEDICAL_ADVICE.search(sent):   # a script quoting it would fail the fact-check
                 continue
-            if HEALTH_INSTRUCTION.search(sent):
+            if HEALTH_INSTRUCTION.search(sent) or MATURE.search(sent):
                 continue
             if re.match(r"^(here,? we|in this (review|study|paper|article)|this (review|study|paper)|we (review|discuss|summari[sz]e)|finally,? we)", low):
                 continue
