@@ -402,7 +402,7 @@ class HandText(PenDrawing):
     width: float = field(default=0.0, init=False)
 
     def __post_init__(self) -> None:
-        surf = cairo.ImageSurface(cairo.FORMAT_A8, 4, 4)
+        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 16, 16)   # same surface kind as the frames
         c = cairo.Context(surf)
         c.select_font_face(self.font)
         c.set_font_size(self.size)
@@ -436,15 +436,25 @@ class HandText(PenDrawing):
         c.text_path(ch)
         self.glyphs.append(c.copy_path())
         g = len(self.glyphs) - 1
+        # flatten the curves ourselves: copy_path() behaves the same on every Cairo backend
+        # (copy_path_flat() gave no letter contours on the Linux CI runner)
         out: List[PenStroke] = []
         cur: List[Point] = []
-        for kind, pts in c.copy_path_flat():
+        for kind, pts in self.glyphs[g]:
+            pts = tuple(pts)
             if kind == cairo.PATH_MOVE_TO:
                 if len(cur) > 1:
                     out.append(PenStroke(pts=cur, color=self.color, width=lw, group=g))
-                cur = [pts]
+                cur = [(pts[0], pts[1])]
             elif kind == cairo.PATH_LINE_TO:
-                cur.append(pts)
+                cur.append((pts[0], pts[1]))
+            elif kind == cairo.PATH_CURVE_TO and cur:
+                (x0, y0), (x1, y1, x2, y2, x3, y3) = cur[-1], pts
+                for k in range(1, 9):
+                    u = k / 8
+                    m = 1 - u
+                    cur.append((m ** 3 * x0 + 3 * m * m * u * x1 + 3 * m * u * u * x2 + u ** 3 * x3,
+                                m ** 3 * y0 + 3 * m * m * u * y1 + 3 * m * u * u * y2 + u ** 3 * y3))
             elif kind == cairo.PATH_CLOSE_PATH and cur:
                 cur.append(cur[0])
         if len(cur) > 1:
