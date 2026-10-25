@@ -58,3 +58,45 @@ captions:
 
 host:
   scale: 1.0                # host size multiplier on top of the layout's size
+
+# ---------------------------------------------------------------------------------------
+# Whiteboard explainer look (script mode's default: render-script --style whiteboard).
+# Palette, fonts, captions, transitions and beats above are shared; these override the rest.
+whiteboard:
+  camera:                   # calm: tune here (any key you leave out keeps the calm default)
+    zoom: 0.04              # slow zoom over a whole scene (0.04 = 4 %; keep 0.03-0.05)
+    pan: 0.0                # no constant panning (a script's camera: pan_left still moves this much)
+    base_zoom: 1.02
+    punch: 0.06             # punch-in on the scene's keyword (6 %)
+    max_punches: 1          # at most one key word per scene
+    punch_overshoot: false  # smooth ease, no springy bounce
+    punch_in_s: 0.45
+    punch_hold_s: 0.7
+    punch_out_s: 0.8
+    shake_px: 8             # only when a scene sets shake: true
+    shake_s: 0.4
+    sway_deg: 0.0           # no hand-held rotation
+    float_px: 0.0           # no hand-held float
+  drawing:
+    scene_fraction: 0.6     # the main drawing (lines + colour) takes ~60 % of the scene
+    min_s: 1.4              # ...but never less than this
+    max_s: 7.0
+    fill_s: 0.55            # colour fades in after the last line
+    lift_s: 0.07            # pen lift between strokes
+    outline_fills: true     # trace an ink outline around fill-only shapes so they are drawn too
+    boil_amount: 0.8        # gentle line wobble once drawn (viewBox units, 0 = off)
+    boil_fps: 6
+    text_size: 92           # handwritten keywords (px at 1080 short side)
+    text_s_per_char: 0.09   # handwriting speed
+    text_font: "Patrick Hand"
+    underline: true         # red marker underline under handwritten words
+  hand:
+    show: true
+    size: 0.42              # hand height as a fraction of the frame's short side
+    lift_px: 16             # how far the pen lifts between strokes
+    travel_s: 0.4           # move in / out of the frame
+    rest_after_s: 1.0       # leaves the frame when it has nothing to draw for longer than this
+    shadow: 0.14
+  host:
+    draw_labels: true       # a host whose action is "draw" writes the keyword itself
+    count_step_s: 0.55      # counting on fingers: time per finger

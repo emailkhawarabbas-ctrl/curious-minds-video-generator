@@ -36,7 +36,11 @@
       "fist": "hand_fist.svg",
       "point": "hand_point.svg",
       "thumbs_up": "hand_thumbs_up.svg",
-      "hold": "hand_hold.svg"
+      "hold": "hand_hold.svg",
+      "marker": "hand_marker.svg",
+      "one": "hand_one.svg",
+      "two": "hand_two.svg",
+      "three": "hand_three.svg"
     }
   },
   "rig": {

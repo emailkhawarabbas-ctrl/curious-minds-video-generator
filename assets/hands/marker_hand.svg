@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" data-title="Drawing hand with marker" data-tags="hand,marker,whiteboard" data-license="Original Curious Minds artwork (owned, CC0 for project use)">
+  <!-- Drawn in a local frame: the marker lies along +x with its nib at (0,0); the group puts the nib
+       near the top-left corner and the arm leaves towards the bottom-right. anchor-tip = the nib. -->
+  <g transform="translate(26 22) rotate(45)">
+    <!-- sleeve (the renderer extends it off-screen along the same direction) -->
+    <path d="M236 -2 L560 -8 L560 92 L230 80 Z" fill="#2EC4B6" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M232 -2 L262 -3 L258 82 L228 80 Z" fill="#1A9E92" stroke="#2B2D42" stroke-width="6" stroke-linejoin="round"/>
+    <!-- marker -->
+    <path d="M2 0 L26 -9 L26 9 Z" fill="#2B2D42" stroke="#2B2D42" stroke-width="4" stroke-linejoin="round"/>
+    <rect x="24" y="-12" width="20" height="24" rx="4" fill="#4A4E69" stroke="#2B2D42" stroke-width="5"/>
+    <rect x="42" y="-17" width="196" height="34" rx="10" fill="#FF5D73" stroke="#2B2D42" stroke-width="6"/>
+    <rect x="70" y="-17" width="40" height="34" fill="#FFFFFF" stroke="#2B2D42" stroke-width="5"/>
+    <!-- palm under the marker -->
+    <path d="M118 20 C126 62 190 86 236 70 C262 60 268 22 248 2 C224 -18 168 -12 140 4 C126 10 118 14 118 20 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7" stroke-linejoin="round"/>
+    <!-- curled fingers over the marker -->
+    <path d="M150 -10 C140 -40 172 -48 180 -24 C182 -14 178 -2 170 2" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M176 -12 C170 -44 204 -50 210 -24 C212 -14 206 -2 198 2" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M204 -8 C202 -36 234 -38 236 -14 C236 -4 230 4 222 6" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- thumb pressing the marker from below -->
+    <path d="M124 24 C104 26 92 14 100 4 C108 -4 130 2 146 10" fill="#F8C9A0" stroke="#2B2D42" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M168 44 C186 54 206 54 222 46" fill="none" stroke="#E9A97F" stroke-width="5" stroke-linecap="round"/>
+    <circle id="anchor-tip" cx="2" cy="0" r="2"/>
+    <circle id="anchor-wrist" cx="560" cy="42" r="2"/>
+  </g>
+</svg>

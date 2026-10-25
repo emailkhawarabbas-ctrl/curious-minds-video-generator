@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-45 -10 90 120" data-title="Milo hand holding a marker" data-tags="milo,hand,marker">
+  <rect x="-8" y="10" width="16" height="74" rx="5" fill="#FF5D73" stroke="#2B2D42" stroke-width="5"/>
+  <rect x="-6" y="82" width="12" height="11" rx="2" fill="#4A4E69" stroke="#2B2D42" stroke-width="4"/>
+  <path d="M-5 92 L0 106 L5 92 Z" fill="#2B2D42" stroke="#2B2D42" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M-22 4 C-32 16 -32 46 -18 54 C-6 62 14 60 22 50 C32 38 30 14 20 4 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M-16 38 C-8 44 8 44 16 38" fill="none" stroke="#E9A97F" stroke-width="4"/>
+  <path d="M20 16 C30 18 32 30 24 34" fill="#F8C9A0" stroke="#2B2D42" stroke-width="5"/>
+  <circle id="anchor-center" cx="0" cy="30" r="2"/>
+  <circle id="anchor-top" cx="0" cy="0" r="2"/>
+  <circle id="anchor-tip" cx="0" cy="106" r="2"/>
+</svg>

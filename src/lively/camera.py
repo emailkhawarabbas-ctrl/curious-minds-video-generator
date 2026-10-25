@@ -39,6 +39,9 @@ class LivelyCamera:
     seed: int = 0
     intensity: float = 1.0
 
+    def __post_init__(self) -> None:
+        self.punches = sorted(self.punches)[:self.cfg.max_punches]
+
     @property
     def u(self) -> float:
         return min(self.W, self.H) / 1080
@@ -50,7 +53,8 @@ class LivelyCamera:
             a = t - tp
             if a < 0 or a > c.punch_in_s + c.punch_hold_s + c.punch_out_s:
                 continue
-            rise = ease_out_back(clamp(a / c.punch_in_s), 1.4)
+            x = clamp(a / c.punch_in_s)
+            rise = ease_out_back(x, 1.4) if c.punch_overshoot else ease_in_out_sine(x)
             fall = 1 - ease_in_out_sine(clamp((a - c.punch_in_s - c.punch_hold_s) / c.punch_out_s))
             best = max(best, rise * fall)
         return best
@@ -67,18 +71,19 @@ class LivelyCamera:
         elif m == "zoom_out":
             s += c.zoom * k * (1 - p)
         elif m in ("pan_left", "pan_right"):
-            s += 0.05
+            s += min(0.05, c.zoom)
             dx = c.pan * k * W * (0.5 - p) * (1 if m == "pan_left" else -1)
         elif m in ("pan_up", "pan_down"):
-            s += 0.05
+            s += min(0.05, c.zoom)
             dy = c.pan * k * H * 0.6 * (0.5 - p) * (1 if m == "pan_up" else -1)
         elif m == "drift":
-            s += 0.04 * k * (0.5 + 0.5 * math.sin(t * 0.7 + self.seed))
-            dx = 0.022 * k * W * math.sin(t * 0.5 + self.seed)
-            dy = 0.014 * k * H * math.sin(t * 0.41 + 1 + self.seed)
+            g = min(1.0, c.zoom / 0.16)             # drift scales with the configured zoom strength
+            s += 0.04 * k * g * (0.5 + 0.5 * math.sin(t * 0.7 + self.seed))
+            dx = 0.022 * k * g * W * math.sin(t * 0.5 + self.seed)
+            dy = 0.014 * k * g * H * math.sin(t * 0.41 + 1 + self.seed)
         # hand-held float on every move (never fully still)
-        dx += 6 * self.u * math.sin(t * 0.83 + self.seed * 1.3)
-        dy += 5 * self.u * math.sin(t * 0.67 + self.seed * 0.7)
+        dx += c.float_px * self.u * math.sin(t * 0.83 + self.seed * 1.3)
+        dy += c.float_px * 5 / 6 * self.u * math.sin(t * 0.67 + self.seed * 0.7)
         rot = math.radians(c.sway_deg) * math.sin(t * 0.45 + self.seed)
         s += c.punch * k * self.punch_env(t)
         for ts in self.shakes:

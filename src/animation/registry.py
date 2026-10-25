@@ -30,10 +30,12 @@ LAYOUTS = {
                          "(relatable moments, reactions, direct questions). Use sparingly.",
     "spotlight": "Lively style: one big visual fills the frame, the host is large and changes position/pose, "
                  "a headline sticker and secondary visuals keep the frame changing (script mode).",
+    "whiteboard": "Whiteboard explainer: a visible hand draws the visual stroke by stroke and writes the keywords; "
+                  "the host reacts, thinks, counts, holds things up or draws labels itself (script mode).",
 }
 
 # Layouts / backgrounds only the lively style uses (kept out of LLM storyboard prompts)
-LIVELY_ONLY = ("spotlight", "doodle_paper")
+LIVELY_ONLY = ("spotlight", "whiteboard", "doodle_paper")
 
 # Animated explanatory diagrams for the "demonstration" layout (implemented in src/animation/demos.py)
 from src.animation.demos import DEMO_KINDS as DEMOS  # noqa: E402
@@ -141,4 +143,5 @@ SFX = {
     "snore": "Gentle cartoon snore",
     "heartbeat": "Two soft heartbeats",
     "success": "Happy rising arpeggio",
+    "scribble": "Marker drawing on a whiteboard",
 }

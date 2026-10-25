@@ -3,7 +3,7 @@
 Examples:
   python -m src.main generate --topic "Why Do We Dream?" --niche psychology
   python -m src.main generate --topic "Why Do We Hiccup?" --niche human_body --no-long
-  python -m src.main render-script --script scripts/sample_24_hours_awake.yaml [--style classic]
+  python -m src.main render-script --script scripts/sample_24_hours_awake.yaml [--style lively|classic]
   python -m src.main research --topic "How Do Magnets Work?"
   python -m src.main qc --video generated/why_do_we_dream/curious_minds_shorts_9x16.mp4 --profile vertical
   python -m src.main voice preview --extra am_puck am_fenrir
@@ -167,8 +167,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     rs = sub.add_parser("render-script", help="render a video from your own script file (YAML/JSON)")
     rs.add_argument("--script", required=True, help="path to the script, e.g. scripts/sample_24_hours_awake.yaml")
-    rs.add_argument("--style", choices=["lively", "classic"], default="lively",
-                    help="lively = new animated look (default); classic = the original look")
+    rs.add_argument("--style", choices=["whiteboard", "lively", "classic"], default="whiteboard",
+                    help="whiteboard = hand-drawn explainer (default); lively = bouncy animated look; "
+                         "classic = the original look")
     rs.add_argument("--voice", default=None, help="voice profile or Kokoro voice (overrides the script's)")
     rs.add_argument("--subtitles", type=_bool, default=None, help="burn in captions (default: the script's setting)")
     rs.add_argument("--out", default=None, help="output root (default: generated/)")

@@ -22,7 +22,8 @@ is optional and used for writing scripts/metadata for new topics.
 There are two ways to make a video:
 
 * **Your own script** (script mode): you write the text scene by scene, the tool animates it
-  in the new **lively** look. See the next section.
+  as a **whiteboard explainer**: a hand draws everything line by line and the host reacts.
+  See the next section.
 * **A topic** (topic mode): the tool researches and writes the script itself (§1–§3).
 
 ---
@@ -41,12 +42,10 @@ loop_to_start: true    # the last frame flows back into the first, so the Short 
 scenes:
   - text: "Stay awake for *24 hours*, and your brain starts acting *drunk*."
     visual: brain.svg
-    animation: draw_on
-    camera: zoom_in
     sfx: whoosh
-  - text: "Then come microsleeps: blackouts of a few seconds you don't even notice."
+  - text: "Then come *microsleeps*: blackouts of a few seconds you don't even notice."
     visual: eye.svg
-    animation: pop_in
+    visuals: [zzz.svg]
 ```
 
 Only `text` is required in each scene. Anything you leave out is chosen for you, and the
@@ -54,7 +53,8 @@ choices change from scene to scene so the video never looks the same twice in a 
 
 **Tips**
 
-* Wrap a word in `*asterisks*` to get a quick camera punch-in on it. The asterisks are not spoken.
+* Wrap a word in `*asterisks*` to make it the scene's keyword: it is handwritten on the board and
+  gets one gentle camera punch-in. The asterisks are not spoken.
 * Keep each scene to one or two short sentences (max 45 words for a Short).
 * About 2.8 words = 1 second of narration. 80–90 words make a ~30 s Short.
 * For a good loop, write the last line so it leads back into the first line.
@@ -82,16 +82,24 @@ Each scene:
 |---|---|---|
 | `text` | the narration (required) | — |
 | `visual` | an SVG from `assets/` (`brain.svg` or `brain`) | best match for the text |
-| `visuals` | up to 3 extra SVGs that pop in during the scene | none |
-| `animation` | how the main visual appears: `draw_on` (lines draw themselves, then colour fills in), `pop_in` (grows 0 → 110 % → 100 %), `bounce`, `slide_in`, `spin_in`, `fade_in` | changes per scene |
-| `camera` | slow move for the whole scene: `zoom_in`, `zoom_out`, `pan_left`, `pan_right`, `pan_up`, `pan_down`, `drift`, `static` | changes per scene |
+| `visuals` | up to 3 extra SVGs, drawn small during the scene (or held up by the host) | none |
+| `animation` | how the main visual appears: `draw_on` (the hand draws it line by line, then colour fills in), `pop_in` (grows 0 → 110 % → 100 %), `bounce`, `slide_in`, `spin_in`, `fade_in` | whiteboard: `draw_on` |
+| `camera` | slow move for the whole scene: `zoom_in`, `zoom_out`, `pan_left`, `pan_right`, `pan_up`, `pan_down`, `drift`, `static` | whiteboard: `zoom_in` / `zoom_out` in turn (3–5 %) |
 | `shake` | `true` = small camera shake for a dramatic line | `false` |
-| `sfx` | one or a list: `pop`, `whoosh`, `ding`, `sparkle`, `boing`, `click`, `chime`, `tick`, `bubble`, `magic`, `snore`, `heartbeat`, `success` | none (pops and whooshes are added automatically) |
-| `headline` | big text sticker, max 48 characters | the title on scene 1 |
+| `sfx` | one or a list: `pop`, `whoosh`, `ding`, `sparkle`, `boing`, `click`, `chime`, `tick`, `bubble`, `magic`, `snore`, `heartbeat`, `success`, `scribble` | none (marker scribbles and whooshes are added automatically) |
+| `headline` | text handwritten across the top, max 48 characters | the title on scene 1 |
 | `host` | where the host stands: `left`, `right`, `center` (big, waist-up), `corner_left`, `corner_right`, `none` | changes per scene |
-| `pose` | `explain`, `point`, `think`, `surprised`, `excited`, `happy`, `sad`, `shrug`, `present`, `thumbs_up`, `celebrate`, `yawn`, `wave`, `talk`, `sleep` | from the text (`?` → think, `!` → excited) |
-| `expression` | `happy`, `excited`, `surprised`, `curious`, `thinking`, `worried`, `confused`, `sleepy`, `scared`, `sad`, `laughing`, … | from the text |
+| `pose` | the host's action: `draw` (writes the keyword with a marker), `count` (counts on fingers), `hold_up` (holds up the first extra visual), `think`, `surprised`, `shrug`, `explain`, `point`, `present`, `excited`, `happy`, `sad`, `thumbs_up`, `celebrate`, `yawn`, `wave`, `talk`, `sleep` | from the text, see below |
+| `expression` | `happy`, `excited`, `surprised`, `curious`, `thinking`, `worried`, `confused`, `determined`, `sleepy`, `scared`, `sad`, `laughing`, … | from the action |
+| `host_enter` | `walk` (walks into the frame), `pop`, `none` | `walk` on scene 1 |
+| `host_exit` | `walk` (walks out at the end of the scene), `none` | `none` |
 | `transition` | into the next scene: `whip_left`, `whip_right`, `whip_up`, `zoom_through`, `ink_swipe`, `cut` | changes per scene |
+
+How the host's action is picked when you leave `pose` out (never the same action twice in a row):
+a question → `think`; "nobody knows", "maybe" → `shrug`; a small number ("one", "two", "3",
+"twice") → `count`; a shocking fact ("!", "actually", "even", "huge", …) → `surprised`; a process
+("because", "then", "makes", "leads to", …) → `draw`; a scene with extra `visuals` → `hold_up`;
+otherwise `explain` / `point` / `present`.
 
 All SVG names: `python -m src.main assets list`. To use a new SVG, put it in
 `assets/<category>/` (following [`docs/BRAND_GUIDE.md`](docs/BRAND_GUIDE.md)) and run
@@ -109,23 +117,54 @@ Script problems in scripts/my_video.yaml:
 ### 3. Run it on your computer
 
 ```bash
-python -m src.main render-script --script scripts/my_video.yaml
-python -m src.main render-script --script scripts/my_video.yaml --style classic   # the old look
+python -m src.main render-script --script scripts/my_video.yaml                    # whiteboard look
+python -m src.main render-script --script scripts/my_video.yaml --style lively     # bouncy lively look
+python -m src.main render-script --script scripts/my_video.yaml --style classic    # the original look
 ```
 
-On Windows run `set PYTHONUTF8=1` (cmd) or `export PYTHONUTF8=1` (Git Bash) first.
+On Windows run `set PYTHONUTF8=1` (cmd) or `export PYTHONUTF8=1` (Git Bash) first, and once
+`python scripts/install_fonts_windows.py`: on Windows Cairo only sees installed fonts, so without
+it captions and handwriting fall back to Arial (`--remove` undoes it; Linux/GitHub need nothing).
 The video is written to `generated/<title>/curious_minds_shorts_9x16.mp4`, with captions
-(`subtitles/*.srt`), the storyboard and `production_report.json`. The classic look goes to
-`generated/<title>_classic/`. A 30 s Short takes about 4 minutes on a 2-core laptop.
+(`subtitles/*.srt`), the storyboard and `production_report.json`. The other looks go to
+`generated/<title>_lively/` and `generated/<title>_classic/`. A 30 s Short takes 2–4 minutes.
+
+To compare two renders side by side:
+`python scripts/side_by_side.py --left <old.mp4> --right <new.mp4> --left-label OLD --right-label NEW --out compare.mp4`
 
 ### 4. Run it from GitHub
 
 1. Commit your script file to the repo (for example `scripts/my_video.yaml`) and push.
 2. Go to **Actions → Generate Curious Minds video → Run workflow**.
-3. Set **script_file** to `scripts/my_video.yaml` (leave **topic** empty). **style** `auto` uses the lively look.
+3. Set **script_file** to `scripts/my_video.yaml` (leave **topic** empty). **style** `auto` uses the
+   whiteboard look (`lively` and `classic` also work).
 4. When the run finishes, download the video from the run's **Artifacts**.
 
-### What the lively look does
+### What the whiteboard look does (default for your scripts)
+
+* **Real drawing**: a hand holding a marker traces every visual stroke by stroke (big shapes
+  first, details after), lifting the pen between strokes, then the colour fades in. The main
+  drawing takes about 60 % of the scene, timed to the narration. Fill-only parts of an SVG get an
+  outline traced around them automatically, so nothing just pops in.
+* **Handwriting**: the headline and each scene's keyword are written on the board letter by
+  letter, with a red marker underline.
+* **A host that explains**: while the hand draws, the host watches; then it acts: thinks,
+  counts on its fingers, reacts in surprise, shrugs, holds up an object, presents, or takes the
+  marker and writes the keyword itself. It walks in on scene 1, changes place and action every
+  scene, lip-syncs to the voice and blinks. The host stands in front of the board.
+* **Calm camera**: a slow 3–5 % zoom per scene, no constant panning, at most one small smooth
+  punch-in (6 %) on the keyword, no shake unless you ask for it.
+* **Never static**: when nothing new is drawn for ~1.8 s, the pen adds a quick circle, arrow,
+  underline or emphasis lines.
+* Captions, transitions, hook, loop, paper background and music are as in the lively look below.
+
+All whiteboard values (camera, drawing speed, hand size, handwriting) are in the `whiteboard:`
+section of [`config/style.yaml`](config/style.yaml).
+
+`python scripts/audit_assets.py` checks every SVG for stroke-by-stroke drawing and writes
+[`docs/ASSET_AUDIT.md`](docs/ASSET_AUDIT.md).
+
+### What the lively look does (`--style lively`)
 
 * **Draw-on and pop-in**: lines draw themselves, then colour fades in. Pop-ins grow to 110 % and
   settle at 100 %. All motion is eased; nothing moves linearly.

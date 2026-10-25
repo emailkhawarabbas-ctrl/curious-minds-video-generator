@@ -31,6 +31,9 @@ DEMO = {
     "character_closeup": dict(objects=[{"asset": "pulse_monitor"}], character={"position": "closeup"}),
     "spotlight": dict(objects=[{"asset": "brain"}], lively={"animation": "draw_on", "headline": "Wow",
                                                             "visuals": ["clock"]}),
+    "whiteboard": dict(objects=[{"asset": "brain"}], lively={"animation": "draw_on", "headline": "Wow",
+                                                             "visuals": ["clock"], "emphasis": ["narration"]},
+                       character={"action": "draw"}),
 }
 
 

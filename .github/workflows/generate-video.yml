@@ -18,10 +18,10 @@ on:
         default: ""
         type: string
       style:
-        description: "Look: auto = lively for script files, classic for topics"
+        description: "Look: auto = whiteboard for script files, classic for topics"
         type: choice
         default: auto
-        options: [auto, lively, classic]
+        options: [auto, whiteboard, lively, classic]
       niche:
         description: "Content pillar"
         required: true
@@ -175,7 +175,7 @@ jobs:
               echo "exit_code=1" >> "$GITHUB_OUTPUT"
               exit 0
             fi
-            export STYLE_FLAG=$([ "$STYLE" = "classic" ] && echo classic || echo lively)
+            case "$STYLE" in classic|lively) STYLE_FLAG="$STYLE" ;; *) STYLE_FLAG=whiteboard ;; esac
             python -m src.main render-script --script "$SCRIPT_FILE" --style "$STYLE_FLAG" --subtitles "$SUBTITLES"
             status=$?
             outdir=$(python scripts/script_output_dir.py "$SCRIPT_FILE" "$STYLE_FLAG" || echo script)
@@ -183,7 +183,7 @@ jobs:
             echo "exit_code=$status" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          STYLE_FLAG=$([ "$STYLE" = "lively" ] && echo lively || echo classic)
+          STYLE_FLAG=$([ "$STYLE" = "classic" ] || [ "$STYLE" = "auto" ] && echo classic || echo lively)
           SHORT_FLAG=$([ "$GEN_SHORT" = "true" ] && echo true || echo false)
           LONG_FLAG=$([ "$GEN_LONG" = "true" ] && echo true || echo false)
           python -m src.main generate \

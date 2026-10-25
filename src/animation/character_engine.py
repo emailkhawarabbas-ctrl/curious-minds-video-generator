@@ -19,8 +19,11 @@ from src.animation.expression_engine import FaceState, blend, blink_amount, expr
 
 ACTIONS = ("idle", "talk", "explain", "walk", "run", "point", "think", "wave", "surprised", "excited",
            "happy", "sad", "hold", "look_at", "interact", "yawn", "shrug", "present", "thumbs_up",
-           "celebrate", "sleep")
+           "celebrate", "sleep", "draw", "count", "hold_up")
 ENTRANCES = ("none", "walk", "run", "pop", "slide")
+EXITS = ("none", "walk")
+COUNT_HANDS = ("one", "two", "three", "open")
+MARKER_REACH = 77            # hand centre -> marker nib along the forearm (rig units, hand_marker.svg)
 
 GESTURES = ("explain", "present", "explain_alt", "relaxed", "point_up", "explain", "stand")
 POSE_BLEND = 0.32
@@ -34,6 +37,8 @@ class CharacterCue:
     end: float = 1e9
     target: Optional[Tuple[float, float]] = None   # world px (point / look_at / interact)
     walk_to: Optional[Tuple[float, float]] = None  # world ground point for walk/run cues
+    target_fn: Optional[Callable[[float], Optional[Tuple[float, float]]]] = None   # moving target (draw: the pen)
+    count: int = 3                                 # count: fingers to count up to (1-4)
 
     def __post_init__(self) -> None:
         if self.action not in ACTIONS:
@@ -63,12 +68,18 @@ class CharacterAnimator:
     entrance_from: str = "left"                    # left | right
     talks: bool = True
     held: Optional[Callable[[cairo.Context, Skeleton, float], None]] = None
+    prop: Optional[object] = None                  # SvgAsset shown by hold_up cues
+    exit: str = "none"                             # walk = leave the frame at the end of the scene
+    exit_to: str = "right"
+    count_step: float = 0.55
     style: CharacterStyle = field(init=False)
 
     def __post_init__(self) -> None:
         self.style = load_character(self.char_id)
         if self.entrance not in ENTRANCES:
             raise ValueError(f"unknown entrance {self.entrance!r}")
+        if self.exit not in EXITS:
+            raise ValueError(f"unknown exit {self.exit!r}")
         if not self.cues:
             self.cues = [CharacterCue()]
         self.cues.sort(key=lambda c: c.start)
@@ -156,6 +167,27 @@ class CharacterAnimator:
             return pose
         if a == "point":
             return make_pose("point_forward", torso_bob=base_bob)
+        if a == "draw":
+            tgt = cue.target_fn(t) if cue.target_fn else cue.target
+            if tgt is None:                     # marker ready, waiting for the next line
+                p = make_pose("draw_ready", torso_bob=base_bob)
+                p["arm_r_el"] += 6 * math.sin(lt * 2.4)
+                return p
+            return self._draw_pose(tgt, place, base_bob, lt)
+        if a == "count":
+            k = min(max(1, cue.count), len(COUNT_HANDS)) - 1
+            step = min(k, int(lt / self.count_step))
+            p = make_pose("count", torso_bob=base_bob, hand_r=COUNT_HANDS[step])
+            bump = math.sin(clamp((lt - step * self.count_step) / 0.25) * math.pi)
+            p["arm_r_el"] += 8 * bump
+            p["body_y"] = -3 * bump
+            return p
+        if a == "hold_up":
+            lift = ease_out_back(clamp(lt / 0.5), 1.6)
+            p = blend_poses(make_pose("relaxed"), make_pose("hold_up"), lift)
+            p["torso_bob"] = base_bob
+            p["arm_r_sh"] += 3 * math.sin(lt * 2.2)
+            return p
         if a == "think":
             p = make_pose("think", torso_bob=base_bob)
             p["head_tilt"] += 3 * math.sin(lt * 1.3)
@@ -206,6 +238,33 @@ class CharacterAnimator:
             return make_pose("relaxed", torso_bob=4 * math.sin(t * 2 * math.pi / 4.5), head_tilt=12)
         return make_pose("stand", torso_bob=base_bob)
 
+    def _draw_pose(self, tgt: Tuple[float, float], place: Placement, base_bob: float, lt: float) -> Dict:
+        """Right hand holds a marker whose nib sits on ``tgt``; the body steps/leans when it is out of reach."""
+        r = self.style.rig
+        tx, ty = place.to_rig(self.style, tgt)
+        sx, sy = r["shoulder_r"]
+        reach = r["upper_arm"] + r["forearm"] + 26
+        dx = tx - sx
+        d = math.hypot(dx, ty - sy) or 1.0
+        hand_d = max(10.0, d - MARKER_REACH)          # where the hand centre must be along shoulder->nib
+        body_x = 0.0
+        if hand_d > reach:                            # step towards the board (or back)
+            body_x = clamp((hand_d - reach) * dx / d, -120, 120)
+        pose = make_pose("stand", torso_bob=base_bob, hand_r="marker", hand_l="open")
+        pose["body_x"] = body_x
+        sx2 = sx + body_x
+        dx2, dy2 = tx - sx2, ty - sy
+        d2 = math.hypot(dx2, dy2) or 1.0
+        k = min(reach, max(10.0, d2 - MARKER_REACH)) / d2
+        pose["ik_r"] = (sx2 + dx2 * k, sy + dy2 * k)
+        pose["ik_bend_r"] = -1.0 if dy2 < -40 else 1.0  # elbow down when writing above the shoulder
+        pose["torso_lean"] = clamp(dx2 / 80, -1, 1) * 5
+        pose["head_turn"] = 0.45
+        pose["look_x"] = 0.8
+        pose["look_y"] = clamp((ty - (sy - 120)) / 260, -1, 1)
+        pose["arm_l_sh"] = -18 + 4 * math.sin(lt * 1.8)
+        return pose
+
     def _locomotion(self, pose: Dict, t: float, speed: float, running: bool) -> Dict:
         freq = 2.0 if not running else 3.2
         ph = t * freq * 2 * math.pi
@@ -251,6 +310,10 @@ class CharacterAnimator:
             facing = direction
         elif cue.target is not None and cue.action in ("point", "interact", "look_at"):
             facing = 1 if cue.target[0] >= x else -1
+        elif cue.action == "draw":
+            tgt = cue.target_fn(t) if cue.target_fn else cue.target
+            if tgt is not None and abs(tgt[0] - x) > self.place.height * 0.05:
+                facing = 1 if tgt[0] >= x else -1
         place = Placement(x, self.place.y, self.place.height, facing)
         pose = self._action_pose(cue, t, place)
         if prev is not None and t - cue.start < POSE_BLEND:
@@ -273,19 +336,40 @@ class CharacterAnimator:
                                   -1 if self.entrance_from == "right" else 1)
                 if self.entrance != "slide":
                     pose = self._locomotion(pose, t, 400, self.entrance == "run")
+        ex_d = 1.0
+        if self.exit == "walk" and t > scene_duration - ex_d:
+            off = (self.place.height * 0.9 + 260) * (1 if self.exit_to == "right" else -1)
+            p = clamp((t - (scene_duration - ex_d)) / ex_d) ** 1.6
+            place = Placement(place.x + off * p, place.y, place.height, 1 if self.exit_to == "right" else -1)
+            pose = self._locomotion(pose, t, 400, False)
         face = self._face(cue, prev, t, pose)
         return pose, face, place, alpha
 
     def draw(self, ctx: cairo.Context, t: float, scene_duration: float) -> Skeleton:
         pose, face, place, alpha = self.state_at(t, scene_duration)
         held = None
-        if self.held is not None:
+        _, cue = self._cue_at(t)
+        if self.prop is not None and cue.action == "hold_up":
+            held = self._held_prop(place, clamp((t - cue.start) / 0.35))
+        elif self.held is not None:
             cb = self.held
 
             def held(c: cairo.Context, sk: Skeleton) -> None:
                 cb(c, sk, t)
         self.last_place = place
         return draw_character(ctx, self.style, pose, face, place, alpha, held)
+
+    def _held_prop(self, place: Placement, grow: float) -> Callable[[cairo.Context, Skeleton], None]:
+        prop = self.prop
+
+        def held(c: cairo.Context, sk: Skeleton) -> None:
+            a = math.radians(sk.fore_angles["r"])
+            wx, wy = sk.wrists["r"]
+            hx, hy = wx + math.sin(a) * 30, wy + math.cos(a) * 30
+            h = 250 * ease_out_back(grow, 1.8)
+            if h > 1:                                 # sits on the palm; un-mirror it when facing left
+                prop.draw(c, hx, hy - h * 0.42, h, flip=place.facing < 0)
+        return held
 
     def head_top_world(self, t: float, scene_duration: float) -> Tuple[float, float]:
         pose, face, place, _ = self.state_at(t, scene_duration)

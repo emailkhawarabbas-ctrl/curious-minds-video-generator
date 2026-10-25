@@ -28,7 +28,9 @@ from src.animation import registry as R
 
 HOST_POSITIONS = ("left", "right", "center", "corner_left", "corner_right", "none")
 HOST_POSES = ("talk", "explain", "point", "think", "wave", "surprised", "excited", "happy", "sad", "shrug",
-              "present", "thumbs_up", "celebrate", "yawn", "sleep")
+              "present", "thumbs_up", "celebrate", "yawn", "sleep", "draw", "count", "hold_up")
+HOST_ENTERS = ("walk", "pop", "none")
+HOST_EXITS = ("walk", "none")
 
 
 class ScriptFileError(ValueError):
@@ -58,9 +60,25 @@ class UserScene(_S):
     headline: Optional[str] = Field(None, max_length=R.MAX_TITLE_CHARS)   # big text sticker
     shake: bool = False                           # small camera shake for a dramatic line
     host: Optional[str] = None                    # host position: left | right | center | corner_left | corner_right | none
-    pose: Optional[str] = None                    # host action: explain | point | think | surprised | excited | ...
+    pose: Optional[str] = None                    # host action: draw | count | hold_up | think | surprised | shrug | ...
     expression: Optional[str] = None              # host face: happy | excited | surprised | worried | sleepy | ...
     transition: Optional[str] = None              # transition into the next scene
+    host_enter: Optional[str] = None              # walk (walks in) | pop | none
+    host_exit: Optional[str] = None               # walk (walks out at the end) | none
+
+    @field_validator("host_enter")
+    @classmethod
+    def _enter(cls, v):
+        if v is not None and v not in HOST_ENTERS:
+            raise ValueError(_choice("host_enter", v, HOST_ENTERS))
+        return v
+
+    @field_validator("host_exit")
+    @classmethod
+    def _exit(cls, v):
+        if v is not None and v not in HOST_EXITS:
+            raise ValueError(_choice("host_exit", v, HOST_EXITS))
+        return v
 
     @field_validator("visual")
     @classmethod

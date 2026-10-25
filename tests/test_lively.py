@@ -27,7 +27,7 @@ def _write(tmp_path, text, name="s.yaml"):
 # ------------------------------------------------------------------ script files
 def test_sample_script_builds_a_lively_storyboard(settings):
     us = load_user_script(SAMPLE)
-    sb = build_storyboard(us, settings.profile("vertical"))
+    sb = build_storyboard(us, settings.profile("vertical"), "lively")
     assert sb.style == "lively" and sb.loop_to_start
     assert 6 <= len(sb.scenes) <= 8
     assert all(sc.layout == "spotlight" for sc in sb.scenes)

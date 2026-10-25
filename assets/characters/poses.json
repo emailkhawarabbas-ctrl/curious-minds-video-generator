@@ -16,5 +16,8 @@
   "thumbs_up": {"arm_l_sh": -12, "arm_l_el": 8, "arm_r_sh": 45, "arm_r_el": 55, "hand_l": "open", "hand_r": "thumbs_up", "head_tilt": 5},
   "hold": {"ik_l": [-62, -112], "ik_r": [62, -112], "hand_l": "hold", "hand_r": "hold"},
   "hands_on_hips": {"arm_l_sh": -40, "arm_l_el": 95, "arm_r_sh": 40, "arm_r_el": -95, "hand_l": "fist", "hand_r": "fist"},
-  "yawn": {"arm_l_sh": -160, "arm_l_el": 30, "arm_r_sh": 160, "arm_r_el": -30, "hand_l": "fist", "hand_r": "fist", "head_tilt": -6, "torso_lean": -3}
+  "yawn": {"arm_l_sh": -160, "arm_l_el": 30, "arm_r_sh": 160, "arm_r_el": -30, "hand_l": "fist", "hand_r": "fist", "head_tilt": -6, "torso_lean": -3},
+  "count": {"arm_l_sh": -14, "arm_l_el": 10, "arm_r_sh": 38, "arm_r_el": 128, "hand_l": "open", "hand_r": "one", "head_tilt": 4, "look_x": 0.5, "look_y": -0.5},
+  "hold_up": {"arm_l_sh": -40, "arm_l_el": 95, "arm_r_sh": 150, "arm_r_el": -22, "hand_l": "fist", "hand_r": "hold", "head_tilt": -4, "look_x": 0.6, "look_y": -0.9},
+  "draw_ready": {"arm_l_sh": -14, "arm_l_el": 10, "arm_r_sh": 70, "arm_r_el": 60, "hand_l": "open", "hand_r": "marker", "head_turn": 0.45, "look_x": 0.8}
 }

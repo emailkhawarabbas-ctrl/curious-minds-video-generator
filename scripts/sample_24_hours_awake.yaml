@@ -1,9 +1,14 @@
 # Sample script for script mode (about 30 seconds, 7 scenes).
 #   python -m src.main render-script --script scripts/sample_24_hours_awake.yaml
+#   (add --style lively or --style classic for the other looks)
 #
-# Only "text" is required in a scene. Wrap a word in *asterisks* to get a camera
-# punch-in on it. The last line leads back into the first, and loop_to_start makes
-# the final frame flow into the opening frame, so the Short loops smoothly.
+# Only "text" is required in a scene. Everything else is picked automatically:
+# the hand draws the visual line by line, the host's action comes from the text
+# (question -> thinks, small number -> counts on fingers, shocking fact -> surprised,
+# a process -> draws the keyword itself, extra visuals -> holds one up).
+# Wrap a word in *asterisks* to make it the scene's keyword: it is handwritten on the
+# board and gets one gentle camera punch-in. The last line leads back into the first,
+# and loop_to_start makes the final frame flow into the opening frame.
 
 title: "What Happens If You Don't Sleep for 24 Hours"
 format: short            # short = 1080x1920, long = 1920x1080
@@ -14,62 +19,27 @@ loop_to_start: true
 scenes:
   - text: "Stay awake for *24 hours*, and your brain starts acting *drunk*."
     visual: brain.svg
-    visuals: [alarm_clock.svg]
-    animation: pop_in
-    camera: zoom_in
     sfx: whoosh
     headline: "24 HOURS AWAKE"
-    host: left
-    pose: surprised
-    expression: surprised
 
   - text: "Your reactions slow down as if you were over the legal *alcohol* limit."
     visual: car.svg
-    animation: draw_on
-    camera: pan_right
-    shake: true
-    host: right
-    expression: worried
 
   - text: "Then come *microsleeps*: blackouts of a few seconds you don't even notice."
     visual: eye.svg
     visuals: [zzz.svg]
-    animation: draw_on
-    camera: zoom_out
-    host: center
-    expression: sleepy
 
   - text: "Your brain's alarm, the amygdala, overreacts. Small problems feel *huge*."
     visual: amygdala_alarm.svg
-    visuals: [emotion_angry.svg]
-    animation: pop_in
-    camera: zoom_in
-    shake: true
-    host: corner_right
-    pose: surprised
-    expression: scared
+    pose: surprised          # any field can still be set by hand
 
   - text: "Hunger hormones shift, so junk food suddenly looks *amazing*."
     visual: stomach.svg
-    animation: bounce
-    camera: pan_left
-    headline: "CRAVINGS!"
-    host: left
-    pose: excited
+    visuals: [emotion_happy.svg]
 
   - text: "And new memories struggle to *stick*."
     visual: memory_photos.svg
-    animation: slide_in
-    camera: drift
-    host: right
-    pose: think
-    expression: confused
 
   - text: "One good night of sleep fixes most of it. So what happens if you *skip* it?"
     visual: bed.svg
     visuals: [moon_sleepy.svg]
-    animation: draw_on
-    camera: zoom_in
-    host: center
-    pose: think
-    expression: curious

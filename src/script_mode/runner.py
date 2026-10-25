@@ -35,10 +35,10 @@ DURATION_RANGE = {"short": (3.0, 180.0), "long": (30.0, 1800.0)}   # your script
 
 def output_dir(settings: Settings, title: str, style: str, root: Optional[Path] = None) -> Path:
     slug = slugify(title)
-    return (root or settings.paths.generated) / (slug if style == "lively" else f"{slug}_{style}")
+    return (root or settings.paths.generated) / (slug if style == "whiteboard" else f"{slug}_{style}")
 
 
-def render_script(path: Path, settings: Settings, style: str = "lively", out_root: Optional[Path] = None,
+def render_script(path: Path, settings: Settings, style: str = "whiteboard", out_root: Optional[Path] = None,
                   voice: Optional[str] = None, subtitles: Optional[bool] = None) -> Dict:
     t0 = time.time()
     us = load_user_script(path)                      # raises ScriptFileError with readable problems
@@ -63,7 +63,7 @@ def render_script(path: Path, settings: Settings, style: str = "lively", out_roo
         audios = {sc.scene_id: tts.synthesize_scene(sc.scene_id, sc.narration, audio_dir, settings.tts.length_scale,
                                                     sb.fps, context=SceneContext(i, n, sc.role))
                   for i, sc in enumerate(sb.scenes)}
-        if style == "lively":
+        if style in ("whiteboard", "lively"):
             report["word_alignment"] = align_all(audios, settings.tts.word_alignment)
         timings = plan_timeline(sb, audios, sb.fps, settings.tts.scene_lead_in_s, settings.tts.scene_tail_s)
         for sc, tm in zip(sb.scenes, timings):

@@ -1,6 +1,6 @@
 """Print the output folder name (inside generated/) for a script file; used by the GitHub workflow.
 
-    PYTHONPATH=. python scripts/script_output_dir.py scripts/my_video.yaml lively
+    PYTHONPATH=. python scripts/script_output_dir.py scripts/my_video.yaml whiteboard
 """
 import sys
 from pathlib import Path
@@ -12,5 +12,5 @@ from src.script_mode.runner import output_dir  # noqa: E402
 from src.script_mode.schema import load_user_script  # noqa: E402
 
 if __name__ == "__main__":
-    style = sys.argv[2] if len(sys.argv) > 2 else "lively"
+    style = sys.argv[2] if len(sys.argv) > 2 else "whiteboard"
     print(output_dir(load_settings(), load_user_script(sys.argv[1]).title, style).name)

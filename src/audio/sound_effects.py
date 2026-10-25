@@ -150,10 +150,29 @@ def _success() -> np.ndarray:
     return out
 
 
+def _scribble() -> np.ndarray:
+    """Felt marker on a whiteboard: band-passed noise in short stroke bursts."""
+    d = 1.3
+    n = _noise(d, 11)
+    hi = n - _lowpass(n, 0.35)                       # drop the rumble
+    band = _lowpass(hi, 0.45)                        # and the hiss
+    t = _t(d)
+    rng = np.random.default_rng(12)
+    env = np.zeros_like(t)
+    pos = 0.0
+    while pos < d - 0.1:                             # 4-6 strokes with small gaps (pen lifts)
+        ln = rng.uniform(0.12, 0.26)
+        m = (t >= pos) & (t < pos + ln)
+        x = (t[m] - pos) / ln
+        env[m] = np.sin(np.pi * x) ** 0.6 * rng.uniform(0.6, 1.0)
+        pos += ln + rng.uniform(0.03, 0.08)
+    return band * env * (1 + 0.3 * np.sin(2 * np.pi * 37 * t))
+
+
 GENERATORS: Dict[str, Callable[[], np.ndarray]] = {
     "pop": _pop, "whoosh": _whoosh, "ding": _ding, "sparkle": _sparkle, "boing": _boing, "click": _click,
     "chime": _chime, "tick": _tick, "bubble": _bubble, "magic": _magic, "snore": _snore,
-    "heartbeat": _heartbeat, "success": _success,
+    "heartbeat": _heartbeat, "success": _success, "scribble": _scribble,
 }
 assert set(GENERATORS) == set(SFX), "SFX registry and generators out of sync"
 

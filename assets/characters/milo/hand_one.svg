@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-45 -10 90 110" data-title="Milo hand counting one" data-tags="milo,hand,count">
+  <path d="M-22 4 C-32 16 -32 44 -18 52 C-8 58 10 58 20 50 C30 38 30 14 20 4 Z" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M-22 44 C-24 56 -16 62 -8 58 C-6 64 2 64 4 56" fill="#F8C9A0" stroke="#2B2D42" stroke-width="5" stroke-linecap="round"/>
+  <path d="M5 48 L9 88 C10 96 23 94 22 86 L18 44" fill="#F8C9A0" stroke="#2B2D42" stroke-width="6"/>
+  <path d="M20 16 C30 18 32 30 24 34" fill="#F8C9A0" stroke="#2B2D42" stroke-width="5"/>
+  <path d="M-12 30 C-4 36 6 36 12 32" fill="none" stroke="#E9A97F" stroke-width="4"/>
+  <circle id="anchor-center" cx="0" cy="30" r="2"/>
+  <circle id="anchor-top" cx="0" cy="0" r="2"/>
+</svg>

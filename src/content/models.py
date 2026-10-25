@@ -254,6 +254,7 @@ class CharacterDirection(Strict):
     expression: str = "happy"
     pose: str = "stand"
     entrance: Literal["none", "walk", "run", "pop", "slide"] = "pop"
+    exit: Literal["none", "walk"] = "none"
     cues: List[CharacterCueSpec] = Field(default_factory=list)
     look_at: Optional[Literal["main", "viewer", "up", "down", "demo"]] = None
 
@@ -432,8 +433,8 @@ class Scene(Strict):
             raise ValueError("demonstration layout needs a demo")
         if L == "full_illustration" and not mains:
             raise ValueError("full_illustration needs a main object")
-        if L == "spotlight" and not mains:
-            raise ValueError("spotlight needs a main object")
+        if L in ("spotlight", "whiteboard") and not mains:
+            raise ValueError(f"{L} needs a main object")
         if self.duration is not None and self.duration < 1.0:
             raise ValueError("scene shorter than 1 s")
         return self

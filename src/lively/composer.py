@@ -413,5 +413,8 @@ def compose_lively(scene: Scene, L, envelope: Optional[Sequence[float]] = None, 
     """Entry point used by the renderer for lively storyboards (any layout)."""
     if scene.layout == "spotlight":
         return compose_spotlight(scene, L, envelope, fps, char_id, style, first=first)
+    if scene.layout == "whiteboard":
+        from src.lively.whiteboard import compose_whiteboard
+        return compose_whiteboard(scene, L, envelope, fps, char_id, style, first=first)
     from src.animation.scene_engine import compose_scene
     return enhance_classic(compose_scene(scene, L, envelope, fps, char_id), scene, L, style)
