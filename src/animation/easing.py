@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import math
-from typing import Callable, Dict
+from typing import Callable, Dict, Tuple
 
 Ease = Callable[[float], float]
 
@@ -95,6 +95,22 @@ def ease_out_bounce(x: float) -> float:
     return n1 * x * x + 0.984375
 
 
+def ease_pop(x: float, peak: float = 1.1) -> float:
+    """Pop-in scale: 0 -> peak (ease-out) over the first 60 %, then settles to 1.0 (ease-in-out)."""
+    x = clamp(x)
+    if x < 0.6:
+        return peak * ease_out_cubic(x / 0.6)
+    return peak + (1.0 - peak) * ease_in_out_sine((x - 0.6) / 0.4)
+
+
+def squash(t: float, amount: float = 0.14) -> Tuple[float, float]:
+    """Squash-and-stretch (sx, sy) for time t (s) after an accent; a damped wobble back to (1, 1)."""
+    if t < 0 or t > 0.7:
+        return 1.0, 1.0
+    k = math.exp(-t * 6.5) * math.sin(t * 24 + 0.3)
+    return 1.0 - amount * 0.7 * k, 1.0 + amount * k
+
+
 EASINGS: Dict[str, Ease] = {
     "linear": linear,
     "in_quad": ease_in_quad,
@@ -108,6 +124,7 @@ EASINGS: Dict[str, Ease] = {
     "in_back": ease_in_back,
     "out_elastic": ease_out_elastic,
     "out_bounce": ease_out_bounce,
+    "pop": ease_pop,
 }
 
 

@@ -21,8 +21,9 @@ from typing import List, Optional, Sequence, Tuple
 
 import cairo
 
+from src.animation.boil import boil_variant, boiled
 from src.animation.easing import (clamp, ease_in_back, ease_in_out_sine, ease_out_back, ease_out_cubic,
-                                  ease_out_elastic, get_ease, progress)
+                                  ease_out_elastic, ease_pop, get_ease, progress, squash)
 from src.animation.palette import PALETTE, lighten
 from src.animation.svg_loader import SvgAsset
 from src.animation.text_render import TextStyle, draw_lines, fit_size, wrap_text
@@ -661,7 +662,7 @@ class IconPop(Doodle):
     asset: Optional[SvgAsset] = None
     center: Point = (0, 0)
     height: float = 300
-    entrance: str = "pop"          # pop | elastic | bounce | draw | fade | slide_up | spin | none
+    entrance: str = "pop"          # pop | pop_in | elastic | bounce | draw | fade | slide_up | slide_in | spin | none
     idle: str = "float"            # float | pulse | wiggle | spin | none
     rotation: float = 0.0
     flip: bool = False
@@ -672,6 +673,13 @@ class IconPop(Doodle):
     scale_to: Optional[float] = None
     highlight_groups: Optional[Tuple[str, ...]] = None
     highlight_start: float = 0.0
+    boil: float = 0.0              # line boil amount (viewBox units, 0 = off), see animation/boil.py
+    boil_fps: float = 8.0
+    accents: Tuple[float, ...] = ()   # times of a squash-and-stretch bounce (emphasis beats)
+    fill_start: float = 0.45       # draw entrance: when fills start fading in
+    overshoot: float = 1.1         # pop_in peak scale
+    float_amount: float = 0.025    # idle float amplitude (fraction of the height)
+    slide_from: float = -1.0       # slide_in: -1 from the left, 1 from the right
 
     def current_center(self, t: float) -> Point:
         cx, cy = self.center
@@ -697,6 +705,12 @@ class IconPop(Doodle):
         e = self.entrance
         if e in ("pop", "elastic", "bounce"):
             scale = pop_scale(t, self.start, self.duration, "back" if e == "pop" else e)
+        elif e == "pop_in":
+            scale = ease_pop(clamp(lt / self.duration), self.overshoot)
+        elif e == "slide_in":
+            f = ease_out_back(clamp(lt / self.duration), 1.6)
+            cx += (1 - f) * self.slide_from * h * 1.6
+            alpha = clamp(lt / (self.duration * 0.35))
         elif e == "draw":
             dp = clamp(lt / max(0.3, self.duration))
         elif e == "fade":
@@ -710,7 +724,7 @@ class IconPop(Doodle):
             scale, rot = f, rot + (1 - f) * -180
         idle = self.idle
         if idle == "float":
-            cy += math.sin(lt * 2.0 + self.seed) * h * 0.025
+            cy += math.sin(lt * 2.0 + self.seed) * h * self.float_amount
             rot += math.sin(lt * 1.3 + self.seed) * 2.0
         elif idle == "pulse":
             scale *= 1 + 0.045 * math.sin(lt * 5.0)
@@ -722,12 +736,28 @@ class IconPop(Doodle):
         scale *= ex
         if scale <= 0.01 or alpha <= 0.01:
             return
-        self.asset.draw(ctx, cx, cy, h * scale, rotation=rot, alpha=alpha, flip=self.flip,
-                        draw_progress=dp, tint=self.tint)
+        asset = self.asset
+        if self.boil > 0:
+            asset = boiled(asset, boil_variant(t, self.boil_fps, self.seed), self.boil)
+        sx = sy = 1.0
+        for at in self.accents:
+            if 0 <= t - at <= 0.7:
+                sx, sy = squash(t - at)
+                break
+        if (sx, sy) != (1.0, 1.0):
+            base = cy + h * scale * 0.5                  # squash from the bottom edge
+            ctx.save()
+            ctx.translate(cx, base)
+            ctx.scale(sx, sy)
+            ctx.translate(-cx, -base)
+        asset.draw(ctx, cx, cy, h * scale, rotation=rot, alpha=alpha, flip=self.flip,
+                   draw_progress=dp, tint=self.tint, fill_start=self.fill_start)
         if self.highlight_groups and t >= self.highlight_start:
             k = 0.5 + 0.5 * math.sin((t - self.highlight_start) * 6)
-            self.asset.draw(ctx, cx, cy, h * scale, rotation=rot, alpha=0.55 * k, flip=self.flip,
-                            only_groups=self.highlight_groups, tint=(PALETTE["yellow"], 0.85))
+            asset.draw(ctx, cx, cy, h * scale, rotation=rot, alpha=0.55 * k, flip=self.flip,
+                       only_groups=self.highlight_groups, tint=(PALETTE["yellow"], 0.85))
+        if (sx, sy) != (1.0, 1.0):
+            ctx.restore()
 
     def anchor_at(self, name: str, t: float) -> Point:
         cx, cy = self.current_center(t)

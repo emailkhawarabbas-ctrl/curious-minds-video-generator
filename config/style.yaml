@@ -1,0 +1,60 @@
+# Curious Minds "lively" visual style: colours, fonts and timings in one place.
+# Used by script mode (python -m src.main render-script ...) and by
+# `generate --style lively`. The classic look ignores this file.
+#
+# Colours are hex. Asset SVGs keep their own brand colours (docs/BRAND_GUIDE.md);
+# this palette drives paper, ink, captions, highlights, arrows and text stickers.
+
+palette:
+  paper: "#FBF7EE"          # off-white paper
+  paper_shade: "#EFE6D2"    # vignette / paper fibres
+  ink: "#2B2D42"            # outlines and text outline
+  caption: "#FFFFFF"        # caption text
+  caption_active: "#FFD23F" # the word being spoken
+  highlight: "#FF5D73"      # hand-drawn circles / underlines
+  accents: ["#2EC4B6", "#FF9F1C", "#8E7DFF", "#FF5D73", "#3A86FF", "#06D6A0"]
+
+fonts:
+  caption: "Lilita One"
+  headline: "Luckiest Guy"
+  hand: "Patrick Hand"
+
+camera:
+  zoom: 0.16                # continuous zoom over a scene (0.16 = 16 %)
+  pan: 0.07                 # continuous pan, fraction of the frame width
+  base_zoom: 1.06           # never fully zoomed out: keeps a little room for pans and shake
+  punch: 0.13               # extra zoom on emphasised words
+  punch_in_s: 0.12          # punch-in attack
+  punch_hold_s: 0.45
+  punch_out_s: 0.5
+  shake_px: 18              # shake amplitude (px at 1080 short side)
+  shake_s: 0.55
+  sway_deg: 0.8             # slow hand-held rotation
+
+animation:
+  pop_s: 0.42               # pop-in: 0 -> 1.1 -> 1.0
+  pop_overshoot: 1.1
+  draw_on_s: 1.1            # outlines trace in, then fills fade in
+  boil_fps: 8               # line boil (hand-drawn wobble) frame rate
+  boil_amount: 1.6          # boil displacement in SVG viewBox units (viewBox is 400 high)
+  idle_bob: 0.03            # gentle float of the main visual (fraction of its height)
+
+beats:
+  max_gap_s: 1.8            # never go longer than this without a new visual event
+  target_gap_s: 1.6
+
+transitions:
+  duration_s: 0.26          # whole transition (half on each side of the cut)
+
+captions:
+  center_y: 0.675           # caption centre as a fraction of the frame height (vertical)
+  center_y_horizontal: 0.86
+  size: 96                  # px at 1080 short side
+  max_words: 3
+  max_chars: 20
+  uppercase: true
+  outline: 0.2              # outline width as a fraction of the font size
+  shadow: true
+
+host:
+  scale: 1.0                # host size multiplier on top of the layout's size

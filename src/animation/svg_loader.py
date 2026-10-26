@@ -490,11 +490,11 @@ class SvgAsset:
              rotation: float = 0.0, alpha: float = 1.0, flip: bool = False,
              draw_progress: float = 1.0, only_groups: Optional[Sequence[str]] = None,
              tint: Optional[Tuple[Tuple[float, float, float], float]] = None,
-             stroke_scale: float = 1.0) -> None:
+             stroke_scale: float = 1.0, fill_start: float = 0.45) -> None:
         """Draw the asset centred at (cx, cy) with the given on-screen height.
 
         draw_progress < 1 produces the hand-drawn reveal: outlines are traced in
-        document order, then fills fade in.
+        document order, then fills fade in from ``fill_start`` (0.7 = once the outlines are done).
         """
         if alpha <= 0.001 or height <= 0.5:
             return
@@ -513,7 +513,7 @@ class SvgAsset:
                 self._draw_shape(ctx, sh, alpha, tint, stroke_scale)
         else:
             line_p = min(1.0, p / 0.7)
-            fill_a = max(0.0, (p - 0.45) / 0.55)
+            fill_a = max(0.0, (p - fill_start) / (1.0 - fill_start))
             total = sum(sh.length for sh in shapes if sh.stroke) or 1.0
             budget = total * line_p
             for sh in shapes:

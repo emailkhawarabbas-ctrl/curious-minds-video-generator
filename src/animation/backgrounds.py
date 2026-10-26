@@ -852,7 +852,74 @@ def _underwater(ctx, w, h, seed):
         ctx.stroke()
 
 
+# --------------------------------------------------------------------------- lively paper
+_GRAIN: Dict[int, cairo.ImageSurface] = {}
+
+
+def _grain_tile(variant: int, size: int = 256) -> cairo.ImageSurface:
+    """Tileable paper grain: sparse dark specks and light fibres (premultiplied ARGB)."""
+    hit = _GRAIN.get(variant)
+    if hit is not None:
+        return hit
+    import numpy as np
+    rng = np.random.default_rng(4242 + variant)
+    a = rng.random((size, size)) ** 6 * 0.16 + rng.random((size, size)) * 0.025   # mostly faint, a few specks
+    rgb = np.array(PALETTE["ink"]) * a[..., None]                                 # premultiplied ink
+    buf = np.zeros((size, size, 4), np.uint8)
+    buf[..., 0] = (rgb[..., 2] * 255).astype(np.uint8)
+    buf[..., 1] = (rgb[..., 1] * 255).astype(np.uint8)
+    buf[..., 2] = (rgb[..., 0] * 255).astype(np.uint8)
+    buf[..., 3] = (a * 255).astype(np.uint8)
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, size, size)
+    stride = surf.get_stride()
+    data = surf.get_data()
+    for y in range(size):
+        data[y * stride: y * stride + size * 4] = buf[y].tobytes()
+    surf.mark_dirty()
+    _GRAIN[variant] = surf
+    return surf
+
+
+def _doodle_paper(ctx, w, h, seed):
+    from src.lively.style import get_style
+    st = get_style()
+    paper, shade = st.palette.rgb("paper"), st.palette.rgb("paper_shade")
+    u = min(w, h) / 1080
+    ctx.set_source_rgb(*paper)
+    ctx.paint()
+    rnd = random.Random(seed + 5)
+    for _ in range(7):                                   # soft uneven blotches
+        x, y, r = rnd.random() * w, rnd.random() * h, (250 + 400 * rnd.random()) * u
+        g = cairo.RadialGradient(x, y, 0, x, y, r)
+        g.add_color_stop_rgba(0, *shade, 0.35)
+        g.add_color_stop_rgba(1, *shade, 0.0)
+        ctx.set_source(g)
+        ctx.arc(x, y, r, 0, 2 * math.pi)
+        ctx.fill()
+    ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+    for _ in range(40):                                  # paper fibres
+        x, y = rnd.random() * w, rnd.random() * h
+        ang, ln = rnd.random() * math.pi, (20 + 50 * rnd.random()) * u
+        ctx.move_to(x, y)
+        ctx.curve_to(x + math.cos(ang) * ln * 0.3, y + math.sin(ang + 0.6) * ln * 0.3,
+                     x + math.cos(ang - 0.4) * ln * 0.7, y + math.sin(ang) * ln * 0.7,
+                     x + math.cos(ang) * ln, y + math.sin(ang) * ln)
+        ctx.set_source_rgba(*PALETTE["ink"], 0.06)
+        ctx.set_line_width(1.6 * u)
+        ctx.stroke()
+    _scribbles(ctx, w, h, seed, ("teal", "orange", "purple", "coral"), alpha=0.1)
+    ctx.set_source(cairo.SurfacePattern(_grain_tile(0)))
+    ctx.get_source().set_extend(cairo.EXTEND_REPEAT)
+    ctx.paint_with_alpha(0.7)
+    g = cairo.RadialGradient(w / 2, h * 0.45, min(w, h) * 0.35, w / 2, h * 0.45, max(w, h) * 0.75)
+    g.add_color_stop_rgba(0, *shade, 0.0)               # vignette
+    g.add_color_stop_rgba(1, *darken(shade, 0.12), 0.75)
+    ctx.set_source(g)
+    ctx.paint()
+
+
 STATIC: Dict[str, Callable] = {
+    "doodle_paper": _doodle_paper,
     "paper": _paper, "bedroom_night": _bedroom_night, "night_sky": _night_sky, "dreamscape": _dreamscape,
     "lab": _lab, "chalkboard": _chalkboard, "brain_space": _brain_space, "sunny_outdoors": _sunny,
     "space": _space, "city": _city, "burst_teal": _burst_static("teal"), "burst_orange": _burst_static("orange"),
@@ -1007,3 +1074,18 @@ class Background:
                 ctx.stroke()
         elif n == "paper":
             pass
+        elif n == "doodle_paper":
+            # grain "boil": the paper texture is re-shot ~8x per second, like stop-motion on real paper
+            k = int(t * 8) % 3
+            pat = cairo.SurfacePattern(_grain_tile(k + 1))
+            pat.set_extend(cairo.EXTEND_REPEAT)
+            m = cairo.Matrix()
+            m.translate(k * 97 % 256, k * 53 % 256)
+            pat.set_matrix(m)
+            ctx.save()
+            ctx.translate(ox, oy)
+            ctx.set_source(pat)
+            ctx.rectangle(0, 0, w, h)
+            ctx.clip()
+            ctx.paint_with_alpha(0.45)
+            ctx.restore()
