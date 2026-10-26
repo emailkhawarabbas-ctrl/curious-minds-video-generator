@@ -402,25 +402,29 @@ class HandText(PenDrawing):
     width: float = field(default=0.0, init=False)
 
     def __post_init__(self) -> None:
-        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 16, 16)   # same surface kind as the frames
+        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 16, 16)
         c = cairo.Context(surf)
-        c.select_font_face(self.font)
-        c.set_font_size(self.size)
+        font = bundled_font(self.font)
+        if font is None:                          # not a bundled font: ask Cairo (works on Windows only)
+            c.select_font_face(self.font)
+            c.set_font_size(self.size)
         lines = [ln for ln in self.text.split("\n") if ln.strip()] or [""]
         lh = self.size * 1.12
         strokes: List[PenStroke] = []
         lw = max(1.5, self.size * 0.035)
         base = x0 = x1 = 0.0
         for li, line in enumerate(lines):
-            ext = c.text_extents(line)
-            x = self.center[0] - ext.x_advance / 2
+            lw_line = line_width(line, self.font, self.size)
+            x = self.center[0] - lw_line / 2
             base = self.center[1] + self.size * 0.33 + (li - (len(lines) - 1) / 2) * lh
-            self.width = max(self.width, ext.x_advance)
-            x0, x1 = x, x + ext.x_advance
+            self.width = max(self.width, lw_line)
+            x0, x1 = x, x + lw_line
             for ch in line:
                 if ch.strip():
-                    strokes += self._glyph(c, ch, x, base, lw)
-                x += c.text_extents(ch).x_advance
+                    contours = (font.contours(ch, x, base, self.size) if font is not None
+                                else _cairo_contours(c, ch, x, base))
+                    strokes += self._glyph(c, contours, lw)
+                x += line_width(ch, self.font, self.size)
         if self.underline is not None and self.text.strip():
             y = base + self.size * 0.22
             pts = [(x0 + (x1 - x0) * k / 16, y + math.sin(k * 0.9 + self.seed) * self.size * 0.025)
@@ -429,38 +433,19 @@ class HandText(PenDrawing):
         self.strokes = strokes
         self.fill_s = 0.12
 
-    def _glyph(self, c: cairo.Context, ch: str, x: float, base: float, lw: float) -> List[PenStroke]:
-        """The letter's outline contours as pen strokes (its fill path is kept for the ink fill)."""
+    def _glyph(self, c: cairo.Context, contours: List[List[Point]], lw: float) -> List[PenStroke]:
+        """One letter: its contours become pen strokes, and their filled shape the ink fill."""
         c.new_path()
-        c.move_to(x, base)
-        c.text_path(ch)
+        for poly in contours:
+            c.move_to(*poly[0])
+            for q in poly[1:]:
+                c.line_to(*q)
+            c.close_path()
         self.glyphs.append(c.copy_path())
-        g = len(self.glyphs) - 1
-        # flatten the curves ourselves: copy_path() behaves the same on every Cairo backend
-        # (copy_path_flat() gave no letter contours on the Linux CI runner)
-        out: List[PenStroke] = []
-        cur: List[Point] = []
-        for kind, pts in self.glyphs[g]:
-            pts = tuple(pts)
-            if kind == cairo.PATH_MOVE_TO:
-                if len(cur) > 1:
-                    out.append(PenStroke(pts=cur, color=self.color, width=lw, group=g))
-                cur = [(pts[0], pts[1])]
-            elif kind == cairo.PATH_LINE_TO:
-                cur.append((pts[0], pts[1]))
-            elif kind == cairo.PATH_CURVE_TO and cur:
-                (x0, y0), (x1, y1, x2, y2, x3, y3) = cur[-1], pts
-                for k in range(1, 9):
-                    u = k / 8
-                    m = 1 - u
-                    cur.append((m ** 3 * x0 + 3 * m * m * u * x1 + 3 * m * u * u * x2 + u ** 3 * x3,
-                                m ** 3 * y0 + 3 * m * m * u * y1 + 3 * m * u * u * y2 + u ** 3 * y3))
-            elif kind == cairo.PATH_CLOSE_PATH and cur:
-                cur.append(cur[0])
-        if len(cur) > 1:
-            out.append(PenStroke(pts=cur, color=self.color, width=lw, group=g))
         c.new_path()
-        return out
+        g = len(self.glyphs) - 1
+        return [PenStroke(pts=poly + [poly[0]], color=self.color, width=lw, group=g)
+                for poly in contours if len(poly) > 1]
 
     def draw(self, ctx, t):
         if t < self.t_first:
@@ -505,6 +490,114 @@ def arrow_strokes(p0: Point, p1: Point, bend: float, head: float) -> List[List[P
     left = (p1[0] - head * (tx * 0.9 - ty * 0.5), p1[1] - head * (ty * 0.9 + tx * 0.5))
     right = (p1[0] - head * (tx * 0.9 + ty * 0.5), p1[1] - head * (ty * 0.9 - tx * 0.5))
     return [shaft, [left, p1, right]]
+
+
+# --------------------------------------------------------------------------- letter outlines
+FONT_DIR = PROJECT_ROOT / "assets" / "fonts"
+CURVE_STEPS = 8
+
+
+def _bezier(p0: Point, p1: Point, p2: Point, p3: Point) -> List[Point]:
+    out = []
+    for k in range(1, CURVE_STEPS + 1):
+        u = k / CURVE_STEPS
+        m = 1 - u
+        out.append((m ** 3 * p0[0] + 3 * m * m * u * p1[0] + 3 * m * u * u * p2[0] + u ** 3 * p3[0],
+                    m ** 3 * p0[1] + 3 * m * m * u * p1[1] + 3 * m * u * u * p2[1] + u ** 3 * p3[1]))
+    return out
+
+
+class BundledFont:
+    """Letter outlines read straight from a TTF in assets/fonts (fontTools).
+
+    Cairo's text_path() returned empty letters on the Linux CI runner, so handwriting does not
+    depend on the platform's font backend: the same outlines on Windows, Linux and macOS."""
+
+    def __init__(self, path: Path):
+        from fontTools.ttLib import TTFont
+        self.font = TTFont(str(path))
+        self.glyph_set = self.font.getGlyphSet()
+        self.cmap = self.font.getBestCmap()
+        self.upem = self.font["head"].unitsPerEm
+        self.hmtx = self.font["hmtx"]
+        self._cache: Dict[str, Tuple[List[List[Point]], float]] = {}
+
+    def _units(self, ch: str) -> Tuple[List[List[Point]], float]:
+        hit = self._cache.get(ch)
+        if hit is not None:
+            return hit
+        from fontTools.pens.basePen import BasePen
+        name = self.cmap.get(ord(ch)) or ".notdef"
+        contours: List[List[Point]] = []
+
+        class Pen(BasePen):
+            def _moveTo(self, pt):
+                contours.append([pt])
+
+            def _lineTo(self, pt):
+                contours[-1].append(pt)
+
+            def _curveToOne(self, p1, p2, p3):
+                contours[-1].extend(_bezier(contours[-1][-1], p1, p2, p3))
+
+            def _qCurveToOne(self, p1, p2):
+                p0 = contours[-1][-1]                     # quadratic -> cubic
+                c1 = (p0[0] + 2 / 3 * (p1[0] - p0[0]), p0[1] + 2 / 3 * (p1[1] - p0[1]))
+                c2 = (p2[0] + 2 / 3 * (p1[0] - p2[0]), p2[1] + 2 / 3 * (p1[1] - p2[1]))
+                contours[-1].extend(_bezier(p0, c1, c2, p2))
+
+        if name in self.glyph_set:
+            self.glyph_set[name].draw(Pen(self.glyph_set))
+        hit = ([c for c in contours if len(c) > 1], float(self.hmtx[name][0]) if name in self.hmtx.metrics else 0.0)
+        self._cache[ch] = hit
+        return hit
+
+    def advance(self, ch: str, size: float) -> float:
+        return self._units(ch)[1] * size / self.upem
+
+    def contours(self, ch: str, x: float, base: float, size: float) -> List[List[Point]]:
+        k = size / self.upem                             # font units -> px; font y points up
+        return [[(x + px * k, base - py * k) for px, py in c] for c in self._units(ch)[0]]
+
+
+@lru_cache(maxsize=8)
+def bundled_font(family: str) -> Optional[BundledFont]:
+    """The bundled TTF whose family name is ``family`` (case-insensitive), or None."""
+    from fontTools.ttLib import TTFont
+    for f in sorted(FONT_DIR.glob("*.ttf")):
+        name = TTFont(str(f), lazy=True)["name"].getDebugName(1) or ""
+        if name.lower() == family.lower():
+            return BundledFont(f)
+    return None
+
+
+def line_width(text: str, family: str, size: float) -> float:
+    """Advance width of ``text`` in px, from the same metrics HandText uses."""
+    font = bundled_font(family)
+    if font is not None:
+        return sum(font.advance(ch, size) for ch in text)
+    c = cairo.Context(cairo.ImageSurface(cairo.FORMAT_ARGB32, 16, 16))
+    c.select_font_face(family)
+    c.set_font_size(size)
+    return c.text_extents(text).x_advance
+
+
+def _cairo_contours(c: cairo.Context, ch: str, x: float, base: float) -> List[List[Point]]:
+    """Fallback for fonts that are not bundled: Cairo's own text_path()."""
+    c.new_path()
+    c.move_to(x, base)
+    c.text_path(ch)
+    out: List[List[Point]] = []
+    for kind, pts in c.copy_path():
+        pts = tuple(pts)
+        if kind == cairo.PATH_MOVE_TO:
+            out.append([(pts[0], pts[1])])
+        elif kind == cairo.PATH_LINE_TO and out:
+            out[-1].append((pts[0], pts[1]))
+        elif kind == cairo.PATH_CURVE_TO and out:
+            out[-1].extend(_bezier(out[-1][-1], pts[0:2], pts[2:4], pts[4:6]))
+    c.new_path()
+    return [o for o in out if len(o) > 1]
 
 
 # --------------------------------------------------------------------------- the hand

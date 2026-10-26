@@ -25,7 +25,7 @@ from src.lively.beats import WordT, auto_emphasis
 from src.lively.camera import LivelyCamera
 from src.lively.composer import ENTRANCE, LivelyComposition, _cue_time, paper_background, spotlight_frame
 from src.lively.drawing import (DrawingHand, DrawnSvg, HandText, PenDrawing, PenPath, PenStroke, arrow_strokes,
-                                ellipse_stroke)
+                                ellipse_stroke, line_width)
 from src.lively.style import Style, get_style
 
 Point = Tuple[float, float]
@@ -61,11 +61,7 @@ def wrap_balanced(text: str, max_chars: int) -> str:
 
 
 def _text_width(text: str, font: str, size: float) -> float:
-    import cairo
-    c = cairo.Context(cairo.ImageSurface(cairo.FORMAT_A8, 4, 4))
-    c.select_font_face(font)
-    c.set_font_size(size)
-    return max(c.text_extents(ln).x_advance for ln in text.split("\n"))
+    return max(line_width(ln, font, size) for ln in text.split("\n"))
 
 
 def fit_hand_text(text: str, font: str, size: float, max_w: float, min_size: float) -> float:

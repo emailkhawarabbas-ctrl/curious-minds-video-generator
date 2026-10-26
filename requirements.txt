@@ -6,6 +6,7 @@ PyYAML>=6.0
 python-dotenv>=1.0
 requests>=2.31
 Pillow>=10.0             # thumbnail post-processing & frame inspection
+fonttools>=4.40          # letter outlines for whiteboard handwriting (pure Python, MIT)
 kokoro-onnx>=0.4         # default narrator: Kokoro-82M neural TTS, local & free (Apache-2.0)
 piper-tts>=1.3           # lightweight local TTS (opt-in fallback / legacy voices)
 faster-whisper>=1.0      # narration intelligibility QC (Whisper WER); skipped automatically if missing
