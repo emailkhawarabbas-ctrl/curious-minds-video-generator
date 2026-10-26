@@ -24,6 +24,7 @@ from src.audio.music_engine import LICENSE as MUSIC_LICENSE
 from src.audio.sound_effects import LICENSE as SFX_LICENSE, ensure_library
 from src.audio.audio_qc import narration_qc
 from src.audio.tts_engine import SceneAudio, SceneContext, TTSEngine, resolve_voice
+from src.audio.word_aligner import align_all
 from src.config.settings import Settings
 from src.content.llm_client import get_llm
 from src.content.models import Format, ResearchPack, Script, Storyboard
@@ -32,6 +33,7 @@ from src.rendering.quality_report import write_quality_report
 from src.content.script_generator import ScriptError, ScriptGenerator
 from src.content.seo_generator import SEOGenerator, write_metadata
 from src.content.storyboard_generator import StoryboardGenerator
+from src.lively.storyboard import to_lively
 from src.rendering.horizontal_renderer import OUTPUT_NAME as LONG_NAME, HorizontalRenderer
 from src.rendering.quality_control import check_video
 from src.rendering.renderer import EpisodeRenderer, plan_timeline
@@ -58,12 +60,16 @@ class GenerationRequest:
     thumbnail: bool = True
     script_source: Optional[str] = None
     output_root: Optional[Path] = None
+    style: str = "classic"            # classic | lively (see src/lively/)
+    loop_to_start: bool = True        # lively Shorts: the last frame flows back into the first
 
     def validate(self, s: Settings) -> None:
         if not self.topic or len(self.topic.strip()) < 3 or len(self.topic) > 120:
             raise ValueError("topic must be 3-120 characters")
         if self.niche not in NICHES:
             raise ValueError(f"niche must be one of {NICHES}")
+        if self.style not in ("classic", "lively"):
+            raise ValueError("style must be classic or lively")
         if not (self.generate_short or self.generate_long):
             raise ValueError("nothing to generate: enable short and/or long output")
         lo, hi = s.content.short_duration
@@ -261,7 +267,13 @@ class Pipeline:
             return False
         sb: Storyboard = self._run(f"storyboard_{tag}", StoryboardGenerator().build, script, renderer.profile,
                                     character=None if self.s.brand.mascot == "auto" else self.s.brand.mascot)
+        if req.style == "lively":
+            to_lively(sb, loop_to_start=req.loop_to_start and fmt == "short")
         audios, ls, hist = self._run(f"narration_{tag}", self.narrate, tts, sb, dirs["audio"] / fmt, target, rng)
+        alignment = None
+        if req.style == "lively":
+            alignment = self._run(f"word_alignment_{tag}", align_all, audios, self.s.tts.word_alignment,
+                                  critical=False)
         lead, tail = self.s.tts.scene_lead_in_s, self.s.tts.scene_tail_s
         timings = plan_timeline(sb, audios, sb.fps, lead, tail)
         for sc, tm in zip(sb.scenes, timings):
@@ -269,7 +281,7 @@ class Pipeline:
         sb_name = f"storyboard_{'vertical' if renderer.profile.is_vertical else 'horizontal'}.json"
         (dirs["storyboards"] / sb_name).write_text(sb.model_dump_json(indent=2))
         (dirs["audio"] / f"narration_{fmt}.json").write_text(json.dumps(
-            {"length_scale": ls, "fit_history_s": hist, "voice": tts.voice_report(),
+            {"length_scale": ls, "fit_history_s": hist, "voice": tts.voice_report(), "word_alignment": alignment,
              "scenes": {k: v.to_json() for k, v in audios.items()}}, indent=1))
         # narration preview (first scenes) + narration QC, before spending time on video rendering
         _write_preview(audios, [sc.scene_id for sc in sb.scenes[:3]], dirs["audio"] / f"preview_{fmt}.wav")
@@ -317,7 +329,7 @@ class Pipeline:
         manifest["outputs"][fmt] = {
             "status": "rendered" if passed else "qc_failed", "video": out_name,
             "quality_report": str(report_md.relative_to(root)), "failed_checks": reasons,
-            "theme": sb.theme,
+            "theme": sb.theme, "style": sb.style,
             "subtitles": str(srt.relative_to(root)), "duration_s": round(res.duration, 2), "frames": res.frames,
             "scenes": len(sb.scenes), "script_source": script.source, "script_words": script.word_count,
             "length_scale": round(ls, 3), "render_seconds": res.render_seconds, "audio_mix": res.audio_report,
