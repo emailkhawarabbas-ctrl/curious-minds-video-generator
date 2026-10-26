@@ -1,14 +1,27 @@
 name: Generate Curious Minds video
 
-# Manual trigger: provide a topic, get research + scripts + storyboards + rendered
-# Shorts/YouTube videos + subtitles + thumbnails + metadata as a workflow artifact.
+# Manual trigger, two modes:
+#  * topic:       research + scripts + storyboards + rendered Shorts/YouTube videos + subtitles +
+#                 thumbnails + metadata as a workflow artifact
+#  * script_file: render your own script file from the repo (e.g. scripts/my_video.yaml)
 on:
   workflow_dispatch:
     inputs:
-      topic:
-        description: "Topic (e.g. Why Do We Dream?)"
-        required: true
+      script_file:
+        description: "Your script file in the repo (e.g. scripts/my_video.yaml). Leave empty to use a topic."
+        required: false
+        default: ""
         type: string
+      topic:
+        description: "Topic (e.g. Why Do We Dream?); not needed when script_file is set"
+        required: false
+        default: ""
+        type: string
+      style:
+        description: "Look: auto = lively for script files, classic for topics"
+        type: choice
+        default: auto
+        options: [auto, lively, classic]
       niche:
         description: "Content pillar"
         required: true
@@ -56,7 +69,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: generate-${{ github.ref }}-${{ inputs.topic }}
+  group: generate-${{ github.ref }}-${{ inputs.script_file }}${{ inputs.topic }}
   cancel-in-progress: false
 
 jobs:
@@ -66,6 +79,8 @@ jobs:
     env:
       # Inputs are passed through env vars (never interpolated into shell code) to prevent injection.
       TOPIC: ${{ inputs.topic }}
+      SCRIPT_FILE: ${{ inputs.script_file }}
+      STYLE: ${{ inputs.style }}
       NICHE: ${{ inputs.niche }}
       GEN_SHORT: ${{ inputs.generate_shorts }}
       GEN_LONG: ${{ inputs.generate_long_video }}
@@ -85,7 +100,7 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       PYTHONUNBUFFERED: "1"
       CM__RENDER__WORKERS: "4"
-      CM__RENDER__PRESET: "faster"
+      CM__RENDER__PRESET: "veryfast"
 
     steps:
       - name: Checkout repository
@@ -95,13 +110,19 @@ jobs:
         run: |
           python3 - <<'PY'
           import os, sys
+          import re
           topic = os.environ["TOPIC"].strip()
+          script = os.environ["SCRIPT_FILE"].strip()
           errors = []
-          if not (3 <= len(topic) <= 120):
-              errors.append("topic must be 3-120 characters")
+          if script:
+              # a repo-relative path under scripts/, no parent directories, YAML or JSON only
+              if not re.fullmatch(r"scripts/[A-Za-z0-9_\-/]+\.(ya?ml|json)", script) or ".." in script:
+                  errors.append("script_file must be a path like scripts/my_video.yaml (.yaml, .yml or .json)")
+          elif not (3 <= len(topic) <= 120):
+              errors.append("set script_file, or a topic of 3-120 characters")
           if any(c in topic for c in "\n\r\t`$<>|;"):
               errors.append("topic contains forbidden characters")
-          if os.environ["GEN_SHORT"] != "true" and os.environ["GEN_LONG"] != "true":
+          if not script and os.environ["GEN_SHORT"] != "true" and os.environ["GEN_LONG"] != "true":
               errors.append("enable at least one of generate_shorts / generate_long_video")
           if not 25 <= int(os.environ["SHORT_DURATION"]) <= 90:
               errors.append("short_duration must be 25-90")
@@ -148,6 +169,21 @@ jobs:
         id: generate
         run: |
           set +e
+          if [ -n "$SCRIPT_FILE" ]; then
+            if [ ! -f "$SCRIPT_FILE" ]; then
+              echo "::error::script file not found in the repository: $SCRIPT_FILE"
+              echo "exit_code=1" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            export STYLE_FLAG=$([ "$STYLE" = "classic" ] && echo classic || echo lively)
+            python -m src.main render-script --script "$SCRIPT_FILE" --style "$STYLE_FLAG" --subtitles "$SUBTITLES"
+            status=$?
+            outdir=$(python scripts/script_output_dir.py "$SCRIPT_FILE" "$STYLE_FLAG" || echo script)
+            echo "slug=$outdir" >> "$GITHUB_OUTPUT"
+            echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          STYLE_FLAG=$([ "$STYLE" = "lively" ] && echo lively || echo classic)
           SHORT_FLAG=$([ "$GEN_SHORT" = "true" ] && echo true || echo false)
           LONG_FLAG=$([ "$GEN_LONG" = "true" ] && echo true || echo false)
           python -m src.main generate \
@@ -155,7 +191,7 @@ jobs:
             --short "$SHORT_FLAG" --long "$LONG_FLAG" \
             --short-duration "$SHORT_DURATION" --long-duration "$LONG_DURATION" \
             --voice "$VOICE" --subtitles "$SUBTITLES" --thumbnail "$THUMBNAIL" \
-            --script-source "$SCRIPT_SOURCE"
+            --script-source "$SCRIPT_SOURCE" --style "$STYLE_FLAG"
           status=$?
           slug=$(python -c "import os; from src.utils.text import slugify; print(slugify(os.environ['TOPIC']))")
           echo "slug=$slug" >> "$GITHUB_OUTPUT"
@@ -174,6 +210,21 @@ jobs:
               print("## ❌ No production report was written"); raise SystemExit
           r = json.loads(p.read_text())
           icon = "✅" if r["status"] == "success" else "❌"
+          if "script_file" in r:          # script mode report
+              print(f"## {icon} Curious Minds — {r['title']} ({r['status']}, {r['style']} style)\n")
+              print(f"Script: `{r['script_file']}` · {r.get('duration_s', '—')} s · {r.get('scenes', '—')} scenes · "
+                    f"render {r.get('render_seconds', '—')} s")
+              qc = r.get("qc", {})
+              if qc:
+                  print("\n**QC:** " + ", ".join(("✅ " if c["passed"] else "❌ ") + c["check"] for c in qc["checks"]))
+              wa = r.get("word_alignment") or {}
+              if wa.get("ran"):
+                  print(f"\n**Caption word alignment:** {wa['aligned_scenes']}/{len(wa['scenes'])} scenes")
+              for reason in r.get("failed_checks", []):
+                  print(f"\n- failed: {reason}")
+              if r.get("error"):
+                  print(f"\n- error: {r['error']}")
+              raise SystemExit
           print(f"## {icon} Curious Minds — {r['topic']} ({r['status']})\n")
           print("| Output | Status | Duration | Scenes | Script |\n|---|---|---|---|---|")
           for fmt, o in r.get("outputs", {}).items():
