@@ -3,6 +3,7 @@
 Examples:
   python -m src.main generate --topic "Why Do We Dream?" --niche psychology
   python -m src.main generate --topic "Why Do We Hiccup?" --niche human_body --no-long
+  python -m src.main render-script --script scripts/sample_24_hours_awake.yaml [--style classic]
   python -m src.main research --topic "How Do Magnets Work?"
   python -m src.main qc --video generated/why_do_we_dream/curious_minds_shorts_9x16.mp4 --profile vertical
   python -m src.main voice preview --extra am_puck am_fenrir
@@ -41,12 +42,29 @@ def cmd_generate(a, settings) -> int:
     req = GenerationRequest(topic=a.topic, niche=a.niche, generate_short=a.short, generate_long=a.long,
                             short_duration=a.short_duration, long_duration=a.long_duration * 60 if a.long_duration <= 10
                             else a.long_duration, voice=voice, subtitles=a.subtitles, thumbnail=a.thumbnail,
-                            script_source=a.script_source, output_root=Path(a.out) if a.out else None)
+                            script_source=a.script_source, output_root=Path(a.out) if a.out else None,
+                            style=a.style, loop_to_start=a.loop)
     manifest = Pipeline(settings).run(req)
     print(json.dumps({"status": manifest["status"], "outputs": manifest["outputs"],
                       "report": str((Path(a.out) if a.out else settings.paths.generated) / manifest["slug"] /
                                     "production_report.json")}, indent=2))
     return 0 if manifest["status"] == "success" else 1
+
+
+def cmd_render_script(a, settings) -> int:
+    from src.script_mode.runner import render_script
+    from src.script_mode.schema import ScriptFileError
+    try:
+        rep = render_script(Path(a.script), settings, style=a.style, out_root=Path(a.out) if a.out else None,
+                            voice=a.voice, subtitles=a.subtitles)
+    except ScriptFileError as exc:
+        print(f"Script problems in {exc.path}:", file=sys.stderr)
+        for p in exc.problems:
+            print(f"  - {p}", file=sys.stderr)
+        return 2
+    print(json.dumps({k: rep.get(k) for k in ("status", "title", "style", "video", "duration_s", "render_seconds",
+                                              "failed_checks")}, indent=2))
+    return 0 if rep["status"] == "success" else 1
 
 
 def cmd_voice(a, settings) -> int:
@@ -142,7 +160,19 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--thumbnail", type=_bool, default=True)
     g.add_argument("--script-source", choices=["auto", "llm", "curated", "offline"], default=None)
     g.add_argument("--out", default=None, help="output root (default: generated/)")
+    g.add_argument("--style", choices=["classic", "lively"], default="classic",
+                   help="classic = the original look (default); lively = new animated look (src/lively/)")
+    g.add_argument("--loop", type=_bool, default=True, help="lively Shorts: loop the last frame into the first")
     g.set_defaults(func=cmd_generate)
+
+    rs = sub.add_parser("render-script", help="render a video from your own script file (YAML/JSON)")
+    rs.add_argument("--script", required=True, help="path to the script, e.g. scripts/sample_24_hours_awake.yaml")
+    rs.add_argument("--style", choices=["lively", "classic"], default="lively",
+                    help="lively = new animated look (default); classic = the original look")
+    rs.add_argument("--voice", default=None, help="voice profile or Kokoro voice (overrides the script's)")
+    rs.add_argument("--subtitles", type=_bool, default=None, help="burn in captions (default: the script's setting)")
+    rs.add_argument("--out", default=None, help="output root (default: generated/)")
+    rs.set_defaults(func=cmd_render_script)
 
     v = sub.add_parser("voice", help="narration voice tools")
     v.add_argument("action", choices=["preview"])
@@ -191,6 +221,8 @@ def main(argv=None) -> int:
         from src.utils.text import slugify
         root = Path(a.out) if a.out else settings.paths.generated
         log_file = root / slugify(a.topic) / "logs" / "generation.log"
+    elif a.cmd == "render-script":
+        log_file = (Path(a.out) if a.out else settings.paths.generated) / "logs" / "render_script.log"
     setup_logging(a.log_level, log_file)
     return a.func(a, settings)
 
