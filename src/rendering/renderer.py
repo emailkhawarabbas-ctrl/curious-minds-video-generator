@@ -105,11 +105,36 @@ def _render_segment(job: Dict) -> Dict:
                       caption_top=job["caption_top"], caption_bottom=job["caption_bottom"], duration=dur,
                       words=words, speech_start=job["lead_in"], speech_end=job["speech_end"], seed=job["seed"],
                       brand_name=job["brand_name"], tagline=job["tagline"])
-    comp = compose_scene(scene, L, envelope=job["envelope"], fps=fps, char_id=job["character"])
+    lively = job.get("style") == "lively"
+    if lively:
+        from src.lively.composer import compose_lively
+        from src.lively.captions import LivelyCaptionRenderer
+        from src.lively.style import get_style
+        comp = compose_lively(scene, L, envelope=job["envelope"], fps=fps, char_id=job["character"],
+                              first=job["index"] == 0)
+        loop = job.get("loop_scene")
+        if loop:          # the last frames flow back into the opening frame of scene 1
+            first_sc = Scene.model_validate(loop["scene"])
+            L0 = LayoutContext(W=W, H=H, vertical=H > W, safe_top=p["safe"]["top"], safe_bottom=p["safe"]["bottom"],
+                               safe_left=p["safe"]["left"], safe_right=p["safe"]["right"],
+                               caption_top=job["caption_top"], caption_bottom=job["caption_bottom"],
+                               duration=loop["duration"], words=[WordTiming(w["text"], w["start"], w["end"])
+                                                                 for w in loop["words"]],
+                               speech_start=loop["lead_in"], speech_end=loop["speech_end"], seed=loop["seed"],
+                               brand_name=job["brand_name"], tagline=job["tagline"])
+            comp.loop_into = compose_lively(first_sc, L0, envelope=None, fps=fps, char_id=job["character"],
+                                            first=True)
+            comp.loop_t0 = loop["preroll"]
+    else:
+        comp = compose_scene(scene, L, envelope=job["envelope"], fps=fps, char_id=job["character"])
     caps = None
     if job["burn_subtitles"]:
         chunks = [CaptionChunk(c["start"], c["end"], [CapWord(**w) for w in c["words"]]) for c in job["captions"]]
-        caps = CaptionRenderer(chunks, W, H, H > W, job["caption_center"], p["safe"]["left"], p["safe"]["right"])
+        if lively:
+            caps = LivelyCaptionRenderer(chunks, W, H, get_style(), p["safe"]["left"], p["safe"]["right"])
+        else:
+            caps = CaptionRenderer(chunks, W, H, H > W, job["caption_center"], p["safe"]["left"],
+                                   p["safe"]["right"])
     out = Path(job["out"])
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "bgra", "-s", f"{W}x{H}",
            "-r", str(fps), "-i", "-", "-frames:v", str(frames),
@@ -131,9 +156,10 @@ def _render_segment(job: Dict) -> Dict:
             comp.draw(ctx, t + preroll)
             if caps:
                 caps.draw(ctx, t)
-            kind, cover = coverage(t, dur, scene.transition_in, scene.transition_out)
-            if kind != "cut":
-                draw_transition(ctx, kind, cover, W, H, seed=job["seed"])
+            if not lively:                      # lively compositions draw their own transitions
+                kind, cover = coverage(t, dur, scene.transition_in, scene.transition_out)
+                if kind != "cut":
+                    draw_transition(ctx, kind, cover, W, H, seed=job["seed"])
             ctx.restore()
             surf.flush()
             data = surf.get_data()
@@ -150,7 +176,8 @@ def _render_segment(job: Dict) -> Dict:
         rc = proc.wait()
     if rc != 0:
         raise RuntimeError(f"ffmpeg failed for scene {scene.scene_id}: {err[-800:]}")
-    events = [(job["start"] + t, name) for t, name in comp.events]
+    gains = getattr(comp, "sfx_gains", {})
+    events = [(job["start"] + t, name, gains.get(i, 0.0)) for i, (t, name) in enumerate(comp.events)]
     return {"scene_id": scene.scene_id, "segment": str(out), "frames": frames,
             "seconds": round(time.time() - t0, 2), "ms_per_frame": round((time.time() - t0) / frames * 1000, 2),
             "blank_samples": blank, "events": events}
@@ -182,7 +209,13 @@ class EpisodeRenderer:
         duration = total_frames / fps
         words = episode_words(timings, audios)
         write_srt(srt_chunks(words), srt_path)
-        burn = burn_chunks(words, p.is_vertical)
+        lively = storyboard.style == "lively"
+        if lively:
+            from src.lively.captions import lively_chunks
+            from src.lively.style import get_style
+            burn = lively_chunks(words, get_style(), p.is_vertical)
+        else:
+            burn = burn_chunks(words, p.is_vertical)
         band = self.caption_band()
         seg_dir = work_dir / f"segments_{self.profile_name}"
         seg_dir.mkdir(parents=True, exist_ok=True)
@@ -206,7 +239,13 @@ class EpisodeRenderer:
                 # the very first frame of an episode should already show the title + mascot
                 "preroll": 0.45 if idx == 0 else 0.0,
                 "threads": max(1, (os.cpu_count() or 2) // max(1, self.s.render.worker_count())),
+                "style": storyboard.style, "index": idx,
             })
+        if lively and storyboard.loop_to_start and len(jobs) > 1:
+            j0, a0 = jobs[0], audios[storyboard.scenes[0].scene_id]
+            jobs[-1]["loop_scene"] = {"scene": j0["scene"], "duration": timings[0].duration, "words": j0["words"],
+                                      "lead_in": j0["lead_in"], "speech_end": j0["lead_in"] + a0.duration,
+                                      "seed": j0["seed"], "preroll": j0["preroll"]}
         workers = self.s.render.worker_count()
         log.info("[%s] rendering %d scenes, %d frames (%.1f s) with %d workers", self.profile_name, len(jobs),
                  total_frames, duration, workers)
@@ -243,11 +282,15 @@ class EpisodeRenderer:
                     if w:
                         t = tm.start + tm.lead_in + w.start
                 sfx.append(SfxEvent(cue.name, t, cue.gain_db))
-            if sc.transition_in not in ("cut", "dip_cream"):
+            if lively and sc.transition_in != "cut":
+                sfx.append(SfxEvent("whoosh", max(0.0, tm.start - 0.12), -2.0))
+            elif sc.transition_in not in ("cut", "dip_cream"):
                 sfx.append(SfxEvent("whoosh", max(0.0, tm.start - 0.3), -4.0))
+        if lively and storyboard.loop_to_start:
+            sfx.append(SfxEvent("whoosh", max(0.0, duration - 0.2), -4.0))
         for r in stats:
-            for t, name in r["events"]:
-                sfx.append(SfxEvent(name, t, -5.0))
+            for t, name, gain in r["events"]:
+                sfx.append(SfxEvent(name, t, (-3.0 + gain) if lively else -5.0))
         mix_wav = work_dir / f"mix_{self.profile_name}.wav"
         audio_report = mix_episode(clips, sfx, duration, storyboard.music_mood, self.s.audio, mix_wav)
         loud = self._mux(video_only, mix_wav, out_path, duration)
