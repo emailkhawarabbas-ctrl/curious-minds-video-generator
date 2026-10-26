@@ -122,7 +122,7 @@ jobs:
               errors.append("set script_file, or a topic of 3-120 characters")
           if any(c in topic for c in "\n\r\t`$<>|;"):
               errors.append("topic contains forbidden characters")
-          if not script and os.environ["GEN_SHORT"] != "true" and os.environ["GEN_LONG"] != "true":
+          if os.environ["GEN_SHORT"] != "true" and os.environ["GEN_LONG"] != "true":
               errors.append("enable at least one of generate_shorts / generate_long_video")
           if not 25 <= int(os.environ["SHORT_DURATION"]) <= 90:
               errors.append("short_duration must be 25-90")
@@ -176,7 +176,10 @@ jobs:
               exit 0
             fi
             case "$STYLE" in classic|lively) STYLE_FLAG="$STYLE" ;; *) STYLE_FLAG=whiteboard ;; esac
-            python -m src.main render-script --script "$SCRIPT_FILE" --style "$STYLE_FLAG" --subtitles "$SUBTITLES"
+            SHORT_FLAG=$([ "$GEN_SHORT" = "true" ] && echo true || echo false)
+            LONG_FLAG=$([ "$GEN_LONG" = "true" ] && echo true || echo false)
+            THUMB_FLAG=$([ "$THUMBNAIL" = "true" ] && echo true || echo false)
+            python -m src.main render-script --script "$SCRIPT_FILE" --style "$STYLE_FLAG" --subtitles "$SUBTITLES"               --short "$SHORT_FLAG" --long "$LONG_FLAG" --thumbnail "$THUMB_FLAG"
             status=$?
             outdir=$(python scripts/script_output_dir.py "$SCRIPT_FILE" "$STYLE_FLAG" || echo script)
             echo "slug=$outdir" >> "$GITHUB_OUTPUT"
@@ -212,11 +215,14 @@ jobs:
           icon = "✅" if r["status"] == "success" else "❌"
           if "script_file" in r:          # script mode report
               print(f"## {icon} Curious Minds — {r['title']} ({r['status']}, {r['style']} style)\n")
-              print(f"Script: `{r['script_file']}` · {r.get('duration_s', '—')} s · {r.get('scenes', '—')} scenes · "
-                    f"render {r.get('render_seconds', '—')} s")
-              qc = r.get("qc", {})
-              if qc:
-                  print("\n**QC:** " + ", ".join(("✅ " if c["passed"] else "❌ ") + c["check"] for c in qc["checks"]))
+              print(f"Script: `{r['script_file']}` · {r.get('scenes', '—')} scenes · render {r.get('render_seconds', '—')} s"
+                    f" · thumbnails: {len(r.get('thumbnails', []))}\n")
+              print("| Output | Status | Duration | Video |\n|---|---|---|---|")
+              for fmt, o in r.get("outputs", {}).items():
+                  print(f"| {fmt} | {o.get('status')} | {o.get('duration_s', '—')} s | `{o.get('video')}` |")
+              for fmt, o in r.get("outputs", {}).items():
+                  print(f"\n**QC {fmt}:** " + ", ".join(("✅ " if c["passed"] else "❌ ") + c["check"]
+                                                    for c in o["qc"]["checks"]))
               wa = r.get("word_alignment") or {}
               if wa.get("ran"):
                   print(f"\n**Caption word alignment:** {wa['aligned_scenes']}/{len(wa['scenes'])} scenes")

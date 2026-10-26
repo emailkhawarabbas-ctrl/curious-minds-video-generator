@@ -195,7 +195,12 @@ def test_render_script_end_to_end(tmp_path, small_settings):
                          '  - text: "Stay awake for *one* night."\n    visual: brain.svg\n'
                          '  - text: "Your brain gets slow."\n    visual: clock.svg\n    animation: draw_on\n')
     small_settings.tts.word_alignment = "off"
-    rep = render_script(p, small_settings)
+    rep = render_script(p, small_settings, formats=["short", "long"])
     assert rep["status"] == "success", rep.get("failed_checks")
-    out = Path(small_settings.paths.generated) / "mini_lively_test" / rep["video"]
-    assert out.exists()
+    root = Path(small_settings.paths.generated) / "mini_lively_test"
+    assert set(rep["outputs"]) == {"short", "long"}
+    for o in rep["outputs"].values():                            # one narration, both videos
+        assert (root / o["video"]).exists() and o["status"] == "success"
+    thumbs = rep["thumbnails"]
+    assert any(t.endswith("16x9.jpg") for t in thumbs) and any(t.endswith("9x16.jpg") for t in thumbs)
+    assert all((root / t).exists() for t in thumbs)

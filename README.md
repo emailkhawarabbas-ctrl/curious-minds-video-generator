@@ -67,7 +67,7 @@ Top of the file:
 | Field | What it does | Default |
 |---|---|---|
 | `title` | video title (also the opening headline) | required |
-| `format` | `short` (9:16) or `long` (16:9) | `short` |
+| `format` | `short` (9:16) or `long` (16:9): what a plain local run renders (`--short` / `--long` override it) | `short` |
 | `voice_language` | `en` | `en` |
 | `voice` | `friendly`, `energetic`, `documentary`, or a Kokoro voice like `am_michael` | `friendly` |
 | `niche` | `human_body`, `science`, `psychology`, `mixed`: picks the host character | `mixed` |
@@ -120,13 +120,19 @@ Script problems in scripts/my_video.yaml:
 python -m src.main render-script --script scripts/my_video.yaml                    # whiteboard look
 python -m src.main render-script --script scripts/my_video.yaml --style lively     # bouncy lively look
 python -m src.main render-script --script scripts/my_video.yaml --style classic    # the original look
+python -m src.main render-script --script scripts/my_video.yaml --short true --long true   # both videos
+python -m src.main render-script --script scripts/my_video.yaml --thumbnail false          # skip thumbnails
 ```
+
+Both videos share one narration. The 16:9 video is as long as your script (a 30 s script gives a
+30 s YouTube video); for a 6–10 minute video, write a longer script with more scenes.
 
 On Windows run `set PYTHONUTF8=1` (cmd) or `export PYTHONUTF8=1` (Git Bash) first, and once
 `python scripts/install_fonts_windows.py`: on Windows Cairo only sees installed fonts, so without
 it captions and handwriting fall back to Arial (`--remove` undoes it; Linux/GitHub need nothing).
-The video is written to `generated/<title>/curious_minds_shorts_9x16.mp4`, with captions
-(`subtitles/*.srt`), the storyboard and `production_report.json`. The other looks go to
+The videos are written to `generated/<title>/`: `curious_minds_shorts_9x16.mp4` and/or
+`curious_minds_youtube_16x9.mp4`, captions (`subtitles/*.srt`), thumbnails (`thumbnails/*.jpg`,
+16:9 and 9:16), the storyboards and `production_report.json`. The other looks go to
 `generated/<title>_lively/` and `generated/<title>_classic/`. A 30 s Short takes 2–4 minutes.
 
 To compare two renders side by side:
@@ -138,7 +144,9 @@ To compare two renders side by side:
 2. Go to **Actions → Generate Curious Minds video → Run workflow**.
 3. Set **script_file** to `scripts/my_video.yaml` (leave **topic** empty). **style** `auto` uses the
    whiteboard look (`lively` and `classic` also work).
-4. When the run finishes, download the video from the run's **Artifacts**.
+   **generate_shorts**, **generate_long_video** and **generate_thumbnail** decide what is made
+   (all on by default: the Short, the 16:9 video and thumbnails).
+4. When the run finishes, download everything from the run's **Artifacts**.
 
 ### What the whiteboard look does (default for your scripts)
 

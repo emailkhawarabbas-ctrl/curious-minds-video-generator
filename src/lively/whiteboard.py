@@ -127,6 +127,10 @@ def compose_whiteboard(scene: Scene, L, envelope: Optional[Sequence[float]] = No
     anim = lv.animation if lv else "draw_on"
     asset = L.assets.get(main_spec.asset)
     mx, my, mh = fr.main
+    if H <= W:                     # wide frame: fit between the headline and the keyword line above the captions
+        top = fr.headline[1] + H * 0.08 if headline else H * 0.06
+        bottom = cap_clear - dr.text_size * u * 1.35
+        my, mh = (top + bottom) / 2, min(mh, bottom - top)
     mh = min(mh, W * (0.66 if H > W else 0.42) / max(asset.aspect, 0.01))
     if anim == "draw_on":
         total = clamp(dr.scene_fraction * D - (cursor - t0), dr.min_s, dr.max_s)

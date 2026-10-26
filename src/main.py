@@ -55,15 +55,20 @@ def cmd_render_script(a, settings) -> int:
     from src.script_mode.runner import render_script
     from src.script_mode.schema import ScriptFileError
     try:
+        formats = None                                 # default: the script's own format
+        if a.short is not None or a.long is not None:
+            formats = [f for f, on in (("short", a.short), ("long", a.long)) if on]
         rep = render_script(Path(a.script), settings, style=a.style, out_root=Path(a.out) if a.out else None,
-                            voice=a.voice, subtitles=a.subtitles)
+                            voice=a.voice, subtitles=a.subtitles, formats=formats, thumbnail=a.thumbnail)
     except ScriptFileError as exc:
         print(f"Script problems in {exc.path}:", file=sys.stderr)
         for p in exc.problems:
             print(f"  - {p}", file=sys.stderr)
         return 2
-    print(json.dumps({k: rep.get(k) for k in ("status", "title", "style", "video", "duration_s", "render_seconds",
-                                              "failed_checks")}, indent=2))
+    print(json.dumps({**{k: rep.get(k) for k in ("status", "title", "style", "formats", "render_seconds",
+                                                 "failed_checks")},
+                      "videos": {f: o["video"] for f, o in rep.get("outputs", {}).items()},
+                      "thumbnails": len(rep.get("thumbnails", []))}, indent=2))
     return 0 if rep["status"] == "success" else 1
 
 
@@ -173,6 +178,9 @@ def build_parser() -> argparse.ArgumentParser:
     rs.add_argument("--voice", default=None, help="voice profile or Kokoro voice (overrides the script's)")
     rs.add_argument("--subtitles", type=_bool, default=None, help="burn in captions (default: the script's setting)")
     rs.add_argument("--out", default=None, help="output root (default: generated/)")
+    rs.add_argument("--short", type=_bool, default=None, help="render the 9:16 Short (default: the script's format)")
+    rs.add_argument("--long", type=_bool, default=None, help="render the 16:9 YouTube video (default: the script's format)")
+    rs.add_argument("--thumbnail", type=_bool, default=True, help="render thumbnails (16:9 and 9:16)")
     rs.set_defaults(func=cmd_render_script)
 
     v = sub.add_parser("voice", help="narration voice tools")
