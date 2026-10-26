@@ -116,6 +116,7 @@ class TTSSettings(BaseModel):
     openai_model: str = "gpt-4o-mini-tts"
     cache: bool = True                        # reuse identical sentence renders across narration-fit passes
     asr_check: Literal["auto", "on", "off"] = "auto"   # intelligibility check with faster-whisper if installed
+    word_alignment: Literal["auto", "on", "off"] = "auto"   # lively captions: exact word times via faster-whisper
 
     @model_validator(mode="after")
     def _profile_exists(self) -> "TTSSettings":

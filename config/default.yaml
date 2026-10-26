@@ -97,6 +97,7 @@ tts:
   voice_base_url: "https://huggingface.co/rhasspy/piper-voices/resolve/main"
   cache: true
   asr_check: "auto"                   # Whisper intelligibility check when faster-whisper is installed
+  word_alignment: "auto"              # lively style: caption word timestamps from faster-whisper (off = estimates)
 
 audio:
   sample_rate: 44100
@@ -110,7 +111,7 @@ audio:
 render:
   workers: 0                          # 0 = auto (cpu_count - 1, max 6)
   crf: 20
-  preset: "faster"                    # x264 preset per scene segment (CRF keeps quality constant)
+  preset: "veryfast"                  # x264 preset per scene segment (CRF keeps quality constant)
   audio_bitrate: "192k"
   burn_subtitles: true
   profiles:
