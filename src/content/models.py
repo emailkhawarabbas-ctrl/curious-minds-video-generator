@@ -320,6 +320,39 @@ class CameraSpec(Strict):
     intensity: float = Field(0.5, ge=0, le=1)
 
 
+class LivelyDirection(Strict):
+    """Per-scene direction for the lively style (script mode / ``--style lively``)."""
+    animation: str = "pop_in"                                  # main visual entrance
+    camera: str = "zoom_in"                                    # continuous camera move
+    emphasis: List[str] = Field(default_factory=list)          # words that get a camera punch-in
+    shake: bool = False                                        # small camera shake on the first emphasis / start
+    headline: Optional[str] = Field(None, max_length=R.MAX_TITLE_CHARS)   # big text sticker
+    visuals: List[str] = Field(default_factory=list)           # extra visuals revealed during the scene
+
+    @field_validator("animation")
+    @classmethod
+    def _anim(cls, v):
+        if v not in R.LIVELY_ANIMATIONS:
+            raise ValueError(f"unknown animation {v!r}; use one of {sorted(R.LIVELY_ANIMATIONS)}")
+        return v
+
+    @field_validator("camera")
+    @classmethod
+    def _cam(cls, v):
+        if v not in R.LIVELY_CAMERAS:
+            raise ValueError(f"unknown camera {v!r}; use one of {sorted(R.LIVELY_CAMERAS)}")
+        return v
+
+    @field_validator("visuals")
+    @classmethod
+    def _visuals(cls, v):
+        from src.animation.asset_manager import get_asset_manager
+        bad = [a for a in v if not get_asset_manager().exists(a)]
+        if bad:
+            raise ValueError(f"unknown assets {bad}")
+        return v
+
+
 class Scene(Strict):
     scene_id: str
     section: str = ""
@@ -346,6 +379,7 @@ class Scene(Strict):
     sfx: List[SfxCue] = Field(default_factory=list)
     transition_in: str = "cut"
     transition_out: str = "cut"
+    lively: Optional[LivelyDirection] = None
 
     @field_validator("layout")
     @classmethod
@@ -398,6 +432,8 @@ class Scene(Strict):
             raise ValueError("demonstration layout needs a demo")
         if L == "full_illustration" and not mains:
             raise ValueError("full_illustration needs a main object")
+        if L == "spotlight" and not mains:
+            raise ValueError("spotlight needs a main object")
         if self.duration is not None and self.duration < 1.0:
             raise ValueError("scene shorter than 1 s")
         return self
@@ -418,6 +454,8 @@ class Storyboard(Strict):
     created: str = Field(default_factory=_now)
     generator: str = "rules"
     notes: List[str] = Field(default_factory=list)
+    style: Literal["classic", "lively"] = "classic"
+    loop_to_start: bool = False                     # the last frame flows back into the first (Shorts loop)
 
     @model_validator(mode="after")
     def _checks(self) -> "Storyboard":

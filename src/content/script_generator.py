@@ -72,7 +72,7 @@ def llm_script_schema() -> Dict:
         "required": ["layout", "demo", "assets", "labels", "items", "title", "bubble", "number", "chart", "background",
                      "action", "expression", "sfx"],
         "properties": {
-            "layout": {"type": "string", "enum": list(R.LAYOUTS)},
+            "layout": {"type": "string", "enum": [k for k in R.LAYOUTS if k not in R.LIVELY_ONLY]},
             "demo": demo,
             "assets": {"type": "array", "items": {"type": "string", "enum": am.ids()}},
             "labels": {"type": "array", "items": {"type": "string"}},
@@ -90,7 +90,7 @@ def llm_script_schema() -> Dict:
                                                "values": {"type": "array", "items": {"type": "number"}},
                                                "labels": {"type": "array", "items": {"type": "string"}},
                                                "x_labels": {"type": "array", "items": {"type": "string"}}}}),
-            "background": _nullable({"type": "string", "enum": list(R.BACKGROUNDS)}),
+            "background": _nullable({"type": "string", "enum": [k for k in R.BACKGROUNDS if k not in R.LIVELY_ONLY]}),
             "action": _nullable({"type": "string", "enum": list(ACTIONS)}),
             "expression": _nullable({"type": "string", "enum": sorted(load_expressions())}),
             "sfx": {"type": "array", "items": {"type": "string", "enum": list(R.SFX)}},
@@ -209,9 +209,9 @@ class ScriptGenerator:
             topic=topic, niche=niche, theme=theme.label, target_words=str(words),
             demos="\n".join(f"- {k}: {v}" for k, v in R.DEMOS.items()),
             duration_label=f"~{int(duration_s)} seconds of narration", structure=structure,
-            layouts="\n".join(f"- {k}: {v}" for k, v in R.LAYOUTS.items()),
+            layouts="\n".join(f"- {k}: {v}" for k, v in R.LAYOUTS.items() if k not in R.LIVELY_ONLY),
             assets="\n".join(f"- {a}: {', '.join(am.record(a).tags[:6])}" for a in am.ids()),
-            backgrounds=", ".join(R.BACKGROUNDS), actions=", ".join(ACTIONS),
+            backgrounds=", ".join(k for k in R.BACKGROUNDS if k not in R.LIVELY_ONLY), actions=", ".join(ACTIONS),
             expressions=", ".join(sorted(load_expressions())), sfx=", ".join(R.SFX), facts=facts,
             beat_words=str(R.MAX_SCENE_WORDS[fmt] - 5))
         system = load_prompt("script_system")

@@ -28,7 +28,12 @@ LAYOUTS = {
                          "the camera with labelled callouts; Milo peeks in from a corner.",
     "character_closeup": "Milo big and expressive, talking straight to the viewer with one prop beside him "
                          "(relatable moments, reactions, direct questions). Use sparingly.",
+    "spotlight": "Lively style: one big visual fills the frame, the host is large and changes position/pose, "
+                 "a headline sticker and secondary visuals keep the frame changing (script mode).",
 }
+
+# Layouts / backgrounds only the lively style uses (kept out of LLM storyboard prompts)
+LIVELY_ONLY = ("spotlight", "doodle_paper")
 
 # Animated explanatory diagrams for the "demonstration" layout (implemented in src/animation/demos.py)
 from src.animation.demos import DEMO_KINDS as DEMOS  # noqa: E402
@@ -66,9 +71,35 @@ BACKGROUNDS = {
     "mind_maze": "Abstract mind: violet field with rotating thought rings and looping spirals.",
     "thought_room": "Quiet room late at night: desk, lamp glow, window, ticking wall clock (overthinking, worry).",
     "emotion_waves": "Soft layered colour waves for feelings, insight and calm endings.",
+    # Lively style
+    "doodle_paper": "Off-white paper with grain, fibres and a soft vignette; the grain boils (lively style).",
 }
 
-TRANSITIONS = ("cut", "circle_wipe", "doodle_swipe", "slide", "star_zoom", "dots", "dip_cream", "blinds")
+TRANSITIONS = ("cut", "circle_wipe", "doodle_swipe", "slide", "star_zoom", "dots", "dip_cream", "blinds",
+               # lively style: quick (0.2-0.3 s) transitions, see src/lively/transitions.py
+               "whip_left", "whip_right", "whip_up", "zoom_through", "ink_swipe")
+LIVELY_TRANSITIONS = ("whip_left", "whip_right", "whip_up", "zoom_through", "ink_swipe")
+
+# Lively style vocabulary (script mode / --style lively)
+STYLES = ("classic", "lively")
+LIVELY_ANIMATIONS = {
+    "draw_on": "Outlines trace in as if hand-drawn, then the fills fade in.",
+    "pop_in": "Scales 0 -> 1.1 -> 1.0 with a springy ease.",
+    "bounce": "Drops in and bounces to rest.",
+    "slide_in": "Slides in from the side with an overshoot.",
+    "spin_in": "Spins and grows into place.",
+    "fade_in": "Soft fade (use sparingly).",
+}
+LIVELY_CAMERAS = {
+    "zoom_in": "Slow continuous push in towards the visual.",
+    "zoom_out": "Starts close and slowly pulls back.",
+    "pan_left": "Slow pan, content moves left.",
+    "pan_right": "Slow pan, content moves right.",
+    "pan_up": "Slow tilt, content moves up.",
+    "pan_down": "Slow tilt, content moves down.",
+    "drift": "Gentle floating hand-held move.",
+    "static": "No continuous move (punch-ins and shake still apply).",
+}
 
 CAMERA_MOVES = ("static", "zoom_in", "zoom_out", "pan_left", "pan_right", "drift", "punch_in", "shake",
                 "focus", "follow", "reveal")

@@ -77,8 +77,14 @@ def _shape(ctx: cairo.Context, kind: str, cover: float, w: float, h: float, seed
         ctx.rectangle(0, 0, w, h)
 
 
+# lively transitions (src/lively/transitions.py) shown by the classic engine as their nearest overlay
+LIVELY_FALLBACK = {"whip_left": "slide", "whip_right": "slide", "whip_up": "blinds", "zoom_through": "circle_wipe",
+                   "ink_swipe": "doodle_swipe"}
+
+
 def draw_transition(ctx: cairo.Context, kind: str, cover: float, w: float, h: float, seed: int = 0) -> None:
     """Draw the transition overlay at coverage `cover` (0 = invisible, 1 = fully covered)."""
+    kind = LIVELY_FALLBACK.get(kind, kind)
     if kind == "cut" or cover <= 0.0:
         return
     col = PALETTE[TRANSITION_COLORS.get(kind, "teal")]
@@ -182,6 +188,7 @@ def _logo_mark(ctx: cairo.Context, w: float, h: float, u: float) -> None:
 
 def coverage(t: float, scene_duration: float, kind_in: str, kind_out: str) -> Tuple[str, float]:
     """Return (kind, cover) for scene-relative time t."""
+    kind_in, kind_out = LIVELY_FALLBACK.get(kind_in, kind_in), LIVELY_FALLBACK.get(kind_out, kind_out)
     if kind_out != "cut" and t >= scene_duration - DURATION:
         return kind_out, ease_in_cubic(clamp((t - (scene_duration - DURATION)) / DURATION)) if kind_out != "doodle_swipe" \
             else ease_in_out_cubic(clamp((t - (scene_duration - DURATION)) / DURATION))

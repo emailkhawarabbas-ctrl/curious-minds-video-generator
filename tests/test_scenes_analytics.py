@@ -29,6 +29,8 @@ DEMO = {
     "full_illustration": dict(objects=[{"asset": "heart_cutaway"}], text_overlays=[{"text": "Left atrium",
                                                                                    "style": "label"}]),
     "character_closeup": dict(objects=[{"asset": "pulse_monitor"}], character={"position": "closeup"}),
+    "spotlight": dict(objects=[{"asset": "brain"}], lively={"animation": "draw_on", "headline": "Wow",
+                                                            "visuals": ["clock"]}),
 }
 
 

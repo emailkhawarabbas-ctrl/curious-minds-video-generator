@@ -1122,6 +1122,9 @@ def compose_scene(scene: Scene, L: LayoutContext, envelope: Optional[Sequence[fl
     """`char_id` overrides the host character; by default the scene's own (`scene.character.character`)."""
     if L.speech_end <= 0:
         L.speech_end = max(L.speech_start + 0.5, L.duration - 0.4)
+    if scene.layout == "spotlight":                       # lively style (script mode), see src/lively/composer.py
+        from src.lively.composer import compose_spotlight
+        return compose_spotlight(scene, L, envelope, fps, char_id)  # type: ignore[return-value]
     b = Builder(L, scene)
     layout = scene.layout
     cd = scene.character
