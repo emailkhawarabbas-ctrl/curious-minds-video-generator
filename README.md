@@ -19,6 +19,147 @@ previous voice, visuals and storytelling, and a before/after comparison.
 Runs locally or on GitHub Actions. **No paid service is required.** Claude (via `LLM_API_KEY`)
 is optional and used for writing scripts/metadata for new topics.
 
+There are two ways to make a video:
+
+* **Your own script** (script mode): you write the text scene by scene, the tool animates it
+  in the new **lively** look. See the next section.
+* **A topic** (topic mode): the tool researches and writes the script itself (§1–§3).
+
+---
+
+## Make a video from your own script (script mode)
+
+### 1. Write a script file
+
+Create a file in `scripts/`, for example `scripts/my_video.yaml`:
+
+```yaml
+title: "What Happens If You Don't Sleep for 24 Hours"
+format: short          # short = 1080x1920 (Shorts/TikTok), long = 1920x1080 (YouTube)
+voice_language: en     # English only
+loop_to_start: true    # the last frame flows back into the first, so the Short loops
+scenes:
+  - text: "Stay awake for *24 hours*, and your brain starts acting *drunk*."
+    visual: brain.svg
+    animation: draw_on
+    camera: zoom_in
+    sfx: whoosh
+  - text: "Then come microsleeps: blackouts of a few seconds you don't even notice."
+    visual: eye.svg
+    animation: pop_in
+```
+
+Only `text` is required in each scene. Anything you leave out is chosen for you, and the
+choices change from scene to scene so the video never looks the same twice in a row.
+
+**Tips**
+
+* Wrap a word in `*asterisks*` to get a quick camera punch-in on it. The asterisks are not spoken.
+* Keep each scene to one or two short sentences (max 45 words for a Short).
+* About 2.8 words = 1 second of narration. 80–90 words make a ~30 s Short.
+* For a good loop, write the last line so it leads back into the first line.
+* A complete example: [`scripts/sample_24_hours_awake.yaml`](scripts/sample_24_hours_awake.yaml).
+
+### 2. All script options
+
+Top of the file:
+
+| Field | What it does | Default |
+|---|---|---|
+| `title` | video title (also the opening headline) | required |
+| `format` | `short` (9:16) or `long` (16:9) | `short` |
+| `voice_language` | `en` | `en` |
+| `voice` | `friendly`, `energetic`, `documentary`, or a Kokoro voice like `am_michael` | `friendly` |
+| `niche` | `human_body`, `science`, `psychology`, `mixed`: picks the host character | `mixed` |
+| `character` | force a host: `human_body`, `science`, `psychology`, `milo`, `zoe` | from `niche` |
+| `music` | background music mood: `curious`, `dreamy`, `upbeat`, `calm` | `curious` |
+| `subtitles` | burn in captions: `true` / `false` | `true` |
+| `loop_to_start` | end on the first frame so the Short loops | `false` |
+
+Each scene:
+
+| Field | Options | Default |
+|---|---|---|
+| `text` | the narration (required) | — |
+| `visual` | an SVG from `assets/` (`brain.svg` or `brain`) | best match for the text |
+| `visuals` | up to 3 extra SVGs that pop in during the scene | none |
+| `animation` | how the main visual appears: `draw_on` (lines draw themselves, then colour fills in), `pop_in` (grows 0 → 110 % → 100 %), `bounce`, `slide_in`, `spin_in`, `fade_in` | changes per scene |
+| `camera` | slow move for the whole scene: `zoom_in`, `zoom_out`, `pan_left`, `pan_right`, `pan_up`, `pan_down`, `drift`, `static` | changes per scene |
+| `shake` | `true` = small camera shake for a dramatic line | `false` |
+| `sfx` | one or a list: `pop`, `whoosh`, `ding`, `sparkle`, `boing`, `click`, `chime`, `tick`, `bubble`, `magic`, `snore`, `heartbeat`, `success` | none (pops and whooshes are added automatically) |
+| `headline` | big text sticker, max 48 characters | the title on scene 1 |
+| `host` | where the host stands: `left`, `right`, `center` (big, waist-up), `corner_left`, `corner_right`, `none` | changes per scene |
+| `pose` | `explain`, `point`, `think`, `surprised`, `excited`, `happy`, `sad`, `shrug`, `present`, `thumbs_up`, `celebrate`, `yawn`, `wave`, `talk`, `sleep` | from the text (`?` → think, `!` → excited) |
+| `expression` | `happy`, `excited`, `surprised`, `curious`, `thinking`, `worried`, `confused`, `sleepy`, `scared`, `sad`, `laughing`, … | from the text |
+| `transition` | into the next scene: `whip_left`, `whip_right`, `whip_up`, `zoom_through`, `ink_swipe`, `cut` | changes per scene |
+
+All SVG names: `python -m src.main assets list`. To use a new SVG, put it in
+`assets/<category>/` (following [`docs/BRAND_GUIDE.md`](docs/BRAND_GUIDE.md)) and run
+`python -m src.main assets index`.
+
+If something is wrong, the tool lists every problem with the scene number and a suggestion:
+
+```text
+Script problems in scripts/my_video.yaml:
+  - scene 1: unknown field 'visul'. Did you mean 'visual'?
+  - scene 2: visual: 'clok.svg' not found in assets/. Did you mean clock.svg? ...
+  - scene 2: animation: unknown animation 'drawon'. Did you mean 'draw_on'? ...
+```
+
+### 3. Run it on your computer
+
+```bash
+python -m src.main render-script --script scripts/my_video.yaml
+python -m src.main render-script --script scripts/my_video.yaml --style classic   # the old look
+```
+
+On Windows run `set PYTHONUTF8=1` (cmd) or `export PYTHONUTF8=1` (Git Bash) first.
+The video is written to `generated/<title>/curious_minds_shorts_9x16.mp4`, with captions
+(`subtitles/*.srt`), the storyboard and `production_report.json`. The classic look goes to
+`generated/<title>_classic/`. A 30 s Short takes about 4 minutes on a 2-core laptop.
+
+### 4. Run it from GitHub
+
+1. Commit your script file to the repo (for example `scripts/my_video.yaml`) and push.
+2. Go to **Actions → Generate Curious Minds video → Run workflow**.
+3. Set **script_file** to `scripts/my_video.yaml` (leave **topic** empty). **style** `auto` uses the lively look.
+4. When the run finishes, download the video from the run's **Artifacts**.
+
+### What the lively look does
+
+* **Draw-on and pop-in**: lines draw themselves, then colour fades in. Pop-ins grow to 110 % and
+  settle at 100 %. All motion is eased; nothing moves linearly.
+* **The camera is always moving**: a slow zoom or pan on every scene (about 16 %), a quick
+  punch-in on key words, an optional shake, and a slight hand-held sway.
+* **Something new every ~1.6 s**: when a scene is long, the tool adds secondary motion: a
+  keyword sticker, a hand-drawn circle, an arrow, a sparkle burst or a squash-and-stretch bounce.
+* **Big captions, word by word**: bold, centred low, thick outline and shadow. The word being
+  spoken turns yellow. Word timings are measured from the voice with faster-whisper.
+  The captions stay out of the Shorts side buttons and description area.
+* **Quick transitions** (0.26 s): whips with motion blur, zoom-through and ink swipes, each with a whoosh.
+* **Hook**: the first frame already shows the headline, the main visual and the host. No intro, no logo.
+* **Loop ending**: with `loop_to_start: true` the last frames turn back into the opening frame.
+* **Hand-drawn feel**: off-white paper with grain, lines that "boil" (redrawn 8 times a
+  second), and a big host who changes position and pose between scenes.
+* **Sound**: whoosh / pop / sparkle / click effects on transitions and pop-ins, and background
+  music that automatically ducks under the voice.
+
+All colours, fonts and timings of the lively look are in one file: [`config/style.yaml`](config/style.yaml).
+The old look is still available everywhere: `--style classic` (script mode) and the default
+for topic mode (`generate --style lively` switches a topic video to the new look).
+
+**Licences of the sounds**: every sound effect and the background music are generated by the
+code itself (`src/audio/sound_effects.py`, `src/audio/music_engine.py`). No third-party
+recordings are used, so there is nothing to license. If you add your own music, use only
+CC0 / royalty-free tracks and keep a note of the source.
+
+**Measure the motion** of any rendered video and make a contact sheet of mid-scene frames:
+
+```bash
+PYTHONPATH=. python scripts/motion_report.py --video generated/<title>/curious_minds_shorts_9x16.mp4 \
+    --storyboard generated/<title>/storyboard.json --sheet sheet.png
+```
+
 ---
 
 ## 1. Quick start (local)
@@ -91,7 +232,9 @@ Workflow: `.github/workflows/generate-video.yml` → **Actions → Generate Curi
 
 | Input | Values |
 |---|---|
-| `topic` | required, free text (3–120 chars) |
+| `script_file` | your script in the repo, e.g. `scripts/my_video.yaml` (script mode; then `topic` is not needed) |
+| `topic` | free text (3–120 chars), required when `script_file` is empty |
+| `style` | `auto` (lively for script files, classic for topics) / `lively` / `classic` |
 | `niche` | science / psychology / human_body / mixed |
 | `generate_shorts`, `generate_long_video` | true / false |
 | `short_duration` | 25–90 s (accepted within ±20 % of the requested target) |
@@ -293,8 +436,12 @@ generated/why_do_we_dream/
   development (no key was available).
 * **Manim is not used**; diagrams come from the in-house Cairo doodle engine (keeps one visual
   style, avoids LaTeX/OpenGL dependencies).
-* **Word-level caption timing** is phoneme-weighted inside each sentence (sentence boundaries are
-  exact); it is phrase-accurate but not forced-alignment accurate.
+* **Word-level caption timing**: the lively style aligns caption words to the voice with
+  faster-whisper (see `src/audio/word_aligner.py`). The classic style still uses phoneme-weighted
+  estimates inside each sentence (sentence boundaries are exact).
+* **Lively topic videos** (`generate --style lively`) get the new camera, beats, paper look,
+  captions and transitions, but keep the classic layouts, so their subjects are smaller than in
+  script mode's spotlight layout.
 * **Lip sync** follows loudness (open/close + width variation), not phoneme visemes.
 * **Voice quality is measured, not listened to, in CI**: narration QC uses signal metrics and a
   Whisper word-error rate; "pleasant" is still a human judgement — use `voice preview` to compare.
