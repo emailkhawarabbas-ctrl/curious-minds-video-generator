@@ -108,7 +108,8 @@ def test_hand_follows_the_pen_and_lifts_between_strokes():
 def test_handwriting_traces_each_letter():
     ht = HandText(text="SLEEP", center=(540, 900), size=90, underline=(1, 0.3, 0.4)).plan(0.0, 1.0)
     groups = {s.group for s in ht.strokes if s.group >= 0}
-    assert len(groups) == 5 and len(ht.glyphs) == 5
+    kinds = [[int(k) for k, _ in g] for g in ht.glyphs]          # Cairo path element types per letter
+    assert len(groups) == 5 and len(ht.glyphs) == 5, f"glyph path elements: {kinds}"
     assert ht.strokes[-1].group == -1                                    # the underline comes last
     two = HandText(text="TWO\nLINES", center=(540, 900), size=90)
     ys = [p[1] for s in two.strokes for p in s.pts]
